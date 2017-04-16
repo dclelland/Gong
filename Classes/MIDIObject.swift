@@ -9,15 +9,15 @@
 import Foundation
 import CoreMIDI.MIDIServices
 
-class MIDIObject {
+public class MIDIObject {
     
-    let reference: MIDIObjectRef
+    public let reference: MIDIObjectRef
     
-    init(reference: MIDIObjectRef) {
+    public init(reference: MIDIObjectRef) {
         self.reference = reference
     }
     
-    static func find(with uniqueID: MIDIUniqueID, type: MIDIObjectType? = nil) -> MIDIObject? {
+    public static func find(with uniqueID: MIDIUniqueID, type: MIDIObjectType? = nil) -> MIDIObject? {
         var object = MIDIObjectRef()
         do {
             try MIDIObjectFindByUniqueID(uniqueID, &object, nil).check("Finding MIDIObject with unique ID \"\(uniqueID)\"")
@@ -28,7 +28,7 @@ class MIDIObject {
         }
     }
     
-    subscript(property: CFString) -> Bool? {
+    public subscript(property: CFString) -> Bool? {
         get {
             return try? getInteger(for: property) != 0
         }
@@ -41,7 +41,7 @@ class MIDIObject {
         }
     }
     
-    subscript(property: CFString) -> Int? {
+    public subscript(property: CFString) -> Int? {
         get {
             return try? Int(getInteger(for: property))
         }
@@ -54,7 +54,7 @@ class MIDIObject {
         }
     }
     
-    subscript(property: CFString) -> String? {
+    public subscript(property: CFString) -> String? {
         get {
             return try? getString(for: property) as String
         }
@@ -67,7 +67,7 @@ class MIDIObject {
         }
     }
     
-    subscript(property: CFString) -> Data? {
+    public subscript(property: CFString) -> Data? {
         get {
             return try? getData(for: property) as Data
         }
@@ -80,7 +80,7 @@ class MIDIObject {
         }
     }
     
-    subscript(property: CFString) -> CFDictionary? {
+    public subscript(property: CFString) -> CFDictionary? {
         get {
             return try? getDictionary(for: property)
         }
@@ -156,7 +156,7 @@ class MIDIObject {
 
 extension MIDIObject: Equatable {
     
-    static func == (lhs: MIDIObject, rhs: MIDIObject) -> Bool {
+    public static func == (lhs: MIDIObject, rhs: MIDIObject) -> Bool {
         return lhs.reference == rhs.reference
     }
     

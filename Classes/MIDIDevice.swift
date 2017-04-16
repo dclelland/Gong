@@ -9,16 +9,16 @@
 import Foundation
 import CoreMIDI.MIDIServices
 
-class MIDIDevice: MIDIObject {
+public class MIDIDevice: MIDIObject {
     
-    static var all: [MIDIDevice] {
+    public static var all: [MIDIDevice] {
         let count = MIDIGetNumberOfDevices()
         return (0..<count).lazy.map { index in
             return MIDIDevice(reference: MIDIGetDevice(index))
         }
     }
     
-    var entities: [MIDIEntity] {
+    public var entities: [MIDIEntity] {
         let count = MIDIDeviceGetNumberOfEntities(reference)
         return (0..<count).lazy.map { index in
             return MIDIEntity(reference: MIDIDeviceGetEntity(reference, index))
@@ -27,9 +27,9 @@ class MIDIDevice: MIDIObject {
     
 }
 
-extension MIDIDevice {
+public extension MIDIDevice {
     
-    static var allExternalDevices: [MIDIDevice] {
+    public static var allExternalDevices: [MIDIDevice] {
         let count = MIDIGetNumberOfExternalDevices()
         return (0..<count).lazy.map { index in
             return MIDIDevice(reference: MIDIGetExternalDevice(index))
@@ -38,21 +38,21 @@ extension MIDIDevice {
     
 }
 
-extension MIDIDevice {
+public extension MIDIDevice {
     
-    var name: String {
+    public var name: String {
         return self[kMIDIPropertyName]!
     }
     
-    var manufacturer: String {
+    public var manufacturer: String {
         return self[kMIDIPropertyManufacturer]!
     }
     
-    var model: String {
+    public var model: String {
         return self[kMIDIPropertyModel]!
     }
     
-    var uniqueID: Int {
+    public var uniqueID: Int {
         return self[kMIDIPropertyUniqueID]!
     }
 

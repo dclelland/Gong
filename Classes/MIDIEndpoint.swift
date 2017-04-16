@@ -9,14 +9,14 @@
 import Foundation
 import CoreMIDI.MIDIServices
 
-protocol MIDIEndpointType {}
+public protocol MIDIEndpointType {}
 
-enum Source: MIDIEndpointType {}
-enum Destination: MIDIEndpointType {}
+public enum Source: MIDIEndpointType {}
+public enum Destination: MIDIEndpointType {}
 
-class MIDIEndpoint<Type: MIDIEndpointType>: MIDIObject {
+public class MIDIEndpoint<Type: MIDIEndpointType>: MIDIObject {
     
-    var entity: MIDIEntity? {
+    public var entity: MIDIEntity? {
         do {
             var entity = MIDIEntityRef()
             try MIDIEndpointGetEntity(reference, &entity).check("Getting entity for MIDIEndpoint")
@@ -27,15 +27,15 @@ class MIDIEndpoint<Type: MIDIEndpointType>: MIDIObject {
         }
     }
     
-    func dispose() {
+    public func dispose() {
         MIDIEndpointDispose(reference)
     }
 
 }
 
-extension MIDIEndpoint where Type == Source {
+public extension MIDIEndpoint where Type == Source {
     
-    static var all: [MIDIEndpoint<Source>] {
+    public static var all: [MIDIEndpoint<Source>] {
         let count = MIDIGetNumberOfSources()
         return (0..<count).lazy.map { index in
             return MIDIEndpoint<Source>(reference: MIDIGetSource(index))
@@ -46,7 +46,7 @@ extension MIDIEndpoint where Type == Source {
 
 extension MIDIEndpoint where Type == Destination {
     
-    static var all: [MIDIEndpoint<Destination>] {
+    public static var all: [MIDIEndpoint<Destination>] {
         let count = MIDIGetNumberOfDestinations()
         return (0..<count).lazy.map { index in
             return MIDIEndpoint<Destination>(reference: MIDIGetDestination(index))
@@ -57,7 +57,7 @@ extension MIDIEndpoint where Type == Destination {
 
 extension MIDIEndpoint where Type == Source {
     
-    func received(packets: UnsafePointer<MIDIPacketList>) throws {
+    public func received(packets: UnsafePointer<MIDIPacketList>) throws {
         try MIDIReceived(reference, packets).check("Receiving packets with MIDIEndpoint")
     }
     
@@ -65,7 +65,7 @@ extension MIDIEndpoint where Type == Source {
 
 extension MIDIEndpoint where Type == Destination {
     
-    func flushOutput() throws {
+    public func flushOutput() throws {
         try MIDIFlushOutput(reference).check("Flushing output with MIDIEndpoint")
     }
     
@@ -73,19 +73,19 @@ extension MIDIEndpoint where Type == Destination {
 
 extension MIDIEndpoint {
     
-    var name: String {
+    public var name: String {
         return self[kMIDIPropertyName]!
     }
     
-    var manufacturer: String {
+    public var manufacturer: String {
         return self[kMIDIPropertyManufacturer]!
     }
     
-    var model: String {
+    public var model: String {
         return self[kMIDIPropertyModel]!
     }
     
-    var uniqueID: Int {
+    public var uniqueID: Int {
         return self[kMIDIPropertyUniqueID]!
     }
     

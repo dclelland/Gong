@@ -9,15 +9,15 @@
 import Foundation
 import AudioToolbox
 
-struct StatusError: Error {
+public struct StatusError: Error {
     
-    let message: String?
-    let status: OSStatus
-    let file: String
-    let function: String
-    let line: Int
+    public let message: String?
+    public let status: OSStatus
+    public let file: String
+    public let function: String
+    public let line: Int
     
-    init(message: String?, status: OSStatus, file: String, function: String, line: Int) {
+    public init(message: String?, status: OSStatus, file: String, function: String, line: Int) {
         self.message = message
         self.status = status
         self.file = file
@@ -29,7 +29,7 @@ struct StatusError: Error {
 
 extension StatusError: CustomDebugStringConvertible {
     
-    var debugDescription: String {
+    public var debugDescription: String {
         guard let message = message else {
             return "Error of type \"\(type)\" thrown in \(function) \(filename):\(line)"
         }
@@ -47,7 +47,7 @@ extension StatusError: CustomDebugStringConvertible {
     
 }
 
-enum MIDIServicesError: Error {
+public enum MIDIServicesError: Error {
     
     case invalidClient
     case invalidPort
@@ -66,7 +66,7 @@ enum MIDIServicesError: Error {
     case notPermitted
     case unknown
     
-    init(_ status: OSStatus) {
+    public init(_ status: OSStatus) {
         switch status {
         case kMIDIInvalidClient: self = .invalidClient
         case kMIDIInvalidPort: self = .invalidPort
@@ -89,7 +89,7 @@ enum MIDIServicesError: Error {
     
 }
 
-enum AUGraphError: Error {
+public enum AUGraphError: Error {
     
     case nodeNotFound
     case invalidConnection
@@ -98,7 +98,7 @@ enum AUGraphError: Error {
     case invalidAudioUnit
     case unknown
     
-    init(_ status: OSStatus) {
+    public init(_ status: OSStatus) {
         switch status {
         case kAUGraphErr_NodeNotFound: self = .nodeNotFound
         case kAUGraphErr_InvalidConnection: self = .invalidConnection
@@ -115,7 +115,7 @@ enum AUGraphError: Error {
 
 extension OSStatus {
     
-    func check(_ message: String? = nil, file: String = #file, function: String = #function, line: Int = #line) throws {
+    public func check(_ message: String? = nil, file: String = #file, function: String = #function, line: Int = #line) throws {
         if self != noErr {
             throw StatusError(message: message, status: self, file: file, function: function, line: line)
         }

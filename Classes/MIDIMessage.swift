@@ -14,7 +14,7 @@ import CoreMIDI.MIDIServices
 
 extension MIDIPacketList {
     
-    init(packets: [MIDIPacket]) {
+    public init(packets: [MIDIPacket]) {
         let packet = UnsafeMutablePointer<MIDIPacketList>.allocate(capacity: 1)
         
 //        let packets = MIDIPacketListInit(UnsafeMutablePointer<MIDIPacketList>)
@@ -29,11 +29,11 @@ extension MIDIPacketList {
 //        self.init(numPackets: UInt32(packets.count), packet: &first)
     }
     
-    mutating func add(packet: MIDIPacket) {
+    public mutating func add(packet: MIDIPacket) {
 //        MIDIPacketListAdd(&self, Int, &packet, packet.timeStamp, Int, UnsafePointer<UInt8>)
     }
     
-    var packets: [MIDIPacket] {
+    public var packets: [MIDIPacket] {
         var packets = [packet]
         for _ in (0..<numPackets) {
             if var packet = packets.last {
@@ -47,11 +47,11 @@ extension MIDIPacketList {
 
 extension MIDIPacket {
     
-    init(timestamp: MIDITimeStamp = MIDITimeStamp(0), message: MIDIMessage) {
+    public init(timestamp: MIDITimeStamp = MIDITimeStamp(0), message: MIDIMessage) {
         self.init(timeStamp: timestamp, length: 0, data: (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
     }
     
-    var message: MIDIMessage {
+    public var message: MIDIMessage {
         switch status {
         case 0b1000:
             return .noteOff(channel: channel, key: data1, velocity: data2)
@@ -150,7 +150,7 @@ extension MIDIPacket {
     
 }
 
-enum MIDIMessage {
+public enum MIDIMessage {
 
     case noteOff(channel: UInt8, key: UInt8, velocity: UInt8)
     
@@ -160,7 +160,7 @@ enum MIDIMessage {
     
     case controlChange(channel: UInt8, controller: UInt8, value: UInt8)
     
-    enum ChannelModeType {
+    public enum ChannelModeType {
         
         case allSoundOff
 
@@ -190,7 +190,7 @@ enum MIDIMessage {
     
     case pitchBendChange(channel: UInt8, leastSignificantBits: UInt8, mostSignificantBits: UInt8)
     
-    enum SystemCommonType {
+    public enum SystemCommonType {
         
         case systemExclusive
         
@@ -210,7 +210,7 @@ enum MIDIMessage {
     
     case systemCommon(type: SystemCommonType)
     
-    enum SystemRealTimeType {
+    public enum SystemRealTimeType {
         
         case timingClock
         

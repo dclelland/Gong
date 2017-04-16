@@ -9,23 +9,23 @@
 import Foundation
 import CoreMIDI.MIDIServices
 
-class MIDIEntity: MIDIObject {
+public class MIDIEntity: MIDIObject {
     
-    var sources: [MIDIEndpoint<Source>] {
+    public var sources: [MIDIEndpoint<Source>] {
         let count = MIDIEntityGetNumberOfSources(reference)
         return (0..<count).lazy.map { index in
             return MIDIEndpoint<Source>(reference: MIDIEntityGetSource(reference, index))
         }
     }
     
-    var destinations: [MIDIEndpoint<Destination>] {
+    public var destinations: [MIDIEndpoint<Destination>] {
         let count = MIDIEntityGetNumberOfDestinations(reference)
         return (0..<count).lazy.map { index in
             return MIDIEndpoint<Destination>(reference: MIDIEntityGetDestination(reference, index))
         }
     }
     
-    var device: MIDIDevice? {
+    public var device: MIDIDevice? {
         do {
             var device = MIDIDeviceRef()
             try MIDIEntityGetDevice(reference, &device).check("Getting device for MIDIEntity")
@@ -40,11 +40,11 @@ class MIDIEntity: MIDIObject {
 
 extension MIDIEntity {
     
-    var name: String {
+    public var name: String {
         return self[kMIDIPropertyName]!
     }
     
-    var uniqueID: Int {
+    public var uniqueID: Int {
         return self[kMIDIPropertyUniqueID]!
     }
     
