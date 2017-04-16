@@ -14,10 +14,10 @@ Pod::Spec.new do |s|
   s.source                  = { :git => "https://github.com/dclelland/Gong.git", :tag => "0.1.0" }
 
   s.ios.deployment_target   = '8.0'
-  s.ios.source_files        = 'Classes/**/*.swift'
+  s.ios.source_files        = 'Sources/**/*.swift'
   s.ios.frameworks          = 'AudioToolbox', 'CoreMIDI'
 
   s.osx.deployment_target   = '10.10'
-  s.osx.source_files        = 'Classes/**/*.swift'
+  s.osx.source_files        = 'Sources/**/*.swift'
   s.osx.frameworks          = 'AudioToolbox', 'CoreMIDI'
 end
