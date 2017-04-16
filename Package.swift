@@ -1,10 +1,4 @@
-//
-//  Package.swift
-//  Gong
-//
-//  Created by Daniel Clelland on 17/04/17.
-//  Copyright © 2017 Daniel Clelland. All rights reserved.
-//
+// swift-tools-version:3.1
 
 import PackageDescription
 
