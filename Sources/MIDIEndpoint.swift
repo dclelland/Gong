@@ -91,3 +91,11 @@ extension MIDIEndpoint {
     }
     
 }
+
+extension MIDIEndpoint: CustomDebugStringConvertible {
+    
+    public var debugDescription: String {
+        return "\(MIDIDevice.self)(name: \(name))"
+    }
+    
+}

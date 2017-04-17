@@ -49,3 +49,11 @@ extension MIDIEntity {
     }
     
 }
+
+extension MIDIEntity: CustomDebugStringConvertible {
+    
+    public var debugDescription: String {
+        return "\(MIDIEntity.self)(name: \(name))"
+    }
+    
+}

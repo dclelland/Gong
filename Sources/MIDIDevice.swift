@@ -57,3 +57,11 @@ public extension MIDIDevice {
     }
 
 }
+
+extension MIDIDevice: CustomDebugStringConvertible {
+    
+    public var debugDescription: String {
+        return "\(MIDIDevice.self)(name: \(name))"
+    }
+    
+}
