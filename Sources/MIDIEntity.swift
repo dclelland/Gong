@@ -29,11 +29,19 @@ public class MIDIEntity: MIDIObject {
         }
     }
     
+    public func source(named name: String) -> MIDIEndpoint<Source>? {
+        return sources.first(where: { $0.name == name })
+    }
+    
     public var destinations: [MIDIEndpoint<Destination>] {
         let count = MIDIEntityGetNumberOfDestinations(reference)
         return (0..<count).lazy.map { index in
             return MIDIEndpoint<Destination>(reference: MIDIEntityGetDestination(reference, index))
         }
+    }
+    
+    public func destination(named name: String) -> MIDIEndpoint<Destination>? {
+        return destinations.first(where: { $0.name == name })
     }
     
 }

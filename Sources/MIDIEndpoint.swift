@@ -35,6 +35,14 @@ public class MIDIEndpoint<Type: MIDIEndpointType>: MIDIObject {
 
 public extension MIDIEndpoint where Type == Source {
     
+    public convenience init?(named name: String) {
+        guard let source = MIDIEndpoint<Source>.all.first(where: { $0.name == name }) else {
+            return nil
+        }
+        
+        self.init(reference: source.reference)
+    }
+    
     public static var all: [MIDIEndpoint<Source>] {
         let count = MIDIGetNumberOfSources()
         return (0..<count).lazy.map { index in
@@ -45,6 +53,14 @@ public extension MIDIEndpoint where Type == Source {
 }
 
 extension MIDIEndpoint where Type == Destination {
+    
+    public convenience init?(named name: String) {
+        guard let destination = MIDIEndpoint<Type>.all.first(where: { $0.name == name }) else {
+            return nil
+        }
+        
+        self.init(reference: destination.reference)
+    }
     
     public static var all: [MIDIEndpoint<Destination>] {
         let count = MIDIGetNumberOfDestinations()

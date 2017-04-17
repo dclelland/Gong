@@ -11,6 +11,14 @@ import CoreMIDI.MIDIServices
 
 public class MIDIDevice: MIDIObject {
     
+    public convenience init?(named name: String) {
+        guard let device = MIDIDevice.all.first(where: { $0.name == name }) else {
+            return nil
+        }
+        
+        self.init(reference: device.reference)
+    }
+    
     public static var all: [MIDIDevice] {
         let count = MIDIGetNumberOfDevices()
         return (0..<count).lazy.map { index in
@@ -23,6 +31,10 @@ public class MIDIDevice: MIDIObject {
         return (0..<count).lazy.map { index in
             return MIDIEntity(reference: MIDIDeviceGetEntity(reference, index))
         }
+    }
+    
+    public func entity(named name: String) -> MIDIEntity? {
+        return entities.first(where: { $0.name == name })
     }
     
 }
