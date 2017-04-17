@@ -16,7 +16,8 @@ public enum Output: MIDIPortType {}
 
 public class MIDIPort<Type: MIDIPortType>: MIDIObject {
     
-    public func connect(_ source: MIDIEndpoint<Source>, context: UnsafeMutableRawPointer? = nil) throws {
+    public func connect(_ source: MIDIEndpoint<Source>) throws {
+        let context = UnsafeMutablePointer.wrap(source.reference)
         try MIDIPortConnectSource(reference, source.reference, context).check("Connecting MIDIPort to source")
     }
     
