@@ -1,6 +1,6 @@
 //
 //  MIDIObject.swift
-//  Hibiscus
+//  Gong
 //
 //  Created by Daniel Clelland on 15/04/17.
 //  Copyright © 2017 Daniel Clelland. All rights reserved.
@@ -17,7 +17,22 @@ public class MIDIObject {
         self.reference = reference
     }
     
-    public static func find(with uniqueID: MIDIUniqueID, type: MIDIObjectType? = nil) -> MIDIObject? {
+    public static func create(with reference: MIDIObjectRef, type: MIDIObjectType) -> MIDIObject {
+        switch type {
+        case .other:
+            return MIDIObject(reference: reference)
+        case .device, .externalDevice:
+            return MIDIDevice(reference: reference)
+        case .entity, .externalEntity:
+            return MIDIEntity(reference: reference)
+        case .source, .externalSource:
+            return MIDIEndpoint<Source>(reference: reference)
+        case .destination, .externalDestination:
+            return MIDIEndpoint<Destination>(reference: reference)
+        }
+    }
+    
+    public static func find(with uniqueID: MIDIUniqueID, type: MIDIObjectType) -> MIDIObject? {
         var object = MIDIObjectRef()
         do {
             try MIDIObjectFindByUniqueID(uniqueID, &object, nil).check("Finding MIDIObject with unique ID \"\(uniqueID)\"")
@@ -145,23 +160,12 @@ public class MIDIObject {
         return propertyList!.takeRetainedValue()
     }
     
-    
-//    Packet lists
-//    
-//    public func MIDIPacketNext(_ pkt: UnsafePointer<MIDIPacket>) -> UnsafeMutablePointer<MIDIPacket>
-//    public func MIDIPacketListInit(_ pktlist: UnsafeMutablePointer<MIDIPacketList>) -> UnsafeMutablePointer<MIDIPacket>
-//    public func MIDIPacketListAdd(_ pktlist: UnsafeMutablePointer<MIDIPacketList>, _ listSize: Int, _ curPacket: UnsafeMutablePointer<
-    
 }
 
 extension MIDIObject {
     
-    public var name: String {
-        return self[kMIDIPropertyName]!
-    }
-    
-    public var uniqueID: Int {
-        return self[kMIDIPropertyUniqueID]!
+    public var name: String? {
+        return self[kMIDIPropertyName]
     }
 
 }
@@ -177,6 +181,10 @@ extension MIDIObject: Equatable {
 extension MIDIObject: CustomDebugStringConvertible {
     
     public var debugDescription: String {
+        guard let name = name else {
+            return "\(type(of: self))()"
+        }
+        
         return "\(type(of: self))(name: \(name))"
     }
     

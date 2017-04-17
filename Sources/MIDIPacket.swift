@@ -1,6 +1,6 @@
 //
-//  MIDIMessage.swift
-//  hibiscus
+//  MIDIPacket.swift
+//  Gong
 //
 //  Created by Daniel Clelland on 16/04/17.
 //  Copyright © 2017 Daniel Clelland. All rights reserved.
@@ -11,84 +11,6 @@
 
 import Foundation
 import CoreMIDI.MIDIServices
-
-public enum MIDIMessage {
-    
-    case noteOff(channel: UInt8, key: UInt8, velocity: UInt8)
-    
-    case noteOn(channel: UInt8, key: UInt8, velocity: UInt8)
-    
-    case polyphonicKeyPressure(channel: UInt8, key: UInt8, pressure: UInt8)
-    
-    case controlChange(channel: UInt8, controller: UInt8, value: UInt8)
-    
-    public enum ChannelModeType {
-        
-        case allSoundOff
-        
-        case resetAllControllers
-        
-        case localControlOff
-        
-        case localControlOn
-        
-        case allNotesOff
-        
-        case omniModeOff
-        
-        case omniModeOn
-        
-        case monoModeOn(channels: UInt8)
-        
-        case polyModeOn
-        
-    }
-    
-    case channelMode(channel: UInt8, type: ChannelModeType)
-    
-    case programChange(channel: UInt8, number: UInt8)
-    
-    case channelPressure(channel: UInt8, pressure: UInt8)
-    
-    case pitchBendChange(channel: UInt8, leastSignificantBits: UInt8, mostSignificantBits: UInt8)
-    
-    public enum SystemCommonType {
-        
-        case systemExclusive
-        
-        case midiTimeCodeQuarterFrame(type: UInt8, values: UInt8)
-        
-        case songPositionPointer(leastSignificantBits: UInt8, mostSignificantBits: UInt8)
-        
-        case songSelect(song: UInt8)
-        
-        case tuneRequest
-        
-    }
-    
-    case systemCommon(type: SystemCommonType)
-    
-    public enum SystemRealTimeType {
-        
-        case timingClock
-        
-        case start
-        
-        case `continue`
-        
-        case stop
-        
-        case activeSensing
-        
-        case reset
-        
-    }
-    
-    case systemRealTime(type: SystemRealTimeType)
-    
-    case unknown
-    
-}
 
 extension MIDIPacket {
     
@@ -116,7 +38,85 @@ extension MIDIPacket {
         self.data.2 = data2 & 0b01111111
     }
     
-    public init(timestamp: MIDITimeStamp = MIDITimeStamp(0), message: MIDIMessage) {
+    public enum Message {
+        
+        case noteOff(channel: UInt8, key: UInt8, velocity: UInt8)
+        
+        case noteOn(channel: UInt8, key: UInt8, velocity: UInt8)
+        
+        case polyphonicKeyPressure(channel: UInt8, key: UInt8, pressure: UInt8)
+        
+        case controlChange(channel: UInt8, controller: UInt8, value: UInt8)
+        
+        public enum ChannelModeType {
+            
+            case allSoundOff
+            
+            case resetAllControllers
+            
+            case localControlOff
+            
+            case localControlOn
+            
+            case allNotesOff
+            
+            case omniModeOff
+            
+            case omniModeOn
+            
+            case monoModeOn(channels: UInt8)
+            
+            case polyModeOn
+            
+        }
+        
+        case channelMode(channel: UInt8, type: ChannelModeType)
+        
+        case programChange(channel: UInt8, number: UInt8)
+        
+        case channelPressure(channel: UInt8, pressure: UInt8)
+        
+        case pitchBendChange(channel: UInt8, leastSignificantBits: UInt8, mostSignificantBits: UInt8)
+        
+        public enum SystemCommonType {
+            
+            case systemExclusive
+            
+            case midiTimeCodeQuarterFrame(type: UInt8, values: UInt8)
+            
+            case songPositionPointer(leastSignificantBits: UInt8, mostSignificantBits: UInt8)
+            
+            case songSelect(song: UInt8)
+            
+            case tuneRequest
+            
+        }
+        
+        case systemCommon(type: SystemCommonType)
+        
+        public enum SystemRealTimeType {
+            
+            case timingClock
+            
+            case start
+            
+            case `continue`
+            
+            case stop
+            
+            case activeSensing
+            
+            case reset
+            
+        }
+        
+        case systemRealTime(type: SystemRealTimeType)
+        
+        case unknown
+        
+    }
+    
+    public init(timestamp: MIDITimeStamp = MIDITimeStamp(0), message: Message) {
         switch message {
         case .noteOff(let channel, let key, let velocity):
             self.init(status: 8, channel: channel, data1: key, data2: velocity)
@@ -186,7 +186,7 @@ extension MIDIPacket {
         }
     }
     
-    public var message: MIDIMessage {
+    public var message: Message {
         switch status {
         case 8:
             return .noteOff(channel: channel, key: data1, velocity: data2)
@@ -277,33 +277,26 @@ extension MIDIPacket {
 
 extension MIDIPacketList {
     
+    // "The timestamps in the packet list must be in ascending order."
+    
     internal init(packets: [MIDIPacket]) {
-        let packet = UnsafeMutablePointer<MIDIPacketList>.allocate(capacity: 1)
+        var packetList = MIDIPacketList()
+        packetList.numPackets = UInt32(packets.count)
         
+        for var packet in packets {
+            
+//            @result			Returns null if there was not room in the packet for the
+//                event; otherwise returns a packet pointer which should be
+//            passed as curPacket in a subsequent call to this function.
+            
+            let pointer = MIDIPacketListAdd(&packetList, 512, &packet, packet.timeStamp, Int(packet.length), &packet.data.0)
+            
+            
+        }
         
-//        var packetList = MIDIPacketList()
-//        
-//        packetList.numPackets = 1
-//        packetList.packet.length = 3
-//        packetList.packet.data.0 = status
-//        packetList.packet.data.1 = data1
-//        packetList.packet.data.2 = data2
-        
-        //        let packets = MIDIPacketListInit(UnsafeMutablePointer<MIDIPacketList>)
-        
-        self.init()
-        //        MIDIPacketListInit
-        //        MIDIPacketListAdd
-        //        guard var first = packets.first else {
-        //            self.init(numPackets: 1, packet: MIDIPacket(timestamp: 0, message: .unknown))
-        //        }
-        //
-        //        self.init(numPackets: UInt32(packets.count), packet: &first)
+        self = packetList
     }
     
-    internal mutating func add(packet: MIDIPacket) {
-        //        MIDIPacketListAdd(&self, Int, &packet, packet.timeStamp, Int, UnsafePointer<UInt8>)
-    }
     
     internal var packets: [MIDIPacket] {
         var packets = [packet]

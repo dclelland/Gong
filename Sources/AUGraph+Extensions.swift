@@ -1,6 +1,6 @@
 //
 //  AUGraph+Extensions.swift
-//  Hibiscus
+//  Gong
 //
 //  Created by Daniel Clelland on 15/04/17.
 //  Copyright © 2017 Daniel Clelland. All rights reserved.
