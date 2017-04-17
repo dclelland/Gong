@@ -3,7 +3,8 @@
 ### Todo
 
 - Sort out MIDIPacketList
-- Figure out what to do about timestamps (this could be nicer - perhaps a MIDIEvent object to go with MIDIMessage...?)
+    - Figure out what to do about timestamps (this could be nicer - perhaps a MIDIEvent object to go with MIDIMessage...?)
+    - Perhaps simple send(message:timestamp:) and send(messages:timestamp:)...? (That won't work, separate timestamps requied)
 - Remove cruft (e.g. unnecessary throws statements)
 - Test out createDestination alongside createInput
 - CFDictionary stuff
