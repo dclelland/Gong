@@ -64,10 +64,6 @@ public enum MIDIMessage {
         
         case tuneRequest
         
-        case undefined
-        
-        case endOfExclusive
-        
     }
     
     case systemCommon(type: SystemCommonType)
@@ -86,8 +82,6 @@ public enum MIDIMessage {
         
         case reset
         
-        case undefined
-        
     }
     
     case systemRealTime(type: SystemRealTimeType)
@@ -98,19 +92,109 @@ public enum MIDIMessage {
 
 extension MIDIPacket {
     
+    public init(timestamp: MIDITimeStamp = MIDITimeStamp(0), status: UInt8, channel: UInt8) {
+        self.init()
+        self.timeStamp = timestamp
+        self.length = 1
+        self.data.0 = (status << 4) | (channel & 0b00001111)
+    }
+    
+    public init(timestamp: MIDITimeStamp = MIDITimeStamp(0), status: UInt8, channel: UInt8, data1: UInt8) {
+        self.init()
+        self.timeStamp = timestamp
+        self.length = 2
+        self.data.0 = (status << 4) | (channel & 0b00001111)
+        self.data.1 = data1 & 0b01111111
+    }
+    
+    public init(timestamp: MIDITimeStamp = MIDITimeStamp(0), status: UInt8, channel: UInt8, data1: UInt8, data2: UInt8) {
+        self.init()
+        self.timeStamp = timestamp
+        self.length = 3
+        self.data.0 = (status << 4) | (channel & 0b00001111)
+        self.data.1 = data1 & 0b01111111
+        self.data.2 = data2 & 0b01111111
+    }
+    
     public init(timestamp: MIDITimeStamp = MIDITimeStamp(0), message: MIDIMessage) {
-        self.init(timeStamp: timestamp, length: 0, data: (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+        switch message {
+        case .noteOff(let channel, let key, let velocity):
+            self.init(status: 8, channel: channel, data1: key, data2: velocity)
+        case .noteOn(let channel, let key, let velocity):
+            self.init(status: 9, channel: channel, data1: key, data2: velocity)
+        case .polyphonicKeyPressure(let channel, let key, let pressure):
+            self.init(status: 10, channel: channel, data1: key, data2: pressure)
+        case .controlChange(let channel, let controller, let value):
+            self.init(status: 11, channel: channel, data1: controller, data2: value)
+        case .channelMode(let channel, let type):
+            switch type {
+            case .allSoundOff:
+                self.init(status: 11, channel: channel, data1: 120, data2: 0)
+            case .resetAllControllers:
+                self.init(status: 11, channel: channel, data1: 121, data2: 0)
+            case .localControlOff:
+                self.init(status: 11, channel: channel, data1: 122, data2: 0)
+            case .localControlOn:
+                self.init(status: 11, channel: channel, data1: 122, data2: 127)
+            case .allNotesOff:
+                self.init(status: 11, channel: channel, data1: 123, data2: 0)
+            case .omniModeOff:
+                self.init(status: 11, channel: channel, data1: 124, data2: 0)
+            case .omniModeOn:
+                self.init(status: 11, channel: channel, data1: 125, data2: 0)
+            case .monoModeOn(let channels):
+                self.init(status: 11, channel: channel, data1: 126, data2: channels)
+            case .polyModeOn:
+                self.init(status: 11, channel: channel, data1: 127, data2: 0)
+            }
+        case .programChange(let channel, let number):
+            self.init(status: 12, channel: channel, data1: number)
+        case .channelPressure(let channel, let pressure):
+            self.init(status: 13, channel: channel, data1: pressure)
+        case .pitchBendChange(let channel, let leastSignificantBits, let mostSignificantBits):
+            self.init(status: 14, channel: channel, data1: leastSignificantBits, data2: mostSignificantBits)
+        case .systemCommon(let type):
+            switch type {
+            case .systemExclusive:
+                self.init(status: 15, channel: 0)
+            case .midiTimeCodeQuarterFrame(let type, let values):
+                self.init(status: 15, channel: 1, data1: (type << 4) | (values & 0b00001111))
+            case .songPositionPointer(let leastSignificantBits, let mostSignificantBits):
+                self.init(status: 15, channel: 2, data1: leastSignificantBits, data2: mostSignificantBits)
+            case .songSelect(let song):
+                self.init(status: 15, channel: 3, data1: song)
+            case .tuneRequest:
+                self.init(status: 15, channel: 5)
+            }
+        case .systemRealTime(let type):
+            switch type {
+            case .timingClock:
+                self.init(status: 15, channel: 8)
+            case .start:
+                self.init(status: 15, channel: 10)
+            case .continue:
+                self.init(status: 15, channel: 11)
+            case .stop:
+                self.init(status: 15, channel: 12)
+            case .activeSensing:
+                self.init(status: 15, channel: 14)
+            case .reset:
+                self.init(status: 15, channel: 15)
+            }
+        default:
+            self.init(status: 0, channel: 0)
+        }
     }
     
     public var message: MIDIMessage {
         switch status {
-        case 0b1000:
+        case 8:
             return .noteOff(channel: channel, key: data1, velocity: data2)
-        case 0b1001:
+        case 9:
             return .noteOn(channel: channel, key: data1, velocity: data2)
-        case 0b1010:
+        case 10:
             return .polyphonicKeyPressure(channel: channel, key: data1, pressure: data2)
-        case 0b1011:
+        case 11:
             switch (data1, data2) {
             case (0...119, _):
                 return .controlChange(channel: channel, controller: data1, value: data2)
@@ -135,45 +219,35 @@ extension MIDIPacket {
             default:
                 return .unknown
             }
-        case 0b1100:
+        case 12:
             return .programChange(channel: channel, number: data1)
-        case 0b1101:
+        case 13:
             return .channelPressure(channel: channel, pressure: data1)
-        case 0b1110:
+        case 14:
             return .pitchBendChange(channel: channel, leastSignificantBits: data1, mostSignificantBits: data2)
-        case 0b1111:
+        case 15:
             switch channel {
-            case 0b0000:
+            case 0:
                 return .systemCommon(type: .systemExclusive)
-            case 0b0001:
+            case 1:
                 return .systemCommon(type: .midiTimeCodeQuarterFrame(type: data1 & 0b01110000 >> 4, values: data1 & 0b00001111))
-            case 0b0010:
+            case 2:
                 return .systemCommon(type: .songPositionPointer(leastSignificantBits: data1, mostSignificantBits: data2))
-            case 0b0011:
+            case 3:
                 return .systemCommon(type: .songSelect(song: data1))
-            case 0b0100:
-                return .systemCommon(type: .undefined)
-            case 0b0101:
+            case 5:
                 return .systemCommon(type: .tuneRequest)
-            case 0b0110:
-                return .systemCommon(type: .undefined)
-            case 0b0111:
-                return .systemCommon(type: .endOfExclusive)
-            case 0b1000:
+            case 8:
                 return .systemRealTime(type: .timingClock)
-            case 0b1001:
-                return .systemRealTime(type: .undefined)
-            case 0b1010:
+            case 10:
                 return .systemRealTime(type: .start)
-            case 0b1011:
+            case 11:
                 return .systemRealTime(type: .continue)
-            case 0b1100:
+            case 12:
                 return .systemRealTime(type: .stop)
-            case 0b1101:
-                return .systemRealTime(type: .undefined)
-            case 0b1110:
+            case 14:
                 return .systemRealTime(type: .activeSensing)
-            case 0b1111:
+            case 15:
                 return .systemRealTime(type: .reset)
             default:
                 return .unknown
@@ -205,6 +279,15 @@ extension MIDIPacketList {
     
     internal init(packets: [MIDIPacket]) {
         let packet = UnsafeMutablePointer<MIDIPacketList>.allocate(capacity: 1)
+        
+        
+//        var packetList = MIDIPacketList()
+//        
+//        packetList.numPackets = 1
+//        packetList.packet.length = 3
+//        packetList.packet.data.0 = status
+//        packetList.packet.data.1 = data1
+//        packetList.packet.data.2 = data2
         
         //        let packets = MIDIPacketListInit(UnsafeMutablePointer<MIDIPacketList>)
         
