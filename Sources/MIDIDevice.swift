@@ -37,6 +37,22 @@ public class MIDIDevice: MIDIObject {
         return entities.first(where: { $0.name == name })
     }
     
+    public var sources: [MIDIEndpoint<Source>] {
+        return entities.map({ $0.sources }).flatMap({ $0 })
+    }
+    
+    public func source(named name: String) -> MIDIEndpoint<Source>? {
+        return sources.first(where: { $0.name == name })
+    }
+    
+    public var destinations: [MIDIEndpoint<Destination>] {
+        return entities.map({ $0.destinations }).flatMap({ $0 })
+    }
+    
+    public func destination(named name: String) -> MIDIEndpoint<Destination>? {
+        return destinations.first(where: { $0.name == name })
+    }
+    
 }
 
 public extension MIDIDevice {

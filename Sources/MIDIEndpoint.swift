@@ -27,6 +27,10 @@ public class MIDIEndpoint<Type: MIDIEndpointType>: MIDIObject {
         }
     }
     
+    public var device: MIDIDevice? {
+        return entity?.device
+    }
+    
     public func dispose() {
         MIDIEndpointDispose(reference)
     }
