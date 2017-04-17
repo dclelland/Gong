@@ -11,6 +11,12 @@ import CoreMIDI.MIDIServices
 
 public class MIDIClient: MIDIObject {
     
+    /// Bug when you unplug a keyboard on macOS 10.11: https://lists.apple.com/archives/coreaudio-api/2015/Oct/msg00059.html
+    
+    public static let `default` = try? MIDIClient(name: "Default client") { notification in
+        print(notification)
+    }
+    
     public enum Notification {
         
         case setupChanged
