@@ -21,8 +21,32 @@ public class MIDIPort<Type: MIDIPortType>: MIDIObject {
         try MIDIPortConnectSource(reference, source.reference, context).check("Connecting MIDIPort to source")
     }
     
+    public func connect(_ entity: MIDIEntity) throws {
+        for source in entity.sources {
+            try connect(source)
+        }
+    }
+    
+    public func connect(_ device: MIDIDevice) throws {
+        for entity in device.entities {
+            try connect(entity)
+        }
+    }
+    
     public func disconnect(_ source: MIDIEndpoint<Source>) throws {
         try MIDIPortDisconnectSource(reference, source.reference).check("Disconnecting MIDIPort from source")
+    }
+    
+    public func disconnect(_ entity: MIDIEntity) throws {
+        for source in entity.sources {
+            try disconnect(source)
+        }
+    }
+    
+    public func disconnect(_ device: MIDIDevice) throws {
+        for entity in device.entities {
+            try disconnect(entity)
+        }
     }
     
     public func dispose() throws {
@@ -36,6 +60,18 @@ extension MIDIPort where Type == Output {
     public func send(packets: MIDIPacketList, to destination: MIDIEndpoint<Destination>) throws {
         var packets = packets
         try MIDISend(reference, destination.reference, &packets).check("Sending packets to endpoint with MIDIPort")
+    }
+    
+    public func send(packets: MIDIPacketList, to entity: MIDIEntity) throws {
+        for destination in entity.destinations {
+            try send(packets: packets, to: destination)
+        }
+    }
+    
+    public func send(packets: MIDIPacketList, to device: MIDIDevice) throws {
+        for entity in device.entities {
+            try send(packets: packets, to: entity)
+        }
     }
     
 }
