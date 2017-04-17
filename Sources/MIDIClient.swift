@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import CoreMIDI.MIDIServices
+import CoreMIDI
 
 public class MIDIClient: MIDIObject {
     
@@ -31,7 +31,7 @@ public class MIDIClient: MIDIObject {
         
         case serialPortOwnerChanged
         
-        case ioError(device: MIDIDevice, error: MIDIServicesError)
+        case ioError(device: MIDIDevice, error: MIDIError)
         
         fileprivate init(_ pointer: UnsafePointer<MIDINotification>) {
             let notification = pointer.pointee
@@ -60,7 +60,7 @@ public class MIDIClient: MIDIObject {
             case .msgIOError:
                 let notification: MIDIIOErrorNotification = pointer.cast(size: Int(notification.messageSize))
                 let device = MIDIDevice(reference: notification.driverDevice)
-                let error = MIDIServicesError(notification.errorCode)
+                let error = MIDIError(status: notification.errorCode)
                 self = .ioError(device: device, error: error)
             }
         }

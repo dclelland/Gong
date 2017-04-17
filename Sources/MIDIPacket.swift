@@ -10,7 +10,7 @@
 //
 
 import Foundation
-import CoreMIDI.MIDIServices
+import CoreMIDI
 
 extension MIDIPacket {
     

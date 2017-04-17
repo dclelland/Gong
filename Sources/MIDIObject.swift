@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import CoreMIDI.MIDIServices
+import CoreMIDI
 
 public class MIDIObject {
     
@@ -45,7 +45,7 @@ public class MIDIObject {
     
     public subscript(property: CFString) -> Bool? {
         get {
-            return try? getInteger(for: property) != 0
+            return try? integer(for: property) != 0
         }
         set {
             if let boolean = newValue {
@@ -58,7 +58,7 @@ public class MIDIObject {
     
     public subscript(property: CFString) -> Int? {
         get {
-            return try? Int(getInteger(for: property))
+            return try? Int(integer(for: property))
         }
         set {
             if let integer = newValue {
@@ -71,7 +71,7 @@ public class MIDIObject {
     
     public subscript(property: CFString) -> String? {
         get {
-            return try? getString(for: property) as String
+            return try? string(for: property) as String
         }
         set {
             if let string = newValue {
@@ -84,7 +84,7 @@ public class MIDIObject {
     
     public subscript(property: CFString) -> Data? {
         get {
-            return try? getData(for: property) as Data
+            return try? data(for: property) as Data
         }
         set {
             if let data = newValue {
@@ -97,7 +97,7 @@ public class MIDIObject {
     
     public subscript(property: CFString) -> CFDictionary? {
         get {
-            return try? getDictionary(for: property)
+            return try? dictionary(for: property)
         }
         set {
             if let dictionary = newValue {
@@ -110,7 +110,7 @@ public class MIDIObject {
     
     // MARK: Private helpers
     
-    private func getInteger(for property: CFString) throws -> Int32 {
+    private func integer(for property: CFString) throws -> Int32 {
         var integer: Int32 = 0
         try MIDIObjectGetIntegerProperty(reference, property, &integer).check("Getting integer for property \"\(property)\" on MIDIObject")
         return integer
@@ -120,7 +120,7 @@ public class MIDIObject {
         try MIDIObjectSetIntegerProperty(reference, property, integer).check("Setting integer for property \"\(property)\" on MIDIObject")
     }
     
-    private func getString(for property: CFString) throws -> CFString {
+    private func string(for property: CFString) throws -> CFString {
         var string: Unmanaged<CFString>? = nil
         try MIDIObjectGetStringProperty(reference, property, &string).check("Getting string for property \"\(property)\" on MIDIObject")
         return string!.takeRetainedValue()
@@ -130,7 +130,7 @@ public class MIDIObject {
         try MIDIObjectSetStringProperty(reference, property, string).check("Setting string for property \"\(property)\" on MIDIObject")
     }
     
-    private func getData(for property: CFString) throws -> CFData {
+    private func data(for property: CFString) throws -> CFData {
         var data: Unmanaged<CFData>? = nil
         try MIDIObjectGetDataProperty(reference, property, &data).check("Getting data for property \"\(property)\" on MIDIObject")
         return data!.takeRetainedValue()
@@ -140,7 +140,7 @@ public class MIDIObject {
         try MIDIObjectSetDataProperty(reference, property, data).check("Setting data for property \"\(property)\" on MIDIObject")
     }
     
-    private func getDictionary(for property: CFString) throws -> CFDictionary {
+    private func dictionary(for property: CFString) throws -> CFDictionary {
         var dictionary: Unmanaged<CFDictionary>? = nil
         try MIDIObjectGetDictionaryProperty(reference, property, &dictionary).check("Getting dictionary for property \"\(property)\" on MIDIObject")
         return dictionary!.takeRetainedValue()
@@ -154,7 +154,7 @@ public class MIDIObject {
         try MIDIObjectRemoveProperty(reference, property).check("Removing property \"\(property)\" from MIDIObject")
     }
     
-    private func getProperties(deep: Bool = false) throws -> CFPropertyList {
+    private func properties(deep: Bool = false) throws -> CFPropertyList {
         var propertyList: Unmanaged<CFPropertyList>? = nil
         try MIDIObjectGetProperties(reference, &propertyList, deep).check("Getting properties for MIDIObject")
         return propertyList!.takeRetainedValue()

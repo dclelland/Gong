@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import CoreMIDI.MIDIServices
+import CoreMIDI
 
 public protocol MIDIEndpointType {}
 
