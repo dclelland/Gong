@@ -11,6 +11,17 @@ import CoreMIDI.MIDIServices
 
 public class MIDIEntity: MIDIObject {
     
+    public var device: MIDIDevice? {
+        do {
+            var device = MIDIDeviceRef()
+            try MIDIEntityGetDevice(reference, &device).check("Getting device for MIDIEntity")
+            return MIDIDevice(reference: device)
+        } catch let error {
+            print("\(error)")
+            return nil
+        }
+    }
+    
     public var sources: [MIDIEndpoint<Source>] {
         let count = MIDIEntityGetNumberOfSources(reference)
         return (0..<count).lazy.map { index in
@@ -22,17 +33,6 @@ public class MIDIEntity: MIDIObject {
         let count = MIDIEntityGetNumberOfDestinations(reference)
         return (0..<count).lazy.map { index in
             return MIDIEndpoint<Destination>(reference: MIDIEntityGetDestination(reference, index))
-        }
-    }
-    
-    public var device: MIDIDevice? {
-        do {
-            var device = MIDIDeviceRef()
-            try MIDIEntityGetDevice(reference, &device).check("Getting device for MIDIEntity")
-            return MIDIDevice(reference: device)
-        } catch let error {
-            print("\(error)")
-            return nil
         }
     }
     

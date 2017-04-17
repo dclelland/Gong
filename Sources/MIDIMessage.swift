@@ -148,7 +148,7 @@ extension MIDIPacket {
             case 0b0001:
                 return .systemCommon(type: .midiTimeCodeQuarterFrame(type: data1 & 0b01110000 >> 4, values: data1 & 0b00001111))
             case 0b0010:
-                return .systemCommon(type: .songPositionPointer(leastSignificatnBits: data1, mostSignificantBits: data2))
+                return .systemCommon(type: .songPositionPointer(leastSignificantBits: data1, mostSignificantBits: data2))
             case 0b0011:
                 return .systemCommon(type: .songSelect(song: data1))
             case 0b0100:

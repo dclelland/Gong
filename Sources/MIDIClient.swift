@@ -25,7 +25,7 @@ public class MIDIClient: MIDIObject {
     
     public typealias ReadCallback = ([MIDIPacket]) -> Void
     
-    public func createInputPort(name: String, callback: @escaping ReadCallback = { _ in }) throws -> MIDIPort<Input> {
+    public func createInput(name: String, callback: @escaping ReadCallback = { _ in }) throws -> MIDIPort<Input> {
         var port = MIDIPortRef()
         let context = UnsafeMutablePointer.wrap(callback)
         let procedure: MIDIReadProc = { (packetList, context, connectionContext) in
@@ -35,7 +35,7 @@ public class MIDIClient: MIDIObject {
         return MIDIPort(reference: port)
     }
     
-    public func createOutputPort(name: String) throws -> MIDIPort<Output> {
+    public func createOutput(name: String) throws -> MIDIPort<Output> {
         var port = MIDIPortRef()
         try MIDIOutputPortCreate(reference, name as CFString, &port).check("Creating output port on MIDIClient with name \"\(name)\"")
         return MIDIPort(reference: port)
