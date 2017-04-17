@@ -11,33 +11,31 @@ import CoreMIDI.MIDIServices
 
 public class MIDIClient: MIDIObject {
     
-    public convenience init(name: String, context: UnsafeMutableRawPointer? = nil, procedure: MIDINotifyProc? = nil) throws {
+    public typealias NotifyCallback = (MIDINotification) -> Void
+    
+    public convenience init(name: String, callback: @escaping NotifyCallback = { _ in }) throws {
         var client = MIDIClientRef()
+        let context = UnsafeMutablePointer.wrap(callback)
+        let procedure: MIDINotifyProc = { (notification, context) in
+            context?.assumingMemoryBound(to: NotifyCallback.self).pointee(notification.pointee)
+        }
         try MIDIClientCreate(name as CFString, procedure, context, &client).check("Creating MIDIClient with name \"\(name)\"")
         self.init(reference: client)
     }
     
-    @available(OSX 10.11, *)
-    public convenience init(name: String, block: MIDINotifyBlock? = nil) throws {
-        var client = MIDIClientRef()
-        try MIDIClientCreateWithBlock(name as CFString, &client, block).check("Creating MIDIClient with name \"\(name)\"")
-        self.init(reference: client)
-    }
+    public typealias ReadCallback = ([MIDIPacket]) -> Void
     
-    public func createInputPort(name: String, context: UnsafeMutableRawPointer? = nil, procedure: @escaping MIDIReadProc) throws -> MIDIPort {
+    public func createInputPort(name: String, callback: @escaping ReadCallback = { _ in }) throws -> MIDIPort<Input> {
         var port = MIDIPortRef()
+        let context = UnsafeMutablePointer.wrap(callback)
+        let procedure: MIDIReadProc = { (packetList, context, connectionContext) in
+            context?.assumingMemoryBound(to: ReadCallback.self).pointee(packetList.pointee.packets)
+        }
         try MIDIInputPortCreate(reference, name as CFString, procedure, context, &port).check("Creating input port on MIDIClient with name \"\(name)\"")
         return MIDIPort(reference: port)
     }
     
-    @available(OSX 10.11, *)
-    public func createInputPort(name: String, block: @escaping MIDIReadBlock) throws -> MIDIPort {
-        var port = MIDIPortRef()
-        try MIDIInputPortCreateWithBlock(reference, name as CFString, &port, block).check("Creating input port on MIDIClient with name \"\(name)\"")
-        return MIDIPort(reference: port)
-    }
-    
-    public func createOutputPort(name: String) throws -> MIDIPort {
+    public func createOutputPort(name: String) throws -> MIDIPort<Output> {
         var port = MIDIPortRef()
         try MIDIOutputPortCreate(reference, name as CFString, &port).check("Creating output port on MIDIClient with name \"\(name)\"")
         return MIDIPort(reference: port)
@@ -51,16 +49,13 @@ public class MIDIClient: MIDIObject {
 
 extension MIDIClient {
     
-    public func createDestination(name: String, context: UnsafeMutableRawPointer? = nil, procedure: @escaping MIDIReadProc) throws -> MIDIEndpoint<Destination> {
+    public func createDestination(name: String, callback: @escaping ReadCallback = { _ in }) throws -> MIDIEndpoint<Destination> {
         var endpoint = MIDIEndpointRef()
+        let context = UnsafeMutablePointer.wrap(callback)
+        let procedure: MIDIReadProc = { (packetList, context, connectionContext) in
+            context?.assumingMemoryBound(to: ReadCallback.self).pointee(packetList.pointee.packets)
+        }
         try MIDIDestinationCreate(reference, name as CFString, procedure, context, &endpoint).check("Creating destination on MIDIClient")
-        return MIDIEndpoint<Destination>(reference: endpoint)
-    }
-    
-    @available(OSX 10.11, *)
-    public func createDestination(name: String, block: @escaping MIDIReadBlock) throws -> MIDIEndpoint<Destination> {
-        var endpoint = MIDIEndpointRef()
-        try MIDIDestinationCreateWithBlock(reference, name as CFString, &endpoint, block).check("Creating destination on MIDIClient")
         return MIDIEndpoint<Destination>(reference: endpoint)
     }
     
@@ -80,6 +75,16 @@ extension MIDIClient {
     
     public static func restart() throws {
         try MIDIRestart().check("Restarting MIDI")
+    }
+    
+}
+
+fileprivate extension UnsafeMutablePointer {
+    
+    static func wrap(_ value: Pointee) -> UnsafeMutablePointer<Pointee> {
+        let pointer = UnsafeMutablePointer<Pointee>.allocate(capacity: MemoryLayout<Pointee>.stride)
+        pointer.initialize(to: value)
+        return pointer
     }
     
 }

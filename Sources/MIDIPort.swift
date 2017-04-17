@@ -9,7 +9,12 @@
 import Foundation
 import CoreMIDI.MIDIServices
 
-public class MIDIPort: MIDIObject {
+public protocol MIDIPortType {}
+
+public enum Input: MIDIPortType {}
+public enum Output: MIDIPortType {}
+
+public class MIDIPort<Type: MIDIPortType>: MIDIObject {
     
     public func connect(_ source: MIDIEndpoint<Source>, context: UnsafeMutableRawPointer? = nil) throws {
         try MIDIPortConnectSource(reference, source.reference, context).check("Connecting MIDIPort to source")
@@ -25,7 +30,7 @@ public class MIDIPort: MIDIObject {
     
 }
 
-extension MIDIPort {
+extension MIDIPort where Type == Output {
     
     public func send(packets: MIDIPacketList, to destination: MIDIEndpoint<Destination>) throws {
         var packets = packets

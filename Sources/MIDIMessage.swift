@@ -12,36 +12,87 @@
 import Foundation
 import CoreMIDI.MIDIServices
 
-extension MIDIPacketList {
+public enum MIDIMessage {
     
-    public init(packets: [MIDIPacket]) {
-        let packet = UnsafeMutablePointer<MIDIPacketList>.allocate(capacity: 1)
+    case noteOff(channel: UInt8, key: UInt8, velocity: UInt8)
+    
+    case noteOn(channel: UInt8, key: UInt8, velocity: UInt8)
+    
+    case polyphonicKeyPressure(channel: UInt8, key: UInt8, pressure: UInt8)
+    
+    case controlChange(channel: UInt8, controller: UInt8, value: UInt8)
+    
+    public enum ChannelModeType {
         
-//        let packets = MIDIPacketListInit(UnsafeMutablePointer<MIDIPacketList>)
+        case allSoundOff
         
-        self.init()
-//        MIDIPacketListInit
-//        MIDIPacketListAdd
-//        guard var first = packets.first else {
-//            self.init(numPackets: 1, packet: MIDIPacket(timestamp: 0, message: .unknown))
-//        }
-//        
-//        self.init(numPackets: UInt32(packets.count), packet: &first)
+        case resetAllControllers
+        
+        case localControlOff
+        
+        case localControlOn
+        
+        case allNotesOff
+        
+        case omniModeOff
+        
+        case omniModeOn
+        
+        case monoModeOn(channels: UInt8)
+        
+        case polyModeOn
+        
     }
     
-    public mutating func add(packet: MIDIPacket) {
-//        MIDIPacketListAdd(&self, Int, &packet, packet.timeStamp, Int, UnsafePointer<UInt8>)
+    case channelMode(channel: UInt8, type: ChannelModeType)
+    
+    case programChange(channel: UInt8, number: UInt8)
+    
+    case channelPressure(channel: UInt8, pressure: UInt8)
+    
+    case pitchBendChange(channel: UInt8, leastSignificantBits: UInt8, mostSignificantBits: UInt8)
+    
+    public enum SystemCommonType {
+        
+        case systemExclusive
+        
+        case midiTimeCodeQuarterFrame(type: UInt8, values: UInt8)
+        
+        case songPositionPointer(leastSignificantBits: UInt8, mostSignificantBits: UInt8)
+        
+        case songSelect(song: UInt8)
+        
+        case tuneRequest
+        
+        case undefined
+        
+        case endOfExclusive
+        
     }
     
-    public var packets: [MIDIPacket] {
-        var packets = [packet]
-        for _ in (0..<numPackets) {
-            if var packet = packets.last {
-                packets.append(MIDIPacketNext(&packet).pointee)
-            }
-        }
-        return packets
+    case systemCommon(type: SystemCommonType)
+    
+    public enum SystemRealTimeType {
+        
+        case timingClock
+        
+        case start
+        
+        case `continue`
+        
+        case stop
+        
+        case activeSensing
+        
+        case reset
+        
+        case undefined
+        
     }
+    
+    case systemRealTime(type: SystemRealTimeType)
+    
+    case unknown
     
 }
 
@@ -150,86 +201,35 @@ extension MIDIPacket {
     
 }
 
-public enum MIDIMessage {
-
-    case noteOff(channel: UInt8, key: UInt8, velocity: UInt8)
+extension MIDIPacketList {
     
-    case noteOn(channel: UInt8, key: UInt8, velocity: UInt8)
-    
-    case polyphonicKeyPressure(channel: UInt8, key: UInt8, pressure: UInt8)
-    
-    case controlChange(channel: UInt8, controller: UInt8, value: UInt8)
-    
-    public enum ChannelModeType {
+    internal init(packets: [MIDIPacket]) {
+        let packet = UnsafeMutablePointer<MIDIPacketList>.allocate(capacity: 1)
         
-        case allSoundOff
-
-        case resetAllControllers
+        //        let packets = MIDIPacketListInit(UnsafeMutablePointer<MIDIPacketList>)
         
-        case localControlOff
-        
-        case localControlOn
-        
-        case allNotesOff
-        
-        case omniModeOff
-        
-        case omniModeOn
-        
-        case monoModeOn(channels: UInt8)
-        
-        case polyModeOn
-        
+        self.init()
+        //        MIDIPacketListInit
+        //        MIDIPacketListAdd
+        //        guard var first = packets.first else {
+        //            self.init(numPackets: 1, packet: MIDIPacket(timestamp: 0, message: .unknown))
+        //        }
+        //
+        //        self.init(numPackets: UInt32(packets.count), packet: &first)
     }
     
-    case channelMode(channel: UInt8, type: ChannelModeType)
-    
-    case programChange(channel: UInt8, number: UInt8)
-    
-    case channelPressure(channel: UInt8, pressure: UInt8)
-    
-    case pitchBendChange(channel: UInt8, leastSignificantBits: UInt8, mostSignificantBits: UInt8)
-    
-    public enum SystemCommonType {
-        
-        case systemExclusive
-        
-        case midiTimeCodeQuarterFrame(type: UInt8, values: UInt8)
-        
-        case songPositionPointer(leastSignificatnBits: UInt8, mostSignificantBits: UInt8)
-        
-        case songSelect(song: UInt8)
-        
-        case tuneRequest
-        
-        case undefined
-        
-        case endOfExclusive
-        
+    internal mutating func add(packet: MIDIPacket) {
+        //        MIDIPacketListAdd(&self, Int, &packet, packet.timeStamp, Int, UnsafePointer<UInt8>)
     }
     
-    case systemCommon(type: SystemCommonType)
-    
-    public enum SystemRealTimeType {
-        
-        case timingClock
-        
-        case start
-        
-        case `continue`
-        
-        case stop
-        
-        case activeSensing
-        
-        case reset
-        
-        case undefined
-        
+    internal var packets: [MIDIPacket] {
+        var packets = [packet]
+        for _ in (0..<numPackets) {
+            if var packet = packets.last {
+                packets.append(MIDIPacketNext(&packet).pointee)
+            }
+        }
+        return packets
     }
     
-    case systemRealTime(type: SystemRealTimeType)
-    
-    case unknown
-
 }
