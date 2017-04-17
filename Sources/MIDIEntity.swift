@@ -37,23 +37,3 @@ public class MIDIEntity: MIDIObject {
     }
     
 }
-
-extension MIDIEntity {
-    
-    public var name: String {
-        return self[kMIDIPropertyName]!
-    }
-    
-    public var uniqueID: Int {
-        return self[kMIDIPropertyUniqueID]!
-    }
-    
-}
-
-extension MIDIEntity: CustomDebugStringConvertible {
-    
-    public var debugDescription: String {
-        return "\(MIDIEntity.self)(name: \(name))"
-    }
-    
-}

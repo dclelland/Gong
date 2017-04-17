@@ -154,10 +154,30 @@ public class MIDIObject {
     
 }
 
+extension MIDIObject {
+    
+    public var name: String {
+        return self[kMIDIPropertyName]!
+    }
+    
+    public var uniqueID: Int {
+        return self[kMIDIPropertyUniqueID]!
+    }
+
+}
+
 extension MIDIObject: Equatable {
     
     public static func == (lhs: MIDIObject, rhs: MIDIObject) -> Bool {
         return lhs.reference == rhs.reference
+    }
+    
+}
+
+extension MIDIObject: CustomDebugStringConvertible {
+    
+    public var debugDescription: String {
+        return "\(type(of: self))(name: \(name))"
     }
     
 }

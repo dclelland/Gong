@@ -71,31 +71,3 @@ extension MIDIEndpoint where Type == Destination {
     }
     
 }
-
-extension MIDIEndpoint {
-    
-    public var name: String {
-        return self[kMIDIPropertyName]!
-    }
-    
-    public var manufacturer: String {
-        return self[kMIDIPropertyManufacturer]!
-    }
-    
-    public var model: String {
-        return self[kMIDIPropertyModel]!
-    }
-    
-    public var uniqueID: Int {
-        return self[kMIDIPropertyUniqueID]!
-    }
-    
-}
-
-extension MIDIEndpoint: CustomDebugStringConvertible {
-    
-    public var debugDescription: String {
-        return "\(MIDIDevice.self)(name: \(name))"
-    }
-    
-}
