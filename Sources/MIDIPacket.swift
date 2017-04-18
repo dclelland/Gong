@@ -279,7 +279,7 @@ extension MIDIPacketList {
     
     // "The timestamps in the packet list must be in ascending order."
     
-    internal init(packets: [MIDIPacket]) {
+    internal init(packet: MIDIPacket) {
         var packetList = MIDIPacketList()
         packetList.numPackets = UInt32(packets.count)
         

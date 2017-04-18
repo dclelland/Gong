@@ -33,6 +33,13 @@ Arch:
 - MIDI combinator library
 - Audio wrapper library
 - Audio combinator library
+- Audiobus helper
+
+Inspiration:
+
+- objc.io's Functional Signal Processing using Swift
+- Overtone
+- Tidal Cycles
 
 Combinator ideas:
 
