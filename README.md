@@ -41,7 +41,7 @@ Inspiration:
 - Overtone
 - Tidal Cycles
 
-Combinator ideas:
+Combinator ideas (don't forget, @autoclosure for parameters):
 
 - simultaneous
 - sequential
