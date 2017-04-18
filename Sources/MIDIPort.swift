@@ -61,20 +61,20 @@ extension MIDIPort where Type == Input {
 
 extension MIDIPort where Type == Output {
     
-    public func send(packet: MIDIPacket, to destination: MIDIEndpoint<Destination>) throws {
+    public func send(_ packet: MIDIPacket, to destination: MIDIEndpoint<Destination>) throws {
         var packets = MIDIPacketList(packet: packet)
         try MIDISend(reference, destination.reference, &packets).check("Sending packets to endpoint with MIDIPort")
     }
     
-    public func send(packet: MIDIPacket, to entity: MIDIEntity) throws {
+    public func send(_ packet: MIDIPacket, to entity: MIDIEntity) throws {
         for destination in entity.destinations {
-            try send(packet: packet, to: destination)
+            try send(packet, to: destination)
         }
     }
     
-    public func send(packet: MIDIPacket, to device: MIDIDevice) throws {
+    public func send(_ packet: MIDIPacket, to device: MIDIDevice) throws {
         for entity in device.entities {
-            try send(packet: packet, to: entity)
+            try send(packet, to: entity)
         }
     }
     

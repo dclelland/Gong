@@ -11,13 +11,13 @@ import CoreMIDI
 
 public class MIDI {
     
-    public static let `default` = MIDI(name: "Default")
+    public static let shared = MIDI(name: "Shared")
     
     public let name: String
     
     public lazy private(set) var client: MIDIClient? = {
         return try? MIDIClient(name: self.name) { notification in
-            self.received(notification: notification)
+            self.received(notification)
         }
     }()
     
@@ -27,7 +27,7 @@ public class MIDI {
         }
         
         return try? client.createInput(name: self.name) { (source, packet) in
-            self.received(packet: packet, from: source)
+            self.received(packet, from: source)
         }
     }()
     
@@ -45,22 +45,17 @@ public class MIDI {
     
     public func connect() {
         for device in MIDIDevice.all {
-            print("CONNECT", device)
             try? input?.connect(device)
         }
     }
     
     public func disconnect() {
         for device in MIDIDevice.all {
-            print(device)
-            print("DISCONNECT", device)
             try? input?.disconnect(device)
         }
     }
     
-    private func received(notification: MIDIClient.Notification) {
-        print(notification)
-        
+    private func received(_ notification: MIDIClient.Notification) {
         switch notification {
         case .objectAdded(_, let source as MIDIEndpoint<Source>):
             try? input?.connect(source)
@@ -71,7 +66,7 @@ public class MIDI {
         }
     }
     
-    private func received(packet: MIDIPacket, from source: MIDIEndpoint<Source>) {
+    private func received(_ packet: MIDIPacket, from source: MIDIEndpoint<Source>) {
         switch packet.message {
         case .noteOn, .noteOff:
             print(packet.message, source)
@@ -80,4 +75,34 @@ public class MIDI {
         }
     }
 
+}
+
+extension MIDIEndpoint where Type == Destination {
+    
+    public func send(_ packet: MIDIPacket, with midi: MIDI? = MIDI.shared) {
+        if let output = midi?.output {
+            try? output.send(packet, to: self)
+        }
+    }
+    
+}
+
+extension MIDIEntity {
+    
+    public func send(_ packet: MIDIPacket, with midi: MIDI? = MIDI.shared) {
+        if let output = midi?.output {
+            try? output.send(packet, to: self)
+        }
+    }
+    
+}
+
+extension MIDIDevice {
+    
+    public func send(_ packet: MIDIPacket, with midi: MIDI? = MIDI.shared) {
+        if let output = midi?.output {
+            try? output.send(packet, to: self)
+        }
+    }
+    
 }
