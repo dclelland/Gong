@@ -26,6 +26,8 @@ Arch:
 - Audio wrapper library
 - Audio combinator library
 - Audiobus helper
+- Bridge
+    - (Perhaps have a MIDIReceiver protocol so we can send the same kinds of messages or packets to MIDIDevice and AudioUnit...?)
 
 Inspiration:
 

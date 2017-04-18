@@ -55,13 +55,42 @@ public class MIDIDevice: MIDIObject {
     
 }
 
-public extension MIDIDevice {
+extension MIDIDevice {
     
     public static var allExternalDevices: [MIDIDevice] {
         let count = MIDIGetNumberOfExternalDevices()
         return (0..<count).lazy.map { index in
             return MIDIDevice(reference: MIDIGetExternalDevice(index))
         }
+    }
+    
+}
+
+extension MIDIDevice {
+    
+    public var verboseDescription: String {
+        return "MIDIDevice(\n" +
+                    "name"
+               ")"
+    }
+    
+}
+
+extension String {
+    
+    func indent(_ text: String = "    ") -> String {
+        let newlines = CharacterSet.newlines
+        let lines = text.characters.split { character in
+            return newlines.contains(character)
+        }
+        
+        return lines.joined()
+        
+        
+        let newlineChars = NSCharacterSet.newlineCharacterSet()
+        let lines = str.utf16.split { newlineChars.characterIsMember($0) }.flatMap(String.init)
+        // lines = ["Line 1", "Line 2", "Line 3"]
+        
     }
     
 }

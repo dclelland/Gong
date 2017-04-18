@@ -37,7 +37,7 @@ public class MIDIEndpoint<Type: MIDIEndpointType>: MIDIObject {
 
 }
 
-public extension MIDIEndpoint where Type == Source {
+extension MIDIEndpoint where Type == Source {
     
     public convenience init?(named name: String) {
         guard let source = MIDIEndpoint<Source>.all.first(where: { $0.name == name }) else {
