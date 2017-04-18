@@ -26,8 +26,8 @@ public class MIDI {
             return nil
         }
         
-        return try? client.createInput(name: self.name) { (source, packets) in
-            self.received(packets: packets, from: source)
+        return try? client.createInput(name: self.name) { (source, packet) in
+            self.received(packet: packet, from: source)
         }
     }()
     
@@ -71,14 +71,12 @@ public class MIDI {
         }
     }
     
-    private func received(packets: [MIDIPacket], from source: MIDIEndpoint<Source>) {
-        for packet in packets {
-            switch packet.message {
-            case .noteOn, .noteOff:
-                print(packet.message, source)
-            default:
-                break
-            }
+    private func received(packet: MIDIPacket, from source: MIDIEndpoint<Source>) {
+        switch packet.message {
+        case .noteOn, .noteOff:
+            print(packet.message, source)
+        default:
+            break
         }
     }
 

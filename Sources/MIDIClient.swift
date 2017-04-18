@@ -13,7 +13,7 @@ public class MIDIClient: MIDIObject {
     
     public typealias NotifyCallback = (Notification) -> Void
     
-    public typealias ReadCallback = (MIDIEndpoint<Source>, [MIDIPacket]) -> Void
+    public typealias ReadCallback = (MIDIEndpoint<Source>, MIDIPacket) -> Void
     
     public enum Notification {
         
@@ -93,7 +93,9 @@ public class MIDIClient: MIDIObject {
                 return
             }
             
-            callback(MIDIEndpoint<Source>(reference: reference), packetList.pointee.packets)
+            for packet in packetList.pointee.packets {
+                callback(MIDIEndpoint<Source>(reference: reference), packet)
+            }
         }
         
         try MIDIInputPortCreate(reference, name as CFString, procedure, context, &port).check("Creating input port on MIDIClient with name \"\(name)\"")
@@ -125,7 +127,9 @@ public class MIDIClient: MIDIObject {
                 return
             }
             
-            callback(MIDIEndpoint<Source>(reference: sourceReference), packetList.pointee.packets)
+            for packet in packetList.pointee.packets {
+                callback(MIDIEndpoint<Source>(reference: sourceReference), packet)
+            }
         }
         
         try MIDIDestinationCreate(reference, name as CFString, procedure, context, &endpoint).check("Creating destination on MIDIClient")

@@ -277,24 +277,8 @@ extension MIDIPacket {
 
 extension MIDIPacketList {
     
-    // "The timestamps in the packet list must be in ascending order."
-    
     internal init(packet: MIDIPacket) {
-        var packetList = MIDIPacketList()
-        packetList.numPackets = UInt32(packets.count)
-        
-        for var packet in packets {
-            
-//            @result			Returns null if there was not room in the packet for the
-//                event; otherwise returns a packet pointer which should be
-//            passed as curPacket in a subsequent call to this function.
-            
-            let pointer = MIDIPacketListAdd(&packetList, 512, &packet, packet.timeStamp, Int(packet.length), &packet.data.0)
-            
-            
-        }
-        
-        self = packetList
+        self.init(numPackets: 1, packet: packet)
     }
     
     
