@@ -2,7 +2,6 @@
 
 ### Todo
 
-- Remove cruft (e.g. unnecessary throws statements)
 - Test out createDestination alongside createInput
 - CFDictionary stuff
 - Finish the zero-state singleton
