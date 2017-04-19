@@ -4,6 +4,7 @@
 
 Now:
 
+- Fix timestamp issue
 - Test out all the functions
 - Do documentation
 - Try writing a sequencer on top
