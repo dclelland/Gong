@@ -24,6 +24,7 @@ Architecture:
 
 Questions:
 
+- Do we need to connect/disconnect each time?
 - RxSwift vs combinators
 - Send/receive nomenclature
 - Singleton architecture and sensible defaults

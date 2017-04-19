@@ -9,17 +9,17 @@
 import Foundation
 import CoreMIDI
 
-public protocol MIDIObserver: MIDIEventObserver, MIDIMessageObserver { }
+public protocol MIDIReceiver: MIDIEventReceiver, MIDIMessageReceiver { }
 
-public protocol MIDIEventObserver: class {
+public protocol MIDIEventReceiver: class {
     
-    func observe(_ event: MIDIEvent)
+    func receive(_ event: MIDIEvent)
     
 }
 
-public protocol MIDIMessageObserver: class {
+public protocol MIDIMessageReceiver: class {
     
-    func observe(_ message: MIDIMessage, from source: MIDIEndpoint<Source>)
+    func receive(_ message: MIDIMessage, from source: MIDIEndpoint<Source>)
     
 }
 
@@ -28,7 +28,7 @@ public struct MIDI {
     public static var client: MIDIClient? = {
         do {
             return try MIDIClient(name: "Default client") { notification in
-                process(notification)
+                receive(notification)
             }
         } catch let error {
             print(error)
@@ -39,7 +39,7 @@ public struct MIDI {
     public static var input: MIDIPort<Input>? = {
         do {
             return try client?.createInput(name: "Default input") { (message, source) in
-                process(message, from: source)
+                receive(message, from: source)
             }
         } catch let error {
             print(error)
@@ -76,27 +76,37 @@ public struct MIDI {
         }
     }
     
-    public static func addObserver(_ observer: MIDIObserver) {
-        addEventObserver(observer)
-        addMessageObserver(observer)
+    public static func addReceiver(_ receiver: MIDIReceiver) {
+        addEventReceiver(receiver)
+        addMessageReceiver(receiver)
     }
     
-    public static func removeObserver(_ observer: MIDIObserver) {
-        removeEventObserver(observer)
-        removeMessageObserver(observer)
+    public static func removeReceiver(_ receiver: MIDIReceiver) {
+        removeEventReceiver(receiver)
+        removeMessageReceiver(receiver)
     }
     
-    private static var eventObservers = [MIDIEventObserver]()
+    private static var eventReceivers = [MIDIEventReceiver]()
     
-    public static func addEventObserver(_ observer: MIDIEventObserver) {
-        eventObservers.append(observer)
+    public static func addEventReceiver(_ receiver: MIDIEventReceiver) {
+        eventReceivers.append(receiver)
     }
     
-    public static func removeEventObserver(_ observer: MIDIEventObserver) {
-        eventObservers = eventObservers.filter { $0 !== observer }
+    public static func removeEventReceiver(_ receiver: MIDIEventReceiver) {
+        eventReceivers = eventReceivers.filter { $0 !== receiver }
     }
     
-    private static func process(_ event: MIDIEvent) {
+    private static var messageReceivers = [MIDIMessageReceiver]()
+    
+    public static func addMessageReceiver(_ receiver: MIDIMessageReceiver) {
+        messageReceivers.append(receiver)
+    }
+    
+    public static func removeMessageReceiver(_ receiver: MIDIMessageReceiver) {
+        messageReceivers = messageReceivers.filter { $0 !== receiver }
+    }
+    
+    private static func receive(_ event: MIDIEvent) {
         do {
             switch event {
             case .objectAdded(_, let source as MIDIEndpoint<Source>):
@@ -110,24 +120,14 @@ public struct MIDI {
             print(error)
         }
         
-        for observer in eventObservers {
-            observer.observe(event)
+        for receiver in eventReceivers {
+            receiver.receive(event)
         }
     }
     
-    private static var messageObservers = [MIDIMessageObserver]()
-    
-    public static func addMessageObserver(_ observer: MIDIMessageObserver) {
-        messageObservers.append(observer)
-    }
-    
-    public static func removeMessageObserver(_ observer: MIDIMessageObserver) {
-        messageObservers = messageObservers.filter { $0 !== observer }
-    }
-    
-    private static func process(_ message: MIDIMessage, from source: MIDIEndpoint<Source>) {
-        for observer in messageObservers {
-            observer.observe(message, from: source)
+    private static func receive(_ message: MIDIMessage, from source: MIDIEndpoint<Source>) {
+        for receiver in messageReceivers {
+            receiver.receive(message, from: source)
         }
     }
 
