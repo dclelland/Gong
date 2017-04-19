@@ -96,6 +96,12 @@ extension MIDIDevice {
         }
     }
     
+    public func recieve(_ packet: MIDIPacket) {
+        for entity in entities {
+            entity.recieve(packet)
+        }
+    }
+    
 }
 
 extension MIDIEntity {
@@ -103,6 +109,12 @@ extension MIDIEntity {
     public func send(_ packet: MIDIPacket, via output: MIDIPort<Output>? = MIDI.output) {
         for destination in destinations {
             destination.send(packet, via: output)
+        }
+    }
+    
+    public func recieve(_ packet: MIDIPacket) {
+        for source in sources {
+            source.receive(packet)
         }
     }
     
@@ -117,6 +129,14 @@ extension MIDIEndpoint where Type == Destination {
         
         do {
             try output.send(packet, to: self)
+        } catch let error {
+            print(error)
+        }
+    }
+    
+    public func receive(_ packet: MIDIPacket) {
+        do {
+            recieved(packet)
         } catch let error {
             print(error)
         }
