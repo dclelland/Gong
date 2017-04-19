@@ -1,0 +1,34 @@
+{
+  "name": "Gong",
+  "version": "0.1.0",
+  "summary": "Gong is a high level audio and MIDI library for iOS and macOS.",
+  "homepage": "https://github.com/dclelland/Gong",
+  "license": {
+    "type": "MIT"
+  },
+  "authors": {
+    "Daniel Clelland": "daniel.clelland@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/dclelland/Gong.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0",
+    "osx": "10.10"
+  },
+  "ios": {
+    "source_files": "Sources/**/*.swift",
+    "frameworks": [
+      "AudioToolbox",
+      "CoreMIDI"
+    ]
+  },
+  "osx": {
+    "source_files": "Sources/**/*.swift",
+    "frameworks": [
+      "AudioToolbox",
+      "CoreMIDI"
+    ]
+  }
+}

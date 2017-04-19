@@ -1,0 +1,16 @@
+PODS:
+  - Gong (0.1.0)
+
+DEPENDENCIES:
+  - Gong (from `../../`)
+
+EXTERNAL SOURCES:
+  Gong:
+    :path: ../../
+
+SPEC CHECKSUMS:
+  Gong: 491a0dadc25d76ac0549414de72d2e08a98ad6ea
+
+PODFILE CHECKSUM: e52aaa1c46b54d4094c9ec8534850e79782eb182
+
+COCOAPODS: 1.1.1
