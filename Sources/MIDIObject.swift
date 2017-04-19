@@ -11,6 +11,98 @@ import CoreMIDI
 
 public class MIDIObject {
     
+    public struct Property {
+        
+        public static let name = kMIDIPropertyName as String
+        
+        public static let manufacturer = kMIDIPropertyManufacturer as String
+        
+        public static let model = kMIDIPropertyModel as String
+        
+        public static let uniqueID = kMIDIPropertyUniqueID as String
+        
+        public static let deviceID = kMIDIPropertyDeviceID as String
+        
+        public static let receiveChannels = kMIDIPropertyReceiveChannels as String
+        
+        public static let transmitChannels = kMIDIPropertyTransmitChannels as String
+        
+        public static let maximumSystemExclusiveSpeed = kMIDIPropertyMaxSysExSpeed as String
+        
+        public static let advanceScheduleTimeInMicroseconds = kMIDIPropertyAdvanceScheduleTimeMuSec as String
+        
+        public static let isEmbeddedEntity = kMIDIPropertyIsEmbeddedEntity as String
+        
+        public static let isBroadcast = kMIDIPropertyIsBroadcast as String
+        
+        public static let singleRealtimeEntity = kMIDIPropertySingleRealtimeEntity as String
+        
+        public static let connectionUniqueID = kMIDIPropertyConnectionUniqueID as String
+        
+        public static let offline = kMIDIPropertyOffline as String
+        
+        public static let `private` = kMIDIPropertyPrivate as String
+        
+        public static let driverOwner = kMIDIPropertyDriverOwner as String
+        
+        public static let nameConfiguration = kMIDIPropertyNameConfiguration as String
+        
+        public static let image = kMIDIPropertyImage as String
+        
+        public static let driverVersion = kMIDIPropertyDriverVersion as String
+        
+        public static let supportsGeneralMIDI = kMIDIPropertySupportsGeneralMIDI as String
+        
+        public static let supportsMMC = kMIDIPropertySupportsMMC as String
+        
+        public static let canRoute = kMIDIPropertyCanRoute as String
+        
+        public static let receivesClock = kMIDIPropertyReceivesClock as String
+        
+        public static let receivesMTC = kMIDIPropertyReceivesMTC as String
+        
+        public static let receivesNotes = kMIDIPropertyReceivesNotes as String
+        
+        public static let receivesProgramChanges = kMIDIPropertyReceivesProgramChanges as String
+        
+        public static let receivesBankSelectMostSignificantByte = kMIDIPropertyReceivesBankSelectMSB as String
+        
+        public static let receivesBankSelectLeastSignificantByte = kMIDIPropertyReceivesBankSelectLSB as String
+        
+        public static let transmitsClock = kMIDIPropertyTransmitsClock as String
+        
+        public static let transmitsMTC = kMIDIPropertyTransmitsMTC as String
+        
+        public static let transmitsNotes = kMIDIPropertyTransmitsNotes as String
+        
+        public static let transmitsProgramChanges = kMIDIPropertyTransmitsProgramChanges as String
+        
+        public static let transmitsBankSelectMostSignificantByte = kMIDIPropertyTransmitsBankSelectMSB as String
+        
+        public static let transmitsBankSelectLeastSignificantByte = kMIDIPropertyTransmitsBankSelectLSB as String
+        
+        public static let panDisruptsStereo = kMIDIPropertyPanDisruptsStereo as String
+        
+        public static let isSampler = kMIDIPropertyIsSampler as String
+        
+        public static let isDrumMachine = kMIDIPropertyIsDrumMachine as String
+        
+        public static let isMixer = kMIDIPropertyIsMixer as String
+        
+        public static let isEffectUnit = kMIDIPropertyIsEffectUnit as String
+        
+        public static let maximumReceiveChannels = kMIDIPropertyMaxReceiveChannels as String
+        
+        public static let maximumTransmitChannels = kMIDIPropertyMaxTransmitChannels as String
+        
+        public static let driverDeviceEditorApp = kMIDIPropertyDriverDeviceEditorApp as String
+        
+        public static let supportsShowControl = kMIDIPropertySupportsShowControl as String
+        
+        public static let displayName = kMIDIPropertyDisplayName as String
+        
+    }
+    
     public let reference: MIDIObjectRef
     
     public init(_ reference: MIDIObjectRef) {
@@ -43,48 +135,48 @@ public class MIDIObject {
         }
     }
     
-    public func integer(for property: CFString) throws -> Int32 {
+    public func integer(for property: String) throws -> Int32 {
         var integer: Int32 = 0
-        try MIDIObjectGetIntegerProperty(reference, property, &integer).check("Getting integer for property \"\(property)\" on MIDIObject")
+        try MIDIObjectGetIntegerProperty(reference, property as CFString, &integer).check("Getting integer for property \"\(property)\" on MIDIObject")
         return integer
     }
     
-    public func setInteger(_ integer: Int32, for property: CFString) throws {
-        try MIDIObjectSetIntegerProperty(reference, property, integer).check("Setting integer for property \"\(property)\" on MIDIObject")
+    public func setInteger(_ integer: Int32, for property: String) throws {
+        try MIDIObjectSetIntegerProperty(reference, property as CFString, integer).check("Setting integer for property \"\(property)\" on MIDIObject")
     }
     
-    public func string(for property: CFString) throws -> String {
+    public func string(for property: String) throws -> String {
         var string: Unmanaged<CFString>? = nil
-        try MIDIObjectGetStringProperty(reference, property, &string).check("Getting string for property \"\(property)\" on MIDIObject")
+        try MIDIObjectGetStringProperty(reference, property as CFString, &string).check("Getting string for property \"\(property)\" on MIDIObject")
         return string!.takeUnretainedValue() as String
     }
     
     public func setString(_ string: String, for property: CFString) throws {
-        try MIDIObjectSetStringProperty(reference, property, string as CFString).check("Setting string for property \"\(property)\" on MIDIObject")
+        try MIDIObjectSetStringProperty(reference, property as CFString, string as CFString).check("Setting string for property \"\(property)\" on MIDIObject")
     }
     
-    public func data(for property: CFString) throws -> Data {
+    public func data(for property: String) throws -> Data {
         var data: Unmanaged<CFData>? = nil
-        try MIDIObjectGetDataProperty(reference, property, &data).check("Getting data for property \"\(property)\" on MIDIObject")
+        try MIDIObjectGetDataProperty(reference, property as CFString, &data).check("Getting data for property \"\(property)\" on MIDIObject")
         return data!.takeUnretainedValue() as Data
     }
     
-    public func setData(_ data: CFData, for property: CFString) throws {
-        try MIDIObjectSetDataProperty(reference, property, data).check("Setting data for property \"\(property)\" on MIDIObject")
+    public func setData(_ data: Data, for property: String) throws {
+        try MIDIObjectSetDataProperty(reference, property as CFString, data as CFData).check("Setting data for property \"\(property)\" on MIDIObject")
     }
     
-    public func dictionary(for property: CFString) throws -> NSDictionary {
+    public func dictionary(for property: String) throws -> NSDictionary {
         var dictionary: Unmanaged<CFDictionary>? = nil
-        try MIDIObjectGetDictionaryProperty(reference, property, &dictionary).check("Getting dictionary for property \"\(property)\" on MIDIObject")
+        try MIDIObjectGetDictionaryProperty(reference, property as CFString, &dictionary).check("Getting dictionary for property \"\(property)\" on MIDIObject")
         return dictionary!.takeUnretainedValue() as NSDictionary
     }
     
-    public func setDictionary(_ dictionary: NSDictionary, for property: CFString) throws {
-        try MIDIObjectSetDictionaryProperty(reference, property, dictionary as CFDictionary).check("Setting dictionary for property \"\(property)\" on MIDIObject")
+    public func setDictionary(_ dictionary: NSDictionary, for property: String) throws {
+        try MIDIObjectSetDictionaryProperty(reference, property as CFString, dictionary as CFDictionary).check("Setting dictionary for property \"\(property)\" on MIDIObject")
     }
     
-    public func removeProperty(_ property: CFString) throws {
-        try MIDIObjectRemoveProperty(reference, property).check("Removing property \"\(property)\" from MIDIObject")
+    public func removeProperty(_ property: String) throws {
+        try MIDIObjectRemoveProperty(reference, property as CFString).check("Removing property \"\(property)\" from MIDIObject")
     }
     
     public func properties(deep: Bool = false) throws -> NSDictionary {
@@ -102,7 +194,7 @@ extension MIDIObject {
     }
     
     public var name: String? {
-        return try? string(for: kMIDIPropertyName)
+        return try? string(for: Property.name)
     }
 
 }
