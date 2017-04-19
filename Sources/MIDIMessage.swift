@@ -100,8 +100,12 @@ public struct MIDIMessage {
         self.type = type
         self.timestamp = timestamp
     }
+
+}
+
+extension MIDIMessage {
     
-    public init(_ packet: MIDIPacket) {
+    internal init(_ packet: MIDIPacket) {
         switch packet.status {
         case 8:
             self.init(.noteOff(channel: packet.channel, key: packet.data1, velocity: packet.data2), timestamp: packet.timeStamp)
@@ -176,7 +180,7 @@ public struct MIDIMessage {
 
 extension MIDIPacket {
     
-    public init(_ message: MIDIMessage) {
+    internal init(_ message: MIDIMessage) {
         switch message.type {
         case .noteOff(let channel, let key, let velocity):
             self.init(timestamp: message.timestamp, status: 8, channel: channel, data1: key, data2: velocity)
@@ -250,11 +254,11 @@ extension MIDIPacket {
 
 extension MIDIPacketList {
     
-    public init(_ packet: MIDIPacket) {
+    internal init(_ packet: MIDIPacket) {
         self.init(numPackets: 1, packet: packet)
     }
     
-    public var packets: [MIDIPacket] {
+    internal var packets: [MIDIPacket] {
         var packets = [packet]
         for _ in (0..<numPackets) {
             if var packet = packets.last {

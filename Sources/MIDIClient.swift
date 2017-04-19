@@ -11,81 +11,32 @@ import CoreMIDI
 
 public class MIDIClient: MIDIObject {
     
-    public typealias NotifyCallback = (Notification) -> Void
+    public typealias EventCallback = (MIDIEvent) -> Void
     
-    public typealias ReadCallback = (MIDIEndpoint<Source>, MIDIMessage) -> Void
+    public typealias MessageCallback = (MIDIMessage, MIDIEndpoint<Source>) -> Void
     
-    public enum Notification {
-        
-        case setupChanged
-        
-        case objectAdded(parent: MIDIObject, child: MIDIObject)
-        
-        case objectRemoved(parent: MIDIObject, child: MIDIObject)
-        
-        case propertyChanged(object: MIDIObject, property: CFString)
-        
-        case throughConnectionsChanged
-        
-        case serialPortOwnerChanged
-        
-        case ioError(device: MIDIDevice, error: MIDIError)
-        
-        fileprivate init(_ pointer: UnsafePointer<MIDINotification>) {
-            let notification = pointer.pointee
-            switch notification.messageID {
-            case .msgSetupChanged:
-                self = .setupChanged
-            case .msgObjectAdded:
-                let notification: MIDIObjectAddRemoveNotification = pointer.unwrap(size: Int(notification.messageSize))
-                let parent = MIDIObject.create(with: notification.parent, type: notification.parentType)
-                let child = MIDIObject.create(with: notification.child, type: notification.childType)
-                self = .objectAdded(parent: parent, child: child)
-            case .msgObjectRemoved:
-                let notification: MIDIObjectAddRemoveNotification = pointer.unwrap(size: Int(notification.messageSize))
-                let parent = MIDIObject.create(with: notification.parent, type: notification.parentType)
-                let child = MIDIObject.create(with: notification.child, type: notification.childType)
-                self = .objectRemoved(parent: parent, child: child)
-            case .msgPropertyChanged:
-                let notification: MIDIObjectPropertyChangeNotification = pointer.unwrap(size: Int(notification.messageSize))
-                let object = MIDIObject.create(with: notification.object, type: notification.objectType)
-                let property = notification.propertyName.takeUnretainedValue()
-                self = .propertyChanged(object: object, property: property)
-            case .msgThruConnectionsChanged:
-                self = .throughConnectionsChanged
-            case .msgSerialPortOwnerChanged:
-                self = .serialPortOwnerChanged
-            case .msgIOError:
-                let notification: MIDIIOErrorNotification = pointer.unwrap(size: Int(notification.messageSize))
-                let device = MIDIDevice(notification.driverDevice)
-                let error = MIDIError(status: notification.errorCode)
-                self = .ioError(device: device, error: error)
-            }
-        }
-    }
-    
-    public convenience init(name: String, callback: @escaping NotifyCallback = { _ in }) throws {
+    public convenience init(name: String, callback: @escaping EventCallback = { _ in }) throws {
         var clientReference = MIDIClientRef()
         let context = UnsafeMutablePointer.wrap(callback)
         
-        let procedure: MIDINotifyProc = { (notification, context) in
-            guard let callback: NotifyCallback = context?.unwrap() else {
+        let procedure: MIDINotifyProc = { (notificationPointer, context) in
+            guard let callback: EventCallback = context?.unwrap() else {
                 return
             }
             
-            callback(Notification(notification))
+            callback(MIDIEvent(notificationPointer))
         }
         
         try MIDIClientCreate(name as CFString, procedure, context, &clientReference).check("Creating MIDIClient with name \"\(name)\"")
         self.init(clientReference)
     }
     
-    public func createInput(name: String, callback: @escaping ReadCallback = { _ in }) throws -> MIDIPort<Input> {
+    public func createInput(name: String, callback: @escaping MessageCallback = { _ in }) throws -> MIDIPort<Input> {
         var portReference = MIDIPortRef()
         let context = UnsafeMutablePointer.wrap(callback)
         
         let procedure: MIDIReadProc = { (packetList, context, connectionContext) in
-            guard let callback: ReadCallback = context?.unwrap() else {
+            guard let callback: MessageCallback = context?.unwrap() else {
                 return
             }
             
@@ -94,7 +45,7 @@ public class MIDIClient: MIDIObject {
             }
             
             for packet in packetList.pointee.packets {
-                callback(MIDIEndpoint<Source>(endpointReference), MIDIMessage(packet))
+                callback(MIDIMessage(packet), MIDIEndpoint<Source>(endpointReference))
             }
         }
         
@@ -114,12 +65,12 @@ public class MIDIClient: MIDIObject {
         return MIDIEndpoint<Source>(endpointReference)
     }
     
-    public func createDestination(name: String, callback: @escaping ReadCallback = { _ in }) throws -> MIDIEndpoint<Destination> {
+    public func createDestination(name: String, callback: @escaping MessageCallback = { _ in }) throws -> MIDIEndpoint<Destination> {
         var endpointReference = MIDIEndpointRef()
         let context = UnsafeMutablePointer.wrap(callback)
         
         let procedure: MIDIReadProc = { (packetList, context, connectionContext) in
-            guard let callback: ReadCallback = context?.unwrap() else {
+            guard let callback: MessageCallback = context?.unwrap() else {
                 return
             }
             
@@ -128,7 +79,7 @@ public class MIDIClient: MIDIObject {
             }
             
             for packet in packetList.pointee.packets {
-                callback(MIDIEndpoint<Source>(sourceReference), MIDIMessage(packet))
+                callback(MIDIMessage(packet), MIDIEndpoint<Source>(sourceReference))
             }
         }
         

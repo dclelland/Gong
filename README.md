@@ -3,7 +3,6 @@
 ### Todo
 
 - Test out all the functions
-- Better setup for MIDIClient.Notification 
 
 Then:
 

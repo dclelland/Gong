@@ -9,11 +9,11 @@
 import Foundation
 import CoreMIDI
 
-public protocol MIDIObserver: MIDINotificationObserver, MIDIMessageObserver { }
+public protocol MIDIObserver: MIDIEventObserver, MIDIMessageObserver { }
 
-public protocol MIDINotificationObserver: class {
+public protocol MIDIEventObserver: class {
     
-    func observe(_ notification: MIDIClient.Notification)
+    func observe(_ event: MIDIEvent)
     
 }
 
@@ -38,8 +38,8 @@ public struct MIDI {
     
     public static var input: MIDIPort<Input>? = {
         do {
-            return try client?.createInput(name: "Default input") { (source, packet) in
-                process(packet, from: source)
+            return try client?.createInput(name: "Default input") { (message, source) in
+                process(message, from: source)
             }
         } catch let error {
             print(error)
@@ -77,28 +77,28 @@ public struct MIDI {
     }
     
     public static func addObserver(_ observer: MIDIObserver) {
-        addNotificationObserver(observer)
+        addEventObserver(observer)
         addMessageObserver(observer)
     }
     
     public static func removeObserver(_ observer: MIDIObserver) {
-        removeNotificationObserver(observer)
+        removeEventObserver(observer)
         removeMessageObserver(observer)
     }
     
-    private static var notificationObservers = [MIDINotificationObserver]()
+    private static var eventObservers = [MIDIEventObserver]()
     
-    public static func addNotificationObserver(_ observer: MIDINotificationObserver) {
-        notificationObservers.append(observer)
+    public static func addEventObserver(_ observer: MIDIEventObserver) {
+        eventObservers.append(observer)
     }
     
-    public static func removeNotificationObserver(_ observer: MIDINotificationObserver) {
-        notificationObservers = notificationObservers.filter { $0 !== observer }
+    public static func removeEventObserver(_ observer: MIDIEventObserver) {
+        eventObservers = eventObservers.filter { $0 !== observer }
     }
     
-    private static func process(_ notification: MIDIClient.Notification) {
+    private static func process(_ event: MIDIEvent) {
         do {
-            switch notification {
+            switch event {
             case .objectAdded(_, let source as MIDIEndpoint<Source>):
                 try input?.connect(source)
             case .objectRemoved(_, let source as MIDIEndpoint<Source>):
@@ -110,8 +110,8 @@ public struct MIDI {
             print(error)
         }
         
-        for observer in notificationObservers {
-            observer.observe(notification)
+        for observer in eventObservers {
+            observer.observe(event)
         }
     }
     
