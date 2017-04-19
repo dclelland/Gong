@@ -9,7 +9,21 @@
 import Foundation
 import CoreMIDI
 
-public class MIDI {
+public protocol MIDIObserver: MIDINotificationObserver, MIDIPacketObserver { }
+
+public protocol MIDINotificationObserver: class {
+    
+    func observe(_ notification: MIDIClient.Notification)
+    
+}
+
+public protocol MIDIPacketObserver: class {
+    
+    func observe(_ packet: MIDIPacket, from source: MIDIEndpoint<Source>)
+    
+}
+
+public struct MIDI {
     
     public static var client: MIDIClient? = {
         do {
@@ -62,6 +76,26 @@ public class MIDI {
         }
     }
     
+    public static func addObserver(_ observer: MIDIObserver) {
+        addNotificationObserver(observer)
+        addPacketObserver(observer)
+    }
+    
+    public static func removeObserver(_ observer: MIDIObserver) {
+        removeNotificationObserver(observer)
+        removePacketObserver(observer)
+    }
+    
+    private static var notificationObservers = [MIDINotificationObserver]()
+    
+    public static func addNotificationObserver(_ observer: MIDINotificationObserver) {
+        notificationObservers.append(observer)
+    }
+    
+    public static func removeNotificationObserver(_ observer: MIDINotificationObserver) {
+        notificationObservers = notificationObservers.filter { $0 !== observer }
+    }
+    
     private static func process(_ notification: MIDIClient.Notification) {
         do {
             switch notification {
@@ -75,14 +109,25 @@ public class MIDI {
         } catch let error {
             print(error)
         }
+        
+        for observer in notificationObservers {
+            observer.observe(notification)
+        }
+    }
+    
+    private static var packetObservers = [MIDIPacketObserver]()
+    
+    public static func addPacketObserver(_ observer: MIDIPacketObserver) {
+        packetObservers.append(observer)
+    }
+    
+    public static func removePacketObserver(_ observer: MIDIPacketObserver) {
+        packetObservers = packetObservers.filter { $0 !== observer }
     }
     
     private static func process(_ packet: MIDIPacket, from source: MIDIEndpoint<Source>) {
-        switch packet.message {
-        case .noteOn, .noteOff:
-            print(packet.message, source)
-        default:
-            break
+        for observer in packetObservers {
+            observer.observe(packet, from: source)
         }
     }
 

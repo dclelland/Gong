@@ -2,9 +2,8 @@
 
 ### Todo
 
-- Test out createDestination alongside createInput
-- Finish the zero-state singleton
-    - Notification and note delegate...?
+- Test out all the functions
+- Better setup for MIDIClient.Notification and MIDIPacket (MIDIMessage...? MIDIEvent.timestamp, message feels right, with extensions to MIDIPacket and MIDIPacketList, not sure about MIDINotification)
 
 Then:
 
@@ -23,6 +22,7 @@ Arch:
 - Audiobus helper
 - Bridge
     - (Perhaps have a MIDIReceiver protocol so we can send the same kinds of messages or packets to MIDIDevice and AudioUnit...?)
+- Example projects
 
 Inspiration:
 
