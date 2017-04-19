@@ -43,129 +43,66 @@ public class MIDIObject {
         }
     }
     
-    public subscript(property: CFString) -> Bool? {
-        get {
-            return try? integer(for: property) != 0
-        }
-        set {
-            if let boolean = newValue {
-                try? setInteger(boolean ? 1 : 0, for: property)
-            } else {
-                try? removeProperty(property)
-            }
-        }
-    }
-    
-    public subscript(property: CFString) -> Int? {
-        get {
-            return try? Int(integer(for: property))
-        }
-        set {
-            if let integer = newValue {
-                try? setInteger(Int32(truncatingBitPattern: integer), for: property)
-            } else {
-                try? removeProperty(property)
-            }
-        }
-    }
-    
-    public subscript(property: CFString) -> String? {
-        get {
-            return try? string(for: property) as String
-        }
-        set {
-            if let string = newValue {
-                try? setString(string as CFString, for: property)
-            } else {
-                try? removeProperty(property)
-            }
-        }
-    }
-    
-    public subscript(property: CFString) -> Data? {
-        get {
-            return try? data(for: property) as Data
-        }
-        set {
-            if let data = newValue {
-                try? setData(data as CFData, for: property)
-            } else {
-                try? removeProperty(property)
-            }
-        }
-    }
-    
-    public subscript(property: CFString) -> CFDictionary? {
-        get {
-            return try? dictionary(for: property)
-        }
-        set {
-            if let dictionary = newValue {
-                try? setDictionary(dictionary, for: property)
-            } else {
-                try? removeProperty(property)
-            }
-        }
-    }
-    
-    // MARK: Private helpers
-    
-    private func integer(for property: CFString) throws -> Int32 {
+    public func integer(for property: CFString) throws -> Int32 {
         var integer: Int32 = 0
         try MIDIObjectGetIntegerProperty(reference, property, &integer).check("Getting integer for property \"\(property)\" on MIDIObject")
         return integer
     }
     
-    private func setInteger(_ integer: Int32, for property: CFString) throws {
+    public func setInteger(_ integer: Int32, for property: CFString) throws {
         try MIDIObjectSetIntegerProperty(reference, property, integer).check("Setting integer for property \"\(property)\" on MIDIObject")
     }
     
-    private func string(for property: CFString) throws -> CFString {
+    public func string(for property: CFString) throws -> String {
         var string: Unmanaged<CFString>? = nil
         try MIDIObjectGetStringProperty(reference, property, &string).check("Getting string for property \"\(property)\" on MIDIObject")
-        return string!.takeRetainedValue()
+        return string!.takeRetainedValue() as String
     }
     
-    private func setString(_ string: CFString, for property: CFString) throws {
-        try MIDIObjectSetStringProperty(reference, property, string).check("Setting string for property \"\(property)\" on MIDIObject")
+    public func setString(_ string: String, for property: CFString) throws {
+        try MIDIObjectSetStringProperty(reference, property, string as CFString).check("Setting string for property \"\(property)\" on MIDIObject")
     }
     
-    private func data(for property: CFString) throws -> CFData {
+    public func data(for property: CFString) throws -> Data {
         var data: Unmanaged<CFData>? = nil
         try MIDIObjectGetDataProperty(reference, property, &data).check("Getting data for property \"\(property)\" on MIDIObject")
-        return data!.takeRetainedValue()
+        return data!.takeRetainedValue() as Data
     }
     
-    private func setData(_ data: CFData, for property: CFString) throws {
+    public func setData(_ data: CFData, for property: CFString) throws {
         try MIDIObjectSetDataProperty(reference, property, data).check("Setting data for property \"\(property)\" on MIDIObject")
     }
     
-    private func dictionary(for property: CFString) throws -> CFDictionary {
+    public func dictionary(for property: CFString) throws -> NSDictionary {
         var dictionary: Unmanaged<CFDictionary>? = nil
         try MIDIObjectGetDictionaryProperty(reference, property, &dictionary).check("Getting dictionary for property \"\(property)\" on MIDIObject")
-        return dictionary!.takeRetainedValue()
+        return dictionary!.takeRetainedValue() as NSDictionary
     }
     
-    private func setDictionary(_ dictionary: CFDictionary, for property: CFString) throws {
-        try MIDIObjectSetDictionaryProperty(reference, property, dictionary).check("Setting dictionary for property \"\(property)\" on MIDIObject")
+    public func setDictionary(_ dictionary: NSDictionary, for property: CFString) throws {
+        try MIDIObjectSetDictionaryProperty(reference, property, dictionary as CFDictionary).check("Setting dictionary for property \"\(property)\" on MIDIObject")
     }
     
-    private func removeProperty(_ property: CFString) throws {
+    public func removeProperty(_ property: CFString) throws {
         try MIDIObjectRemoveProperty(reference, property).check("Removing property \"\(property)\" from MIDIObject")
     }
     
-    private func properties(deep: Bool = false) throws -> CFPropertyList {
+    public func properties(deep: Bool = false) throws -> NSDictionary {
         var propertyList: Unmanaged<CFPropertyList>? = nil
         try MIDIObjectGetProperties(reference, &propertyList, deep).check("Getting properties for MIDIObject")
-        return propertyList!.takeRetainedValue()
+        return propertyList!.takeRetainedValue() as! NSDictionary
     }
     
 }
 
 extension MIDIObject {
     
+    public var properties: NSDictionary? {
+        return try? properties(deep: true)
+    }
+    
     public var name: String? {
-        return self[kMIDIPropertyName]
+        return try? string(for: kMIDIPropertyName)
     }
 
 }
