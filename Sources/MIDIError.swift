@@ -11,53 +11,90 @@ import CoreMIDI
 
 public struct MIDIError: Error {
     
-    enum `Type` {
+    public enum `Type` {
+        
         case invalidClient
+        
         case invalidPort
+        
         case wrongEndpointType
+        
         case noConnection
+        
         case unknownEndpoint
+        
         case unknownProperty
+        
         case wrongPropertyType
+        
         case noCurrentSetup
+        
         case messageSendError
+        
         case serverStartError
+        
         case setupFormatError
+        
         case wrongThread
+        
         case objectNotFound
+        
         case idNotUnique
+        
         case notPermitted
+        
         case unknown
         
-        public init(status: OSStatus) {
-            switch status {
-            case kMIDIInvalidClient: self = .invalidClient
-            case kMIDIInvalidPort: self = .invalidPort
-            case kMIDIWrongEndpointType: self = .wrongEndpointType
-            case kMIDINoConnection: self = .noConnection
-            case kMIDIUnknownEndpoint: self = .unknownEndpoint
-            case kMIDIUnknownProperty: self = .unknownProperty
-            case kMIDIWrongPropertyType: self = .wrongPropertyType
-            case kMIDINoCurrentSetup: self = .noCurrentSetup
-            case kMIDIMessageSendErr: self = .messageSendError
-            case kMIDIServerStartErr: self = .serverStartError
-            case kMIDISetupFormatErr: self = .setupFormatError
-            case kMIDIWrongThread: self = .wrongThread
-            case kMIDIObjectNotFound: self = .objectNotFound
-            case kMIDIIDNotUnique: self = .idNotUnique
-            case kMIDINotPermitted: self = .notPermitted
-            default: self = .unknown
-            }
-        }
     }
     
-    let type: Type
+    public let type: Type
     
-    let message: String?
+    public let message: String
     
-    init(status: OSStatus, message: String? = nil) {
-        self.type = Type(status: status)
+    public init(_ type: Type, message: String) {
+        self.type = type
         self.message = message
+    }
+    
+}
+
+extension MIDIError {
+    
+    internal init(status: OSStatus, message: String) {
+        switch status {
+        case kMIDIInvalidClient:
+            self.init(.invalidClient, message: message)
+        case kMIDIInvalidPort:
+            self.init(.invalidPort, message: message)
+        case kMIDIWrongEndpointType:
+            self.init(.wrongEndpointType, message: message)
+        case kMIDINoConnection:
+            self.init(.noConnection, message: message)
+        case kMIDIUnknownEndpoint:
+            self.init(.unknownEndpoint, message: message)
+        case kMIDIUnknownProperty:
+            self.init(.unknownProperty, message: message)
+        case kMIDIWrongPropertyType:
+            self.init(.wrongPropertyType, message: message)
+        case kMIDINoCurrentSetup:
+            self.init(.noCurrentSetup, message: message)
+        case kMIDIMessageSendErr:
+            self.init(.messageSendError, message: message)
+        case kMIDIServerStartErr:
+            self.init(.serverStartError, message: message)
+        case kMIDISetupFormatErr:
+            self.init(.setupFormatError, message: message)
+        case kMIDIWrongThread:
+            self.init(.wrongThread, message: message)
+        case kMIDIObjectNotFound:
+            self.init(.objectNotFound, message: message)
+        case kMIDIIDNotUnique:
+            self.init(.idNotUnique, message: message)
+        case kMIDINotPermitted:
+            self.init(.notPermitted, message: message)
+        default:
+            self.init(.unknown, message: message)
+        }
     }
     
 }
@@ -65,10 +102,6 @@ public struct MIDIError: Error {
 extension MIDIError: CustomDebugStringConvertible {
     
     public var debugDescription: String {
-        guard let message = message else {
-            return "MIDIError(type: \(type))"
-        }
-        
         return "MIDIError(type: \(type), message: \(message))"
     }
     
