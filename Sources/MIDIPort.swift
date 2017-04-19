@@ -12,6 +12,7 @@ import CoreMIDI
 public protocol MIDIPortType {}
 
 public enum Input: MIDIPortType {}
+
 public enum Output: MIDIPortType {}
 
 public class MIDIPort<Type: MIDIPortType>: MIDIObject {

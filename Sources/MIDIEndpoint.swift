@@ -12,6 +12,7 @@ import CoreMIDI
 public protocol MIDIEndpointType {}
 
 public enum Source: MIDIEndpointType {}
+
 public enum Destination: MIDIEndpointType {}
 
 public class MIDIEndpoint<Type: MIDIEndpointType>: MIDIObject {
