@@ -3,13 +3,8 @@
 ### Todo
 
 - Test out createDestination alongside createInput
-- CFDictionary stuff
 - Finish the zero-state singleton
     - Notification and note delegate...?
-- Add debugging utilities
-    - verboseDescription
-    - print object tree
-    - print object parameters tree
 
 Then:
 

@@ -90,9 +90,9 @@ public class MIDI {
 
 extension MIDIDevice {
     
-    public func recieve(_ packet: MIDIPacket) {
+    public func receive(_ packet: MIDIPacket) {
         for entity in entities {
-            entity.recieve(packet)
+            entity.receive(packet)
         }
     }
     
@@ -106,7 +106,7 @@ extension MIDIDevice {
 
 extension MIDIEntity {
     
-    public func recieve(_ packet: MIDIPacket) {
+    public func receive(_ packet: MIDIPacket) {
         for source in sources {
             source.receive(packet)
         }
