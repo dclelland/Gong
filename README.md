@@ -2,17 +2,16 @@
 
 ### Todo
 
+Now:
+
 - Test out all the functions
-
-Then:
-
 - Do documentation
 - Try writing a sequencer on top
 - Better name...? (Could have Gong for audio and Glockenspiel or something for MIDI)
 - Look into CoreAudio wrapper too
 - Publish it and get feedback!
 
-Arch:
+Architecture:
 
 - MIDI wrapper library
 - MIDI combinator library
@@ -25,9 +24,10 @@ Arch:
 
 Inspiration:
 
-- objc.io's Functional Signal Processing using Swift
-- Overtone
-- Tidal Cycles
+- [Functional Signal Processing Using Swift](https://www.objc.io/issues/24-audio/functional-signal-processing/)
+- [Overtone](https://toplap.org/overtone/)
+- [Tidal Cycles](https://tidalcycles.org)
+- [Recurrent Neural Networks with Swift and Accelerate](http://machinethink.net/blog/recurrent-neural-networks-with-swift/)
 
 Combinator ideas (don't forget, @autoclosure for parameters):
 
