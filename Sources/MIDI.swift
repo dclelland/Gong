@@ -11,14 +11,10 @@ import CoreMIDI
 
 public class MIDI {
     
-    public static let shared = MIDI(name: "Shared")
-    
-    public let name: String
-    
-    public lazy private(set) var client: MIDIClient? = {
+    public static var client: MIDIClient? = {
         do {
-            return try MIDIClient(name: self.name) { notification in
-                self.received(notification)
+            return try MIDIClient(name: "Default client") { notification in
+                process(notification)
             }
         } catch let error {
             print(error)
@@ -26,10 +22,10 @@ public class MIDI {
         }
     }()
     
-    public lazy private(set) var input: MIDIPort<Input>? = {
+    public static var input: MIDIPort<Input>? = {
         do {
-            return try self.client?.createInput(name: self.name) { (source, packet) in
-                self.received(packet, from: source)
+            return try client?.createInput(name: "Default input") { (source, packet) in
+                process(packet, from: source)
             }
         } catch let error {
             print(error)
@@ -37,40 +33,36 @@ public class MIDI {
         }
     }()
     
-    public lazy private(set) var output: MIDIPort<Output>? = {
+    public static var output: MIDIPort<Output>? = {
         do {
-            return try self.client?.createOutput(name: self.name)
+            return try client?.createOutput(name: "Default output")
         } catch let error {
             print(error)
             return nil
         }
     }()
     
-    public init(name: String) {
-        self.name = name
-    }
-    
-    public func connect() {
-        for device in MIDIDevice.all {
+    public static func connect() {
+        for source in MIDIEndpoint<Source>.all {
             do {
-                try input?.connect(device)
+                try input?.connect(source)
             } catch let error {
                 print(error)
             }
         }
     }
     
-    public func disconnect() {
-        for device in MIDIDevice.all {
+    public static func disconnect() {
+        for source in MIDIEndpoint<Source>.all {
             do {
-                try input?.disconnect(device)
+                try input?.disconnect(source)
             } catch let error {
                 print(error)
             }
         }
     }
     
-    private func received(_ notification: MIDIClient.Notification) {
+    private static func process(_ notification: MIDIClient.Notification) {
         do {
             switch notification {
             case .objectAdded(_, let source as MIDIEndpoint<Source>):
@@ -85,7 +77,7 @@ public class MIDI {
         }
     }
     
-    private func received(_ packet: MIDIPacket, from source: MIDIEndpoint<Source>) {
+    private static func process(_ packet: MIDIPacket, from source: MIDIEndpoint<Source>) {
         switch packet.message {
         case .noteOn, .noteOff:
             print(packet.message, source)
@@ -96,15 +88,11 @@ public class MIDI {
 
 }
 
-extension MIDIEndpoint where Type == Destination {
+extension MIDIDevice {
     
-    public func send(_ packet: MIDIPacket, with midi: MIDI? = MIDI.shared) {
-        if let output = midi?.output {
-            do {
-                try output.send(packet, to: self)
-            } catch let error {
-                print(error)
-            }
+    public func send(_ packet: MIDIPacket, via output: MIDIPort<Output>? = MIDI.output) {
+        for entity in entities {
+            entity.send(packet, via: output)
         }
     }
     
@@ -112,27 +100,25 @@ extension MIDIEndpoint where Type == Destination {
 
 extension MIDIEntity {
     
-    public func send(_ packet: MIDIPacket, with midi: MIDI? = MIDI.shared) {
-        if let output = midi?.output {
-            do {
-                try output.send(packet, to: self)
-            } catch let error {
-                print(error)
-            }
+    public func send(_ packet: MIDIPacket, via output: MIDIPort<Output>? = MIDI.output) {
+        for destination in destinations {
+            destination.send(packet, via: output)
         }
     }
     
 }
 
-extension MIDIDevice {
+extension MIDIEndpoint where Type == Destination {
     
-    public func send(_ packet: MIDIPacket, with midi: MIDI? = MIDI.shared) {
-        if let output = midi?.output {
-            do {
-                try output.send(packet, to: self)
-            } catch let error {
-                print(error)
-            }
+    public func send(_ packet: MIDIPacket, via output: MIDIPort<Output>? = MIDI.output) {
+        guard let output = output else {
+            return
+        }
+        
+        do {
+            try output.send(packet, to: self)
+        } catch let error {
+            print(error)
         }
     }
     
