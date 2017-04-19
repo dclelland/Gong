@@ -13,9 +13,9 @@ public class MIDIEntity: MIDIObject {
     
     public var device: MIDIDevice? {
         do {
-            var device = MIDIDeviceRef()
-            try MIDIEntityGetDevice(reference, &device).check("Getting device for MIDIEntity")
-            return MIDIDevice(reference: device)
+            var deviceReference = MIDIDeviceRef()
+            try MIDIEntityGetDevice(reference, &deviceReference).check("Getting device for MIDIEntity")
+            return MIDIDevice(deviceReference)
         } catch let error {
             print(error)
             return nil
@@ -25,7 +25,7 @@ public class MIDIEntity: MIDIObject {
     public var sources: [MIDIEndpoint<Source>] {
         let count = MIDIEntityGetNumberOfSources(reference)
         return (0..<count).lazy.map { index in
-            return MIDIEndpoint<Source>(reference: MIDIEntityGetSource(reference, index))
+            return MIDIEndpoint<Source>(MIDIEntityGetSource(reference, index))
         }
     }
     
@@ -36,7 +36,7 @@ public class MIDIEntity: MIDIObject {
     public var destinations: [MIDIEndpoint<Destination>] {
         let count = MIDIEntityGetNumberOfDestinations(reference)
         return (0..<count).lazy.map { index in
-            return MIDIEndpoint<Destination>(reference: MIDIEntityGetDestination(reference, index))
+            return MIDIEndpoint<Destination>(MIDIEntityGetDestination(reference, index))
         }
     }
     

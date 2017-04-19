@@ -18,9 +18,9 @@ public class MIDIEndpoint<Type: MIDIEndpointType>: MIDIObject {
     
     public var entity: MIDIEntity? {
         do {
-            var entity = MIDIEntityRef()
-            try MIDIEndpointGetEntity(reference, &entity).check("Getting entity for MIDIEndpoint")
-            return MIDIEntity(reference: entity)
+            var entityReference = MIDIEntityRef()
+            try MIDIEndpointGetEntity(reference, &entityReference).check("Getting entity for MIDIEndpoint")
+            return MIDIEntity(entityReference)
         } catch let error {
             print(error)
             return nil
@@ -44,13 +44,13 @@ extension MIDIEndpoint where Type == Source {
             return nil
         }
         
-        self.init(reference: source.reference)
+        self.init(source.reference)
     }
     
     public static var all: [MIDIEndpoint<Source>] {
         let count = MIDIGetNumberOfSources()
         return (0..<count).lazy.map { index in
-            return MIDIEndpoint<Source>(reference: MIDIGetSource(index))
+            return MIDIEndpoint<Source>(MIDIGetSource(index))
         }
     }
     
@@ -63,13 +63,13 @@ extension MIDIEndpoint where Type == Destination {
             return nil
         }
         
-        self.init(reference: destination.reference)
+        self.init(destination.reference)
     }
     
     public static var all: [MIDIEndpoint<Destination>] {
         let count = MIDIGetNumberOfDestinations()
         return (0..<count).lazy.map { index in
-            return MIDIEndpoint<Destination>(reference: MIDIGetDestination(index))
+            return MIDIEndpoint<Destination>(MIDIGetDestination(index))
         }
     }
     
@@ -77,9 +77,9 @@ extension MIDIEndpoint where Type == Destination {
 
 extension MIDIEndpoint where Type == Source {
     
-    public func received(_ packet: MIDIPacket) throws {
-        var packets = MIDIPacketList(packet: packet)
-        try MIDIReceived(reference, &packets).check("Receiving packets with MIDIEndpoint")
+    public func received(_ message: MIDIMessage) throws {
+        var packetList = MIDIPacketList(MIDIPacket(message))
+        try MIDIReceived(reference, &packetList).check("Receiving packets with MIDIEndpoint")
     }
     
 }

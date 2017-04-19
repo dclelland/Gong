@@ -9,7 +9,7 @@
 import Foundation
 import CoreMIDI
 
-public protocol MIDIObserver: MIDINotificationObserver, MIDIPacketObserver { }
+public protocol MIDIObserver: MIDINotificationObserver, MIDIMessageObserver { }
 
 public protocol MIDINotificationObserver: class {
     
@@ -17,9 +17,9 @@ public protocol MIDINotificationObserver: class {
     
 }
 
-public protocol MIDIPacketObserver: class {
+public protocol MIDIMessageObserver: class {
     
-    func observe(_ packet: MIDIPacket, from source: MIDIEndpoint<Source>)
+    func observe(_ message: MIDIMessage, from source: MIDIEndpoint<Source>)
     
 }
 
@@ -78,12 +78,12 @@ public struct MIDI {
     
     public static func addObserver(_ observer: MIDIObserver) {
         addNotificationObserver(observer)
-        addPacketObserver(observer)
+        addMessageObserver(observer)
     }
     
     public static func removeObserver(_ observer: MIDIObserver) {
         removeNotificationObserver(observer)
-        removePacketObserver(observer)
+        removeMessageObserver(observer)
     }
     
     private static var notificationObservers = [MIDINotificationObserver]()
@@ -115,19 +115,19 @@ public struct MIDI {
         }
     }
     
-    private static var packetObservers = [MIDIPacketObserver]()
+    private static var messageObservers = [MIDIMessageObserver]()
     
-    public static func addPacketObserver(_ observer: MIDIPacketObserver) {
-        packetObservers.append(observer)
+    public static func addMessageObserver(_ observer: MIDIMessageObserver) {
+        messageObservers.append(observer)
     }
     
-    public static func removePacketObserver(_ observer: MIDIPacketObserver) {
-        packetObservers = packetObservers.filter { $0 !== observer }
+    public static func removeMessageObserver(_ observer: MIDIMessageObserver) {
+        messageObservers = messageObservers.filter { $0 !== observer }
     }
     
-    private static func process(_ packet: MIDIPacket, from source: MIDIEndpoint<Source>) {
-        for observer in packetObservers {
-            observer.observe(packet, from: source)
+    private static func process(_ message: MIDIMessage, from source: MIDIEndpoint<Source>) {
+        for observer in messageObservers {
+            observer.observe(message, from: source)
         }
     }
 
@@ -135,15 +135,15 @@ public struct MIDI {
 
 extension MIDIDevice {
     
-    public func receive(_ packet: MIDIPacket) {
+    public func receive(_ message: MIDIMessage) {
         for entity in entities {
-            entity.receive(packet)
+            entity.receive(message)
         }
     }
     
-    public func send(_ packet: MIDIPacket, via output: MIDIPort<Output>? = MIDI.output) {
+    public func send(_ message: MIDIMessage, via output: MIDIPort<Output>? = MIDI.output) {
         for entity in entities {
-            entity.send(packet, via: output)
+            entity.send(message, via: output)
         }
     }
     
@@ -151,15 +151,15 @@ extension MIDIDevice {
 
 extension MIDIEntity {
     
-    public func receive(_ packet: MIDIPacket) {
+    public func receive(_ message: MIDIMessage) {
         for source in sources {
-            source.receive(packet)
+            source.receive(message)
         }
     }
     
-    public func send(_ packet: MIDIPacket, via output: MIDIPort<Output>? = MIDI.output) {
+    public func send(_ message: MIDIMessage, via output: MIDIPort<Output>? = MIDI.output) {
         for destination in destinations {
-            destination.send(packet, via: output)
+            destination.send(message, via: output)
         }
     }
     
@@ -167,9 +167,9 @@ extension MIDIEntity {
 
 extension MIDIEndpoint where Type == Source {
     
-    public func receive(_ packet: MIDIPacket) {
+    public func receive(_ message: MIDIMessage) {
         do {
-            try received(packet)
+            try received(message)
         } catch let error {
             print(error)
         }
@@ -179,13 +179,13 @@ extension MIDIEndpoint where Type == Source {
 
 extension MIDIEndpoint where Type == Destination {
     
-    public func send(_ packet: MIDIPacket, via output: MIDIPort<Output>? = MIDI.output) {
+    public func send(_ message: MIDIMessage, via output: MIDIPort<Output>? = MIDI.output) {
         guard let output = output else {
             return
         }
         
         do {
-            try output.send(packet, to: self)
+            try output.send(message, to: self)
         } catch let error {
             print(error)
         }

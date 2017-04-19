@@ -3,7 +3,7 @@
 ### Todo
 
 - Test out all the functions
-- Better setup for MIDIClient.Notification and MIDIPacket (MIDIMessage...? MIDIEvent.timestamp, message feels right, with extensions to MIDIPacket and MIDIPacketList, not sure about MIDINotification)
+- Better setup for MIDIClient.Notification 
 
 Then:
 

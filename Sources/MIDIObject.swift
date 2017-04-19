@@ -13,22 +13,22 @@ public class MIDIObject {
     
     public let reference: MIDIObjectRef
     
-    public init(reference: MIDIObjectRef) {
+    public init(_ reference: MIDIObjectRef) {
         self.reference = reference
     }
     
     public static func create(with reference: MIDIObjectRef, type: MIDIObjectType) -> MIDIObject {
         switch type {
         case .other:
-            return MIDIObject(reference: reference)
+            return MIDIObject(reference)
         case .device, .externalDevice:
-            return MIDIDevice(reference: reference)
+            return MIDIDevice(reference)
         case .entity, .externalEntity:
-            return MIDIEntity(reference: reference)
+            return MIDIEntity(reference)
         case .source, .externalSource:
-            return MIDIEndpoint<Source>(reference: reference)
+            return MIDIEndpoint<Source>(reference)
         case .destination, .externalDestination:
-            return MIDIEndpoint<Destination>(reference: reference)
+            return MIDIEndpoint<Destination>(reference)
         }
     }
     
@@ -36,7 +36,7 @@ public class MIDIObject {
         var object = MIDIObjectRef()
         do {
             try MIDIObjectFindByUniqueID(uniqueID, &object, nil).check("Finding MIDIObject with unique ID \"\(uniqueID)\"")
-            return MIDIObject(reference: object)
+            return MIDIObject(object)
         } catch let error {
             print(error)
             return nil

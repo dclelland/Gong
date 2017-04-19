@@ -16,20 +16,20 @@ public class MIDIDevice: MIDIObject {
             return nil
         }
         
-        self.init(reference: device.reference)
+        self.init(device.reference)
     }
     
     public static var all: [MIDIDevice] {
         let count = MIDIGetNumberOfDevices()
         return (0..<count).lazy.map { index in
-            return MIDIDevice(reference: MIDIGetDevice(index))
+            return MIDIDevice(MIDIGetDevice(index))
         }
     }
     
     public var entities: [MIDIEntity] {
         let count = MIDIDeviceGetNumberOfEntities(reference)
         return (0..<count).lazy.map { index in
-            return MIDIEntity(reference: MIDIDeviceGetEntity(reference, index))
+            return MIDIEntity(MIDIDeviceGetEntity(reference, index))
         }
     }
     
@@ -60,7 +60,7 @@ extension MIDIDevice {
     public static var allExternalDevices: [MIDIDevice] {
         let count = MIDIGetNumberOfExternalDevices()
         return (0..<count).lazy.map { index in
-            return MIDIDevice(reference: MIDIGetExternalDevice(index))
+            return MIDIDevice(MIDIGetExternalDevice(index))
         }
     }
     
