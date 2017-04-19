@@ -22,6 +22,12 @@ Architecture:
     - (Perhaps have a MIDIReceiver protocol so we can send the same kinds of messages or packets to MIDIDevice and AudioUnit...?)
 - Example projects
 
+Questions:
+
+- RxSwift vs combinators
+- Send/receive nomenclature
+- Singleton architecture and sensible defaults
+
 Inspiration:
 
 - [Functional Signal Processing Using Swift](https://www.objc.io/issues/24-audio/functional-signal-processing/)
