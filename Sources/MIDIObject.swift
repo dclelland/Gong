@@ -56,7 +56,7 @@ public class MIDIObject {
     public func string(for property: CFString) throws -> String {
         var string: Unmanaged<CFString>? = nil
         try MIDIObjectGetStringProperty(reference, property, &string).check("Getting string for property \"\(property)\" on MIDIObject")
-        return string!.takeRetainedValue() as String
+        return string!.takeUnretainedValue() as String
     }
     
     public func setString(_ string: String, for property: CFString) throws {
@@ -66,7 +66,7 @@ public class MIDIObject {
     public func data(for property: CFString) throws -> Data {
         var data: Unmanaged<CFData>? = nil
         try MIDIObjectGetDataProperty(reference, property, &data).check("Getting data for property \"\(property)\" on MIDIObject")
-        return data!.takeRetainedValue() as Data
+        return data!.takeUnretainedValue() as Data
     }
     
     public func setData(_ data: CFData, for property: CFString) throws {
@@ -76,7 +76,7 @@ public class MIDIObject {
     public func dictionary(for property: CFString) throws -> NSDictionary {
         var dictionary: Unmanaged<CFDictionary>? = nil
         try MIDIObjectGetDictionaryProperty(reference, property, &dictionary).check("Getting dictionary for property \"\(property)\" on MIDIObject")
-        return dictionary!.takeRetainedValue() as NSDictionary
+        return dictionary!.takeUnretainedValue() as NSDictionary
     }
     
     public func setDictionary(_ dictionary: NSDictionary, for property: CFString) throws {
@@ -90,7 +90,7 @@ public class MIDIObject {
     public func properties(deep: Bool = false) throws -> NSDictionary {
         var propertyList: Unmanaged<CFPropertyList>? = nil
         try MIDIObjectGetProperties(reference, &propertyList, deep).check("Getting properties for MIDIObject")
-        return propertyList!.takeRetainedValue() as! NSDictionary
+        return propertyList!.takeUnretainedValue() as! NSDictionary
     }
     
 }

@@ -49,7 +49,7 @@ public class MIDIClient: MIDIObject {
             case .msgPropertyChanged:
                 let notification: MIDIObjectPropertyChangeNotification = pointer.unwrap(size: Int(notification.messageSize))
                 let object = MIDIObject.create(with: notification.object, type: notification.objectType)
-                let property = notification.propertyName.takeRetainedValue()
+                let property = notification.propertyName.takeUnretainedValue()
                 self = .propertyChanged(object: object, property: property)
             case .msgThruConnectionsChanged:
                 self = .throughConnectionsChanged
