@@ -22,7 +22,7 @@ public class MIDIEndpoint<Type: MIDIEndpointType>: MIDIObject {
             try MIDIEndpointGetEntity(reference, &entity).check("Getting entity for MIDIEndpoint")
             return MIDIEntity(reference: entity)
         } catch let error {
-            print("\(error)")
+            print(error)
             return nil
         }
     }
@@ -77,8 +77,8 @@ extension MIDIEndpoint where Type == Destination {
 
 extension MIDIEndpoint where Type == Source {
     
-    public func received(packets: MIDIPacketList) throws {
-        var packets = packets
+    public func receive(_ packet: MIDIPacket) throws {
+        var packets = MIDIPacketList(packet: packet)
         try MIDIReceived(reference, &packets).check("Receiving packets with MIDIEndpoint")
     }
     

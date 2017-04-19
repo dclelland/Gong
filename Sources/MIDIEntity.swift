@@ -17,7 +17,7 @@ public class MIDIEntity: MIDIObject {
             try MIDIEntityGetDevice(reference, &device).check("Getting device for MIDIEntity")
             return MIDIDevice(reference: device)
         } catch let error {
-            print("\(error)")
+            print(error)
             return nil
         }
     }
