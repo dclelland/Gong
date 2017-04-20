@@ -103,12 +103,12 @@ extension ViewController {
     }
     
     func sendNoteOnEvent(key: UInt8) {
-        let message = MIDIMessage(.noteOn(channel: 0, key: key, velocity: 100))
+        let message = MIDIMessage(.noteOn(channel: 0, key: key, velocity: 100), time: 1.0)
         device?.send(message)
     }
     
     func sendNoteOffEvent(key: UInt8) {
-        let message = MIDIMessage(.noteOff(channel: 0, key: key, velocity: 100))
+        let message = MIDIMessage(.noteOff(channel: 0, key: key, velocity: 100), time: 1.0)
         device?.send(message)
     }
     

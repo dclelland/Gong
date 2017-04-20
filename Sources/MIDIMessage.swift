@@ -94,11 +94,11 @@ public struct MIDIMessage {
     
     public let type: Type
     
-    public let timestamp: MIDITimeStamp
+    public let time: TimeInterval
     
-    public init(_ type: Type, timestamp: MIDITimeStamp = MIDITimeStamp(0)) {
+    public init(_ type: Type, time: TimeInterval = 0.0) {
         self.type = type
-        self.timestamp = timestamp
+        self.time = time
     }
 
 }
@@ -108,71 +108,71 @@ extension MIDIMessage {
     internal init(_ packet: MIDIPacket) {
         switch packet.status {
         case 8:
-            self.init(.noteOff(channel: packet.channel, key: packet.data1, velocity: packet.data2), timestamp: packet.timeStamp)
+            self.init(.noteOff(channel: packet.channel, key: packet.data1, velocity: packet.data2), time: packet.time)
         case 9:
-            self.init(.noteOn(channel: packet.channel, key: packet.data1, velocity: packet.data2), timestamp: packet.timeStamp)
+            self.init(.noteOn(channel: packet.channel, key: packet.data1, velocity: packet.data2), time: packet.time)
         case 10:
-            self.init(.polyphonicKeyPressure(channel: packet.channel, key: packet.data1, pressure: packet.data2), timestamp: packet.timeStamp)
+            self.init(.polyphonicKeyPressure(channel: packet.channel, key: packet.data1, pressure: packet.data2), time: packet.time)
         case 11:
             switch (packet.data1, packet.data2) {
             case (0...119, _):
-                self.init(.controlChange(channel: packet.channel, controller: packet.data1, value: packet.data2), timestamp: packet.timeStamp)
+                self.init(.controlChange(channel: packet.channel, controller: packet.data1, value: packet.data2), time: packet.time)
             case (120, 0):
-                self.init(.channelMode(channel: packet.channel, type: .allSoundOff), timestamp: packet.timeStamp)
+                self.init(.channelMode(channel: packet.channel, type: .allSoundOff), time: packet.time)
             case (121, 0):
-                self.init(.channelMode(channel: packet.channel, type: .resetAllControllers), timestamp: packet.timeStamp)
+                self.init(.channelMode(channel: packet.channel, type: .resetAllControllers), time: packet.time)
             case (122, 0):
-                self.init(.channelMode(channel: packet.channel, type: .localControlOff), timestamp: packet.timeStamp)
+                self.init(.channelMode(channel: packet.channel, type: .localControlOff), time: packet.time)
             case (122, 127):
-                self.init(.channelMode(channel: packet.channel, type: .localControlOn), timestamp: packet.timeStamp)
+                self.init(.channelMode(channel: packet.channel, type: .localControlOn), time: packet.time)
             case (123, 0):
-                self.init(.channelMode(channel: packet.channel, type: .allNotesOff), timestamp: packet.timeStamp)
+                self.init(.channelMode(channel: packet.channel, type: .allNotesOff), time: packet.time)
             case (124, 0):
-                self.init(.channelMode(channel: packet.channel, type: .omniModeOff), timestamp: packet.timeStamp)
+                self.init(.channelMode(channel: packet.channel, type: .omniModeOff), time: packet.time)
             case (125, 0):
-                self.init(.channelMode(channel: packet.channel, type: .omniModeOn), timestamp: packet.timeStamp)
+                self.init(.channelMode(channel: packet.channel, type: .omniModeOn), time: packet.time)
             case (126, _):
-                self.init(.channelMode(channel: packet.channel, type: .monoModeOn(channels: packet.data2)), timestamp: packet.timeStamp)
+                self.init(.channelMode(channel: packet.channel, type: .monoModeOn(channels: packet.data2)), time: packet.time)
             case (127, 0):
-                self.init(.channelMode(channel: packet.channel, type: .polyModeOn), timestamp: packet.timeStamp)
+                self.init(.channelMode(channel: packet.channel, type: .polyModeOn), time: packet.time)
             default:
-                self.init(.unknown, timestamp: packet.timeStamp)
+                self.init(.unknown, time: packet.time)
             }
         case 12:
-            self.init(.programChange(channel: packet.channel, number: packet.data1), timestamp: packet.timeStamp)
+            self.init(.programChange(channel: packet.channel, number: packet.data1), time: packet.time)
         case 13:
-            self.init(.channelPressure(channel: packet.channel, pressure: packet.data1), timestamp: packet.timeStamp)
+            self.init(.channelPressure(channel: packet.channel, pressure: packet.data1), time: packet.time)
         case 14:
-            self.init(.pitchBendChange(channel: packet.channel, leastSignificantBits: packet.data1, mostSignificantBits: packet.data2), timestamp: packet.timeStamp)
+            self.init(.pitchBendChange(channel: packet.channel, leastSignificantBits: packet.data1, mostSignificantBits: packet.data2), time: packet.time)
         case 15:
             switch packet.channel {
             case 0:
-                self.init(.systemCommon(type: .systemExclusive), timestamp: packet.timeStamp)
+                self.init(.systemCommon(type: .systemExclusive), time: packet.time)
             case 1:
-                self.init(.systemCommon(type: .midiTimeCodeQuarterFrame(type: packet.data1 & 0b01110000 >> 4, values: packet.data1 & 0b00001111)), timestamp: packet.timeStamp)
+                self.init(.systemCommon(type: .midiTimeCodeQuarterFrame(type: packet.data1 & 0b01110000 >> 4, values: packet.data1 & 0b00001111)), time: packet.time)
             case 2:
-                self.init(.systemCommon(type: .songPositionPointer(leastSignificantBits: packet.data1, mostSignificantBits: packet.data2)), timestamp: packet.timeStamp)
+                self.init(.systemCommon(type: .songPositionPointer(leastSignificantBits: packet.data1, mostSignificantBits: packet.data2)), time: packet.time)
             case 3:
-                self.init(.systemCommon(type: .songSelect(song: packet.data1)), timestamp: packet.timeStamp)
+                self.init(.systemCommon(type: .songSelect(song: packet.data1)), time: packet.time)
             case 5:
-                self.init(.systemCommon(type: .tuneRequest), timestamp: packet.timeStamp)
+                self.init(.systemCommon(type: .tuneRequest), time: packet.time)
             case 8:
-                self.init(.systemRealTime(type: .timingClock), timestamp: packet.timeStamp)
+                self.init(.systemRealTime(type: .timingClock), time: packet.time)
             case 10:
-                self.init(.systemRealTime(type: .start), timestamp: packet.timeStamp)
+                self.init(.systemRealTime(type: .start), time: packet.time)
             case 11:
-                self.init(.systemRealTime(type: .continue), timestamp: packet.timeStamp)
+                self.init(.systemRealTime(type: .continue), time: packet.time)
             case 12:
-                self.init(.systemRealTime(type: .stop), timestamp: packet.timeStamp)
+                self.init(.systemRealTime(type: .stop), time: packet.time)
             case 14:
-                self.init(.systemRealTime(type: .activeSensing), timestamp: packet.timeStamp)
+                self.init(.systemRealTime(type: .activeSensing), time: packet.time)
             case 15:
-                self.init(.systemRealTime(type: .reset), timestamp: packet.timeStamp)
+                self.init(.systemRealTime(type: .reset), time: packet.time)
             default:
-                self.init(.unknown, timestamp: packet.timeStamp)
+                self.init(.unknown, time: packet.time)
             }
         default:
-            self.init(.unknown, timestamp: packet.timeStamp)
+            self.init(.unknown, time: packet.time)
         }
     }
 
@@ -183,70 +183,70 @@ extension MIDIPacket {
     internal init(_ message: MIDIMessage) {
         switch message.type {
         case .noteOff(let channel, let key, let velocity):
-            self.init(timestamp: message.timestamp, status: 8, channel: channel, data1: key, data2: velocity)
+            self.init(time: message.time, status: 8, channel: channel, data1: key, data2: velocity)
         case .noteOn(let channel, let key, let velocity):
-            self.init(timestamp: message.timestamp, status: 9, channel: channel, data1: key, data2: velocity)
+            self.init(time: message.time, status: 9, channel: channel, data1: key, data2: velocity)
         case .polyphonicKeyPressure(let channel, let key, let pressure):
-            self.init(timestamp: message.timestamp, status: 10, channel: channel, data1: key, data2: pressure)
+            self.init(time: message.time, status: 10, channel: channel, data1: key, data2: pressure)
         case .controlChange(let channel, let controller, let value):
-            self.init(timestamp: message.timestamp, status: 11, channel: channel, data1: controller, data2: value)
+            self.init(time: message.time, status: 11, channel: channel, data1: controller, data2: value)
         case .channelMode(let channel, let type):
             switch type {
             case .allSoundOff:
-                self.init(timestamp: message.timestamp, status: 11, channel: channel, data1: 120, data2: 0)
+                self.init(time: message.time, status: 11, channel: channel, data1: 120, data2: 0)
             case .resetAllControllers:
-                self.init(timestamp: message.timestamp, status: 11, channel: channel, data1: 121, data2: 0)
+                self.init(time: message.time, status: 11, channel: channel, data1: 121, data2: 0)
             case .localControlOff:
-                self.init(timestamp: message.timestamp, status: 11, channel: channel, data1: 122, data2: 0)
+                self.init(time: message.time, status: 11, channel: channel, data1: 122, data2: 0)
             case .localControlOn:
-                self.init(timestamp: message.timestamp, status: 11, channel: channel, data1: 122, data2: 127)
+                self.init(time: message.time, status: 11, channel: channel, data1: 122, data2: 127)
             case .allNotesOff:
-                self.init(timestamp: message.timestamp, status: 11, channel: channel, data1: 123, data2: 0)
+                self.init(time: message.time, status: 11, channel: channel, data1: 123, data2: 0)
             case .omniModeOff:
-                self.init(timestamp: message.timestamp, status: 11, channel: channel, data1: 124, data2: 0)
+                self.init(time: message.time, status: 11, channel: channel, data1: 124, data2: 0)
             case .omniModeOn:
-                self.init(timestamp: message.timestamp, status: 11, channel: channel, data1: 125, data2: 0)
+                self.init(time: message.time, status: 11, channel: channel, data1: 125, data2: 0)
             case .monoModeOn(let channels):
-                self.init(timestamp: message.timestamp, status: 11, channel: channel, data1: 126, data2: channels)
+                self.init(time: message.time, status: 11, channel: channel, data1: 126, data2: channels)
             case .polyModeOn:
-                self.init(timestamp: message.timestamp, status: 11, channel: channel, data1: 127, data2: 0)
+                self.init(time: message.time, status: 11, channel: channel, data1: 127, data2: 0)
             }
         case .programChange(let channel, let number):
-            self.init(timestamp: message.timestamp, status: 12, channel: channel, data1: number)
+            self.init(time: message.time, status: 12, channel: channel, data1: number)
         case .channelPressure(let channel, let pressure):
-            self.init(timestamp: message.timestamp, status: 13, channel: channel, data1: pressure)
+            self.init(time: message.time, status: 13, channel: channel, data1: pressure)
         case .pitchBendChange(let channel, let leastSignificantBits, let mostSignificantBits):
-            self.init(timestamp: message.timestamp, status: 14, channel: channel, data1: leastSignificantBits, data2: mostSignificantBits)
+            self.init(time: message.time, status: 14, channel: channel, data1: leastSignificantBits, data2: mostSignificantBits)
         case .systemCommon(let type):
             switch type {
             case .systemExclusive:
-                self.init(timestamp: message.timestamp, status: 15, channel: 0)
+                self.init(time: message.time, status: 15, channel: 0)
             case .midiTimeCodeQuarterFrame(let type, let values):
-                self.init(timestamp: message.timestamp, status: 15, channel: 1, data1: (type << 4) | (values & 0b00001111))
+                self.init(time: message.time, status: 15, channel: 1, data1: (type << 4) | (values & 0b00001111))
             case .songPositionPointer(let leastSignificantBits, let mostSignificantBits):
-                self.init(timestamp: message.timestamp, status: 15, channel: 2, data1: leastSignificantBits, data2: mostSignificantBits)
+                self.init(time: message.time, status: 15, channel: 2, data1: leastSignificantBits, data2: mostSignificantBits)
             case .songSelect(let song):
-                self.init(timestamp: message.timestamp, status: 15, channel: 3, data1: song)
+                self.init(time: message.time, status: 15, channel: 3, data1: song)
             case .tuneRequest:
-                self.init(timestamp: message.timestamp, status: 15, channel: 5)
+                self.init(time: message.time, status: 15, channel: 5)
             }
         case .systemRealTime(let type):
             switch type {
             case .timingClock:
-                self.init(timestamp: message.timestamp, status: 15, channel: 8)
+                self.init(time: message.time, status: 15, channel: 8)
             case .start:
-                self.init(timestamp: message.timestamp, status: 15, channel: 10)
+                self.init(time: message.time, status: 15, channel: 10)
             case .continue:
-                self.init(timestamp: message.timestamp, status: 15, channel: 11)
+                self.init(time: message.time, status: 15, channel: 11)
             case .stop:
-                self.init(timestamp: message.timestamp, status: 15, channel: 12)
+                self.init(time: message.time, status: 15, channel: 12)
             case .activeSensing:
-                self.init(timestamp: message.timestamp, status: 15, channel: 14)
+                self.init(time: message.time, status: 15, channel: 14)
             case .reset:
-                self.init(timestamp: message.timestamp, status: 15, channel: 15)
+                self.init(time: message.time, status: 15, channel: 15)
             }
         default:
-            self.init(timestamp: message.timestamp, status: 0, channel: 0)
+            self.init(time: message.time, status: 0, channel: 0)
         }
     }
     
@@ -272,28 +272,32 @@ extension MIDIPacketList {
 
 extension MIDIPacket {
     
-    fileprivate init(timestamp: MIDITimeStamp, status: UInt8, channel: UInt8) {
+    fileprivate init(time: TimeInterval, status: UInt8, channel: UInt8) {
         self.init()
-        self.timeStamp = timestamp
+        self.timeStamp = mach_absolute_time() + MIDITimeStamp(time * 1_000_000_000)
         self.length = 1
         self.data.0 = (status << 4) | (channel & 0b00001111)
     }
     
-    fileprivate init(timestamp: MIDITimeStamp, status: UInt8, channel: UInt8, data1: UInt8) {
+    fileprivate init(time: TimeInterval, status: UInt8, channel: UInt8, data1: UInt8) {
         self.init()
-        self.timeStamp = timestamp
+        self.timeStamp = mach_absolute_time() + MIDITimeStamp(time * 1_000_000_000)
         self.length = 2
         self.data.0 = (status << 4) | (channel & 0b00001111)
         self.data.1 = data1 & 0b01111111
     }
     
-    fileprivate init(timestamp: MIDITimeStamp, status: UInt8, channel: UInt8, data1: UInt8, data2: UInt8) {
+    fileprivate init(time: TimeInterval, status: UInt8, channel: UInt8, data1: UInt8, data2: UInt8) {
         self.init()
-        self.timeStamp = timestamp
+        self.timeStamp = mach_absolute_time() + MIDITimeStamp(time * 1_000_000_000)
         self.length = 3
         self.data.0 = (status << 4) | (channel & 0b00001111)
         self.data.1 = data1 & 0b01111111
         self.data.2 = data2 & 0b01111111
+    }
+    
+    fileprivate var time: TimeInterval {
+        return TimeInterval(timeStamp) / 1_000_000_000
     }
     
     fileprivate var status: UInt8 {
