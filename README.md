@@ -36,6 +36,7 @@ Inspiration:
 - [Overtone](https://toplap.org/overtone/)
 - [Tidal Cycles](https://tidalcycles.org)
 - [Recurrent Neural Networks with Swift and Accelerate](http://machinethink.net/blog/recurrent-neural-networks-with-swift/)
+- [Musical L-Systems](http://carlosreynoso.com.ar/archivos/manousakis.pdf)
 
 Combinator ideas (don't forget, @autoclosure for parameters):
 
