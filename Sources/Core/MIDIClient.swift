@@ -13,7 +13,7 @@ public class MIDIClient: MIDIObject {
     
     public typealias EventCallback = (MIDIEvent) -> Void
     
-    public typealias MessageCallback = (MIDIMessage, MIDIEndpoint<Source>) -> Void
+    public typealias PacketCallback = (MIDIPacket, MIDIEndpoint<Source>) -> Void
     
     public convenience init(name: String, callback: @escaping EventCallback = { _ in }) throws {
         var clientReference = MIDIClientRef()
@@ -31,12 +31,12 @@ public class MIDIClient: MIDIObject {
         self.init(clientReference)
     }
     
-    public func createInput(name: String, callback: @escaping MessageCallback = { _ in }) throws -> MIDIPort<Input> {
+    public func createInput(name: String, callback: @escaping PacketCallback = { _ in }) throws -> MIDIPort<Input> {
         var portReference = MIDIPortRef()
         let context = UnsafeMutablePointer.wrap(callback)
         
         let procedure: MIDIReadProc = { (packetList, context, connectionContext) in
-            guard let callback: MessageCallback = context?.unwrap() else {
+            guard let callback: PacketCallback = context?.unwrap() else {
                 return
             }
             
@@ -45,7 +45,7 @@ public class MIDIClient: MIDIObject {
             }
             
             for packet in packetList.pointee.packets {
-                callback(MIDIMessage(packet), MIDIEndpoint<Source>(endpointReference))
+                callback(packet, MIDIEndpoint<Source>(endpointReference))
             }
         }
         
@@ -65,12 +65,12 @@ public class MIDIClient: MIDIObject {
         return MIDIEndpoint<Source>(endpointReference)
     }
     
-    public func createDestination(name: String, callback: @escaping MessageCallback = { _ in }) throws -> MIDIEndpoint<Destination> {
+    public func createDestination(name: String, callback: @escaping PacketCallback = { _ in }) throws -> MIDIEndpoint<Destination> {
         var endpointReference = MIDIEndpointRef()
         let context = UnsafeMutablePointer.wrap(callback)
         
         let procedure: MIDIReadProc = { (packetList, context, connectionContext) in
-            guard let callback: MessageCallback = context?.unwrap() else {
+            guard let callback: PacketCallback = context?.unwrap() else {
                 return
             }
             
@@ -79,7 +79,7 @@ public class MIDIClient: MIDIObject {
             }
             
             for packet in packetList.pointee.packets {
-                callback(MIDIMessage(packet), MIDIEndpoint<Source>(sourceReference))
+                callback(packet, MIDIEndpoint<Source>(sourceReference))
             }
         }
         

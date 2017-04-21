@@ -78,8 +78,8 @@ extension MIDIEndpoint where Type == Destination {
 
 extension MIDIEndpoint where Type == Source {
     
-    public func received(_ message: MIDIMessage) throws {
-        var packetList = MIDIPacketList(MIDIPacket(message))
+    public func receive(_ packet: MIDIPacket) throws {
+        var packetList = MIDIPacketList(packet)
         try MIDIReceived(reference, &packetList).check("Receiving packets with MIDIEndpoint")
     }
     

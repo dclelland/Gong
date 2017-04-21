@@ -38,8 +38,8 @@ public struct MIDI {
     
     public static var input: MIDIPort<Input>? = {
         do {
-            return try client?.createInput(name: "Default input") { (message, source) in
-                receive(message, from: source)
+            return try client?.createInput(name: "Default input") { (packet, source) in
+                receive(MIDIMessage(packet), from: source)
             }
         } catch let error {
             print(error)
@@ -169,7 +169,7 @@ extension MIDIEndpoint where Type == Source {
     
     public func receive(_ message: MIDIMessage) {
         do {
-            try received(message)
+            try receive(message.packet)
         } catch let error {
             print(error)
         }
@@ -185,7 +185,7 @@ extension MIDIEndpoint where Type == Destination {
         }
         
         do {
-            try output.send(message, to: self)
+            try output.send(message.packet, to: self)
         } catch let error {
             print(error)
         }

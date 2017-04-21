@@ -60,7 +60,7 @@ public struct MIDIError: Error {
 
 extension MIDIError {
     
-    internal init(status: OSStatus, message: String) {
+    public init(status: OSStatus, message: String) {
         switch status {
         case kMIDIInvalidClient:
             self.init(.invalidClient, message: message)
