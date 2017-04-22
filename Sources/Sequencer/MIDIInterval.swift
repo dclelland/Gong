@@ -88,6 +88,18 @@ extension MIDIInterval {
         return MIDIKey(lhs.number + rhs.number)
     }
     
+    public static func - (lhs: MIDIInterval, rhs: MIDIInterval) -> MIDIInterval {
+        return MIDIInterval(lhs.number - rhs.number)
+    }
+    
+    public static func - (lhs: MIDIKey, rhs: MIDIInterval) -> MIDIKey {
+        return MIDIKey(lhs.number - rhs.number)
+    }
+    
+    public static func - (lhs: MIDIInterval, rhs: MIDIKey) -> MIDIKey {
+        return MIDIKey(lhs.number - rhs.number)
+    }
+    
 }
 
 extension MIDIInterval: Equatable {
