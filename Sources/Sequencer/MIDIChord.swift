@@ -20,13 +20,15 @@ public struct MIDIChord {
         self.intervals = intervals
     }
 
+    // Should also be able to do something like .c4.maj
+    
     public static let maj: MIDIChord = [.P1, .M3, .P5]
     public static let min: MIDIChord = [.P1, .m3, .P5]
     public static let aug: MIDIChord = [.P1, .M3, .A5]
     public static let dim: MIDIChord = [.P1, .m3, .d5]
     
-    public static var sus2: MIDIChord = [.P1, .M2, .P5]
-    public static var sus4: MIDIChord = [.P1, .P4, .P5]
+    public static let sus2: MIDIChord = [.P1, .M2, .P5]
+    public static let sus4: MIDIChord = [.P1, .P4, .P5]
     
     public static let maj7: MIDIChord = .maj + [.M7]
     public static let min7: MIDIChord = .min + [.m7]
