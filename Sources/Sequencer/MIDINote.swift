@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias MIDIMessageSequece = [MIDIMessage]
+
 public protocol MIDISequence {
 
     var messages: [MIDIMessage] { get }
@@ -28,7 +30,7 @@ public struct MIDINote {
     
     public let channel: UInt8
     
-    public let key: UInt8
+    public let key: MIDIKey
     
     public let startVelocity: UInt8
     
@@ -38,7 +40,7 @@ public struct MIDINote {
     
     public let endDelay: TimeInterval
     
-    public init(channel: UInt8 = 0, key: UInt8, startVelocity: UInt8 = 127, startDelay: TimeInterval = 0.0, endVelocity: UInt8 = 127, endDelay: TimeInterval = 1.0) {
+    public init(channel: UInt8 = 0, key: MIDIKey, startVelocity: UInt8 = 127, startDelay: TimeInterval = 0.0, endVelocity: UInt8 = 127, endDelay: TimeInterval = 1.0) {
         self.channel = channel
         self.key = key
         self.startVelocity = startVelocity
@@ -47,11 +49,9 @@ public struct MIDINote {
         self.endDelay = endDelay
     }
     
-    public init(channel: UInt8 = 0, key: UInt8, velocity: UInt8 = 127, delay: TimeInterval = 0.0, duration: TimeInterval = 1.0) {
-        self.init(channel: channel, key: key, startVelocity: velocity, startDelay: delay, endVelocity: velocity, endDelay: delay + duration)
-    }
-    
 }
+
+
 
 extension MIDINote: MIDISequence {
     

@@ -11,9 +11,25 @@ import Gong
 import CoreMIDI
 
 class ViewController: NSViewController {
+    
+    @IBOutlet var cButton: NSButton!
+    @IBOutlet var dButton: NSButton!
+    @IBOutlet var eButton: NSButton!
+    @IBOutlet var fButton: NSButton!
+    @IBOutlet var gButton: NSButton!
+    @IBOutlet var aButton: NSButton!
+    @IBOutlet var bButton: NSButton!
+    
+    var buttons: [NSButton] {
+        return [cButton, dButton, eButton, fButton, gButton, aButton, bButton]
+    }
 
     override func viewWillAppear() {
         super.viewWillAppear()
+        
+        for button in buttons {
+            button.sendAction(on: [.leftMouseDown, .leftMouseUp])
+        }
         
         MIDI.addReceiver(self)
     }
@@ -25,21 +41,53 @@ class ViewController: NSViewController {
     }
     
     @IBAction func buttonClick(_ button: NSButton) {
+        switch button.window?.currentEvent?.type {
+        case .leftMouseDown?:
+            buttonMouseDown(button)
+        case .leftMouseUp?:
+            buttonMouseUp(button)
+        default:
+            break
+        }
+    }
+    
+    func buttonMouseDown(_ button: NSButton) {
         switch button.title {
         case "C":
-            sendNote(key: 60)
+            sendNoteOnEvent(key: .c4)
         case "D":
-            sendNote(key: 62)
+            sendNoteOnEvent(key: .d4)
         case "E":
-            sendNote(key: 64)
+            sendNoteOnEvent(key: .e4)
         case "F":
-            sendNote(key: 65)
+            sendNoteOnEvent(key: .f4)
         case "G":
-            sendNote(key: 67)
+            sendNoteOnEvent(key: .g4)
         case "A":
-            sendNote(key: 69)
+            sendNoteOnEvent(key: .a4)
         case "B":
-            sendNote(key: 71)
+            sendNoteOnEvent(key: .b4)
+        default:
+            break
+        }
+    }
+    
+    func buttonMouseUp(_ button: NSButton) {
+        switch button.title {
+        case "C":
+            sendNoteOffEvent(key: .c4)
+        case "D":
+            sendNoteOffEvent(key: .d4)
+        case "E":
+            sendNoteOffEvent(key: .e4)
+        case "F":
+            sendNoteOffEvent(key: .f4)
+        case "G":
+            sendNoteOffEvent(key: .g4)
+        case "A":
+            sendNoteOffEvent(key: .a4)
+        case "B":
+            sendNoteOffEvent(key: .b4)
         default:
             break
         }
@@ -53,8 +101,14 @@ extension ViewController {
         return MIDIDevice(named: "minilogue")
     }
     
-    func sendNote(key: UInt8) {
-        device?.send(MIDINote(key: key, duration: 0.5))
+    func sendNoteOnEvent(key: MIDIKey) {
+        let message = MIDIMessage(.noteOn(channel: 0, key: key, velocity: 100))
+        device?.send(message)
+    }
+    
+    func sendNoteOffEvent(key: MIDIKey) {
+        let message = MIDIMessage(.noteOff(channel: 0, key: key, velocity: 100))
+        device?.send(message)
     }
     
 }
