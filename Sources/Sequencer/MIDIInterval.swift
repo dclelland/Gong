@@ -10,9 +10,9 @@ import Foundation
 
 public struct MIDIInterval {
     
-    public let number: Int8
+    public var number: Int
     
-    public init(number: Int8) {
+    public init(_ number: Int) {
         self.number = number
     }
     
@@ -74,10 +74,50 @@ public struct MIDIInterval {
     
 }
 
+extension MIDIInterval {
+    
+    public static func + (lhs: MIDIInterval, rhs: MIDIInterval) -> MIDIInterval {
+        return MIDIInterval(lhs.number + rhs.number)
+    }
+    
+    public static func + (lhs: MIDIKey, rhs: MIDIInterval) -> MIDIKey {
+        return MIDIKey(lhs.number + rhs.number)
+    }
+    
+    public static func + (lhs: MIDIInterval, rhs: MIDIKey) -> MIDIKey {
+        return MIDIKey(lhs.number + rhs.number)
+    }
+    
+}
+
+extension MIDIInterval: Equatable {
+    
+    public static func == (lhs: MIDIInterval, rhs: MIDIInterval) -> Bool {
+        return lhs.number == rhs.number
+    }
+    
+}
+
+extension MIDIInterval: Comparable {
+    
+    public static func < (lhs: MIDIInterval, rhs: MIDIInterval) -> Bool {
+        return lhs.number < rhs.number
+    }
+    
+}
+
+extension MIDIInterval: Hashable {
+    
+    public var hashValue: Int {
+        return Int(number)
+    }
+    
+}
+
 extension MIDIInterval: ExpressibleByIntegerLiteral {
     
-    public init(integerLiteral value: Int8) {
-        self.init(number: value)
+    public init(integerLiteral value: Int) {
+        self.init(value)
     }
     
 }

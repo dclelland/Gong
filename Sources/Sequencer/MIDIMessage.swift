@@ -16,9 +16,9 @@ public struct MIDIMessage {
     
     public enum `Type` {
         
-        case noteOff(channel: UInt8, key: MIDIKey, velocity: UInt8)
+        case noteOff(channel: UInt8, key: UInt8, velocity: UInt8)
         
-        case noteOn(channel: UInt8, key: MIDIKey, velocity: UInt8)
+        case noteOn(channel: UInt8, key: UInt8, velocity: UInt8)
         
         case polyphonicKeyPressure(channel: UInt8, key: UInt8, pressure: UInt8)
         
@@ -108,9 +108,9 @@ extension MIDIMessage {
     public init(_ packet: MIDIPacket) {
         switch packet.status {
         case 8:
-            self.init(.noteOff(channel: packet.channel, key: MIDIKey(number: packet.data1), velocity: packet.data2), delay: packet.delay)
+            self.init(.noteOff(channel: packet.channel, key: packet.data1, velocity: packet.data2), delay: packet.delay)
         case 9:
-            self.init(.noteOn(channel: packet.channel, key: MIDIKey(number: packet.data1), velocity: packet.data2), delay: packet.delay)
+            self.init(.noteOn(channel: packet.channel, key: packet.data1, velocity: packet.data2), delay: packet.delay)
         case 10:
             self.init(.polyphonicKeyPressure(channel: packet.channel, key: packet.data1, pressure: packet.data2), delay: packet.delay)
         case 11:
@@ -179,9 +179,9 @@ extension MIDIMessage {
     public var packet: MIDIPacket {
         switch type {
         case .noteOff(let channel, let key, let velocity):
-            return MIDIPacket(delay: delay, status: 8, channel: channel, data1: key.number, data2: velocity)
+            return MIDIPacket(delay: delay, status: 8, channel: channel, data1: key, data2: velocity)
         case .noteOn(let channel, let key, let velocity):
-            return MIDIPacket(delay: delay, status: 9, channel: channel, data1: key.number, data2: velocity)
+            return MIDIPacket(delay: delay, status: 9, channel: channel, data1: key, data2: velocity)
         case .polyphonicKeyPressure(let channel, let key, let pressure):
             return MIDIPacket(delay: delay, status: 10, channel: channel, data1: key, data2: pressure)
         case .controlChange(let channel, let controller, let value):

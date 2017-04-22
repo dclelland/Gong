@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias MIDIMessageSequece = [MIDIMessage]
+typealias MIDIMessageSequence = [MIDIMessage]
 
 public protocol MIDISequence {
 
@@ -28,19 +28,19 @@ extension MIDIDevice {
 
 public struct MIDINote {
     
-    public let channel: UInt8
+    public var channel: Int
     
-    public let key: MIDIKey
+    public var key: MIDIKey
     
-    public let startVelocity: UInt8
+    public var startVelocity: Int
     
-    public let startDelay: TimeInterval
+    public var startDelay: TimeInterval
     
-    public let endVelocity: UInt8
+    public var endVelocity: Int
     
-    public let endDelay: TimeInterval
+    public var endDelay: TimeInterval
     
-    public init(channel: UInt8 = 0, key: MIDIKey, startVelocity: UInt8 = 127, startDelay: TimeInterval = 0.0, endVelocity: UInt8 = 127, endDelay: TimeInterval = 1.0) {
+    public init(channel: Int = 0, key: MIDIKey, startVelocity: Int = 127, startDelay: TimeInterval = 0.0, endVelocity: Int = 127, endDelay: TimeInterval = 1.0) {
         self.channel = channel
         self.key = key
         self.startVelocity = startVelocity
@@ -51,14 +51,12 @@ public struct MIDINote {
     
 }
 
-
-
 extension MIDINote: MIDISequence {
     
     public var messages: [MIDIMessage] {
         return [
-            MIDIMessage(.noteOn(channel: channel, key: key, velocity: startVelocity), delay: startDelay),
-            MIDIMessage(.noteOff(channel: channel, key: key, velocity: endVelocity), delay: endDelay)
+            MIDIMessage(.noteOn(channel: UInt8(channel), key: UInt8(key.number), velocity: UInt8(startVelocity)), delay: startDelay),
+            MIDIMessage(.noteOff(channel: UInt8(channel), key: UInt8(key.number), velocity: UInt8(endVelocity)), delay: endDelay)
         ]
     }
     

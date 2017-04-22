@@ -102,13 +102,17 @@ extension ViewController {
     }
     
     func sendNoteOnEvent(key: MIDIKey) {
-        let message = MIDIMessage(.noteOn(channel: 0, key: key, velocity: 100))
-        device?.send(message)
+        for key in key.chord(.P1, .P5, .P8) {
+            let message = MIDIMessage(.noteOn(channel: 0, key: UInt8(key.number), velocity: 100))
+            device?.send(message)
+        }
     }
     
     func sendNoteOffEvent(key: MIDIKey) {
-        let message = MIDIMessage(.noteOff(channel: 0, key: key, velocity: 100))
-        device?.send(message)
+        for key in key.chord(.P1, .P5, .P8) {
+            let message = MIDIMessage(.noteOff(channel: 0, key: UInt8(key.number), velocity: 100))
+            device?.send(message)
+        }
     }
     
 }

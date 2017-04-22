@@ -10,9 +10,9 @@ import Foundation
 
 public struct MIDIKey {
     
-    public let number: UInt8
+    public var number: Int
     
-    public init(number: UInt8) {
+    public init(_ number: Int) {
         self.number = number
     }
     
@@ -242,10 +242,48 @@ public struct MIDIKey {
     
 }
 
+extension MIDIKey {
+    
+    public func chord(_ chord: MIDIChord) -> [MIDIKey] {
+        return chord.map { interval in
+            return self + interval
+        }
+    }
+    
+    public func chord(_ intervals: MIDIInterval...) -> [MIDIKey] {
+        return chord(MIDIChord(intervals))
+    }
+    
+}
+
+extension MIDIKey: Equatable {
+    
+    public static func == (lhs: MIDIKey, rhs: MIDIKey) -> Bool {
+        return lhs.number == rhs.number
+    }
+    
+}
+
+extension MIDIKey: Comparable {
+    
+    public static func < (lhs: MIDIKey, rhs: MIDIKey) -> Bool {
+        return lhs.number < rhs.number
+    }
+    
+}
+
+extension MIDIKey: Hashable {
+    
+    public var hashValue: Int {
+        return Int(number)
+    }
+    
+}
+
 extension MIDIKey: ExpressibleByIntegerLiteral {
     
-    public init(integerLiteral value: UInt8) {
-        self.init(number: value)
+    public init(integerLiteral value: Int) {
+        self.init(value)
     }
     
 }
