@@ -20,6 +20,10 @@ public struct MIDIChord {
         self.intervals = intervals
     }
 
+}
+
+extension MIDIChord {
+    
     // Should also be able to do something like .c4.maj
     
     public static let maj: MIDIChord = [.P1, .M3, .P5]

@@ -16,6 +16,10 @@ public struct MIDIInterval {
         self.number = number
     }
     
+}
+
+extension MIDIInterval {
+    
     public static let P1: MIDIInterval = 0
     public static let m2: MIDIInterval = 1
     public static let M2: MIDIInterval = 2

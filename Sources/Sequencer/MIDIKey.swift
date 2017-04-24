@@ -16,6 +16,10 @@ public struct MIDIKey {
         self.number = number
     }
     
+}
+
+extension MIDIKey {
+    
     public static let c0: MIDIKey = 0
     public static let cSharp0: MIDIKey = 1
     public static let dFlat0: MIDIKey = 1
@@ -239,6 +243,58 @@ public struct MIDIKey {
     public static let fSharp10: MIDIKey = 126
     public static let gFlat10: MIDIKey = 126
     public static let g10: MIDIKey = 127
+
+}
+
+extension MIDIKey {
+    
+    public static let acousticBassDrum: MIDIKey = 35
+    public static let bassDrum1: MIDIKey = 36
+    public static let sideStick: MIDIKey = 37
+    public static let acousticSnare: MIDIKey = 38
+    public static let handClap: MIDIKey = 39
+    public static let electricSnare: MIDIKey = 40
+    public static let lowFloorTom: MIDIKey = 41
+    public static let closedHiHat: MIDIKey = 42
+    public static let highFloorTom: MIDIKey = 43
+    public static let pedalHiHat: MIDIKey = 44
+    public static let lowTom: MIDIKey = 45
+    public static let openHiHat: MIDIKey = 46
+    public static let lowMidTom: MIDIKey = 47
+    public static let hiMidTom: MIDIKey = 48
+    public static let crashCymbal1: MIDIKey = 49
+    public static let highTom: MIDIKey = 50
+    public static let rideCymbal1: MIDIKey = 51
+    public static let chineseCymbal: MIDIKey = 52
+    public static let rideBell: MIDIKey = 53
+    public static let tambourine: MIDIKey = 54
+    public static let splashCymbal: MIDIKey = 55
+    public static let cowbell: MIDIKey = 56
+    public static let crashCymbal2: MIDIKey = 57
+    public static let vibraslap: MIDIKey = 58
+    public static let rideCymbal2: MIDIKey = 59
+    public static let hiBongo: MIDIKey = 60
+    public static let lowBongo: MIDIKey = 61
+    public static let muteHiConga: MIDIKey = 62
+    public static let openHiConga: MIDIKey = 63
+    public static let lowConga: MIDIKey = 64
+    public static let highTimbale: MIDIKey = 65
+    public static let lowTimbale: MIDIKey = 66
+    public static let highAgogo: MIDIKey = 67
+    public static let lowAgogo: MIDIKey = 68
+    public static let cabasa: MIDIKey = 69
+    public static let maracas: MIDIKey = 70
+    public static let shortWhistle: MIDIKey = 71
+    public static let longWhistle: MIDIKey = 72
+    public static let shortGuiro: MIDIKey = 73
+    public static let longGuiro: MIDIKey = 74
+    public static let claves: MIDIKey = 75
+    public static let hiWoodBlock: MIDIKey = 76
+    public static let lowWoodBlock: MIDIKey = 77
+    public static let muteCuica: MIDIKey = 78
+    public static let openCuica: MIDIKey = 79
+    public static let muteTriangle: MIDIKey = 80
+    public static let openTriangle: MIDIKey = 81
     
 }
 

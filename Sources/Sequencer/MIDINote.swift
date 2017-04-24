@@ -32,21 +32,34 @@ public struct MIDINote {
     
     public var key: MIDIKey
     
-    public var startVelocity: Int
+    public var velocity: Int
     
-    public var startDelay: TimeInterval
+    public var delay: TimeInterval
     
-    public var endVelocity: Int
+    public var duration: TimeInterval
     
-    public var endDelay: TimeInterval
-    
-    public init(channel: Int = 0, key: MIDIKey, startVelocity: Int = 127, startDelay: TimeInterval = 0.0, endVelocity: Int = 127, endDelay: TimeInterval = 1.0) {
+    public init(channel: Int = 0, key: MIDIKey, velocity: Int = 127, delay: TimeInterval = 0.0, duration: TimeInterval = 1.0) {
         self.channel = channel
         self.key = key
-        self.startVelocity = startVelocity
-        self.startDelay = startDelay
-        self.endVelocity = endVelocity
-        self.endDelay = endDelay
+        self.velocity = velocity
+        self.delay = delay
+        self.duration = duration
+    }
+    
+    public var startVelocity: Int {
+        return velocity
+    }
+    
+    public var startDelay: TimeInterval {
+        return delay
+    }
+    
+    public var endVelocity: Int {
+        return velocity
+    }
+    
+    public var endDelay: TimeInterval {
+        return delay + duration
     }
     
 }
