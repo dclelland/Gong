@@ -68,8 +68,8 @@ extension MIDINote: MIDISequence {
     
     public var messages: [MIDIMessage] {
         return [
-            MIDIMessage(.noteOn(channel: UInt8(channel), key: UInt8(key.number), velocity: UInt8(startVelocity)), delay: startDelay),
-            MIDIMessage(.noteOff(channel: UInt8(channel), key: UInt8(key.number), velocity: UInt8(endVelocity)), delay: endDelay)
+            MIDIMessage(.noteOn(channel: UInt8(channel), key: UInt8(key.value), velocity: UInt8(startVelocity)), delay: startDelay),
+            MIDIMessage(.noteOff(channel: UInt8(channel), key: UInt8(key.value), velocity: UInt8(endVelocity)), delay: endDelay)
         ]
     }
     
