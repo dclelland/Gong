@@ -8,15 +8,11 @@
 
 import Foundation
 
-public protocol MIDIDoubleUnit { }
-
-public struct MIDIDouble<UnitType: MIDIDoubleUnit> {
+public protocol MIDIDouble/*: BinaryFloatingPoint*/ {
     
-    let value: Double
+    var value: Int { get }
     
-    init(_ value: Double) {
-        self.value = value
-    }
+    init(_ value: Int)
     
 }
 

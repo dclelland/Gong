@@ -8,6 +8,12 @@
 
 import Foundation
 
-public typealias MIDIChannel = MIDIInteger<MIDIChannelUnit>
-
-public enum MIDIChannelUnit: MIDIIntegerUnit { }
+public struct MIDIChannel: MIDIInteger {
+    
+    public let value: Int
+    
+    public init(_ value: Int) {
+        self.value = value
+    }
+    
+}

@@ -8,11 +8,17 @@
 
 import Foundation
 
-public typealias MIDIKey = MIDIInteger<MIDIKeyUnit>
+public struct MIDIKey: MIDIInteger {
+    
+    public let value: Int
+    
+    public init(_ value: Int) {
+        self.value = value
+    }
+    
+}
 
-public enum MIDIKeyUnit: MIDIIntegerUnit { }
-
-extension MIDIInteger where UnitType == MIDIKeyUnit {
+extension MIDIKey {
     
     public static var c0: MIDIKey { return 0 }
     public static var cSharp0: MIDIKey { return 1 }
@@ -240,7 +246,7 @@ extension MIDIInteger where UnitType == MIDIKeyUnit {
 
 }
 
-extension MIDIInteger where UnitType == MIDIKeyUnit {
+extension MIDIKey {
     
     public static var acousticBassDrum: MIDIKey { return 35 }
     public static var bassDrum1: MIDIKey { return 36 }
@@ -289,5 +295,25 @@ extension MIDIInteger where UnitType == MIDIKeyUnit {
     public static var openCuica: MIDIKey { return 79 }
     public static var muteTriangle: MIDIKey { return 80 }
     public static var openTriangle: MIDIKey { return 81 }
+    
+}
+
+extension MIDIKey {
+    
+    public static func + (lhs: MIDIKey, rhs: MIDIInterval) -> MIDIKey {
+        return MIDIKey(lhs.value + rhs.value)
+    }
+    
+    public static func + (lhs: MIDIInterval, rhs: MIDIKey) -> MIDIKey {
+        return MIDIKey(lhs.value + rhs.value)
+    }
+    
+    public static func - (lhs: MIDIKey, rhs: MIDIInterval) -> MIDIKey {
+        return MIDIKey(lhs.value - rhs.value)
+    }
+    
+    public static func - (lhs: MIDIInterval, rhs: MIDIKey) -> MIDIKey {
+        return MIDIKey(lhs.value - rhs.value)
+    }
     
 }

@@ -8,12 +8,12 @@
 
 import Foundation
 
-public typealias MIDITime = MIDIDouble<MIDITimeUnit>
-
-public enum MIDITimeUnit: MIDIDoubleUnit { }
-
-extension MIDIDouble where UnitType == MIDITimeUnit {
-
-//    public static var now: MIDITime { return 0.0 }
-
+public struct MIDITime: MIDIDouble {
+    
+    public let value: Int
+    
+    public init(_ value: Int) {
+        self.value = value
+    }
+    
 }

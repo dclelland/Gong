@@ -8,19 +8,15 @@
 
 import Foundation
 
-public protocol MIDIIntegerUnit { }
-
-public struct MIDIInteger<UnitType: MIDIIntegerUnit> {
+public protocol MIDIInteger: SignedInteger, Comparable, Equatable {
     
-    let value: Int
+    var value: Int { get }
     
-    init(_ value: Int) {
-        self.value = value
-    }
+    init(_ value: Int)
     
 }
 
-extension MIDIInteger: SignedInteger {
+extension MIDIInteger {
     
     public init(_ value: IntMax) {
         self.init(Int(value))
@@ -32,31 +28,31 @@ extension MIDIInteger: SignedInteger {
     
 }
 
-extension MIDIInteger: IntegerArithmetic {
+extension MIDIInteger {
     
-    public static func addWithOverflow<UnitType>(_ lhs: MIDIInteger<UnitType>, _ rhs: MIDIInteger<UnitType>) -> (MIDIInteger<UnitType>, overflow: Bool) {
+    public static func addWithOverflow(_ lhs: Self, _ rhs: Self) -> (Self, overflow: Bool) {
         let (value, overflow) = Int.addWithOverflow(lhs.value, rhs.value)
-        return (MIDIInteger<UnitType>(value), overflow)
+        return (Self(value), overflow)
     }
     
-    public static func subtractWithOverflow<UnitType>(_ lhs: MIDIInteger<UnitType>, _ rhs: MIDIInteger<UnitType>) -> (MIDIInteger<UnitType>, overflow: Bool) {
+    public static func subtractWithOverflow(_ lhs: Self, _ rhs: Self) -> (Self, overflow: Bool) {
         let (value, overflow) = Int.subtractWithOverflow(lhs.value, rhs.value)
-        return (MIDIInteger<UnitType>(value), overflow)
+        return (Self(value), overflow)
     }
     
-    public static func multiplyWithOverflow<UnitType>(_ lhs: MIDIInteger<UnitType>, _ rhs: MIDIInteger<UnitType>) -> (MIDIInteger<UnitType>, overflow: Bool) {
+    public static func multiplyWithOverflow(_ lhs: Self, _ rhs: Self) -> (Self, overflow: Bool) {
         let (value, overflow) = Int.multiplyWithOverflow(lhs.value, rhs.value)
-        return (MIDIInteger<UnitType>(value), overflow)
+        return (Self(value), overflow)
     }
     
-    public static func divideWithOverflow<UnitType>(_ lhs: MIDIInteger<UnitType>, _ rhs: MIDIInteger<UnitType>) -> (MIDIInteger<UnitType>, overflow: Bool) {
+    public static func divideWithOverflow(_ lhs: Self, _ rhs: Self) -> (Self, overflow: Bool) {
         let (value, overflow) = Int.divideWithOverflow(lhs.value, rhs.value)
-        return (MIDIInteger<UnitType>(value), overflow)
+        return (Self(value), overflow)
     }
     
-    public static func remainderWithOverflow<UnitType>(_ lhs: MIDIInteger<UnitType>, _ rhs: MIDIInteger<UnitType>) -> (MIDIInteger<UnitType>, overflow: Bool) {
+    public static func remainderWithOverflow(_ lhs: Self, _ rhs: Self) -> (Self, overflow: Bool) {
         let (value, overflow) = Int.remainderWithOverflow(lhs.value, rhs.value)
-        return (MIDIInteger<UnitType>(value), overflow)
+        return (Self(value), overflow)
     }
     
     public func toIntMax() -> IntMax {
@@ -65,31 +61,31 @@ extension MIDIInteger: IntegerArithmetic {
     
 }
 
-extension MIDIInteger: BitwiseOperations {
+extension MIDIInteger {
     
-    public static func & <UnitType>(lhs: MIDIInteger<UnitType>, rhs: MIDIInteger<UnitType>) -> MIDIInteger<UnitType> {
-        return MIDIInteger<UnitType>(lhs.value & rhs.value)
+    public static func & (lhs: Self, rhs: Self) -> Self {
+        return Self(lhs.value & rhs.value)
     }
     
-    public static func | <UnitType>(lhs: MIDIInteger<UnitType>, rhs: MIDIInteger<UnitType>) -> MIDIInteger<UnitType> {
-        return MIDIInteger<UnitType>(lhs.value | rhs.value)
+    public static func | (lhs: Self, rhs: Self) -> Self {
+        return Self(lhs.value | rhs.value)
     }
     
-    public static func ^ <UnitType>(lhs: MIDIInteger<UnitType>, rhs: MIDIInteger<UnitType>) -> MIDIInteger<UnitType> {
-        return MIDIInteger<UnitType>(lhs.value ^ rhs.value)
+    public static func ^ (lhs: Self, rhs: Self) -> Self {
+        return Self(lhs.value ^ rhs.value)
     }
     
-    prefix public static func ~ <UnitType>(x: MIDIInteger<UnitType>) -> MIDIInteger<UnitType> {
-        return MIDIInteger<UnitType>(~x.value)
+    prefix public static func ~ (x: Self) -> Self {
+        return Self(~x.value)
     }
     
-    public static var allZeros: MIDIInteger<UnitType> {
-        return MIDIInteger<UnitType>(Int.allZeros)
+    public static var allZeros: Self {
+        return Self(Int.allZeros)
     }
     
 }
 
-extension MIDIInteger: Hashable {
+extension MIDIInteger {
     
     public var hashValue: Int {
         return value
@@ -97,23 +93,23 @@ extension MIDIInteger: Hashable {
     
 }
 
-extension MIDIInteger: Equatable {
+extension MIDIInteger {
     
-    public static func == <UnitType>(lhs: MIDIInteger<UnitType>, rhs: MIDIInteger<UnitType>) -> Bool {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.value == rhs.value
     }
     
 }
 
-extension MIDIInteger: Comparable {
+extension MIDIInteger {
     
-    public static func < <UnitType>(lhs: MIDIInteger<UnitType>, rhs: MIDIInteger<UnitType>) -> Bool {
+    public static func < (lhs: Self, rhs: Self) -> Bool {
         return lhs.value < rhs.value
     }
     
 }
 
-extension MIDIInteger: CustomStringConvertible {
+extension MIDIInteger {
     
     public var description: String {
         return value.description
@@ -121,7 +117,7 @@ extension MIDIInteger: CustomStringConvertible {
     
 }
 
-extension MIDIInteger: ExpressibleByIntegerLiteral {
+extension MIDIInteger {
     
     public init(integerLiteral value: Int) {
         self.init(value)

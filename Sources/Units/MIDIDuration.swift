@@ -8,6 +8,12 @@
 
 import Foundation
 
-public typealias MIDIDuration = MIDIDouble<MIDIDurationUnit>
-
-public enum MIDIDurationUnit: MIDIDoubleUnit { }
+public struct MIDIDuration: MIDIDouble {
+    
+    public let value: Int
+    
+    public init(_ value: Int) {
+        self.value = value
+    }
+    
+}

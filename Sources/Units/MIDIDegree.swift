@@ -8,11 +8,17 @@
 
 import Foundation
 
-public typealias MIDIDegree = MIDIInteger<MIDIDegreeUnit>
+public struct MIDIDegree: MIDIInteger {
+    
+    public let value: Int
+    
+    public init(_ value: Int) {
+        self.value = value
+    }
+    
+}
 
-public enum MIDIDegreeUnit: MIDIIntegerUnit { }
-
-extension MIDIInteger where UnitType == MIDIDegreeUnit {
+extension MIDIDegree {
     
     public static var i: MIDIDegree { return 1 }
     public static var ii: MIDIDegree { return 2 }

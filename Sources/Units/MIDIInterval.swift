@@ -8,31 +8,17 @@
 
 import Foundation
 
-public typealias MIDIInterval = MIDIInteger<MIDIIntervalUnit>
-
-public enum MIDIIntervalUnit: MIDIIntegerUnit { }
-
-extension MIDIInteger where UnitType == MIDIIntervalUnit {
+public struct MIDIInterval: MIDIInteger {
     
-    public static func + (lhs: MIDIKey, rhs: MIDIInterval) -> MIDIKey {
-        return MIDIKey(lhs.value + rhs.value)
-    }
+    public let value: Int
     
-    public static func + (lhs: MIDIInterval, rhs: MIDIKey) -> MIDIKey {
-        return MIDIKey(lhs.value + rhs.value)
-    }
-    
-    public static func - (lhs: MIDIKey, rhs: MIDIInterval) -> MIDIKey {
-        return MIDIKey(lhs.value - rhs.value)
-    }
-    
-    public static func - (lhs: MIDIInterval, rhs: MIDIKey) -> MIDIKey {
-        return MIDIKey(lhs.value - rhs.value)
+    public init(_ value: Int) {
+        self.value = value
     }
     
 }
 
-extension MIDIInteger where UnitType == MIDIIntervalUnit {
+extension MIDIInterval {
     
     public static var P1: MIDIInterval { return 0 }
     public static var m2: MIDIInterval { return 1 }
@@ -60,7 +46,7 @@ extension MIDIInteger where UnitType == MIDIIntervalUnit {
     
 }
 
-extension MIDIInteger where UnitType == MIDIIntervalUnit {
+extension MIDIInterval {
     
     public static var d2: MIDIInterval { return 0 }
     public static var A1: MIDIInterval { return 1 }
