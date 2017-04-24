@@ -17,6 +17,8 @@
 		484861AD5B6A967A31E38FEC7CA17251 /* MIDIDegree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379A647D98D30D7AE256F083CAA7E8FC /* MIDIDegree.swift */; };
 		60FFE91F720E61F2AE31883634EE9D6B /* Pods-Gong-macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5323C7F0A036BE242C6C9AC0199388 /* Pods-Gong-macOS-dummy.m */; };
 		656399FB1EAEC325003C20FA /* MIDIDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656399FA1EAEC325003C20FA /* MIDIDouble.swift */; };
+		656399FD1EAEC598003C20FA /* MIDITime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656399FC1EAEC598003C20FA /* MIDITime.swift */; };
+		656399FF1EAEC5A1003C20FA /* MIDIDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656399FE1EAEC5A1003C20FA /* MIDIDuration.swift */; };
 		66B9F39E6254BD5AA6D8D8DECB008428 /* MIDIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EE2AD63947A43C75EB61CD90458978 /* MIDIKey.swift */; };
 		7531B1667138A91F606A2E1A1E2FD9AF /* MIDIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE265B1D8148DBC1C6FB50EE4675236 /* MIDIDevice.swift */; };
 		76880D4724DA3C6739E028FE78EB0E26 /* MIDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716F9FB31018B52A7FA58B38285E3F21 /* MIDI.swift */; };
@@ -66,6 +68,8 @@
 		57F071520A355B5813B3C7B7D995C4C8 /* Pods-Gong-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Gong-macOS.release.xcconfig"; sourceTree = "<group>"; };
 		618176402F02CBF68280FA66B61347B2 /* MIDIChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIChannel.swift; sourceTree = "<group>"; };
 		656399FA1EAEC325003C20FA /* MIDIDouble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIDouble.swift; sourceTree = "<group>"; };
+		656399FC1EAEC598003C20FA /* MIDITime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDITime.swift; sourceTree = "<group>"; };
+		656399FE1EAEC5A1003C20FA /* MIDIDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIDuration.swift; sourceTree = "<group>"; };
 		6C82E6986F02EC9605618D2983A16C30 /* Pods-Gong-macOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Gong-macOS.modulemap"; sourceTree = "<group>"; };
 		716F9FB31018B52A7FA58B38285E3F21 /* MIDI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDI.swift; sourceTree = "<group>"; };
 		736FD5DCF65C2F50E2AEE71226815549 /* MIDIError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIError.swift; sourceTree = "<group>"; };
@@ -233,6 +237,8 @@
 				379A647D98D30D7AE256F083CAA7E8FC /* MIDIDegree.swift */,
 				F63BCFFCD751D980A4EB9FE5E5D93FA9 /* MIDIInterval.swift */,
 				77EE2AD63947A43C75EB61CD90458978 /* MIDIKey.swift */,
+				656399FC1EAEC598003C20FA /* MIDITime.swift */,
+				656399FE1EAEC5A1003C20FA /* MIDIDuration.swift */,
 			);
 			path = Units;
 			sourceTree = "<group>";
@@ -368,6 +374,7 @@
 				82B92C4D1F8F5532D8F572FFEC412D4C /* MIDIEndpoint.swift in Sources */,
 				F42F41F892DCEE65C7B3D3CBC237D393 /* MIDIEntity.swift in Sources */,
 				1467C936DC8016A37539B1A76AE7C881 /* MIDIError.swift in Sources */,
+				656399FF1EAEC5A1003C20FA /* MIDIDuration.swift in Sources */,
 				7E0BD5891DE5D867006D7CDEC6DBD1B8 /* MIDIEvent.swift in Sources */,
 				C2A60643F3991B1C5D0F7B488A52BBCB /* MIDIInteger.swift in Sources */,
 				656399FB1EAEC325003C20FA /* MIDIDouble.swift in Sources */,
@@ -375,6 +382,7 @@
 				66B9F39E6254BD5AA6D8D8DECB008428 /* MIDIKey.swift in Sources */,
 				188CB0A07113760DAFDA8F0FA9B00CE8 /* MIDIMessage.swift in Sources */,
 				EE294435FD84E04DAD1D3F042D5DCA79 /* MIDINote.swift in Sources */,
+				656399FD1EAEC598003C20FA /* MIDITime.swift in Sources */,
 				AB35BE0195E145A834BEA68A324192F9 /* MIDIObject.swift in Sources */,
 				CAD57CCCB6A6C37DF32F2FDDEA0E68F7 /* MIDIPacket.swift in Sources */,
 				B12B2E50449AB35004C353F318F31A21 /* MIDIPort.swift in Sources */,

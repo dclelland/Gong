@@ -20,6 +20,18 @@ public struct MIDIDouble<UnitType: MIDIDoubleUnit> {
     
 }
 
-extension MIDIDouble: BinaryFloatingPoint {
-    
-}
+//extension MIDIDouble: BinaryFloatingPoint {
+//    
+//}
+//
+//extension MIDIDouble: FloatingPoint {
+//    
+//}
+//
+//extension MIDIDouble: ExpressibleByFloatLiteral {
+//    
+//}
+//
+//extension MIDIDouble: AbsoluteValuable {
+//    
+//}
