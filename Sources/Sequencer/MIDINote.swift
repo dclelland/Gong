@@ -8,19 +8,19 @@
 
 import Foundation
 
-typealias MIDIMessageSequence = [MIDIMessage]
+typealias MIDIPacketSequence = [MIDIPacket]
 
 public protocol MIDISequence {
 
-    var messages: [MIDIMessage] { get }
+    var packets: [MIDIPacket] { get }
     
 }
 
 extension MIDIDevice {
     
     public func send(_ sequence: MIDISequence, via output: MIDIPort<Output>? = MIDI.output) {
-        for message in sequence.messages {
-            send(message, via: output)
+        for packet in sequence.packets {
+            send(packet, via: output)
         }
     }
     
@@ -66,10 +66,10 @@ public struct MIDINote {
 
 extension MIDINote: MIDISequence {
     
-    public var messages: [MIDIMessage] {
+    public var packets: [MIDIPacket] {
         return [
-            MIDIMessage(.noteOn(channel: UInt8(channel), key: UInt8(key.value), velocity: UInt8(startVelocity)), delay: startDelay),
-            MIDIMessage(.noteOff(channel: UInt8(channel), key: UInt8(key.value), velocity: UInt8(endVelocity)), delay: endDelay)
+            MIDIPacket(.noteOn(channel: UInt8(channel), key: UInt8(key.value), velocity: UInt8(startVelocity)), delay: startDelay),
+            MIDIPacket(.noteOff(channel: UInt8(channel), key: UInt8(key.value), velocity: UInt8(endVelocity)), delay: endDelay)
         ]
     }
     

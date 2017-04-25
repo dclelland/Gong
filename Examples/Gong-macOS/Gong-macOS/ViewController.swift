@@ -134,10 +134,10 @@ extension ViewController: MIDIReceiver {
         print(notification)
     }
     
-    func receive(_ message: MIDIMessage, from source: MIDIEndpoint<Source>) {
-        switch message.type {
+    func receive(_ packet: MIDIPacket, from source: MIDIEndpoint<Source>) {
+        switch packet.message {
         case .noteOn, .noteOff, .controlChange:
-            print(message, source)
+            print(packet, source)
         default:
             break
         }
