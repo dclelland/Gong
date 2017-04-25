@@ -18,6 +18,13 @@ public struct MIDIControl: MIDIChannelEvent, MIDITimeEvent {
     
     public var time: MIDITime
     
+    public init(channel: MIDIChannel = .zero, controller: MIDIValue, value: MIDIValue, time: MIDITime = .now) {
+        self.channel = channel
+        self.controller = controller
+        self.value = value
+        self.time = time
+    }
+    
 }
 
 extension MIDIControl {

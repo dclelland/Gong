@@ -101,17 +101,16 @@ extension ViewController {
     }
     
     func sendNoteOnEvent(key: MIDIKey) {
-        let sequence = [
+        let sequence: MIDISequence = [
             MIDINote(key: key + .P1, time: .now, duration: .whole),
             MIDINote(key: key + .M2, time: .now + .whole, duration: .whole),
             MIDINote(key: key + .M3, time: .now + .whole * 2, duration: .whole),
             MIDINote(key: key + .P4, time: .now + .whole * 3, duration: .whole),
             MIDINote(key: key + .P5, time: .now + .whole * 4, duration: .whole),
+            MIDIControl(controller: 0, value: 0)
         ]
         
-        for note in sequence {
-            device?.send(note)
-        }
+        device?.send(sequence)
         
 //        for key in key.chord(.P1, .P5, .P8) {
 //            let message = MIDIMessage(.noteOn(channel: 0, key: UInt8(key.number), velocity: 100))
