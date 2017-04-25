@@ -1,5 +1,5 @@
 //
-//  MIDIChannel.swift
+//  MIDIValue.swift
 //  Gong
 //
 //  Created by Daniel Clelland on 25/04/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct MIDIChannel: MIDIInteger {
+public struct MIDIValue: MIDIInteger {
     
     public let value: Int
     
@@ -18,10 +18,9 @@ public struct MIDIChannel: MIDIInteger {
     
 }
 
-extension MIDIChannel {
+extension MIDIValue {
     
-    public static let zero: MIDIChannel = 0
-    
-    public static let all: [MIDIChannel] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    public static let min: MIDIValue = 0
+    public static let max: MIDIValue = 127
     
 }
