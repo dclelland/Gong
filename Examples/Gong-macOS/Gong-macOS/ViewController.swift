@@ -101,7 +101,7 @@ extension ViewController {
     }
     
     func sendNoteOnEvent(key: MIDIKey) {
-        let sequence: MIDISequence = [
+        var sequence: MIDISequence = [
             MIDINote(key: key + .P1, time: .now, duration: .whole),
             MIDINote(key: key + .M2, time: .now + .whole, duration: .whole),
             MIDINote(key: key + .M3, time: .now + .whole * 2, duration: .whole),
@@ -109,6 +109,8 @@ extension ViewController {
             MIDINote(key: key + .P5, time: .now + .whole * 4, duration: .whole),
             MIDIControl(controller: 0, value: 0)
         ]
+        
+//        sequence = sequence.transposed(.P5)
         
         device?.send(sequence)
         

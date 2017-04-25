@@ -308,12 +308,20 @@ extension MIDIKey {
         return MIDIKey(lhs.value + rhs.value)
     }
     
+    public static func +=(lhs: inout MIDIKey, rhs: MIDIInterval) {
+        lhs = lhs + rhs
+    }
+    
     public static func - (lhs: MIDIKey, rhs: MIDIInterval) -> MIDIKey {
         return MIDIKey(lhs.value - rhs.value)
     }
     
     public static func - (lhs: MIDIInterval, rhs: MIDIKey) -> MIDIKey {
         return MIDIKey(lhs.value - rhs.value)
+    }
+    
+    public static func -=(lhs: inout MIDIKey, rhs: MIDIInterval) {
+        lhs = lhs - rhs
     }
     
 }

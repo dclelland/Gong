@@ -26,18 +26,18 @@ public protocol MIDIEvent {
 
 public protocol MIDIChannelEvent: MIDIEvent {
     
-    var channel: MIDIChannel { get }
+    var channel: MIDIChannel { set get }
     
 }
 
 public protocol MIDITimeEvent: MIDIEvent {
     
-    var time: MIDITime { get }
+    var time: MIDITime { set get }
     
 }
 
 public protocol MIDIDurationEvent: MIDITimeEvent {
     
-    var duration: MIDIDuration { get }
+    var duration: MIDIDuration { set get }
     
 }
