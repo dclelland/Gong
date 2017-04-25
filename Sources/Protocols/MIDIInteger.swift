@@ -22,10 +22,6 @@ extension MIDIInteger {
         self.init(Int(value))
     }
     
-    public init(_builtinIntegerLiteral value: _MaxBuiltinIntegerType) {
-        self.init(Int(_builtinIntegerLiteral: value))
-    }
-    
 }
 
 extension MIDIInteger {
@@ -121,6 +117,10 @@ extension MIDIInteger {
     
     public init(integerLiteral value: Int) {
         self.init(value)
+    }
+    
+    public init(_builtinIntegerLiteral value: _MaxBuiltinIntegerType) {
+        self.init(Int(_builtinIntegerLiteral: value))
     }
     
 }
