@@ -11,7 +11,7 @@ import CoreMIDI
 
 public struct MIDIError: Error {
     
-    public enum `Type` {
+    public enum Message {
         
         case invalidClient
         
@@ -47,53 +47,53 @@ public struct MIDIError: Error {
         
     }
     
-    public let type: Type
+    public let message: Message
     
-    public let message: String
+    public let comment: String
     
-    public init(_ type: Type, message: String) {
-        self.type = type
+    public init(_ message: Message, comment: String) {
         self.message = message
+        self.comment = comment
     }
     
 }
 
 extension MIDIError {
     
-    public init(status: OSStatus, message: String) {
+    public init(status: OSStatus, comment: String) {
         switch status {
         case kMIDIInvalidClient:
-            self.init(.invalidClient, message: message)
+            self.init(.invalidClient, comment: comment)
         case kMIDIInvalidPort:
-            self.init(.invalidPort, message: message)
+            self.init(.invalidPort, comment: comment)
         case kMIDIWrongEndpointType:
-            self.init(.wrongEndpointType, message: message)
+            self.init(.wrongEndpointType, comment: comment)
         case kMIDINoConnection:
-            self.init(.noConnection, message: message)
+            self.init(.noConnection, comment: comment)
         case kMIDIUnknownEndpoint:
-            self.init(.unknownEndpoint, message: message)
+            self.init(.unknownEndpoint, comment: comment)
         case kMIDIUnknownProperty:
-            self.init(.unknownProperty, message: message)
+            self.init(.unknownProperty, comment: comment)
         case kMIDIWrongPropertyType:
-            self.init(.wrongPropertyType, message: message)
+            self.init(.wrongPropertyType, comment: comment)
         case kMIDINoCurrentSetup:
-            self.init(.noCurrentSetup, message: message)
+            self.init(.noCurrentSetup, comment: comment)
         case kMIDIMessageSendErr:
-            self.init(.messageSendError, message: message)
+            self.init(.messageSendError, comment: comment)
         case kMIDIServerStartErr:
-            self.init(.serverStartError, message: message)
+            self.init(.serverStartError, comment: comment)
         case kMIDISetupFormatErr:
-            self.init(.setupFormatError, message: message)
+            self.init(.setupFormatError, comment: comment)
         case kMIDIWrongThread:
-            self.init(.wrongThread, message: message)
+            self.init(.wrongThread, comment: comment)
         case kMIDIObjectNotFound:
-            self.init(.objectNotFound, message: message)
+            self.init(.objectNotFound, comment: comment)
         case kMIDIIDNotUnique:
-            self.init(.idNotUnique, message: message)
+            self.init(.idNotUnique, comment: comment)
         case kMIDINotPermitted:
-            self.init(.notPermitted, message: message)
+            self.init(.notPermitted, comment: comment)
         default:
-            self.init(.unknown, message: message)
+            self.init(.unknown, comment: comment)
         }
     }
     
@@ -102,16 +102,16 @@ extension MIDIError {
 extension MIDIError: CustomDebugStringConvertible {
     
     public var debugDescription: String {
-        return "MIDIError(type: \(type), message: \(message))"
+        return "MIDIError(message: \(message), comment: \(comment))"
     }
     
 }
 
 extension OSStatus {
     
-    internal func check(_ message: String) throws {
+    public func check(_ comment: String) throws {
         if self != noErr {
-            throw MIDIError(status: self, message: message)
+            throw MIDIError(status: self, comment: comment)
         }
     }
     

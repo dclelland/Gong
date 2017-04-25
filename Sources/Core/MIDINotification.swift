@@ -56,7 +56,7 @@ extension MIDINotification {
         case .msgIOError:
             let notification: MIDIIOErrorNotification = notificationPointer.unwrap(size: Int(notification.messageSize))
             let device = MIDIDevice(notification.driverDevice)
-            let error = MIDIError(status: notification.errorCode, message: "Notification error")
+            let error = MIDIError(status: notification.errorCode, comment: "Notification error")
             self = .ioError(device: device, error: error)
         }
     }
