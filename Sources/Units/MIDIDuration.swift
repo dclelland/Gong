@@ -10,9 +10,9 @@ import Foundation
 
 public struct MIDIDuration: MIDIDouble {
     
-    public let value: Double
+    public let value: Value
     
-    public init(_ value: Double) {
+    public init(_ value: Value) {
         self.value = value
     }
     
@@ -35,7 +35,7 @@ extension MIDIDuration {
 
 extension MIDIDuration {
     
-    public func stretch(_ ratio: Double) -> MIDIDuration {
+    public func stretch(_ ratio: Value) -> MIDIDuration {
         return MIDIDuration(self.value * ratio)
     }
     

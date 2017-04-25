@@ -10,9 +10,9 @@ import Foundation
 
 public struct MIDIDegree: MIDIInteger {
     
-    public let value: Int
+    public let value: Value
     
-    public init(_ value: Int) {
+    public init(_ value: Value) {
         self.value = value
     }
     

@@ -10,13 +10,15 @@ import Foundation
 
 public struct MIDIScale: MIDIArray {
     
-    public let elements: [MIDIInterval]
+    public typealias Element = MIDIInterval
+    
+    public let elements: [Element]
     
     public init() {
         self.elements = []
     }
     
-    public init(_ elements: [MIDIInterval]) {
+    public init(_ elements: [Element]) {
         self.elements = elements
     }
     

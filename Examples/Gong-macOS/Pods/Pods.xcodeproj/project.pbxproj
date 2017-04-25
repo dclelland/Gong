@@ -7,39 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		004B03EFF679E82204F9A091635A4785 /* MIDIPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A714A64A42E9DE7DC00CFD241E41F341 /* MIDIPacket.swift */; };
-		0AD0E34009154674E8FB28C264F8495F /* MIDIInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4F3364B4335C21509B87280B174BF /* MIDIInteger.swift */; };
-		0D3D56B5E0A75C90431418F2B6A4DE9D /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6236316C0DB10153130E74ACCB10D51 /* CoreMIDI.framework */; };
-		11512976A4F7AF95357A43F740C71A4D /* MIDIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D7DCA7B25EC370AAEBD0BC1255C8C /* MIDIError.swift */; };
+		00576134AD4B8AD56D08779B9303D287 /* MIDIEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F1E25285369CEF60F3E6C7B69FEE3 /* MIDIEntity.swift */; };
+		166A433F75781A86F358A8B94983B6CC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75EB8E4E98DEF5359C4618B83757AF00 /* Cocoa.framework */; };
 		17481D2440F923050FB8948BA2543A94 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75EB8E4E98DEF5359C4618B83757AF00 /* Cocoa.framework */; };
-		1779E3CC4FF74FEDF2D6F89FD4A04074 /* MIDIInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCADD00787F8C5F7A28197C62459542 /* MIDIInterval.swift */; };
-		1CFD841066EC6D4A7EAAFFA783B7F702 /* MIDIArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4976BDCF3A81531C42A5525BED481652 /* MIDIArray.swift */; };
-		295528295600817C2DF0D7114A3BAA3F /* MIDITime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031369A2A09EA90758F2E9C6F5424B51 /* MIDITime.swift */; };
-		3C25267271D304076C167EEF9A2DD450 /* Gong-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8F15524FDFF80164A0E01C2DA0B884 /* Gong-dummy.m */; };
-		4E2995FB3C7550304C467BE748D2AFA8 /* MIDIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DB1E64399E46D77ACF646946A42054 /* MIDIClient.swift */; };
-		4EAC529A8BFC3D1BFF699A20F8D77C9F /* MIDIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D707764AB543881E284618D355DF82E /* MIDIDevice.swift */; };
-		5C02F035B55CD0191F366C61DF90DAFE /* MIDIDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64518DA2C81EF3FE7CFA345AA3D813B /* MIDIDuration.swift */; };
+		1B47EC5287C3091A3C516D09A52F5E06 /* MIDIPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED94AAEC6E49D81550E077F3CA9711B /* MIDIPacket.swift */; };
+		1C9E5A87FDE96E0B6B83AB3861EA43A2 /* MIDIInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EB60C482C7220A095A3345D650606B /* MIDIInterval.swift */; };
+		1F240C8583DB2A60276C83C9E2CF01B0 /* MIDIDegree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFC3EED91308CE09E407752F948E3F8 /* MIDIDegree.swift */; };
+		216E4F47D885C338D02C381F38704D73 /* MIDIControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CC7DC7478ED5AB7B09E49708D1B029 /* MIDIControl.swift */; };
+		32E956EFC1816E678A36FD869410AA6C /* MIDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1084401B2389AEE09E997F2892D895D /* MIDI.swift */; };
+		3F32E033CCE0FF1D0A0F1C1FF2852FA6 /* MIDIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB1382534186DC1F481B7F5BEC0DD3 /* MIDIDevice.swift */; };
+		435427DD321143C091F88F9A05B3271B /* MIDIPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFBDCE83FED4624A1AD961D00DBF676 /* MIDIPort.swift */; };
+		44ACEE183F0EB3F0C6DC886F96913E1A /* MIDIObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E88556758D0EEBA4D1C000320C5AE3A /* MIDIObject.swift */; };
+		4815E15FB0C3A4425548A8CC630ADDBA /* MIDITime.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE383F341D1A0549815F58E21EC19C50 /* MIDITime.swift */; };
+		4C3B600B0A7F25C77045ABA77BE24765 /* MIDIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02225E4F0694E616291F824B4DC7B545 /* MIDIKey.swift */; };
+		4C99DDABFA8C56F501E3BCC109340B10 /* MIDIScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF0FEF1E9AE3D1E8D4CF4828C88FDDF /* MIDIScale.swift */; };
+		539DA8854C5E00B6E63D8D4A1600E221 /* MIDIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7850A8432DCC874A2C7CF95E4495B0 /* MIDIError.swift */; };
+		56D45AF350992033EE3638DDA662FC7E /* MIDINotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAA74F4BF87446D3AD200DF067433B3 /* MIDINotification.swift */; };
 		60FFE91F720E61F2AE31883634EE9D6B /* Pods-Gong-macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5323C7F0A036BE242C6C9AC0199388 /* Pods-Gong-macOS-dummy.m */; };
-		64D331E99957469AC27A221955F2228D /* MIDIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A0C55D93A95E20EAE76516DA6FDA53 /* MIDIKey.swift */; };
-		65ECC6001EAF253D00A4D272 /* MIDIEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ECC5FF1EAF253D00A4D272 /* MIDIEvent.swift */; };
-		65ECC6021EAF254A00A4D272 /* MIDIControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ECC6011EAF254A00A4D272 /* MIDIControl.swift */; };
-		65ECC6041EAF271D00A4D272 /* MIDIValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ECC6031EAF271D00A4D272 /* MIDIValue.swift */; };
-		7BF6EC0C9EC970F0E5D3B986F0E3C101 /* MIDIDegree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F7BDF37899693C1B614E4F0946E095 /* MIDIDegree.swift */; };
-		82FC3B00FEE8C6815204E15ACC0BBC83 /* MIDIChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE85A094A0CC4D2DE924EF9BF5EEC8D /* MIDIChannel.swift */; };
-		870BEF4BA2A76036E4AE8051CDC6A5F5 /* MIDIChord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77188BE07A93C96C6CAF5C6EA4D66F /* MIDIChord.swift */; };
-		8D05CA2CB820A86FFB81E164BCF72C46 /* MIDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985C6A1EDF10EB6F3A3F8790F83D75BB /* MIDI.swift */; };
-		8FBAB7E232C975E747095239D82F923D /* MIDIScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CB4F2066B725391E7234DC50827EB9 /* MIDIScale.swift */; };
-		9BA381BEB74CA119BBD08F89DC2792E2 /* MIDINote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE8AE217741C57FDC09D23ED430B6B /* MIDINote.swift */; };
-		B2546B8EA7FE061B385FB811F4901B11 /* MIDINotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CEBA2D6922D1F074890631FE68B57A /* MIDINotification.swift */; };
-		B4672A848433DD77FB15D56ACB72ECFF /* MIDIEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C546313C421A72E409B35ABD4A5E8B /* MIDIEntity.swift */; };
+		6224377E317CABD94B19D45D81758B79 /* MIDIChord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB0417F651AB6DAF67C57B9052FDCC /* MIDIChord.swift */; };
+		6F4A8D6450BC1C72041C379F4A0C80ED /* MIDINote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046560E8BE4EEDF47894DD60AEEA25FF /* MIDINote.swift */; };
+		7FB61A2901F1317FCCC2C56BB140BA70 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEC4B3E150355B2D75B550F89D1D4A96 /* AudioToolbox.framework */; };
+		89C24EDFD72FE6459808A59EA7379396 /* MIDIValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD99BAEA2AB5DB521F6A8DD208B2CA5 /* MIDIValue.swift */; };
 		B4D50C94753A5E201395C70FE0D632C5 /* Pods-Gong-macOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A183AE97F77C80409B85125414004617 /* Pods-Gong-macOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B8156274438F0081FD691555573B06CE /* MIDIPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DECF9C497DCC7184E84DE918838DEB9 /* MIDIPort.swift */; };
-		BCB22AD6CF95CFBA0833DF9C96351CD5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75EB8E4E98DEF5359C4618B83757AF00 /* Cocoa.framework */; };
-		D3E009ED95A35332DAC9CD53E3DAA0ED /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEC4B3E150355B2D75B550F89D1D4A96 /* AudioToolbox.framework */; };
-		DB0FE060DFAA0F61F2F110384233A3B4 /* MIDIObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC52778FDA75904FBBE13D47E6F99DC /* MIDIObject.swift */; };
-		DDEECE9EA263552A8BB11A828A6C3540 /* Gong-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AEE41CC02B37CBDDC39666C6C084CAD /* Gong-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EE78760C4B665C728DC2FCCBDFFEF976 /* MIDIDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FBBCF72E560BAEEB57DD88630B5B7A /* MIDIDouble.swift */; };
-		F052B46BE459FB2BB477C12BDE690105 /* MIDIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765AE2B3AC0E4082EB629533286570B /* MIDIEndpoint.swift */; };
+		B7263411FD1C29F5364AE42D81119ECB /* MIDIDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCE888C5A72E863C317E92F582DDB8A /* MIDIDuration.swift */; };
+		BB25A94FA9C04B349DB74D6E15FFA075 /* Gong-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8F15524FDFF80164A0E01C2DA0B884 /* Gong-dummy.m */; };
+		BE2BB715FAD23CD07222451765A33FF0 /* MIDIDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E64918673BEE002A1D6E9A579944253 /* MIDIDouble.swift */; };
+		D2C7762DADC0E8520284F6C19D1F0786 /* MIDIArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC179B0B895539F0A0C8CD926270D48C /* MIDIArray.swift */; };
+		DAE885BDA2B683FE2A7172F6706A2B93 /* MIDIEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974F69044D9863E4F3008A474A9CDFD5 /* MIDIEvent.swift */; };
+		E25FA872BA058A2433F5BAE0F29E6365 /* Gong-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AEE41CC02B37CBDDC39666C6C084CAD /* Gong-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E62A0EC7C9AB7479D00AD7A976E2F850 /* MIDIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E50CFA27A6EE34D1571138D82A5AC44 /* MIDIClient.swift */; };
+		F0E67D874A74907BC50A53C3312BB9FF /* MIDIInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158221CAB68C6C1444A0F0462CB87F23 /* MIDIInteger.swift */; };
+		F5C69CA16D0A35F19FE2A28AA74824AC /* MIDIChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D37322582B037317B79537DA23377C /* MIDIChannel.swift */; };
+		F66FD6372BC2A1D441A34E5DD839AE47 /* MIDIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47227B0D512ED52048ECDC0F7A183FBF /* MIDIEndpoint.swift */; };
+		FEC8D1480047D192E45CDADABAA11066 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6236316C0DB10153130E74ACCB10D51 /* CoreMIDI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,69 +47,69 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 3200130660E7789E62E8D0520A52CF20;
+			remoteGlobalIDString = 3529B9570B79A427132FD27CC55BDADB;
 			remoteInfo = Gong;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		031369A2A09EA90758F2E9C6F5424B51 /* MIDITime.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDITime.swift; sourceTree = "<group>"; };
+		02225E4F0694E616291F824B4DC7B545 /* MIDIKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIKey.swift; sourceTree = "<group>"; };
+		046560E8BE4EEDF47894DD60AEEA25FF /* MIDINote.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDINote.swift; sourceTree = "<group>"; };
 		0BD5539098FEB5C4A39BB4B0394B0B73 /* Pods-Gong-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Gong-macOS.debug.xcconfig"; sourceTree = "<group>"; };
-		0EFE8AE217741C57FDC09D23ED430B6B /* MIDINote.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDINote.swift; sourceTree = "<group>"; };
-		18A0C55D93A95E20EAE76516DA6FDA53 /* MIDIKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIKey.swift; sourceTree = "<group>"; };
-		25CB4F2066B725391E7234DC50827EB9 /* MIDIScale.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIScale.swift; sourceTree = "<group>"; };
-		27CEBA2D6922D1F074890631FE68B57A /* MIDINotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDINotification.swift; sourceTree = "<group>"; };
+		0BFC3EED91308CE09E407752F948E3F8 /* MIDIDegree.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIDegree.swift; sourceTree = "<group>"; };
+		0C4F1E25285369CEF60F3E6C7B69FEE3 /* MIDIEntity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIEntity.swift; sourceTree = "<group>"; };
+		0DFBDCE83FED4624A1AD961D00DBF676 /* MIDIPort.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIPort.swift; sourceTree = "<group>"; };
+		158221CAB68C6C1444A0F0462CB87F23 /* MIDIInteger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIInteger.swift; sourceTree = "<group>"; };
+		1E88556758D0EEBA4D1C000320C5AE3A /* MIDIObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIObject.swift; sourceTree = "<group>"; };
+		1EF0FEF1E9AE3D1E8D4CF4828C88FDDF /* MIDIScale.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIScale.swift; sourceTree = "<group>"; };
+		2E50CFA27A6EE34D1571138D82A5AC44 /* MIDIClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIClient.swift; sourceTree = "<group>"; };
 		3494C348B52F0F9183904D0A9779E484 /* Pods-Gong-macOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Gong-macOS-frameworks.sh"; sourceTree = "<group>"; };
-		35FBBCF72E560BAEEB57DD88630B5B7A /* MIDIDouble.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIDouble.swift; sourceTree = "<group>"; };
-		370F0C30D69792A0D4F93BEA8E0436CC /* Pods_Gong_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gong_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		370F0C30D69792A0D4F93BEA8E0436CC /* Pods_Gong_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Gong_macOS.framework; path = "Pods-Gong-macOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		37D37322582B037317B79537DA23377C /* MIDIChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIChannel.swift; sourceTree = "<group>"; };
 		38206F93E50461D07800FEA9EAC109DF /* Pods-Gong-macOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Gong-macOS-acknowledgements.markdown"; sourceTree = "<group>"; };
-		3C6D7DCA7B25EC370AAEBD0BC1255C8C /* MIDIError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIError.swift; sourceTree = "<group>"; };
-		4976BDCF3A81531C42A5525BED481652 /* MIDIArray.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIArray.swift; sourceTree = "<group>"; };
+		46EB60C482C7220A095A3345D650606B /* MIDIInterval.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIInterval.swift; sourceTree = "<group>"; };
+		47227B0D512ED52048ECDC0F7A183FBF /* MIDIEndpoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIEndpoint.swift; sourceTree = "<group>"; };
 		4AEE41CC02B37CBDDC39666C6C084CAD /* Gong-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Gong-umbrella.h"; sourceTree = "<group>"; };
 		4C5323C7F0A036BE242C6C9AC0199388 /* Pods-Gong-macOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Gong-macOS-dummy.m"; sourceTree = "<group>"; };
 		51460B03DBE26B910D3A3409A344980B /* Gong-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Gong-prefix.pch"; sourceTree = "<group>"; };
-		51DB1E64399E46D77ACF646946A42054 /* MIDIClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIClient.swift; sourceTree = "<group>"; };
+		57DB0417F651AB6DAF67C57B9052FDCC /* MIDIChord.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIChord.swift; sourceTree = "<group>"; };
 		57F071520A355B5813B3C7B7D995C4C8 /* Pods-Gong-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Gong-macOS.release.xcconfig"; sourceTree = "<group>"; };
-		5D707764AB543881E284618D355DF82E /* MIDIDevice.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIDevice.swift; sourceTree = "<group>"; };
-		5DECF9C497DCC7184E84DE918838DEB9 /* MIDIPort.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIPort.swift; sourceTree = "<group>"; };
-		65ECC5FF1EAF253D00A4D272 /* MIDIEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIEvent.swift; sourceTree = "<group>"; };
-		65ECC6011EAF254A00A4D272 /* MIDIControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIControl.swift; sourceTree = "<group>"; };
-		65ECC6031EAF271D00A4D272 /* MIDIValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIValue.swift; sourceTree = "<group>"; };
-		6C82E6986F02EC9605618D2983A16C30 /* Pods-Gong-macOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Gong-macOS.modulemap"; sourceTree = "<group>"; };
+		6BD99BAEA2AB5DB521F6A8DD208B2CA5 /* MIDIValue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIValue.swift; sourceTree = "<group>"; };
+		6C82E6986F02EC9605618D2983A16C30 /* Pods-Gong-macOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Gong-macOS.modulemap"; sourceTree = "<group>"; };
 		75EB8E4E98DEF5359C4618B83757AF00 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
-		7796575A71C01A1ACF9CCF359B4BBA07 /* Gong.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Gong.modulemap; sourceTree = "<group>"; };
-		8765AE2B3AC0E4082EB629533286570B /* MIDIEndpoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIEndpoint.swift; sourceTree = "<group>"; };
-		87C546313C421A72E409B35ABD4A5E8B /* MIDIEntity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIEntity.swift; sourceTree = "<group>"; };
-		88F7BDF37899693C1B614E4F0946E095 /* MIDIDegree.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIDegree.swift; sourceTree = "<group>"; };
-		8B77188BE07A93C96C6CAF5C6EA4D66F /* MIDIChord.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIChord.swift; sourceTree = "<group>"; };
-		8FCADD00787F8C5F7A28197C62459542 /* MIDIInterval.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIInterval.swift; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		985C6A1EDF10EB6F3A3F8790F83D75BB /* MIDI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDI.swift; sourceTree = "<group>"; };
+		7796575A71C01A1ACF9CCF359B4BBA07 /* Gong.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Gong.modulemap; sourceTree = "<group>"; };
+		7CDB1382534186DC1F481B7F5BEC0DD3 /* MIDIDevice.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIDevice.swift; sourceTree = "<group>"; };
+		8E64918673BEE002A1D6E9A579944253 /* MIDIDouble.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIDouble.swift; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		94CC7DC7478ED5AB7B09E49708D1B029 /* MIDIControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIControl.swift; sourceTree = "<group>"; };
+		974F69044D9863E4F3008A474A9CDFD5 /* MIDIEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIEvent.swift; sourceTree = "<group>"; };
+		9DCE888C5A72E863C317E92F582DDB8A /* MIDIDuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIDuration.swift; sourceTree = "<group>"; };
 		9E5AD60BB085FE6DE26C976C48F3F8C1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9EAA74F4BF87446D3AD200DF067433B3 /* MIDINotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDINotification.swift; sourceTree = "<group>"; };
+		A1084401B2389AEE09E997F2892D895D /* MIDI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDI.swift; sourceTree = "<group>"; };
 		A183AE97F77C80409B85125414004617 /* Pods-Gong-macOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Gong-macOS-umbrella.h"; sourceTree = "<group>"; };
-		A714A64A42E9DE7DC00CFD241E41F341 /* MIDIPacket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIPacket.swift; sourceTree = "<group>"; };
+		AE383F341D1A0549815F58E21EC19C50 /* MIDITime.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDITime.swift; sourceTree = "<group>"; };
 		B6236316C0DB10153130E74ACCB10D51 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/CoreMIDI.framework; sourceTree = DEVELOPER_DIR; };
-		B6F4F3364B4335C21509B87280B174BF /* MIDIInteger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIInteger.swift; sourceTree = "<group>"; };
+		BC179B0B895539F0A0C8CD926270D48C /* MIDIArray.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIArray.swift; sourceTree = "<group>"; };
 		C15F9E6DB0F121EB022C789DA57BF53C /* Pods-Gong-macOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Gong-macOS-resources.sh"; sourceTree = "<group>"; };
-		C16457BAD7491668ACD8B54BCFE8D8FA /* Gong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C16457BAD7491668ACD8B54BCFE8D8FA /* Gong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Gong.framework; path = Gong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8667DF930CF620BF011EB2396AFED04 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB8F15524FDFF80164A0E01C2DA0B884 /* Gong-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Gong-dummy.m"; sourceTree = "<group>"; };
-		CEE85A094A0CC4D2DE924EF9BF5EEC8D /* MIDIChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIChannel.swift; sourceTree = "<group>"; };
+		CED94AAEC6E49D81550E077F3CA9711B /* MIDIPacket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIPacket.swift; sourceTree = "<group>"; };
 		D41103342202AE4F9CEC10EC9C00E909 /* Gong.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Gong.xcconfig; sourceTree = "<group>"; };
-		E64518DA2C81EF3FE7CFA345AA3D813B /* MIDIDuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIDuration.swift; sourceTree = "<group>"; };
-		EEC52778FDA75904FBBE13D47E6F99DC /* MIDIObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIObject.swift; sourceTree = "<group>"; };
 		F5A874A92DF6CA3237511B6860976558 /* Pods-Gong-macOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Gong-macOS-acknowledgements.plist"; sourceTree = "<group>"; };
+		FC7850A8432DCC874A2C7CF95E4495B0 /* MIDIError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIError.swift; sourceTree = "<group>"; };
 		FEC4B3E150355B2D75B550F89D1D4A96 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B6C40CB88EE740E9B1986A39B37EE187 /* Frameworks */ = {
+		9320882E5778CABA22D736EF1F1F620C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3E009ED95A35332DAC9CD53E3DAA0ED /* AudioToolbox.framework in Frameworks */,
-				BCB22AD6CF95CFBA0833DF9C96351CD5 /* Cocoa.framework in Frameworks */,
-				0D3D56B5E0A75C90431418F2B6A4DE9D /* CoreMIDI.framework in Frameworks */,
+				7FB61A2901F1317FCCC2C56BB140BA70 /* AudioToolbox.framework in Frameworks */,
+				166A433F75781A86F358A8B94983B6CC /* Cocoa.framework in Frameworks */,
+				FEC8D1480047D192E45CDADABAA11066 /* CoreMIDI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,26 +124,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0783E112948EAD4675BE6F1195306A3F /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				4976BDCF3A81531C42A5525BED481652 /* MIDIArray.swift */,
-				35FBBCF72E560BAEEB57DD88630B5B7A /* MIDIDouble.swift */,
-				B6F4F3364B4335C21509B87280B174BF /* MIDIInteger.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		164730B2C2181304FF558B1AF9F777C8 /* Sequencer */ = {
-			isa = PBXGroup;
-			children = (
-				65ECC5FF1EAF253D00A4D272 /* MIDIEvent.swift */,
-				65ECC6011EAF254A00A4D272 /* MIDIControl.swift */,
-				0EFE8AE217741C57FDC09D23ED430B6B /* MIDINote.swift */,
-			);
-			path = Sequencer;
-			sourceTree = "<group>";
-		};
 		17ACF2B35AD733831DF924B5EE994387 /* Pods-Gong-macOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,7 +145,7 @@
 		18C3E36A3920B72F2D28E807EA27D326 /* Gong */ = {
 			isa = PBXGroup;
 			children = (
-				B307E3D1BE8030223C7BB0C484961C49 /* Sources */,
+				A39B58EAAE7824BBB35DEEAA213BB903 /* Sources */,
 				33D679FC608EC306D304C39E1F39993B /* Support Files */,
 			);
 			name = Gong;
@@ -180,20 +160,15 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		2B8EA6F26A23090B7709B84C61BF0857 /* Core */ = {
+		2F7CCA62D774DCC7E9CBC01D5DE6CB0E /* Events */ = {
 			isa = PBXGroup;
 			children = (
-				51DB1E64399E46D77ACF646946A42054 /* MIDIClient.swift */,
-				5D707764AB543881E284618D355DF82E /* MIDIDevice.swift */,
-				8765AE2B3AC0E4082EB629533286570B /* MIDIEndpoint.swift */,
-				87C546313C421A72E409B35ABD4A5E8B /* MIDIEntity.swift */,
-				3C6D7DCA7B25EC370AAEBD0BC1255C8C /* MIDIError.swift */,
-				27CEBA2D6922D1F074890631FE68B57A /* MIDINotification.swift */,
-				EEC52778FDA75904FBBE13D47E6F99DC /* MIDIObject.swift */,
-				A714A64A42E9DE7DC00CFD241E41F341 /* MIDIPacket.swift */,
-				5DECF9C497DCC7184E84DE918838DEB9 /* MIDIPort.swift */,
+				94CC7DC7478ED5AB7B09E49708D1B029 /* MIDIControl.swift */,
+				974F69044D9863E4F3008A474A9CDFD5 /* MIDIEvent.swift */,
+				046560E8BE4EEDF47894DD60AEEA25FF /* MIDINote.swift */,
 			);
-			path = Core;
+			name = Events;
+			path = Events;
 			sourceTree = "<group>";
 		};
 		33D679FC608EC306D304C39E1F39993B /* Support Files */ = {
@@ -210,19 +185,20 @@
 			path = "Examples/Gong-macOS/Pods/Target Support Files/Gong";
 			sourceTree = "<group>";
 		};
-		38515ED6755F994F8992A94EB10806B3 /* Units */ = {
+		39A6CE8CCC7D109A524A8D8832A34F1F /* Units */ = {
 			isa = PBXGroup;
 			children = (
-				CEE85A094A0CC4D2DE924EF9BF5EEC8D /* MIDIChannel.swift */,
-				8B77188BE07A93C96C6CAF5C6EA4D66F /* MIDIChord.swift */,
-				88F7BDF37899693C1B614E4F0946E095 /* MIDIDegree.swift */,
-				E64518DA2C81EF3FE7CFA345AA3D813B /* MIDIDuration.swift */,
-				8FCADD00787F8C5F7A28197C62459542 /* MIDIInterval.swift */,
-				18A0C55D93A95E20EAE76516DA6FDA53 /* MIDIKey.swift */,
-				25CB4F2066B725391E7234DC50827EB9 /* MIDIScale.swift */,
-				031369A2A09EA90758F2E9C6F5424B51 /* MIDITime.swift */,
-				65ECC6031EAF271D00A4D272 /* MIDIValue.swift */,
+				37D37322582B037317B79537DA23377C /* MIDIChannel.swift */,
+				57DB0417F651AB6DAF67C57B9052FDCC /* MIDIChord.swift */,
+				0BFC3EED91308CE09E407752F948E3F8 /* MIDIDegree.swift */,
+				9DCE888C5A72E863C317E92F582DDB8A /* MIDIDuration.swift */,
+				46EB60C482C7220A095A3345D650606B /* MIDIInterval.swift */,
+				02225E4F0694E616291F824B4DC7B545 /* MIDIKey.swift */,
+				1EF0FEF1E9AE3D1E8D4CF4828C88FDDF /* MIDIScale.swift */,
+				AE383F341D1A0549815F58E21EC19C50 /* MIDITime.swift */,
+				6BD99BAEA2AB5DB521F6A8DD208B2CA5 /* MIDIValue.swift */,
 			);
+			name = Units;
 			path = Units;
 			sourceTree = "<group>";
 		};
@@ -233,6 +209,23 @@
 				370F0C30D69792A0D4F93BEA8E0436CC /* Pods_Gong_macOS.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5C8C46949B6D5B39F3D51B7854983FDE /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				2E50CFA27A6EE34D1571138D82A5AC44 /* MIDIClient.swift */,
+				7CDB1382534186DC1F481B7F5BEC0DD3 /* MIDIDevice.swift */,
+				47227B0D512ED52048ECDC0F7A183FBF /* MIDIEndpoint.swift */,
+				0C4F1E25285369CEF60F3E6C7B69FEE3 /* MIDIEntity.swift */,
+				FC7850A8432DCC874A2C7CF95E4495B0 /* MIDIError.swift */,
+				9EAA74F4BF87446D3AD200DF067433B3 /* MIDINotification.swift */,
+				1E88556758D0EEBA4D1C000320C5AE3A /* MIDIObject.swift */,
+				CED94AAEC6E49D81550E077F3CA9711B /* MIDIPacket.swift */,
+				0DFBDCE83FED4624A1AD961D00DBF676 /* MIDIPort.swift */,
+			);
+			name = Core;
+			path = Core;
 			sourceTree = "<group>";
 		};
 		664AB8F74E87D441CDCCA1762446B951 /* OS X */ = {
@@ -256,6 +249,17 @@
 			);
 			sourceTree = "<group>";
 		};
+		81DFCBB66766A10C54989D4986ACAEB5 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				BC179B0B895539F0A0C8CD926270D48C /* MIDIArray.swift */,
+				8E64918673BEE002A1D6E9A579944253 /* MIDIDouble.swift */,
+				158221CAB68C6C1444A0F0462CB87F23 /* MIDIInteger.swift */,
+			);
+			name = Protocols;
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		96D996393384F21972E2DD81788EE22C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,15 +268,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B307E3D1BE8030223C7BB0C484961C49 /* Sources */ = {
+		A39B58EAAE7824BBB35DEEAA213BB903 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				985C6A1EDF10EB6F3A3F8790F83D75BB /* MIDI.swift */,
-				2B8EA6F26A23090B7709B84C61BF0857 /* Core */,
-				0783E112948EAD4675BE6F1195306A3F /* Protocols */,
-				164730B2C2181304FF558B1AF9F777C8 /* Sequencer */,
-				38515ED6755F994F8992A94EB10806B3 /* Units */,
+				A1084401B2389AEE09E997F2892D895D /* MIDI.swift */,
+				5C8C46949B6D5B39F3D51B7854983FDE /* Core */,
+				2F7CCA62D774DCC7E9CBC01D5DE6CB0E /* Events */,
+				81DFCBB66766A10C54989D4986ACAEB5 /* Protocols */,
+				39A6CE8CCC7D109A524A8D8832A34F1F /* Units */,
 			);
+			name = Sources;
 			path = Sources;
 			sourceTree = "<group>";
 		};
@@ -287,11 +292,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		0AA0AAEF877A6FFBE04641D51F7920DB /* Headers */ = {
+		475DF35D84B9174ACC181741A0BA6BB8 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDEECE9EA263552A8BB11A828A6C3540 /* Gong-umbrella.h in Headers */,
+				E25FA872BA058A2433F5BAE0F29E6365 /* Gong-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,13 +311,13 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3200130660E7789E62E8D0520A52CF20 /* Gong */ = {
+		3529B9570B79A427132FD27CC55BDADB /* Gong */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 885881061AEAF27298AFE44609D73DBF /* Build configuration list for PBXNativeTarget "Gong" */;
+			buildConfigurationList = 27474F3A704A54635DC5685C1D91DC91 /* Build configuration list for PBXNativeTarget "Gong" */;
 			buildPhases = (
-				3E1B429F4148254D3E12498B28A7B3B1 /* Sources */,
-				B6C40CB88EE740E9B1986A39B37EE187 /* Frameworks */,
-				0AA0AAEF877A6FFBE04641D51F7920DB /* Headers */,
+				812F2BD1712BA3D09EACCC0577D8E487 /* Sources */,
+				9320882E5778CABA22D736EF1F1F620C /* Frameworks */,
+				475DF35D84B9174ACC181741A0BA6BB8 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -362,43 +367,43 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3200130660E7789E62E8D0520A52CF20 /* Gong */,
+				3529B9570B79A427132FD27CC55BDADB /* Gong */,
 				E9F4882B1E0D4ADE667C14996DAC4A76 /* Pods-Gong-macOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3E1B429F4148254D3E12498B28A7B3B1 /* Sources */ = {
+		812F2BD1712BA3D09EACCC0577D8E487 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C25267271D304076C167EEF9A2DD450 /* Gong-dummy.m in Sources */,
-				8D05CA2CB820A86FFB81E164BCF72C46 /* MIDI.swift in Sources */,
-				1CFD841066EC6D4A7EAAFFA783B7F702 /* MIDIArray.swift in Sources */,
-				82FC3B00FEE8C6815204E15ACC0BBC83 /* MIDIChannel.swift in Sources */,
-				65ECC6021EAF254A00A4D272 /* MIDIControl.swift in Sources */,
-				870BEF4BA2A76036E4AE8051CDC6A5F5 /* MIDIChord.swift in Sources */,
-				65ECC6041EAF271D00A4D272 /* MIDIValue.swift in Sources */,
-				4E2995FB3C7550304C467BE748D2AFA8 /* MIDIClient.swift in Sources */,
-				7BF6EC0C9EC970F0E5D3B986F0E3C101 /* MIDIDegree.swift in Sources */,
-				4EAC529A8BFC3D1BFF699A20F8D77C9F /* MIDIDevice.swift in Sources */,
-				EE78760C4B665C728DC2FCCBDFFEF976 /* MIDIDouble.swift in Sources */,
-				5C02F035B55CD0191F366C61DF90DAFE /* MIDIDuration.swift in Sources */,
-				F052B46BE459FB2BB477C12BDE690105 /* MIDIEndpoint.swift in Sources */,
-				B4672A848433DD77FB15D56ACB72ECFF /* MIDIEntity.swift in Sources */,
-				11512976A4F7AF95357A43F740C71A4D /* MIDIError.swift in Sources */,
-				0AD0E34009154674E8FB28C264F8495F /* MIDIInteger.swift in Sources */,
-				1779E3CC4FF74FEDF2D6F89FD4A04074 /* MIDIInterval.swift in Sources */,
-				65ECC6001EAF253D00A4D272 /* MIDIEvent.swift in Sources */,
-				64D331E99957469AC27A221955F2228D /* MIDIKey.swift in Sources */,
-				9BA381BEB74CA119BBD08F89DC2792E2 /* MIDINote.swift in Sources */,
-				B2546B8EA7FE061B385FB811F4901B11 /* MIDINotification.swift in Sources */,
-				DB0FE060DFAA0F61F2F110384233A3B4 /* MIDIObject.swift in Sources */,
-				004B03EFF679E82204F9A091635A4785 /* MIDIPacket.swift in Sources */,
-				B8156274438F0081FD691555573B06CE /* MIDIPort.swift in Sources */,
-				8FBAB7E232C975E747095239D82F923D /* MIDIScale.swift in Sources */,
-				295528295600817C2DF0D7114A3BAA3F /* MIDITime.swift in Sources */,
+				BB25A94FA9C04B349DB74D6E15FFA075 /* Gong-dummy.m in Sources */,
+				32E956EFC1816E678A36FD869410AA6C /* MIDI.swift in Sources */,
+				D2C7762DADC0E8520284F6C19D1F0786 /* MIDIArray.swift in Sources */,
+				F5C69CA16D0A35F19FE2A28AA74824AC /* MIDIChannel.swift in Sources */,
+				6224377E317CABD94B19D45D81758B79 /* MIDIChord.swift in Sources */,
+				E62A0EC7C9AB7479D00AD7A976E2F850 /* MIDIClient.swift in Sources */,
+				216E4F47D885C338D02C381F38704D73 /* MIDIControl.swift in Sources */,
+				1F240C8583DB2A60276C83C9E2CF01B0 /* MIDIDegree.swift in Sources */,
+				3F32E033CCE0FF1D0A0F1C1FF2852FA6 /* MIDIDevice.swift in Sources */,
+				BE2BB715FAD23CD07222451765A33FF0 /* MIDIDouble.swift in Sources */,
+				B7263411FD1C29F5364AE42D81119ECB /* MIDIDuration.swift in Sources */,
+				F66FD6372BC2A1D441A34E5DD839AE47 /* MIDIEndpoint.swift in Sources */,
+				00576134AD4B8AD56D08779B9303D287 /* MIDIEntity.swift in Sources */,
+				539DA8854C5E00B6E63D8D4A1600E221 /* MIDIError.swift in Sources */,
+				DAE885BDA2B683FE2A7172F6706A2B93 /* MIDIEvent.swift in Sources */,
+				F0E67D874A74907BC50A53C3312BB9FF /* MIDIInteger.swift in Sources */,
+				1C9E5A87FDE96E0B6B83AB3861EA43A2 /* MIDIInterval.swift in Sources */,
+				4C3B600B0A7F25C77045ABA77BE24765 /* MIDIKey.swift in Sources */,
+				6F4A8D6450BC1C72041C379F4A0C80ED /* MIDINote.swift in Sources */,
+				56D45AF350992033EE3638DDA662FC7E /* MIDINotification.swift in Sources */,
+				44ACEE183F0EB3F0C6DC886F96913E1A /* MIDIObject.swift in Sources */,
+				1B47EC5287C3091A3C516D09A52F5E06 /* MIDIPacket.swift in Sources */,
+				435427DD321143C091F88F9A05B3271B /* MIDIPort.swift in Sources */,
+				4C99DDABFA8C56F501E3BCC109340B10 /* MIDIScale.swift in Sources */,
+				4815E15FB0C3A4425548A8CC630ADDBA /* MIDITime.swift in Sources */,
+				89C24EDFD72FE6459808A59EA7379396 /* MIDIValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,13 +421,13 @@
 		D87FC17189FCAF4175AE8A11C009D604 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Gong;
-			target = 3200130660E7789E62E8D0520A52CF20 /* Gong */;
+			target = 3529B9570B79A427132FD27CC55BDADB /* Gong */;
 			targetProxy = 13546C507D0409D0E6E4AA0D27E0CEDA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0DB84D814E33DA6091F1C26848447A8A /* Debug */ = {
+		0572C775AA79678DDB876DB930F6EDA4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D41103342202AE4F9CEC10EC9C00E909 /* Gong.xcconfig */;
 			buildSettings = {
@@ -432,7 +437,7 @@
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -446,16 +451,15 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MODULEMAP_FILE = "Target Support Files/Gong/Gong.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = Gong;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		1AFB000675AD64C2F6D5E3B37B678AC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -490,6 +494,41 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		71B8DAE8C85FB73F869ECAF4E66B6A75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D41103342202AE4F9CEC10EC9C00E909 /* Gong.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Gong/Gong-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Gong/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MODULEMAP_FILE = "Target Support Files/Gong/Gong.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Gong;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -572,40 +611,6 @@
 			};
 			name = Release;
 		};
-		EB01B8357215BEE507D40BC2C4971732 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D41103342202AE4F9CEC10EC9C00E909 /* Gong.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_VERSION = A;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Gong/Gong-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Gong/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MODULEMAP_FILE = "Target Support Files/Gong/Gong.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = Gong;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		F653E316AB5F825D3AD0CAE700E37071 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -653,20 +658,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		27474F3A704A54635DC5685C1D91DC91 /* Build configuration list for PBXNativeTarget "Gong" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71B8DAE8C85FB73F869ECAF4E66B6A75 /* Debug */,
+				0572C775AA79678DDB876DB930F6EDA4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F653E316AB5F825D3AD0CAE700E37071 /* Debug */,
 				9420A7205B8F85520AF134F4EE25F7CC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		885881061AEAF27298AFE44609D73DBF /* Build configuration list for PBXNativeTarget "Gong" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0DB84D814E33DA6091F1C26848447A8A /* Debug */,
-				EB01B8357215BEE507D40BC2C4971732 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

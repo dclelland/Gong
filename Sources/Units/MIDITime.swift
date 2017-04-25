@@ -10,9 +10,9 @@ import Foundation
 
 public struct MIDITime: MIDIDouble {
     
-    public let value: Double
+    public let value: Value
     
-    public init(_ value: Double) {
+    public init(_ value: Value) {
         self.value = value
     }
     
