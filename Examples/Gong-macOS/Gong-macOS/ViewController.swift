@@ -107,7 +107,8 @@ extension ViewController {
             MIDINote(key: key + .M3, time: .now + .whole * 2, duration: .whole),
             MIDINote(key: key + .P4, time: .now + .whole * 3, duration: .whole),
             MIDINote(key: key + .P5, time: .now + .whole * 4, duration: .whole),
-            MIDIControl(controller: 0, value: 0)
+            MIDIControlChange(controller: 0, value: 0),
+            MIDIPitchBendChange(value: 64)
         ]
         
 //        sequence = sequence.transposed(.P5)
@@ -137,7 +138,7 @@ extension ViewController: MIDIReceiver {
     
     func receive(_ packet: MIDIPacket, from source: MIDIEndpoint<Source>) {
         switch packet.message {
-        case .noteOn, .noteOff, .controlChange:
+        case .noteOn, .noteOff, .controlChange, .pitchBendChange:
             print(packet, source)
         default:
             break

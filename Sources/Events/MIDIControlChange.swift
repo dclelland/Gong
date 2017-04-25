@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct MIDIControl: MIDIChannelEvent, MIDITimeEvent {
+public struct MIDIControlChange: MIDIChannelEvent, MIDITimeEvent, MIDIValueEvent {
     
     public var channel: MIDIChannel
     
@@ -27,7 +27,7 @@ public struct MIDIControl: MIDIChannelEvent, MIDITimeEvent {
     
 }
 
-extension MIDIControl {
+extension MIDIControlChange {
     
     public var packets: [MIDIPacket] {
         return [

@@ -41,3 +41,9 @@ public protocol MIDIDurationEvent: MIDITimeEvent {
     var duration: MIDIDuration { set get }
     
 }
+
+public protocol MIDIValueEvent: MIDIEvent {
+    
+    var value: MIDIValue { set get }
+    
+}

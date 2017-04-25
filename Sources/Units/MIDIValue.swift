@@ -23,4 +23,6 @@ extension MIDIValue {
     public static let min: MIDIValue = 0
     public static let max: MIDIValue = 127
     
+    public static let center: MIDIValue = 64
+    
 }
