@@ -105,28 +105,20 @@ extension MIDIClient {
     
 }
 
-internal extension UnsafePointer {
+extension UnsafeMutablePointer {
     
-    func unwrap<T>(size capacity: Int) -> T {
-        return withMemoryRebound(to: T.self, capacity: capacity, { $0.pointee })
-    }
-    
-}
-
-internal extension UnsafeMutableRawPointer {
-    
-    func unwrap<T>() -> T {
-        return assumingMemoryBound(to: T.self).pointee
-    }
-    
-}
-
-internal extension UnsafeMutablePointer {
-    
-    static func wrap(_ value: Pointee) -> UnsafeMutablePointer<Pointee> {
+    internal static func wrap(_ value: Pointee) -> UnsafeMutablePointer<Pointee> {
         let pointer = UnsafeMutablePointer<Pointee>.allocate(capacity: MemoryLayout<Pointee>.stride)
         pointer.initialize(to: value)
         return pointer
+    }
+    
+}
+
+extension UnsafeMutableRawPointer {
+    
+    internal func unwrap<T>() -> T {
+        return assumingMemoryBound(to: T.self).pointee
     }
     
 }

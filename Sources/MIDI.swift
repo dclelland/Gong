@@ -13,7 +13,7 @@ public protocol MIDIReceiver: MIDINotificationReceiver, MIDIMessageReceiver { }
 
 public protocol MIDINotificationReceiver: class {
     
-    func receive(_ event: MIDINotification)
+    func receive(_ notification: MIDINotification)
     
 }
 
