@@ -9,11 +9,11 @@
 import Foundation
 import CoreMIDI
 
-public protocol MIDIReceiver: MIDIEventReceiver, MIDIMessageReceiver { }
+public protocol MIDIReceiver: MIDINotificationReceiver, MIDIMessageReceiver { }
 
-public protocol MIDIEventReceiver: class {
+public protocol MIDINotificationReceiver: class {
     
-    func receive(_ event: MIDIEvent)
+    func receive(_ event: MIDINotification)
     
 }
 
@@ -77,23 +77,23 @@ public struct MIDI {
     }
     
     public static func addReceiver(_ receiver: MIDIReceiver) {
-        addEventReceiver(receiver)
+        addNotificationReceiver(receiver)
         addMessageReceiver(receiver)
     }
     
     public static func removeReceiver(_ receiver: MIDIReceiver) {
-        removeEventReceiver(receiver)
+        removeNotificationReceiver(receiver)
         removeMessageReceiver(receiver)
     }
     
-    private static var eventReceivers = [MIDIEventReceiver]()
+    private static var notificationReceivers = [MIDINotificationReceiver]()
     
-    public static func addEventReceiver(_ receiver: MIDIEventReceiver) {
-        eventReceivers.append(receiver)
+    public static func addNotificationReceiver(_ receiver: MIDINotificationReceiver) {
+        notificationReceivers.append(receiver)
     }
     
-    public static func removeEventReceiver(_ receiver: MIDIEventReceiver) {
-        eventReceivers = eventReceivers.filter { $0 !== receiver }
+    public static func removeNotificationReceiver(_ receiver: MIDINotificationReceiver) {
+        notificationReceivers = notificationReceivers.filter { $0 !== receiver }
     }
     
     private static var messageReceivers = [MIDIMessageReceiver]()
@@ -106,9 +106,9 @@ public struct MIDI {
         messageReceivers = messageReceivers.filter { $0 !== receiver }
     }
     
-    private static func receive(_ event: MIDIEvent) {
+    private static func receive(_ notification: MIDINotification) {
         do {
-            switch event {
+            switch notification {
             case .objectAdded(_, let source as MIDIEndpoint<Source>):
                 try input?.connect(source)
             case .objectRemoved(_, let source as MIDIEndpoint<Source>):
@@ -120,8 +120,8 @@ public struct MIDI {
             print(error)
         }
         
-        for receiver in eventReceivers {
-            receiver.receive(event)
+        for receiver in notificationReceivers {
+            receiver.receive(notification)
         }
     }
     

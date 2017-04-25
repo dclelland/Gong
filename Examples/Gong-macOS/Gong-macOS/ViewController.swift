@@ -8,7 +8,6 @@
 
 import Cocoa
 import Gong
-import CoreMIDI
 
 class ViewController: NSViewController {
     
@@ -131,8 +130,8 @@ extension ViewController {
 
 extension ViewController: MIDIReceiver {
     
-    func receive(_ event: MIDIEvent) {
-        print(event)
+    func receive(_ notification: MIDINotification) {
+        print(notification)
     }
     
     func receive(_ message: MIDIMessage, from source: MIDIEndpoint<Source>) {

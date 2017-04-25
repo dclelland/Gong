@@ -9,7 +9,7 @@
 import Foundation
 import CoreMIDI
 
-public enum MIDIEvent {
+public enum MIDINotification {
     
     case setupChanged
     
@@ -27,9 +27,9 @@ public enum MIDIEvent {
 
 }
 
-extension MIDIEvent {
+extension MIDINotification {
     
-    public init(_ notificationPointer: UnsafePointer<MIDINotification>) {
+    internal init(_ notificationPointer: UnsafePointer<CoreMIDI.MIDINotification>) {
         let notification = notificationPointer.pointee
         switch notification.messageID {
         case .msgSetupChanged:
