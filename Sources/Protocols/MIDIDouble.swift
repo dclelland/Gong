@@ -10,7 +10,7 @@ import Foundation
 
 public protocol MIDIDouble: FloatingPoint, ExpressibleByFloatLiteral, Hashable {
     
-    associatedtype Value: FloatingPoint, ExpressibleByFloatLiteral, Hashable
+    typealias Value = Double
     
     var value: Value { get }
     

@@ -10,7 +10,7 @@ import Foundation
 
 public protocol MIDIInteger: SignedInteger, Comparable, Equatable {
     
-    associatedtype Value: SignedInteger, Comparable, Equatable
+    typealias Value = Int
     
     var value: Value { get }
     
