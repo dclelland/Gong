@@ -8,16 +8,16 @@
 
 import Foundation
 
-public struct MIDIChord {
+public struct MIDIChord: MIDIArray {
     
-    public var intervals: [MIDIInterval]
+    public let elements: [MIDIInterval]
     
     public init() {
-        self.intervals = []
+        self.elements = []
     }
 
-    public init(_ intervals: [MIDIInterval]) {
-        self.intervals = intervals
+    public init(_ elements: [MIDIInterval]) {
+        self.elements = elements
     }
 
 }
@@ -49,40 +49,4 @@ extension MIDIChord {
     public static let add6: MIDIChord = .maj + [.M6]
     public static let add6add9: MIDIChord = .maj + [.M6, .M9]
 
-}
-
-extension MIDIChord: Collection {
-    
-    public var startIndex: Int {
-        return intervals.startIndex
-    }
-    
-    public var endIndex: Int {
-        return intervals.endIndex
-    }
-    
-    public func index(after i: Int) -> Int {
-        return intervals.index(after: i)
-    }
-    
-    public subscript(position: Int) -> MIDIInterval {
-        return intervals[position]
-    }
-    
-}
-
-extension MIDIChord: RangeReplaceableCollection {
-    
-    public mutating func replaceSubrange<C>(_ subrange: Range<Int>, with newElements: C) where C: Collection, C.Iterator.Element == MIDIInterval {
-        intervals.replaceSubrange(subrange, with: newElements)
-    }
-    
-}
-
-extension MIDIChord: ExpressibleByArrayLiteral {
-    
-    public init(arrayLiteral elements: MIDIInterval...) {
-        self.init(elements)
-    }
-    
 }
