@@ -8,86 +8,88 @@
 
 import Foundation
 
-public protocol MIDIDouble: FloatingPoint, ExpressibleByFloatLiteral {
+public protocol MIDIDouble: FloatingPoint, ExpressibleByFloatLiteral, Hashable {
     
-    var value: Double { get }
+    associatedtype Value: FloatingPoint, ExpressibleByFloatLiteral, Hashable
     
-    init(_ value: Double)
+    var value: Value { get }
+    
+    init(_ value: Value)
     
 }
 
 extension MIDIDouble {
     
-    public init(sign: FloatingPointSign, exponent: Int, significand: Self) {
-        self.init(Double(sign: sign, exponent: exponent, significand: significand.value))
+    public init(sign: FloatingPointSign, exponent: Value.Exponent, significand: Self) {
+        self.init(Value(sign: sign, exponent: exponent, significand: significand.value))
     }
     
     public init(signOf: Self, magnitudeOf: Self) {
-        self.init(Double(signOf: signOf.value, magnitudeOf: magnitudeOf.value))
+        self.init(Value(signOf: signOf.value, magnitudeOf: magnitudeOf.value))
     }
     
     public init(_ value: UInt8) {
-        self.init(Double(value))
+        self.init(Value(value))
     }
     
     public init(_ value: Int8) {
-        self.init(Double(value))
+        self.init(Value(value))
     }
     
     public init(_ value: UInt16) {
-        self.init(Double(value))
+        self.init(Value(value))
     }
     
     public init(_ value: Int16) {
-        self.init(Double(value))
+        self.init(Value(value))
     }
     
     public init(_ value: UInt32) {
-        self.init(Double(value))
+        self.init(Value(value))
     }
     
     public init(_ value: Int32) {
-        self.init(Double(value))
+        self.init(Value(value))
     }
     
     public init(_ value: UInt64) {
-        self.init(Double(value))
+        self.init(Value(value))
     }
     
     public init(_ value: Int64) {
-        self.init(Double(value))
+        self.init(Value(value))
     }
     
     public init(_ value: UInt) {
-        self.init(Double(value))
+        self.init(Value(value))
     }
     
     public init(_ value: Int) {
-        self.init(Double(value))
+        self.init(Value(value))
     }
     
     public static var radix: Int {
-        return Double.radix
+        return Value.radix
     }
     
     public static var nan: Self {
-        return Self(Double.nan)
+        return Self(Value.nan)
     }
     
     public static var signalingNaN: Self {
-        return Self(Double.signalingNaN)
+        return Self(Value.signalingNaN)
     }
     
     public static var infinity: Self {
-        return Self(Double.infinity)
+        return Self(Value.infinity)
     }
     
     public static var greatestFiniteMagnitude: Self {
-        return Self(Double.greatestFiniteMagnitude)
+        return Self(Value.greatestFiniteMagnitude)
     }
     
     public static var pi: Self {
-        return Self(Double.pi)
+        return Self(Value.pi)
     }
     
     public var ulp: Self {
@@ -95,18 +97,18 @@ extension MIDIDouble {
     }
     
     public static var leastNormalMagnitude: Self {
-        return Self(Double.leastNormalMagnitude)
+        return Self(Value.leastNormalMagnitude)
     }
     
     public static var leastNonzeroMagnitude: Self {
-        return Self(Double.leastNonzeroMagnitude)
+        return Self(Value.leastNonzeroMagnitude)
     }
     
     public var sign: FloatingPointSign {
         return value.sign
     }
     
-    public var exponent: Int {
+    public var exponent: Value.Exponent {
         return value.exponent
     }
     
@@ -210,11 +212,11 @@ extension MIDIDouble {
 
 extension MIDIDouble {
 
-    public func distance(to other: Self) -> Double {
+    public func distance(to other: Self) -> Value.Stride {
         return value.distance(to: other.value)
     }
 
-    public func advanced(by n: Double) -> Self {
+    public func advanced(by n: Value.Stride) -> Self {
         return Self(value.advanced(by: n))
     }
 
@@ -227,18 +229,27 @@ extension MIDIDouble {
     }
     
 }
+
 extension MIDIDouble {
     
     public init(integerLiteral value: Int) {
-        self.init(Double(value))
+        self.init(Value(value))
     }
     
 }
 
 extension MIDIDouble {
     
-    public init(floatLiteral value: Double) {
-        self.init(value)
+    public init(floatLiteral value: Value.FloatLiteralType) {
+        self.init(Value(floatLiteral: value))
+    }
+    
+}
+
+extension MIDIDouble {
+    
+    public var hashValue: Int {
+        return value.hashValue
     }
     
 }

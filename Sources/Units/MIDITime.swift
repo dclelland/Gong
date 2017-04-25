@@ -20,7 +20,7 @@ public struct MIDITime: MIDIDouble {
 
 extension MIDITime {
 
-    public static let now: MIDITime = MIDITime(0.0)
+    public static let now: MIDITime = 0.0
     
 }
 

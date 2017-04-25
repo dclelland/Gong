@@ -10,16 +10,18 @@ import Foundation
 
 public protocol MIDIInteger: SignedInteger, Comparable, Equatable {
     
-    var value: Int { get }
+    associatedtype Value: SignedInteger, Comparable, Equatable
     
-    init(_ value: Int)
+    var value: Value { get }
+    
+    init(_ value: Value)
     
 }
 
 extension MIDIInteger {
     
     public init(_ value: IntMax) {
-        self.init(Int(value))
+        self.init(Value(value))
     }
     
 }
@@ -27,27 +29,27 @@ extension MIDIInteger {
 extension MIDIInteger {
     
     public static func addWithOverflow(_ lhs: Self, _ rhs: Self) -> (Self, overflow: Bool) {
-        let (value, overflow) = Int.addWithOverflow(lhs.value, rhs.value)
+        let (value, overflow) = Value.addWithOverflow(lhs.value, rhs.value)
         return (Self(value), overflow)
     }
     
     public static func subtractWithOverflow(_ lhs: Self, _ rhs: Self) -> (Self, overflow: Bool) {
-        let (value, overflow) = Int.subtractWithOverflow(lhs.value, rhs.value)
+        let (value, overflow) = Value.subtractWithOverflow(lhs.value, rhs.value)
         return (Self(value), overflow)
     }
     
     public static func multiplyWithOverflow(_ lhs: Self, _ rhs: Self) -> (Self, overflow: Bool) {
-        let (value, overflow) = Int.multiplyWithOverflow(lhs.value, rhs.value)
+        let (value, overflow) = Value.multiplyWithOverflow(lhs.value, rhs.value)
         return (Self(value), overflow)
     }
     
     public static func divideWithOverflow(_ lhs: Self, _ rhs: Self) -> (Self, overflow: Bool) {
-        let (value, overflow) = Int.divideWithOverflow(lhs.value, rhs.value)
+        let (value, overflow) = Value.divideWithOverflow(lhs.value, rhs.value)
         return (Self(value), overflow)
     }
     
     public static func remainderWithOverflow(_ lhs: Self, _ rhs: Self) -> (Self, overflow: Bool) {
-        let (value, overflow) = Int.remainderWithOverflow(lhs.value, rhs.value)
+        let (value, overflow) = Value.remainderWithOverflow(lhs.value, rhs.value)
         return (Self(value), overflow)
     }
     
@@ -76,15 +78,7 @@ extension MIDIInteger {
     }
     
     public static var allZeros: Self {
-        return Self(Int.allZeros)
-    }
-    
-}
-
-extension MIDIInteger {
-    
-    public var hashValue: Int {
-        return value
+        return Self(Value.allZeros)
     }
     
 }
@@ -115,12 +109,20 @@ extension MIDIInteger {
 
 extension MIDIInteger {
     
-    public init(integerLiteral value: Int) {
+    public init(integerLiteral value: Value) {
         self.init(value)
     }
     
     public init(_builtinIntegerLiteral value: _MaxBuiltinIntegerType) {
-        self.init(Int(_builtinIntegerLiteral: value))
+        self.init(Value(_builtinIntegerLiteral: value))
+    }
+    
+}
+
+extension MIDIInteger {
+    
+    public var hashValue: Int {
+        return value.hashValue
     }
     
 }
