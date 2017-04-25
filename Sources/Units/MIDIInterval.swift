@@ -20,62 +20,62 @@ public struct MIDIInterval: MIDIInteger {
 
 extension MIDIInterval {
     
-    public static var P1: MIDIInterval { return 0 }
-    public static var m2: MIDIInterval { return 1 }
-    public static var M2: MIDIInterval { return 2 }
-    public static var m3: MIDIInterval { return 3 }
-    public static var M3: MIDIInterval { return 4 }
-    public static var P4: MIDIInterval { return 5 }
-    public static var P5: MIDIInterval { return 7 }
-    public static var m6: MIDIInterval { return 8 }
-    public static var M6: MIDIInterval { return 9 }
-    public static var m7: MIDIInterval { return 10 }
-    public static var M7: MIDIInterval { return 11 }
-    public static var P8: MIDIInterval { return 12 }
-    public static var m9: MIDIInterval { return 13 }
-    public static var M9: MIDIInterval { return 14 }
-    public static var m10: MIDIInterval { return 15 }
-    public static var M10: MIDIInterval { return 16 }
-    public static var P11: MIDIInterval { return 17 }
-    public static var P12: MIDIInterval { return 19 }
-    public static var m13: MIDIInterval { return 20 }
-    public static var M13: MIDIInterval { return 21 }
-    public static var m14: MIDIInterval { return 22 }
-    public static var M14: MIDIInterval { return 23 }
-    public static var P15: MIDIInterval { return 24 }
+    public static let P1: MIDIInterval = 0
+    public static let m2: MIDIInterval = 1
+    public static let M2: MIDIInterval = 2
+    public static let m3: MIDIInterval = 3
+    public static let M3: MIDIInterval = 4
+    public static let P4: MIDIInterval = 5
+    public static let P5: MIDIInterval = 7
+    public static let m6: MIDIInterval = 8
+    public static let M6: MIDIInterval = 9
+    public static let m7: MIDIInterval = 10
+    public static let M7: MIDIInterval = 11
+    public static let P8: MIDIInterval = 12
+    public static let m9: MIDIInterval = 13
+    public static let M9: MIDIInterval = 14
+    public static let m10: MIDIInterval = 15
+    public static let M10: MIDIInterval = 16
+    public static let P11: MIDIInterval = 17
+    public static let P12: MIDIInterval = 19
+    public static let m13: MIDIInterval = 20
+    public static let M13: MIDIInterval = 21
+    public static let m14: MIDIInterval = 22
+    public static let M14: MIDIInterval = 23
+    public static let P15: MIDIInterval = 24
     
 }
 
 extension MIDIInterval {
     
-    public static var d2: MIDIInterval { return 0 }
-    public static var A1: MIDIInterval { return 1 }
-    public static var d3: MIDIInterval { return 2 }
-    public static var A2: MIDIInterval { return 3 }
-    public static var d4: MIDIInterval { return 4 }
-    public static var A3: MIDIInterval { return 5 }
-    public static var d5: MIDIInterval { return 6 }
-    public static var A4: MIDIInterval { return 6 }
-    public static var d6: MIDIInterval { return 7 }
-    public static var A5: MIDIInterval { return 8 }
-    public static var d7: MIDIInterval { return 9 }
-    public static var A6: MIDIInterval { return 10 }
-    public static var d8: MIDIInterval { return 11 }
-    public static var A7: MIDIInterval { return 12 }
-    public static var d9: MIDIInterval { return 12 }
-    public static var A8: MIDIInterval { return 13 }
-    public static var d10: MIDIInterval { return 14 }
-    public static var A9: MIDIInterval { return 15 }
-    public static var d11: MIDIInterval { return 16 }
-    public static var A10: MIDIInterval { return 17 }
-    public static var d12: MIDIInterval { return 18 }
-    public static var A11: MIDIInterval { return 18 }
-    public static var d13: MIDIInterval { return 19 }
-    public static var A12: MIDIInterval { return 20 }
-    public static var d14: MIDIInterval { return 21 }
-    public static var A13: MIDIInterval { return 22 }
-    public static var d15: MIDIInterval { return 23 }
-    public static var A14: MIDIInterval { return 24 }
-    public static var A15: MIDIInterval { return 25 }
+    public static let d2: MIDIInterval = 0
+    public static let A1: MIDIInterval = 1
+    public static let d3: MIDIInterval = 2
+    public static let A2: MIDIInterval = 3
+    public static let d4: MIDIInterval = 4
+    public static let A3: MIDIInterval = 5
+    public static let d5: MIDIInterval = 6
+    public static let A4: MIDIInterval = 6
+    public static let d6: MIDIInterval = 7
+    public static let A5: MIDIInterval = 8
+    public static let d7: MIDIInterval = 9
+    public static let A6: MIDIInterval = 10
+    public static let d8: MIDIInterval = 11
+    public static let A7: MIDIInterval = 12
+    public static let d9: MIDIInterval = 12
+    public static let A8: MIDIInterval = 13
+    public static let d10: MIDIInterval = 14
+    public static let A9: MIDIInterval = 15
+    public static let d11: MIDIInterval = 16
+    public static let A10: MIDIInterval = 17
+    public static let d12: MIDIInterval = 18
+    public static let A11: MIDIInterval = 18
+    public static let d13: MIDIInterval = 19
+    public static let A12: MIDIInterval = 20
+    public static let d14: MIDIInterval = 21
+    public static let A13: MIDIInterval = 22
+    public static let d15: MIDIInterval = 23
+    public static let A14: MIDIInterval = 24
+    public static let A15: MIDIInterval = 25
     
 }

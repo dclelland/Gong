@@ -20,12 +20,12 @@ public struct MIDIDegree: MIDIInteger {
 
 extension MIDIDegree {
     
-    public static var i: MIDIDegree { return 1 }
-    public static var ii: MIDIDegree { return 2 }
-    public static var iii: MIDIDegree { return 3 }
-    public static var iv: MIDIDegree { return 4 }
-    public static var v: MIDIDegree { return 5 }
-    public static var vi: MIDIDegree { return 6 }
-    public static var vii: MIDIDegree { return 7 }
+    public static let i: MIDIDegree = 1
+    public static let ii: MIDIDegree = 2
+    public static let iii: MIDIDegree = 3
+    public static let iv: MIDIDegree = 4
+    public static let v: MIDIDegree = 5
+    public static let vi: MIDIDegree = 6
+    public static let vii: MIDIDegree = 7
     
 }

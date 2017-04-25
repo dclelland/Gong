@@ -10,10 +10,36 @@ import Foundation
 
 public struct MIDITime: MIDIDouble {
     
-    public let value: Int
+    public let value: Double
     
-    public init(_ value: Int) {
+    public init(_ value: Double) {
         self.value = value
+    }
+    
+}
+
+extension MIDITime {
+
+    public static let now: MIDITime = MIDITime(0.0)
+    
+}
+
+extension MIDITime {
+    
+    public static func + (lhs: MIDITime, rhs: MIDIDuration) -> MIDITime {
+        return MIDITime(lhs.value + rhs.value)
+    }
+    
+    public static func + (lhs: MIDIDuration, rhs: MIDITime) -> MIDITime {
+        return MIDITime(lhs.value + rhs.value)
+    }
+    
+    public static func - (lhs: MIDITime, rhs: MIDIDuration) -> MIDITime {
+        return MIDITime(lhs.value - rhs.value)
+    }
+    
+    public static func - (lhs: MIDIDuration, rhs: MIDITime) -> MIDITime {
+        return MIDITime(lhs.value - rhs.value)
     }
     
 }

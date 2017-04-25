@@ -34,15 +34,15 @@ public struct MIDINote {
     
     public var velocity: Int
     
-    public var delay: TimeInterval
+    public var time: MIDITime
     
-    public var duration: TimeInterval
+    public var duration: MIDIDuration
     
-    public init(channel: Int = 0, key: MIDIKey, velocity: Int = 127, delay: TimeInterval = 0.0, duration: TimeInterval = 1.0) {
+    public init(channel: Int = 0, key: MIDIKey, velocity: Int = 127, time: MIDITime = .now, duration: MIDIDuration = .whole) {
         self.channel = channel
         self.key = key
         self.velocity = velocity
-        self.delay = delay
+        self.time = time
         self.duration = duration
     }
     
@@ -51,7 +51,7 @@ public struct MIDINote {
     }
     
     public var startDelay: TimeInterval {
-        return delay
+        return time.value
     }
     
     public var endVelocity: Int {
@@ -59,7 +59,7 @@ public struct MIDINote {
     }
     
     public var endDelay: TimeInterval {
-        return delay + duration
+        return (time + duration).value
     }
     
 }

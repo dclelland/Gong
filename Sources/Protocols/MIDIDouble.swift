@@ -10,9 +10,9 @@ import Foundation
 
 public protocol MIDIDouble/*: BinaryFloatingPoint*/ {
     
-    var value: Int { get }
+    var value: Double { get }
     
-    init(_ value: Int)
+    init(_ value: Double)
     
 }
 

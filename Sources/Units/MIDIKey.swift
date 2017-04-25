@@ -20,281 +20,281 @@ public struct MIDIKey: MIDIInteger {
 
 extension MIDIKey {
     
-    public static var c0: MIDIKey { return 0 }
-    public static var cSharp0: MIDIKey { return 1 }
-    public static var dFlat0: MIDIKey { return 1 }
-    public static var d0: MIDIKey { return 2 }
-    public static var dSharp0: MIDIKey { return 3 }
-    public static var eFlat0: MIDIKey { return 3 }
-    public static var e0: MIDIKey { return 4 }
-    public static var eSharp0: MIDIKey { return 5 }
-    public static var fFlat0: MIDIKey { return 4 }
-    public static var f0: MIDIKey { return 5 }
-    public static var fSharp0: MIDIKey { return 6 }
-    public static var gFlat0: MIDIKey { return 6 }
-    public static var g0: MIDIKey { return 7 }
-    public static var gSharp0: MIDIKey { return 8 }
-    public static var aFlat0: MIDIKey { return 8 }
-    public static var a0: MIDIKey { return 9 }
-    public static var aSharp0: MIDIKey { return 10 }
-    public static var bFlat0: MIDIKey { return 10 }
-    public static var b0: MIDIKey { return 11 }
-    public static var bSharp0: MIDIKey { return 12 }
-    public static var cFlat1: MIDIKey { return 11 }
-    public static var c1: MIDIKey { return 12 }
-    public static var cSharp1: MIDIKey { return 13 }
-    public static var dFlat1: MIDIKey { return 13 }
-    public static var d1: MIDIKey { return 14 }
-    public static var dSharp1: MIDIKey { return 15 }
-    public static var eFlat1: MIDIKey { return 15 }
-    public static var e1: MIDIKey { return 16 }
-    public static var eSharp1: MIDIKey { return 17 }
-    public static var fFlat1: MIDIKey { return 16 }
-    public static var f1: MIDIKey { return 17 }
-    public static var fSharp1: MIDIKey { return 18 }
-    public static var gFlat1: MIDIKey { return 18 }
-    public static var g1: MIDIKey { return 19 }
-    public static var gSharp1: MIDIKey { return 20 }
-    public static var aFlat1: MIDIKey { return 20 }
-    public static var a1: MIDIKey { return 21 }
-    public static var aSharp1: MIDIKey { return 22 }
-    public static var bFlat1: MIDIKey { return 22 }
-    public static var b1: MIDIKey { return 23 }
-    public static var bSharp1: MIDIKey { return 24 }
-    public static var cFlat2: MIDIKey { return 23 }
-    public static var c2: MIDIKey { return 24 }
-    public static var cSharp2: MIDIKey { return 25 }
-    public static var dFlat2: MIDIKey { return 25 }
-    public static var d2: MIDIKey { return 26 }
-    public static var dSharp2: MIDIKey { return 27 }
-    public static var eFlat2: MIDIKey { return 27 }
-    public static var e2: MIDIKey { return 28 }
-    public static var eSharp2: MIDIKey { return 29 }
-    public static var fFlat2: MIDIKey { return 28 }
-    public static var f2: MIDIKey { return 29 }
-    public static var fSharp2: MIDIKey { return 30 }
-    public static var gFlat2: MIDIKey { return 30 }
-    public static var g2: MIDIKey { return 31 }
-    public static var gSharp2: MIDIKey { return 32 }
-    public static var aFlat2: MIDIKey { return 32 }
-    public static var a2: MIDIKey { return 33 }
-    public static var aSharp2: MIDIKey { return 34 }
-    public static var bFlat2: MIDIKey { return 34 }
-    public static var b2: MIDIKey { return 35 }
-    public static var bSharp2: MIDIKey { return 36 }
-    public static var cFlat3: MIDIKey { return 35 }
-    public static var c3: MIDIKey { return 36 }
-    public static var cSharp3: MIDIKey { return 37 }
-    public static var dFlat3: MIDIKey { return 37 }
-    public static var d3: MIDIKey { return 38 }
-    public static var dSharp3: MIDIKey { return 39 }
-    public static var eFlat3: MIDIKey { return 39 }
-    public static var e3: MIDIKey { return 40 }
-    public static var eSharp3: MIDIKey { return 41 }
-    public static var fFlat3: MIDIKey { return 40 }
-    public static var f3: MIDIKey { return 41 }
-    public static var fSharp3: MIDIKey { return 42 }
-    public static var gFlat3: MIDIKey { return 42 }
-    public static var g3: MIDIKey { return 43 }
-    public static var gSharp3: MIDIKey { return 44 }
-    public static var aFlat3: MIDIKey { return 44 }
-    public static var a3: MIDIKey { return 45 }
-    public static var aSharp3: MIDIKey { return 46 }
-    public static var bFlat3: MIDIKey { return 46 }
-    public static var b3: MIDIKey { return 47 }
-    public static var bSharp3: MIDIKey { return 48 }
-    public static var cFlat4: MIDIKey { return 47 }
-    public static var c4: MIDIKey { return 48 }
-    public static var cSharp4: MIDIKey { return 49 }
-    public static var dFlat4: MIDIKey { return 49 }
-    public static var d4: MIDIKey { return 50 }
-    public static var dSharp4: MIDIKey { return 51 }
-    public static var eFlat4: MIDIKey { return 51 }
-    public static var e4: MIDIKey { return 52 }
-    public static var eSharp4: MIDIKey { return 53 }
-    public static var fFlat4: MIDIKey { return 52 }
-    public static var f4: MIDIKey { return 53 }
-    public static var fSharp4: MIDIKey { return 54 }
-    public static var gFlat4: MIDIKey { return 54 }
-    public static var g4: MIDIKey { return 55 }
-    public static var gSharp4: MIDIKey { return 56 }
-    public static var aFlat4: MIDIKey { return 56 }
-    public static var a4: MIDIKey { return 57 }
-    public static var aSharp4: MIDIKey { return 58 }
-    public static var bFlat4: MIDIKey { return 58 }
-    public static var b4: MIDIKey { return 59 }
-    public static var bSharp4: MIDIKey { return 60 }
-    public static var cFlat5: MIDIKey { return 59 }
-    public static var c5: MIDIKey { return 60 }
-    public static var cSharp5: MIDIKey { return 61 }
-    public static var dFlat5: MIDIKey { return 61 }
-    public static var d5: MIDIKey { return 62 }
-    public static var dSharp5: MIDIKey { return 63 }
-    public static var eFlat5: MIDIKey { return 63 }
-    public static var e5: MIDIKey { return 64 }
-    public static var eSharp5: MIDIKey { return 65 }
-    public static var fFlat5: MIDIKey { return 64 }
-    public static var f5: MIDIKey { return 65 }
-    public static var fSharp5: MIDIKey { return 66 }
-    public static var gFlat5: MIDIKey { return 66 }
-    public static var g5: MIDIKey { return 67 }
-    public static var gSharp5: MIDIKey { return 68 }
-    public static var aFlat5: MIDIKey { return 68 }
-    public static var a5: MIDIKey { return 69 }
-    public static var aSharp5: MIDIKey { return 70 }
-    public static var bFlat5: MIDIKey { return 70 }
-    public static var b5: MIDIKey { return 71 }
-    public static var bSharp5: MIDIKey { return 72 }
-    public static var cFlat6: MIDIKey { return 71 }
-    public static var c6: MIDIKey { return 72 }
-    public static var cSharp6: MIDIKey { return 73 }
-    public static var dFlat6: MIDIKey { return 73 }
-    public static var d6: MIDIKey { return 74 }
-    public static var dSharp6: MIDIKey { return 75 }
-    public static var eFlat6: MIDIKey { return 75 }
-    public static var e6: MIDIKey { return 76 }
-    public static var eSharp6: MIDIKey { return 77 }
-    public static var fFlat6: MIDIKey { return 76 }
-    public static var f6: MIDIKey { return 77 }
-    public static var fSharp6: MIDIKey { return 78 }
-    public static var gFlat6: MIDIKey { return 78 }
-    public static var g6: MIDIKey { return 79 }
-    public static var gSharp6: MIDIKey { return 80 }
-    public static var aFlat6: MIDIKey { return 80 }
-    public static var a6: MIDIKey { return 81 }
-    public static var aSharp6: MIDIKey { return 82 }
-    public static var bFlat6: MIDIKey { return 82 }
-    public static var b6: MIDIKey { return 83 }
-    public static var bSharp6: MIDIKey { return 84 }
-    public static var cFlat7: MIDIKey { return 83 }
-    public static var c7: MIDIKey { return 84 }
-    public static var cSharp7: MIDIKey { return 85 }
-    public static var dFlat7: MIDIKey { return 85 }
-    public static var d7: MIDIKey { return 86 }
-    public static var dSharp7: MIDIKey { return 87 }
-    public static var eFlat7: MIDIKey { return 87 }
-    public static var e7: MIDIKey { return 88 }
-    public static var eSharp7: MIDIKey { return 89 }
-    public static var fFlat7: MIDIKey { return 88 }
-    public static var f7: MIDIKey { return 89 }
-    public static var fSharp7: MIDIKey { return 90 }
-    public static var gFlat7: MIDIKey { return 90 }
-    public static var g7: MIDIKey { return 91 }
-    public static var gSharp7: MIDIKey { return 92 }
-    public static var aFlat7: MIDIKey { return 92 }
-    public static var a7: MIDIKey { return 93 }
-    public static var aSharp7: MIDIKey { return 94 }
-    public static var bFlat7: MIDIKey { return 94 }
-    public static var b7: MIDIKey { return 95 }
-    public static var bSharp7: MIDIKey { return 96 }
-    public static var cFlat8: MIDIKey { return 95 }
-    public static var c8: MIDIKey { return 96 }
-    public static var cSharp8: MIDIKey { return 97 }
-    public static var dFlat8: MIDIKey { return 97 }
-    public static var d8: MIDIKey { return 98 }
-    public static var dSharp8: MIDIKey { return 99 }
-    public static var eFlat8: MIDIKey { return 99 }
-    public static var e8: MIDIKey { return 100 }
-    public static var eSharp8: MIDIKey { return 101 }
-    public static var fFlat8: MIDIKey { return 100 }
-    public static var f8: MIDIKey { return 101 }
-    public static var fSharp8: MIDIKey { return 102 }
-    public static var gFlat8: MIDIKey { return 102 }
-    public static var g8: MIDIKey { return 103 }
-    public static var gSharp8: MIDIKey { return 104 }
-    public static var aFlat8: MIDIKey { return 104 }
-    public static var a8: MIDIKey { return 105 }
-    public static var aSharp8: MIDIKey { return 106 }
-    public static var bFlat8: MIDIKey { return 106 }
-    public static var b8: MIDIKey { return 107 }
-    public static var bSharp8: MIDIKey { return 108 }
-    public static var cFlat9: MIDIKey { return 107 }
-    public static var c9: MIDIKey { return 108 }
-    public static var cSharp9: MIDIKey { return 109 }
-    public static var dFlat9: MIDIKey { return 109 }
-    public static var d9: MIDIKey { return 111 }
-    public static var dSharp9: MIDIKey { return 111 }
-    public static var eFlat9: MIDIKey { return 111 }
-    public static var e9: MIDIKey { return 112 }
-    public static var eSharp9: MIDIKey { return 113 }
-    public static var fFlat9: MIDIKey { return 112 }
-    public static var f9: MIDIKey { return 113 }
-    public static var fSharp9: MIDIKey { return 114 }
-    public static var gFlat9: MIDIKey { return 114 }
-    public static var g9: MIDIKey { return 115 }
-    public static var gSharp9: MIDIKey { return 116 }
-    public static var aFlat9: MIDIKey { return 116 }
-    public static var a9: MIDIKey { return 117 }
-    public static var aSharp9: MIDIKey { return 118 }
-    public static var bFlat9: MIDIKey { return 118 }
-    public static var b9: MIDIKey { return 119 }
-    public static var bSharp9: MIDIKey { return 121 }
-    public static var cFlat10: MIDIKey { return 119 }
-    public static var c10: MIDIKey { return 120 }
-    public static var cSharp10: MIDIKey { return 121 }
-    public static var dFlat10: MIDIKey { return 121 }
-    public static var d10: MIDIKey { return 123 }
-    public static var dSharp10: MIDIKey { return 123 }
-    public static var eFlat10: MIDIKey { return 123 }
-    public static var e10: MIDIKey { return 124 }
-    public static var eSharp10: MIDIKey { return 125 }
-    public static var fFlat10: MIDIKey { return 124 }
-    public static var f10: MIDIKey { return 125 }
-    public static var fSharp10: MIDIKey { return 126 }
-    public static var gFlat10: MIDIKey { return 126 }
-    public static var g10: MIDIKey { return 127 }
+    public static let c0: MIDIKey = 0
+    public static let cSharp0: MIDIKey = 1
+    public static let dFlat0: MIDIKey = 1
+    public static let d0: MIDIKey = 2
+    public static let dSharp0: MIDIKey = 3
+    public static let eFlat0: MIDIKey = 3
+    public static let e0: MIDIKey = 4
+    public static let eSharp0: MIDIKey = 5
+    public static let fFlat0: MIDIKey = 4
+    public static let f0: MIDIKey = 5
+    public static let fSharp0: MIDIKey = 6
+    public static let gFlat0: MIDIKey = 6
+    public static let g0: MIDIKey = 7
+    public static let gSharp0: MIDIKey = 8
+    public static let aFlat0: MIDIKey = 8
+    public static let a0: MIDIKey = 9
+    public static let aSharp0: MIDIKey = 10
+    public static let bFlat0: MIDIKey = 10
+    public static let b0: MIDIKey = 11
+    public static let bSharp0: MIDIKey = 12
+    public static let cFlat1: MIDIKey = 11
+    public static let c1: MIDIKey = 12
+    public static let cSharp1: MIDIKey = 13
+    public static let dFlat1: MIDIKey = 13
+    public static let d1: MIDIKey = 14
+    public static let dSharp1: MIDIKey = 15
+    public static let eFlat1: MIDIKey = 15
+    public static let e1: MIDIKey = 16
+    public static let eSharp1: MIDIKey = 17
+    public static let fFlat1: MIDIKey = 16
+    public static let f1: MIDIKey = 17
+    public static let fSharp1: MIDIKey = 18
+    public static let gFlat1: MIDIKey = 18
+    public static let g1: MIDIKey = 19
+    public static let gSharp1: MIDIKey = 20
+    public static let aFlat1: MIDIKey = 20
+    public static let a1: MIDIKey = 21
+    public static let aSharp1: MIDIKey = 22
+    public static let bFlat1: MIDIKey = 22
+    public static let b1: MIDIKey = 23
+    public static let bSharp1: MIDIKey = 24
+    public static let cFlat2: MIDIKey = 23
+    public static let c2: MIDIKey = 24
+    public static let cSharp2: MIDIKey = 25
+    public static let dFlat2: MIDIKey = 25
+    public static let d2: MIDIKey = 26
+    public static let dSharp2: MIDIKey = 27
+    public static let eFlat2: MIDIKey = 27
+    public static let e2: MIDIKey = 28
+    public static let eSharp2: MIDIKey = 29
+    public static let fFlat2: MIDIKey = 28
+    public static let f2: MIDIKey = 29
+    public static let fSharp2: MIDIKey = 30
+    public static let gFlat2: MIDIKey = 30
+    public static let g2: MIDIKey = 31
+    public static let gSharp2: MIDIKey = 32
+    public static let aFlat2: MIDIKey = 32
+    public static let a2: MIDIKey = 33
+    public static let aSharp2: MIDIKey = 34
+    public static let bFlat2: MIDIKey = 34
+    public static let b2: MIDIKey = 35
+    public static let bSharp2: MIDIKey = 36
+    public static let cFlat3: MIDIKey = 35
+    public static let c3: MIDIKey = 36
+    public static let cSharp3: MIDIKey = 37
+    public static let dFlat3: MIDIKey = 37
+    public static let d3: MIDIKey = 38
+    public static let dSharp3: MIDIKey = 39
+    public static let eFlat3: MIDIKey = 39
+    public static let e3: MIDIKey = 40
+    public static let eSharp3: MIDIKey = 41
+    public static let fFlat3: MIDIKey = 40
+    public static let f3: MIDIKey = 41
+    public static let fSharp3: MIDIKey = 42
+    public static let gFlat3: MIDIKey = 42
+    public static let g3: MIDIKey = 43
+    public static let gSharp3: MIDIKey = 44
+    public static let aFlat3: MIDIKey = 44
+    public static let a3: MIDIKey = 45
+    public static let aSharp3: MIDIKey = 46
+    public static let bFlat3: MIDIKey = 46
+    public static let b3: MIDIKey = 47
+    public static let bSharp3: MIDIKey = 48
+    public static let cFlat4: MIDIKey = 47
+    public static let c4: MIDIKey = 48
+    public static let cSharp4: MIDIKey = 49
+    public static let dFlat4: MIDIKey = 49
+    public static let d4: MIDIKey = 50
+    public static let dSharp4: MIDIKey = 51
+    public static let eFlat4: MIDIKey = 51
+    public static let e4: MIDIKey = 52
+    public static let eSharp4: MIDIKey = 53
+    public static let fFlat4: MIDIKey = 52
+    public static let f4: MIDIKey = 53
+    public static let fSharp4: MIDIKey = 54
+    public static let gFlat4: MIDIKey = 54
+    public static let g4: MIDIKey = 55
+    public static let gSharp4: MIDIKey = 56
+    public static let aFlat4: MIDIKey = 56
+    public static let a4: MIDIKey = 57
+    public static let aSharp4: MIDIKey = 58
+    public static let bFlat4: MIDIKey = 58
+    public static let b4: MIDIKey = 59
+    public static let bSharp4: MIDIKey = 60
+    public static let cFlat5: MIDIKey = 59
+    public static let c5: MIDIKey = 60
+    public static let cSharp5: MIDIKey = 61
+    public static let dFlat5: MIDIKey = 61
+    public static let d5: MIDIKey = 62
+    public static let dSharp5: MIDIKey = 63
+    public static let eFlat5: MIDIKey = 63
+    public static let e5: MIDIKey = 64
+    public static let eSharp5: MIDIKey = 65
+    public static let fFlat5: MIDIKey = 64
+    public static let f5: MIDIKey = 65
+    public static let fSharp5: MIDIKey = 66
+    public static let gFlat5: MIDIKey = 66
+    public static let g5: MIDIKey = 67
+    public static let gSharp5: MIDIKey = 68
+    public static let aFlat5: MIDIKey = 68
+    public static let a5: MIDIKey = 69
+    public static let aSharp5: MIDIKey = 70
+    public static let bFlat5: MIDIKey = 70
+    public static let b5: MIDIKey = 71
+    public static let bSharp5: MIDIKey = 72
+    public static let cFlat6: MIDIKey = 71
+    public static let c6: MIDIKey = 72
+    public static let cSharp6: MIDIKey = 73
+    public static let dFlat6: MIDIKey = 73
+    public static let d6: MIDIKey = 74
+    public static let dSharp6: MIDIKey = 75
+    public static let eFlat6: MIDIKey = 75
+    public static let e6: MIDIKey = 76
+    public static let eSharp6: MIDIKey = 77
+    public static let fFlat6: MIDIKey = 76
+    public static let f6: MIDIKey = 77
+    public static let fSharp6: MIDIKey = 78
+    public static let gFlat6: MIDIKey = 78
+    public static let g6: MIDIKey = 79
+    public static let gSharp6: MIDIKey = 80
+    public static let aFlat6: MIDIKey = 80
+    public static let a6: MIDIKey = 81
+    public static let aSharp6: MIDIKey = 82
+    public static let bFlat6: MIDIKey = 82
+    public static let b6: MIDIKey = 83
+    public static let bSharp6: MIDIKey = 84
+    public static let cFlat7: MIDIKey = 83
+    public static let c7: MIDIKey = 84
+    public static let cSharp7: MIDIKey = 85
+    public static let dFlat7: MIDIKey = 85
+    public static let d7: MIDIKey = 86
+    public static let dSharp7: MIDIKey = 87
+    public static let eFlat7: MIDIKey = 87
+    public static let e7: MIDIKey = 88
+    public static let eSharp7: MIDIKey = 89
+    public static let fFlat7: MIDIKey = 88
+    public static let f7: MIDIKey = 89
+    public static let fSharp7: MIDIKey = 90
+    public static let gFlat7: MIDIKey = 90
+    public static let g7: MIDIKey = 91
+    public static let gSharp7: MIDIKey = 92
+    public static let aFlat7: MIDIKey = 92
+    public static let a7: MIDIKey = 93
+    public static let aSharp7: MIDIKey = 94
+    public static let bFlat7: MIDIKey = 94
+    public static let b7: MIDIKey = 95
+    public static let bSharp7: MIDIKey = 96
+    public static let cFlat8: MIDIKey = 95
+    public static let c8: MIDIKey = 96
+    public static let cSharp8: MIDIKey = 97
+    public static let dFlat8: MIDIKey = 97
+    public static let d8: MIDIKey = 98
+    public static let dSharp8: MIDIKey = 99
+    public static let eFlat8: MIDIKey = 99
+    public static let e8: MIDIKey = 100
+    public static let eSharp8: MIDIKey = 101
+    public static let fFlat8: MIDIKey = 100
+    public static let f8: MIDIKey = 101
+    public static let fSharp8: MIDIKey = 102
+    public static let gFlat8: MIDIKey = 102
+    public static let g8: MIDIKey = 103
+    public static let gSharp8: MIDIKey = 104
+    public static let aFlat8: MIDIKey = 104
+    public static let a8: MIDIKey = 105
+    public static let aSharp8: MIDIKey = 106
+    public static let bFlat8: MIDIKey = 106
+    public static let b8: MIDIKey = 107
+    public static let bSharp8: MIDIKey = 108
+    public static let cFlat9: MIDIKey = 107
+    public static let c9: MIDIKey = 108
+    public static let cSharp9: MIDIKey = 109
+    public static let dFlat9: MIDIKey = 109
+    public static let d9: MIDIKey = 111
+    public static let dSharp9: MIDIKey = 111
+    public static let eFlat9: MIDIKey = 111
+    public static let e9: MIDIKey = 112
+    public static let eSharp9: MIDIKey = 113
+    public static let fFlat9: MIDIKey = 112
+    public static let f9: MIDIKey = 113
+    public static let fSharp9: MIDIKey = 114
+    public static let gFlat9: MIDIKey = 114
+    public static let g9: MIDIKey = 115
+    public static let gSharp9: MIDIKey = 116
+    public static let aFlat9: MIDIKey = 116
+    public static let a9: MIDIKey = 117
+    public static let aSharp9: MIDIKey = 118
+    public static let bFlat9: MIDIKey = 118
+    public static let b9: MIDIKey = 119
+    public static let bSharp9: MIDIKey = 121
+    public static let cFlat10: MIDIKey = 119
+    public static let c10: MIDIKey = 120
+    public static let cSharp10: MIDIKey = 121
+    public static let dFlat10: MIDIKey = 121
+    public static let d10: MIDIKey = 123
+    public static let dSharp10: MIDIKey = 123
+    public static let eFlat10: MIDIKey = 123
+    public static let e10: MIDIKey = 124
+    public static let eSharp10: MIDIKey = 125
+    public static let fFlat10: MIDIKey = 124
+    public static let f10: MIDIKey = 125
+    public static let fSharp10: MIDIKey = 126
+    public static let gFlat10: MIDIKey = 126
+    public static let g10: MIDIKey = 127
 
 }
 
 extension MIDIKey {
     
-    public static var acousticBassDrum: MIDIKey { return 35 }
-    public static var bassDrum1: MIDIKey { return 36 }
-    public static var sideStick: MIDIKey { return 37 }
-    public static var acousticSnare: MIDIKey { return 38 }
-    public static var handClap: MIDIKey { return 39 }
-    public static var electricSnare: MIDIKey { return 40 }
-    public static var lowFloorTom: MIDIKey { return 41 }
-    public static var closedHiHat: MIDIKey { return 42 }
-    public static var highFloorTom: MIDIKey { return 43 }
-    public static var pedalHiHat: MIDIKey { return 44 }
-    public static var lowTom: MIDIKey { return 45 }
-    public static var openHiHat: MIDIKey { return 46 }
-    public static var lowMidTom: MIDIKey { return 47 }
-    public static var hiMidTom: MIDIKey { return 48 }
-    public static var crashCymbal1: MIDIKey { return 49 }
-    public static var highTom: MIDIKey { return 50 }
-    public static var rideCymbal1: MIDIKey { return 51 }
-    public static var chineseCymbal: MIDIKey { return 52 }
-    public static var rideBell: MIDIKey { return 53 }
-    public static var tambourine: MIDIKey { return 54 }
-    public static var splashCymbal: MIDIKey { return 55 }
-    public static var cowbell: MIDIKey { return 56 }
-    public static var crashCymbal2: MIDIKey { return 57 }
-    public static var vibraslap: MIDIKey { return 58 }
-    public static var rideCymbal2: MIDIKey { return 59 }
-    public static var hiBongo: MIDIKey { return 60 }
-    public static var lowBongo: MIDIKey { return 61 }
-    public static var muteHiConga: MIDIKey { return 62 }
-    public static var openHiConga: MIDIKey { return 63 }
-    public static var lowConga: MIDIKey { return 64 }
-    public static var highTimbale: MIDIKey { return 65 }
-    public static var lowTimbale: MIDIKey { return 66 }
-    public static var highAgogo: MIDIKey { return 67 }
-    public static var lowAgogo: MIDIKey { return 68 }
-    public static var cabasa: MIDIKey { return 69 }
-    public static var maracas: MIDIKey { return 70 }
-    public static var shortWhistle: MIDIKey { return 71 }
-    public static var longWhistle: MIDIKey { return 72 }
-    public static var shortGuiro: MIDIKey { return 73 }
-    public static var longGuiro: MIDIKey { return 74 }
-    public static var claves: MIDIKey { return 75 }
-    public static var hiWoodBlock: MIDIKey { return 76 }
-    public static var lowWoodBlock: MIDIKey { return 77 }
-    public static var muteCuica: MIDIKey { return 78 }
-    public static var openCuica: MIDIKey { return 79 }
-    public static var muteTriangle: MIDIKey { return 80 }
-    public static var openTriangle: MIDIKey { return 81 }
+    public static let acousticBassDrum: MIDIKey = 35
+    public static let bassDrum1: MIDIKey = 36
+    public static let sideStick: MIDIKey = 37
+    public static let acousticSnare: MIDIKey = 38
+    public static let handClap: MIDIKey = 39
+    public static let electricSnare: MIDIKey = 40
+    public static let lowFloorTom: MIDIKey = 41
+    public static let closedHiHat: MIDIKey = 42
+    public static let highFloorTom: MIDIKey = 43
+    public static let pedalHiHat: MIDIKey = 44
+    public static let lowTom: MIDIKey = 45
+    public static let openHiHat: MIDIKey = 46
+    public static let lowMidTom: MIDIKey = 47
+    public static let hiMidTom: MIDIKey = 48
+    public static let crashCymbal1: MIDIKey = 49
+    public static let highTom: MIDIKey = 50
+    public static let rideCymbal1: MIDIKey = 51
+    public static let chineseCymbal: MIDIKey = 52
+    public static let rideBell: MIDIKey = 53
+    public static let tambourine: MIDIKey = 54
+    public static let splashCymbal: MIDIKey = 55
+    public static let cowbell: MIDIKey = 56
+    public static let crashCymbal2: MIDIKey = 57
+    public static let vibraslap: MIDIKey = 58
+    public static let rideCymbal2: MIDIKey = 59
+    public static let hiBongo: MIDIKey = 60
+    public static let lowBongo: MIDIKey = 61
+    public static let muteHiConga: MIDIKey = 62
+    public static let openHiConga: MIDIKey = 63
+    public static let lowConga: MIDIKey = 64
+    public static let highTimbale: MIDIKey = 65
+    public static let lowTimbale: MIDIKey = 66
+    public static let highAgogo: MIDIKey = 67
+    public static let lowAgogo: MIDIKey = 68
+    public static let cabasa: MIDIKey = 69
+    public static let maracas: MIDIKey = 70
+    public static let shortWhistle: MIDIKey = 71
+    public static let longWhistle: MIDIKey = 72
+    public static let shortGuiro: MIDIKey = 73
+    public static let longGuiro: MIDIKey = 74
+    public static let claves: MIDIKey = 75
+    public static let hiWoodBlock: MIDIKey = 76
+    public static let lowWoodBlock: MIDIKey = 77
+    public static let muteCuica: MIDIKey = 78
+    public static let openCuica: MIDIKey = 79
+    public static let muteTriangle: MIDIKey = 80
+    public static let openTriangle: MIDIKey = 81
     
 }
 
