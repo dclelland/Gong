@@ -20,4 +20,6 @@ Pod::Spec.new do |s|
   s.osx.deployment_target   = '10.10'
   s.osx.source_files        = 'Sources/**/*.swift'
   s.osx.frameworks          = 'AudioToolbox', 'CoreMIDI'
+
+  s.dependency                'Runes'
 end

@@ -7,50 +7,70 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		051FF35BAC1245D740D3F4672BC3C2B9 /* MIDIValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541123FEEA19AABAD46E21FB14F9A0B /* MIDIValue.swift */; };
-		05C2B3C4BAC0664EF33B27789D9DC0B2 /* MIDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35B06D87ADC39BC551A30680A7FA9A0 /* MIDI.swift */; };
-		0937D5CCA74E1FD9F56DC2332670EB91 /* MIDISequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78D348C2AC6B852954498CFB92AB88 /* MIDISequence.swift */; };
-		0C261E944A555F2BEA0C3CBF262A656A /* MIDINote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA20E08B772B69F6F8AD3FE8AD2436D /* MIDINote.swift */; };
-		0E137839CADC34BE1A4042088D5ED929 /* MIDIScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B38628058CF1F738A0C0907DD8001 /* MIDIScale.swift */; };
-		17481D2440F923050FB8948BA2543A94 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75EB8E4E98DEF5359C4618B83757AF00 /* Cocoa.framework */; };
-		23369EBBA55B59BB1D5A0825A55639C4 /* MIDIEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616717B5FF3CE33034B9E3E9E059AFD6 /* MIDIEntity.swift */; };
-		23F29965B4B5AE230114F62C3A86E869 /* MIDINotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475FBAAC5BB5FEFD02E127B326E67997 /* MIDINotification.swift */; };
-		2A3722FEEC7E950CF5CCCE859C3CA5D8 /* MIDIPitchBendChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EEA16A6B01663FFF659F19394EA4C8 /* MIDIPitchBendChange.swift */; };
-		2E5D0BBC3FDD981CB5CC2978D7535830 /* MIDIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5968205180EDE1003094A01A0F7DF4C /* MIDIError.swift */; };
-		2E7F59B20608CA442451B8317EFA3919 /* MIDITime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1D5151ADB7461EE890131EFA3E02B9 /* MIDITime.swift */; };
-		324092E16D273127145EF424A6A865DC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEC4B3E150355B2D75B550F89D1D4A96 /* AudioToolbox.framework */; };
-		3DA29AEC723477929E29AE17372FA463 /* MIDIPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4995AA987C102926F77F2C6D34F33C3 /* MIDIPacket.swift */; };
-		4F1D7834AD179849270D4E1B9E6DF95F /* MIDIChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A68FB116C2825223BB5736446221C6 /* MIDIChannel.swift */; };
-		53C78ED5857691724D88CCBAEAA65597 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6236316C0DB10153130E74ACCB10D51 /* CoreMIDI.framework */; };
-		60FFE91F720E61F2AE31883634EE9D6B /* Pods-Gong-macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5323C7F0A036BE242C6C9AC0199388 /* Pods-Gong-macOS-dummy.m */; };
-		657DDE1BE730CBCB5CBCBBB9B4C3EB26 /* Gong-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CBE6431A77AF2D32E9AD121276545EC7 /* Gong-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6669F098D31D2D1E9C3CF48782B65FB1 /* MIDIInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE70DC5FA4F1012ECBB780B8D3FCDFB /* MIDIInterval.swift */; };
-		78C4E86346BBD075CC01777793C642DF /* MIDIPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA09DC2A1D64E769CE5644A8BCCED78 /* MIDIPort.swift */; };
-		79FCCE4DBBA5DBD2DEE610FC03071734 /* MIDIDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29129A4C3637BDCFB1D7EEE4FBE41A00 /* MIDIDouble.swift */; };
-		7C4B4B9477F9248C5C455A6FB1F0443C /* MIDIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208E9AFD88A62E38477AB5BC0FBC54D0 /* MIDIEndpoint.swift */; };
-		851FD32BD6789609C6216D6A5F3DADD4 /* MIDIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E65339F8BA431BEB2FA52D129805987 /* MIDIDevice.swift */; };
-		8D446A493E083482C76FCE972A40472F /* MIDIArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC3459465E33387B37B6D8860721FC /* MIDIArray.swift */; };
-		996618E548F3E0F6F197A7DF6B576753 /* MIDIInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89C6C97707A1BD68D316807F02F0CDB /* MIDIInteger.swift */; };
-		A05DA0936AD4E79E962691B54E0D6D48 /* MIDIControlChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E2BE6686BF17A652167E64A930F9AF /* MIDIControlChange.swift */; };
-		AD0D813F425176D8FDC9707C9DB1C1C0 /* MIDIChord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94405C9AD27D675E9B7D8C327ABB00DC /* MIDIChord.swift */; };
-		B072B4E1AB293869D337174DE393E484 /* MIDIDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C7F192ED721781F7DB4DCEB8F018DA /* MIDIDuration.swift */; };
-		B4D50C94753A5E201395C70FE0D632C5 /* Pods-Gong-macOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A183AE97F77C80409B85125414004617 /* Pods-Gong-macOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BE5F386EEAAF931F5D814A8F07C4D538 /* MIDIDegree.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA01E75FCB17D132726DE9084D92165 /* MIDIDegree.swift */; };
-		CEE5A8ECC8161F75153D0B7B41FC1233 /* MIDIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010342789A4277ED9A5456743D646F04 /* MIDIKey.swift */; };
-		D403F46A962C3D73AA53EA2ED032145F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75EB8E4E98DEF5359C4618B83757AF00 /* Cocoa.framework */; };
-		DDA0EE7E09295FDE7E6CD146B054A5B5 /* MIDIEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E55B8E5CE96483B27937DEBACBA9FC /* MIDIEvent.swift */; };
-		E1FEDF97AA9E58AEDDA0C15C5C46AF11 /* MIDIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F122CB82E5A94658D5F4F4EA70A68 /* MIDIClient.swift */; };
-		ED33A0774A4B67A647E378182883F1A9 /* Gong-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 390FCB64F3294D15950DC49502EE042F /* Gong-dummy.m */; };
-		FFFC362FA2FA6A1D6A2685AD494E3019 /* MIDIObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E7EE3F255EAD333DA847EEAC5B1916 /* MIDIObject.swift */; };
+		06491476E2675963A0816D55ADDD9085 /* Gong-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CBE6431A77AF2D32E9AD121276545EC7 /* Gong-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		098E409087F2FD4BD3DC42915112BC47 /* MIDIPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA09DC2A1D64E769CE5644A8BCCED78 /* MIDIPort.swift */; };
+		09D7E02F557D2BC90268DBFAF5F0C2DB /* MIDIChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A68FB116C2825223BB5736446221C6 /* MIDIChannel.swift */; };
+		0EAC7B3F847D819D27E539B24ED5D3E7 /* Pods-Gong-macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5323C7F0A036BE242C6C9AC0199388 /* Pods-Gong-macOS-dummy.m */; };
+		1D627340152EAF71D5C54F09D35E9E46 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0F0DADD9515B19DC72FB0EDEA09DB4 /* Cocoa.framework */; };
+		23ED640ACA6B71E1D6783CD2371505C6 /* MIDIControlChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E2BE6686BF17A652167E64A930F9AF /* MIDIControlChange.swift */; };
+		328EDA0B21FA7BE9D078C1A851BCE6DF /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99571DC4A47E80761D32E5E287F0840D /* Runes.framework */; };
+		32C060575125CD69E5B9C8FFBDA8E58A /* MIDIPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4995AA987C102926F77F2C6D34F33C3 /* MIDIPacket.swift */; };
+		42A3FAFA17EDA06FE974556DC16D011F /* MIDIDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C7F192ED721781F7DB4DCEB8F018DA /* MIDIDuration.swift */; };
+		48DD025E52C34606BB77A06FAAFB2DBB /* MIDINotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475FBAAC5BB5FEFD02E127B326E67997 /* MIDINotification.swift */; };
+		4A7F99486BB3AFCB0B959FA758D1AC91 /* MIDIObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E7EE3F255EAD333DA847EEAC5B1916 /* MIDIObject.swift */; };
+		4C7CF00F985C3C47B4D968856C539071 /* Pods-Gong-macOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A183AE97F77C80409B85125414004617 /* Pods-Gong-macOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5E3412E2B755804CD348A8F3FC41F2DD /* MIDIArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC3459465E33387B37B6D8860721FC /* MIDIArray.swift */; };
+		61C6C8C832B8E3500092459DA5F00F4D /* MIDIScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B38628058CF1F738A0C0907DD8001 /* MIDIScale.swift */; };
+		621B922EBE9B5AE5BEF073C9FFAD73BA /* Gong-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 390FCB64F3294D15950DC49502EE042F /* Gong-dummy.m */; };
+		66D25638B5BD860FFBE0AE11D29D39A6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0F0DADD9515B19DC72FB0EDEA09DB4 /* Cocoa.framework */; };
+		717E1BC2F750E396E6DC8978428D1F9D /* MIDIDegree.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA01E75FCB17D132726DE9084D92165 /* MIDIDegree.swift */; };
+		72C84D70F683425EBE7CC9EE6A867F25 /* MIDIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208E9AFD88A62E38477AB5BC0FBC54D0 /* MIDIEndpoint.swift */; };
+		764D8AEB90561F31862BE75047DB6233 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E951E9B5936DC2A0AD0C18DD063EA251 /* CoreMIDI.framework */; };
+		8212F0F65CE0141E32C0B34646D2F2E7 /* MIDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35B06D87ADC39BC551A30680A7FA9A0 /* MIDI.swift */; };
+		88EEA070BB2D33D825A39BCB9B82D6E4 /* Runes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9382B7281C296D988759994D7C9EC839 /* Runes.swift */; settings = {COMPILER_FLAGS = "-whole-module-optimization"; }; };
+		901A56C10218B555CBFD1C812A955A90 /* MIDITime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1D5151ADB7461EE890131EFA3E02B9 /* MIDITime.swift */; };
+		92A129BEB9CA457E67FF5D0217825B6A /* MIDIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010342789A4277ED9A5456743D646F04 /* MIDIKey.swift */; };
+		97251D686F42C0F815AA90679B92187C /* MIDIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5968205180EDE1003094A01A0F7DF4C /* MIDIError.swift */; };
+		98467449BCE85B21276103A9F17E4F47 /* MIDINote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA20E08B772B69F6F8AD3FE8AD2436D /* MIDINote.swift */; };
+		A654B919F27058FA648900336A387264 /* MIDIPitchBendChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EEA16A6B01663FFF659F19394EA4C8 /* MIDIPitchBendChange.swift */; };
+		ADEB4A575C7ADFC43A3869B1B3A9A919 /* Runes-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D719FBB9E3D5CB4A5CDC04560DC9839 /* Runes-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AECED7398DD0E55E1C6EFB3926572BFB /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5129E176645F56A92A9A8700F39BA58 /* Optional.swift */; settings = {COMPILER_FLAGS = "-whole-module-optimization"; }; };
+		B2062958FD54CDFB96BC6560FCD41989 /* MIDIEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E55B8E5CE96483B27937DEBACBA9FC /* MIDIEvent.swift */; };
+		B69038CEF50A03BFFD15E889031ED967 /* MIDIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F122CB82E5A94658D5F4F4EA70A68 /* MIDIClient.swift */; };
+		B9B9E8EC38917F2502FD30F5709905EE /* MIDIEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616717B5FF3CE33034B9E3E9E059AFD6 /* MIDIEntity.swift */; };
+		BF6D72B53D87A463C9306B48F4877AE1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9028DC314A8F79B7FE87B5E0D8468784 /* AudioToolbox.framework */; };
+		BFA6416A279942C3056696352291168B /* MIDIChord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94405C9AD27D675E9B7D8C327ABB00DC /* MIDIChord.swift */; };
+		C72A36B1A8D73861A07EA2171502F866 /* MIDIInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE70DC5FA4F1012ECBB780B8D3FCDFB /* MIDIInterval.swift */; };
+		CECE9B4DBC9B0AEAF2E5A9DD06D6F88A /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B480E2718B5EF358615CDFA938293D /* Array.swift */; settings = {COMPILER_FLAGS = "-whole-module-optimization"; }; };
+		D251850FFE31066FD2ACF86A2621055B /* Runes-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7147A5B711662FDBBA5AF1CEC4BC58EA /* Runes-dummy.m */; };
+		E5AFE2BEB13411DF5290E810F57837CC /* MIDIValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541123FEEA19AABAD46E21FB14F9A0B /* MIDIValue.swift */; };
+		E6BB7A9D908BCC182252BD5CD67B60F1 /* MIDIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E65339F8BA431BEB2FA52D129805987 /* MIDIDevice.swift */; };
+		E8C8A53DE90111740CF6DBC1EA4E8032 /* MIDIDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29129A4C3637BDCFB1D7EEE4FBE41A00 /* MIDIDouble.swift */; };
+		F01B747124532DB067941C4537874AB8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0F0DADD9515B19DC72FB0EDEA09DB4 /* Cocoa.framework */; };
+		F26D0620CB09D8666AAD37780885FC0D /* MIDIInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89C6C97707A1BD68D316807F02F0CDB /* MIDIInteger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		13546C507D0409D0E6E4AA0D27E0CEDA /* PBXContainerItemProxy */ = {
+		248D0D5D3DD27DD62D6F4C7A45271EF5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 4551BB69772088FDD7A1D14DCCDBD304;
+			remoteGlobalIDString = 0F3DF31BE68D524C4E28BB6E3E6B6842;
 			remoteInfo = Gong;
+		};
+		921062478AADC4BB2BF0600ED7024A4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9D94587C9058058FCA058BCE39C53A91;
+			remoteInfo = Runes;
+		};
+		F5219316E8F5961031FCD32928E95A58 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9D94587C9058058FCA058BCE39C53A91;
+			remoteInfo = Runes;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -64,9 +84,7 @@
 		23FD682B90C53ADC1CCCE4A0BC315911 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29129A4C3637BDCFB1D7EEE4FBE41A00 /* MIDIDouble.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIDouble.swift; sourceTree = "<group>"; };
 		29C7F192ED721781F7DB4DCEB8F018DA /* MIDIDuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIDuration.swift; sourceTree = "<group>"; };
-		2A78D348C2AC6B852954498CFB92AB88 /* MIDISequence.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDISequence.swift; sourceTree = "<group>"; };
 		3494C348B52F0F9183904D0A9779E484 /* Pods-Gong-macOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Gong-macOS-frameworks.sh"; sourceTree = "<group>"; };
-		370F0C30D69792A0D4F93BEA8E0436CC /* Pods_Gong_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Gong_macOS.framework; path = "Pods-Gong-macOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38206F93E50461D07800FEA9EAC109DF /* Pods-Gong-macOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Gong-macOS-acknowledgements.markdown"; sourceTree = "<group>"; };
 		390FCB64F3294D15950DC49502EE042F /* Gong-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Gong-dummy.m"; sourceTree = "<group>"; };
 		475FBAAC5BB5FEFD02E127B326E67997 /* MIDINotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDINotification.swift; sourceTree = "<group>"; };
@@ -77,51 +95,72 @@
 		5541123FEEA19AABAD46E21FB14F9A0B /* MIDIValue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIValue.swift; sourceTree = "<group>"; };
 		57F071520A355B5813B3C7B7D995C4C8 /* Pods-Gong-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Gong-macOS.release.xcconfig"; sourceTree = "<group>"; };
 		5AA20E08B772B69F6F8AD3FE8AD2436D /* MIDINote.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDINote.swift; sourceTree = "<group>"; };
+		5BA8E148F4A51A3B3A58EFE719866185 /* Runes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Runes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		606AADD363C016FE92A5675D7050BC1F /* Gong.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Gong.xcconfig; sourceTree = "<group>"; };
+		614E2F0BFA445E2EB408083A98425FAF /* Pods_Gong_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gong_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		616717B5FF3CE33034B9E3E9E059AFD6 /* MIDIEntity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIEntity.swift; sourceTree = "<group>"; };
 		63A68FB116C2825223BB5736446221C6 /* MIDIChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIChannel.swift; sourceTree = "<group>"; };
-		6C82E6986F02EC9605618D2983A16C30 /* Pods-Gong-macOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Gong-macOS.modulemap"; sourceTree = "<group>"; };
-		75EB8E4E98DEF5359C4618B83757AF00 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		6833B1475901E50E77A876993FAC7D98 /* Gong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C82E6986F02EC9605618D2983A16C30 /* Pods-Gong-macOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Gong-macOS.modulemap"; sourceTree = "<group>"; };
+		6D719FBB9E3D5CB4A5CDC04560DC9839 /* Runes-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Runes-umbrella.h"; sourceTree = "<group>"; };
+		7147A5B711662FDBBA5AF1CEC4BC58EA /* Runes-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Runes-dummy.m"; sourceTree = "<group>"; };
 		7CE70DC5FA4F1012ECBB780B8D3FCDFB /* MIDIInterval.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIInterval.swift; sourceTree = "<group>"; };
+		84B480E2718B5EF358615CDFA938293D /* Array.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Array.swift; path = Sources/Array.swift; sourceTree = "<group>"; };
 		876F122CB82E5A94658D5F4F4EA70A68 /* MIDIClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIClient.swift; sourceTree = "<group>"; };
 		8CA09DC2A1D64E769CE5644A8BCCED78 /* MIDIPort.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIPort.swift; sourceTree = "<group>"; };
 		8E65339F8BA431BEB2FA52D129805987 /* MIDIDevice.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIDevice.swift; sourceTree = "<group>"; };
 		8F6B38628058CF1F738A0C0907DD8001 /* MIDIScale.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIScale.swift; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9028DC314A8F79B7FE87B5E0D8468784 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		9382B7281C296D988759994D7C9EC839 /* Runes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Runes.swift; path = Sources/Runes.swift; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		94405C9AD27D675E9B7D8C327ABB00DC /* MIDIChord.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIChord.swift; sourceTree = "<group>"; };
+		99571DC4A47E80761D32E5E287F0840D /* Runes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Runes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A183AE97F77C80409B85125414004617 /* Pods-Gong-macOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Gong-macOS-umbrella.h"; sourceTree = "<group>"; };
 		A4995AA987C102926F77F2C6D34F33C3 /* MIDIPacket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIPacket.swift; sourceTree = "<group>"; };
 		A4E55B8E5CE96483B27937DEBACBA9FC /* MIDIEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIEvent.swift; sourceTree = "<group>"; };
-		B6236316C0DB10153130E74ACCB10D51 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/CoreMIDI.framework; sourceTree = DEVELOPER_DIR; };
+		AD1D3A6218B1E5A60EA52875E2E4A1E0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5129E176645F56A92A9A8700F39BA58 /* Optional.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Optional.swift; path = Sources/Optional.swift; sourceTree = "<group>"; };
+		B703B84D40C44B45ED2708D7EB4FBE5F /* Runes.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Runes.modulemap; sourceTree = "<group>"; };
 		C15F9E6DB0F121EB022C789DA57BF53C /* Pods-Gong-macOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Gong-macOS-resources.sh"; sourceTree = "<group>"; };
-		C16457BAD7491668ACD8B54BCFE8D8FA /* Gong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Gong.framework; path = Gong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C35B06D87ADC39BC551A30680A7FA9A0 /* MIDI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDI.swift; sourceTree = "<group>"; };
 		C8667DF930CF620BF011EB2396AFED04 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBE6431A77AF2D32E9AD121276545EC7 /* Gong-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Gong-umbrella.h"; sourceTree = "<group>"; };
 		D89C6C97707A1BD68D316807F02F0CDB /* MIDIInteger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIInteger.swift; sourceTree = "<group>"; };
 		E5968205180EDE1003094A01A0F7DF4C /* MIDIError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIError.swift; sourceTree = "<group>"; };
+		E5F1FE4D2BE86B7EE0EF14E356E7E2B5 /* Runes-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Runes-prefix.pch"; sourceTree = "<group>"; };
+		E951E9B5936DC2A0AD0C18DD063EA251 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/CoreMIDI.framework; sourceTree = DEVELOPER_DIR; };
+		EE0F0DADD9515B19DC72FB0EDEA09DB4 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		F4CB546DE8621C49A2C94482BF83DF45 /* Runes.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Runes.xcconfig; sourceTree = "<group>"; };
 		F5A874A92DF6CA3237511B6860976558 /* Pods-Gong-macOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Gong-macOS-acknowledgements.plist"; sourceTree = "<group>"; };
 		FCA01E75FCB17D132726DE9084D92165 /* MIDIDegree.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIDegree.swift; sourceTree = "<group>"; };
-		FEA5AD1C280AA1E9273A37EBBDFB0A33 /* Gong.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Gong.modulemap; sourceTree = "<group>"; };
-		FEC4B3E150355B2D75B550F89D1D4A96 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		FEA5AD1C280AA1E9273A37EBBDFB0A33 /* Gong.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Gong.modulemap; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0A499E6E0835034D1B47A6DC695FB407 /* Frameworks */ = {
+		082F6D348CFDC6E7D9C59F541F5E1B2E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				324092E16D273127145EF424A6A865DC /* AudioToolbox.framework in Frameworks */,
-				D403F46A962C3D73AA53EA2ED032145F /* Cocoa.framework in Frameworks */,
-				53C78ED5857691724D88CCBAEAA65597 /* CoreMIDI.framework in Frameworks */,
+				F01B747124532DB067941C4537874AB8 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F62E6B29D19CCD773590A14C4EC79F26 /* Frameworks */ = {
+		1447968AC9CB6FDFD3DA1582F67D935F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17481D2440F923050FB8948BA2543A94 /* Cocoa.framework in Frameworks */,
+				66D25638B5BD860FFBE0AE11D29D39A6 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA3BEF1AF98BE9C6A1A73D68A2861464 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF6D72B53D87A463C9306B48F4877AE1 /* AudioToolbox.framework in Frameworks */,
+				1D627340152EAF71D5C54F09D35E9E46 /* Cocoa.framework in Frameworks */,
+				764D8AEB90561F31862BE75047DB6233 /* CoreMIDI.framework in Frameworks */,
+				328EDA0B21FA7BE9D078C1A851BCE6DF /* Runes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,7 +199,6 @@
 				DFAE67F040EB09BDC72DB46588220C6A /* Protocols */,
 				C5760D453B658D0B172E8FF9EC58C647 /* Types */,
 			);
-			name = Units;
 			path = Units;
 			sourceTree = "<group>";
 		};
@@ -177,7 +215,6 @@
 				A4995AA987C102926F77F2C6D34F33C3 /* MIDIPacket.swift */,
 				8CA09DC2A1D64E769CE5644A8BCCED78 /* MIDIPort.swift */,
 			);
-			name = Core;
 			path = Core;
 			sourceTree = "<group>";
 		};
@@ -188,7 +225,6 @@
 				4045D96920AF94AB3ECF323F10705289 /* Core */,
 				B7233CCDA90DB38B727444D2B4EAF58B /* Sequencer */,
 			);
-			name = Sources;
 			path = Sources;
 			sourceTree = "<group>";
 		};
@@ -196,29 +232,16 @@
 			isa = PBXGroup;
 			children = (
 				A4E55B8E5CE96483B27937DEBACBA9FC /* MIDIEvent.swift */,
-				2A78D348C2AC6B852954498CFB92AB88 /* MIDISequence.swift */,
 			);
-			name = Protocols;
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		4A804C2CE0DEA1333F4163257D30B7C3 /* Products */ = {
+		5AF36A8C6E1E34F58BA63113EA9AC4FC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C16457BAD7491668ACD8B54BCFE8D8FA /* Gong.framework */,
-				370F0C30D69792A0D4F93BEA8E0436CC /* Pods_Gong_macOS.framework */,
+				85F5AB06DEEE33EF3B72D9F2A06F2906 /* Runes */,
 			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		664AB8F74E87D441CDCCA1762446B951 /* OS X */ = {
-			isa = PBXGroup;
-			children = (
-				FEC4B3E150355B2D75B550F89D1D4A96 /* AudioToolbox.framework */,
-				75EB8E4E98DEF5359C4618B83757AF00 /* Cocoa.framework */,
-				B6236316C0DB10153130E74ACCB10D51 /* CoreMIDI.framework */,
-			);
-			name = "OS X";
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		695EDC0E847E35D09D07C9BB62A7AA6F /* Gong */ = {
@@ -231,23 +254,50 @@
 			path = ../../..;
 			sourceTree = "<group>";
 		};
+		741F758F06A0ECD0794D060C01B434EE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				99571DC4A47E80761D32E5E287F0840D /* Runes.framework */,
+				C419F54A226A543D12FEDFE980E1C3CC /* OS X */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		77AC4E3535893B4D4FCBF6B607CC5BBA /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				AD1D3A6218B1E5A60EA52875E2E4A1E0 /* Info.plist */,
+				B703B84D40C44B45ED2708D7EB4FBE5F /* Runes.modulemap */,
+				F4CB546DE8621C49A2C94482BF83DF45 /* Runes.xcconfig */,
+				7147A5B711662FDBBA5AF1CEC4BC58EA /* Runes-dummy.m */,
+				E5F1FE4D2BE86B7EE0EF14E356E7E2B5 /* Runes-prefix.pch */,
+				6D719FBB9E3D5CB4A5CDC04560DC9839 /* Runes-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Runes";
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				E7A984F6137A4DCC0ED2A3144E70C865 /* Development Pods */,
-				96D996393384F21972E2DD81788EE22C /* Frameworks */,
-				4A804C2CE0DEA1333F4163257D30B7C3 /* Products */,
+				741F758F06A0ECD0794D060C01B434EE /* Frameworks */,
+				5AF36A8C6E1E34F58BA63113EA9AC4FC /* Pods */,
+				B841BA6792019AF7D37EAEA6D5A69272 /* Products */,
 				1B27CD5E0E9921995D31842E94F0A9FE /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		96D996393384F21972E2DD81788EE22C /* Frameworks */ = {
+		85F5AB06DEEE33EF3B72D9F2A06F2906 /* Runes */ = {
 			isa = PBXGroup;
 			children = (
-				664AB8F74E87D441CDCCA1762446B951 /* OS X */,
+				84B480E2718B5EF358615CDFA938293D /* Array.swift */,
+				B5129E176645F56A92A9A8700F39BA58 /* Optional.swift */,
+				9382B7281C296D988759994D7C9EC839 /* Runes.swift */,
+				77AC4E3535893B4D4FCBF6B607CC5BBA /* Support Files */,
 			);
-			name = Frameworks;
+			path = Runes;
 			sourceTree = "<group>";
 		};
 		A63991686897A49AFFB0E5821C7CD87E /* Events */ = {
@@ -256,7 +306,6 @@
 				4746664EDD31DB60980DC6B9C50451F1 /* Protocols */,
 				FFC7247895504F6CE03173805CD32A1E /* Types */,
 			);
-			name = Events;
 			path = Events;
 			sourceTree = "<group>";
 		};
@@ -280,8 +329,27 @@
 				A63991686897A49AFFB0E5821C7CD87E /* Events */,
 				24FD32A04D6B0C590A984CC03B47BE86 /* Units */,
 			);
-			name = Sequencer;
 			path = Sequencer;
+			sourceTree = "<group>";
+		};
+		B841BA6792019AF7D37EAEA6D5A69272 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6833B1475901E50E77A876993FAC7D98 /* Gong.framework */,
+				614E2F0BFA445E2EB408083A98425FAF /* Pods_Gong_macOS.framework */,
+				5BA8E148F4A51A3B3A58EFE719866185 /* Runes.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C419F54A226A543D12FEDFE980E1C3CC /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				9028DC314A8F79B7FE87B5E0D8468784 /* AudioToolbox.framework */,
+				EE0F0DADD9515B19DC72FB0EDEA09DB4 /* Cocoa.framework */,
+				E951E9B5936DC2A0AD0C18DD063EA251 /* CoreMIDI.framework */,
+			);
+			name = "OS X";
 			sourceTree = "<group>";
 		};
 		C5760D453B658D0B172E8FF9EC58C647 /* Types */ = {
@@ -297,7 +365,6 @@
 				0E1D5151ADB7461EE890131EFA3E02B9 /* MIDITime.swift */,
 				5541123FEEA19AABAD46E21FB14F9A0B /* MIDIValue.swift */,
 			);
-			name = Types;
 			path = Types;
 			sourceTree = "<group>";
 		};
@@ -308,7 +375,6 @@
 				29129A4C3637BDCFB1D7EEE4FBE41A00 /* MIDIDouble.swift */,
 				D89C6C97707A1BD68D316807F02F0CDB /* MIDIInteger.swift */,
 			);
-			name = Protocols;
 			path = Protocols;
 			sourceTree = "<group>";
 		};
@@ -327,65 +393,91 @@
 				5AA20E08B772B69F6F8AD3FE8AD2436D /* MIDINote.swift */,
 				51EEA16A6B01663FFF659F19394EA4C8 /* MIDIPitchBendChange.swift */,
 			);
-			name = Types;
 			path = Types;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		669BFFFE511D5809A8CD302B0DBC4578 /* Headers */ = {
+		79FC6CF245C1FE4AA34DB3C1009C507B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				657DDE1BE730CBCB5CBCBBB9B4C3EB26 /* Gong-umbrella.h in Headers */,
+				4C7CF00F985C3C47B4D968856C539071 /* Pods-Gong-macOS-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B6C5EB13B22712F630C117C6B6C392C9 /* Headers */ = {
+		C4734EC6288467874C5EDBB14321C99F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4D50C94753A5E201395C70FE0D632C5 /* Pods-Gong-macOS-umbrella.h in Headers */,
+				ADEB4A575C7ADFC43A3869B1B3A9A919 /* Runes-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBE997229643A4DB4DC28EC3830A2F09 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06491476E2675963A0816D55ADDD9085 /* Gong-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		4551BB69772088FDD7A1D14DCCDBD304 /* Gong */ = {
+		0F3DF31BE68D524C4E28BB6E3E6B6842 /* Gong */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C5269031BA545ADAE6FB63C96EFBF304 /* Build configuration list for PBXNativeTarget "Gong" */;
+			buildConfigurationList = F7AB3C3CBB74B211297A53CFFDEEEB2D /* Build configuration list for PBXNativeTarget "Gong" */;
 			buildPhases = (
-				26576199B3555CFF008305597271985D /* Sources */,
-				0A499E6E0835034D1B47A6DC695FB407 /* Frameworks */,
-				669BFFFE511D5809A8CD302B0DBC4578 /* Headers */,
+				A203DF2972197082A150BE8DA139672A /* Sources */,
+				CA3BEF1AF98BE9C6A1A73D68A2861464 /* Frameworks */,
+				FBE997229643A4DB4DC28EC3830A2F09 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A12DE48C857CEFE85E58223012B916DE /* PBXTargetDependency */,
 			);
 			name = Gong;
 			productName = Gong;
-			productReference = C16457BAD7491668ACD8B54BCFE8D8FA /* Gong.framework */;
+			productReference = 6833B1475901E50E77A876993FAC7D98 /* Gong.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		E9F4882B1E0D4ADE667C14996DAC4A76 /* Pods-Gong-macOS */ = {
+		88A992EF31F3AE8D0B00941925E9E0EF /* Pods-Gong-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DE2370B2419970F9A9B7EE4BBAD4BB59 /* Build configuration list for PBXNativeTarget "Pods-Gong-macOS" */;
+			buildConfigurationList = 7655BCA0FB42633FE8E110BC5589CC37 /* Build configuration list for PBXNativeTarget "Pods-Gong-macOS" */;
 			buildPhases = (
-				E5060E54CD75EE7D68E9E4C492BFF0D5 /* Sources */,
-				F62E6B29D19CCD773590A14C4EC79F26 /* Frameworks */,
-				B6C5EB13B22712F630C117C6B6C392C9 /* Headers */,
+				9E07A4720CC2F9447DA9825EB8D1254F /* Sources */,
+				1447968AC9CB6FDFD3DA1582F67D935F /* Frameworks */,
+				79FC6CF245C1FE4AA34DB3C1009C507B /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D87FC17189FCAF4175AE8A11C009D604 /* PBXTargetDependency */,
+				A77358600C4FCF05FF891F24945AC64B /* PBXTargetDependency */,
+				82361A839BA19C68FF914153E6D5A08A /* PBXTargetDependency */,
 			);
 			name = "Pods-Gong-macOS";
 			productName = "Pods-Gong-macOS";
-			productReference = 370F0C30D69792A0D4F93BEA8E0436CC /* Pods_Gong_macOS.framework */;
+			productReference = 614E2F0BFA445E2EB408083A98425FAF /* Pods_Gong_macOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9D94587C9058058FCA058BCE39C53A91 /* Runes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 818B207130A8DDDF8EA71C2A0C4920EF /* Build configuration list for PBXNativeTarget "Runes" */;
+			buildPhases = (
+				1D148DC956BBAAD8E8572A4C5E18EF76 /* Sources */,
+				082F6D348CFDC6E7D9C59F541F5E1B2E /* Frameworks */,
+				C4734EC6288467874C5EDBB14321C99F /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Runes;
+			productName = Runes;
+			productReference = 5BA8E148F4A51A3B3A58EFE719866185 /* Runes.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -405,146 +497,96 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 4A804C2CE0DEA1333F4163257D30B7C3 /* Products */;
+			productRefGroup = B841BA6792019AF7D37EAEA6D5A69272 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4551BB69772088FDD7A1D14DCCDBD304 /* Gong */,
-				E9F4882B1E0D4ADE667C14996DAC4A76 /* Pods-Gong-macOS */,
+				0F3DF31BE68D524C4E28BB6E3E6B6842 /* Gong */,
+				88A992EF31F3AE8D0B00941925E9E0EF /* Pods-Gong-macOS */,
+				9D94587C9058058FCA058BCE39C53A91 /* Runes */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		26576199B3555CFF008305597271985D /* Sources */ = {
+		1D148DC956BBAAD8E8572A4C5E18EF76 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED33A0774A4B67A647E378182883F1A9 /* Gong-dummy.m in Sources */,
-				05C2B3C4BAC0664EF33B27789D9DC0B2 /* MIDI.swift in Sources */,
-				8D446A493E083482C76FCE972A40472F /* MIDIArray.swift in Sources */,
-				4F1D7834AD179849270D4E1B9E6DF95F /* MIDIChannel.swift in Sources */,
-				AD0D813F425176D8FDC9707C9DB1C1C0 /* MIDIChord.swift in Sources */,
-				E1FEDF97AA9E58AEDDA0C15C5C46AF11 /* MIDIClient.swift in Sources */,
-				A05DA0936AD4E79E962691B54E0D6D48 /* MIDIControlChange.swift in Sources */,
-				BE5F386EEAAF931F5D814A8F07C4D538 /* MIDIDegree.swift in Sources */,
-				851FD32BD6789609C6216D6A5F3DADD4 /* MIDIDevice.swift in Sources */,
-				79FCCE4DBBA5DBD2DEE610FC03071734 /* MIDIDouble.swift in Sources */,
-				B072B4E1AB293869D337174DE393E484 /* MIDIDuration.swift in Sources */,
-				7C4B4B9477F9248C5C455A6FB1F0443C /* MIDIEndpoint.swift in Sources */,
-				23369EBBA55B59BB1D5A0825A55639C4 /* MIDIEntity.swift in Sources */,
-				2E5D0BBC3FDD981CB5CC2978D7535830 /* MIDIError.swift in Sources */,
-				DDA0EE7E09295FDE7E6CD146B054A5B5 /* MIDIEvent.swift in Sources */,
-				996618E548F3E0F6F197A7DF6B576753 /* MIDIInteger.swift in Sources */,
-				6669F098D31D2D1E9C3CF48782B65FB1 /* MIDIInterval.swift in Sources */,
-				CEE5A8ECC8161F75153D0B7B41FC1233 /* MIDIKey.swift in Sources */,
-				0C261E944A555F2BEA0C3CBF262A656A /* MIDINote.swift in Sources */,
-				23F29965B4B5AE230114F62C3A86E869 /* MIDINotification.swift in Sources */,
-				FFFC362FA2FA6A1D6A2685AD494E3019 /* MIDIObject.swift in Sources */,
-				3DA29AEC723477929E29AE17372FA463 /* MIDIPacket.swift in Sources */,
-				2A3722FEEC7E950CF5CCCE859C3CA5D8 /* MIDIPitchBendChange.swift in Sources */,
-				78C4E86346BBD075CC01777793C642DF /* MIDIPort.swift in Sources */,
-				0E137839CADC34BE1A4042088D5ED929 /* MIDIScale.swift in Sources */,
-				0937D5CCA74E1FD9F56DC2332670EB91 /* MIDISequence.swift in Sources */,
-				2E7F59B20608CA442451B8317EFA3919 /* MIDITime.swift in Sources */,
-				051FF35BAC1245D740D3F4672BC3C2B9 /* MIDIValue.swift in Sources */,
+				CECE9B4DBC9B0AEAF2E5A9DD06D6F88A /* Array.swift in Sources */,
+				AECED7398DD0E55E1C6EFB3926572BFB /* Optional.swift in Sources */,
+				D251850FFE31066FD2ACF86A2621055B /* Runes-dummy.m in Sources */,
+				88EEA070BB2D33D825A39BCB9B82D6E4 /* Runes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E5060E54CD75EE7D68E9E4C492BFF0D5 /* Sources */ = {
+		9E07A4720CC2F9447DA9825EB8D1254F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60FFE91F720E61F2AE31883634EE9D6B /* Pods-Gong-macOS-dummy.m in Sources */,
+				0EAC7B3F847D819D27E539B24ED5D3E7 /* Pods-Gong-macOS-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A203DF2972197082A150BE8DA139672A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				621B922EBE9B5AE5BEF073C9FFAD73BA /* Gong-dummy.m in Sources */,
+				8212F0F65CE0141E32C0B34646D2F2E7 /* MIDI.swift in Sources */,
+				5E3412E2B755804CD348A8F3FC41F2DD /* MIDIArray.swift in Sources */,
+				09D7E02F557D2BC90268DBFAF5F0C2DB /* MIDIChannel.swift in Sources */,
+				BFA6416A279942C3056696352291168B /* MIDIChord.swift in Sources */,
+				B69038CEF50A03BFFD15E889031ED967 /* MIDIClient.swift in Sources */,
+				23ED640ACA6B71E1D6783CD2371505C6 /* MIDIControlChange.swift in Sources */,
+				717E1BC2F750E396E6DC8978428D1F9D /* MIDIDegree.swift in Sources */,
+				E6BB7A9D908BCC182252BD5CD67B60F1 /* MIDIDevice.swift in Sources */,
+				E8C8A53DE90111740CF6DBC1EA4E8032 /* MIDIDouble.swift in Sources */,
+				42A3FAFA17EDA06FE974556DC16D011F /* MIDIDuration.swift in Sources */,
+				72C84D70F683425EBE7CC9EE6A867F25 /* MIDIEndpoint.swift in Sources */,
+				B9B9E8EC38917F2502FD30F5709905EE /* MIDIEntity.swift in Sources */,
+				97251D686F42C0F815AA90679B92187C /* MIDIError.swift in Sources */,
+				B2062958FD54CDFB96BC6560FCD41989 /* MIDIEvent.swift in Sources */,
+				F26D0620CB09D8666AAD37780885FC0D /* MIDIInteger.swift in Sources */,
+				C72A36B1A8D73861A07EA2171502F866 /* MIDIInterval.swift in Sources */,
+				92A129BEB9CA457E67FF5D0217825B6A /* MIDIKey.swift in Sources */,
+				98467449BCE85B21276103A9F17E4F47 /* MIDINote.swift in Sources */,
+				48DD025E52C34606BB77A06FAAFB2DBB /* MIDINotification.swift in Sources */,
+				4A7F99486BB3AFCB0B959FA758D1AC91 /* MIDIObject.swift in Sources */,
+				32C060575125CD69E5B9C8FFBDA8E58A /* MIDIPacket.swift in Sources */,
+				A654B919F27058FA648900336A387264 /* MIDIPitchBendChange.swift in Sources */,
+				098E409087F2FD4BD3DC42915112BC47 /* MIDIPort.swift in Sources */,
+				61C6C8C832B8E3500092459DA5F00F4D /* MIDIScale.swift in Sources */,
+				901A56C10218B555CBFD1C812A955A90 /* MIDITime.swift in Sources */,
+				E5AFE2BEB13411DF5290E810F57837CC /* MIDIValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D87FC17189FCAF4175AE8A11C009D604 /* PBXTargetDependency */ = {
+		82361A839BA19C68FF914153E6D5A08A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Runes;
+			target = 9D94587C9058058FCA058BCE39C53A91 /* Runes */;
+			targetProxy = 921062478AADC4BB2BF0600ED7024A4F /* PBXContainerItemProxy */;
+		};
+		A12DE48C857CEFE85E58223012B916DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Runes;
+			target = 9D94587C9058058FCA058BCE39C53A91 /* Runes */;
+			targetProxy = F5219316E8F5961031FCD32928E95A58 /* PBXContainerItemProxy */;
+		};
+		A77358600C4FCF05FF891F24945AC64B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Gong;
-			target = 4551BB69772088FDD7A1D14DCCDBD304 /* Gong */;
-			targetProxy = 13546C507D0409D0E6E4AA0D27E0CEDA /* PBXContainerItemProxy */;
+			target = 0F3DF31BE68D524C4E28BB6E3E6B6842 /* Gong */;
+			targetProxy = 248D0D5D3DD27DD62D6F4C7A45271EF5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1AFB000675AD64C2F6D5E3B37B678AC7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0BD5539098FEB5C4A39BB4B0394B0B73 /* Pods-Gong-macOS.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_VERSION = A;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-Gong-macOS/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MODULEMAP_FILE = "Target Support Files/Pods-Gong-macOS/Pods-Gong-macOS.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_Gong_macOS;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		378F5D701BAD7B6AFB0172B46BD4B964 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 606AADD363C016FE92A5675D7050BC1F /* Gong.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_VERSION = A;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Gong/Gong-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Gong/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MODULEMAP_FILE = "Target Support Files/Gong/Gong.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = Gong;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		872064D0636BB218DE8CF548709F84DB /* Release */ = {
+		1AC4EC3B440472B384A6CE807A2651FD /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 606AADD363C016FE92A5675D7050BC1F /* Gong.xcconfig */;
 			buildSettings = {
@@ -577,6 +619,78 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		26A9C293A736319FEF2BD9088132F97B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57F071520A355B5813B3C7B7D995C4C8 /* Pods-Gong-macOS.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Gong-macOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MODULEMAP_FILE = "Target Support Files/Pods-Gong-macOS/Pods-Gong-macOS.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Gong_macOS;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8E92CDE735D4F8ED6B9B2C28AF4BA4C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4CB546DE8621C49A2C94482BF83DF45 /* Runes.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Runes/Runes-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Runes/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MODULEMAP_FILE = "Target Support Files/Runes/Runes.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Runes;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		9420A7205B8F85520AF134F4EE25F7CC /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -618,9 +732,9 @@
 			};
 			name = Release;
 		};
-		AC8F6648C6F2967EAB14B3050945658B /* Release */ = {
+		B99E66A019B4C8E91376836CC32571E8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57F071520A355B5813B3C7B7D995C4C8 /* Pods-Gong-macOS.release.xcconfig */;
+			baseConfigurationReference = F4CB546DE8621C49A2C94482BF83DF45 /* Runes.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -636,13 +750,82 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_VERSION = A;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Runes/Runes-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Runes/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MODULEMAP_FILE = "Target Support Files/Runes/Runes.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Runes;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D736F3E78A84C2AB7D8D9E23FA562477 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 606AADD363C016FE92A5675D7050BC1F /* Gong.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Gong/Gong-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Gong/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MODULEMAP_FILE = "Target Support Files/Gong/Gong.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Gong;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		DF27A01BEE663564DADF1D9B5EEE356B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0BD5539098FEB5C4A39BB4B0394B0B73 /* Pods-Gong-macOS.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "Target Support Files/Pods-Gong-macOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MODULEMAP_FILE = "Target Support Files/Pods-Gong-macOS/Pods-Gong-macOS.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -650,10 +833,11 @@
 				PRODUCT_NAME = Pods_Gong_macOS;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		F653E316AB5F825D3AD0CAE700E37071 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -711,20 +895,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C5269031BA545ADAE6FB63C96EFBF304 /* Build configuration list for PBXNativeTarget "Gong" */ = {
+		7655BCA0FB42633FE8E110BC5589CC37 /* Build configuration list for PBXNativeTarget "Pods-Gong-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				378F5D701BAD7B6AFB0172B46BD4B964 /* Debug */,
-				872064D0636BB218DE8CF548709F84DB /* Release */,
+				DF27A01BEE663564DADF1D9B5EEE356B /* Debug */,
+				26A9C293A736319FEF2BD9088132F97B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DE2370B2419970F9A9B7EE4BBAD4BB59 /* Build configuration list for PBXNativeTarget "Pods-Gong-macOS" */ = {
+		818B207130A8DDDF8EA71C2A0C4920EF /* Build configuration list for PBXNativeTarget "Runes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1AFB000675AD64C2F6D5E3B37B678AC7 /* Debug */,
-				AC8F6648C6F2967EAB14B3050945658B /* Release */,
+				8E92CDE735D4F8ED6B9B2C28AF4BA4C8 /* Debug */,
+				B99E66A019B4C8E91376836CC32571E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F7AB3C3CBB74B211297A53CFFDEEEB2D /* Build configuration list for PBXNativeTarget "Gong" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D736F3E78A84C2AB7D8D9E23FA562477 /* Debug */,
+				1AC4EC3B440472B384A6CE807A2651FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

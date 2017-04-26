@@ -30,5 +30,10 @@
       "AudioToolbox",
       "CoreMIDI"
     ]
+  },
+  "dependencies": {
+    "Runes": [
+
+    ]
   }
 }
