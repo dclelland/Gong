@@ -1,5 +1,7 @@
 PODS:
+  - Curry (3.0.0)
   - Gong (0.1.0):
+    - Curry
     - Runes
   - Runes (4.0.1)
 
@@ -11,7 +13,8 @@ EXTERNAL SOURCES:
     :path: ../../
 
 SPEC CHECKSUMS:
-  Gong: 325f4619c68b0cb19838d96a9bcbbe9282891891
+  Curry: eb3d2c75aec678b3cc7fb2729d2ad6dd121531d1
+  Gong: 75e0a9363fa5639c14bf459c0fb1ec3500f1152d
   Runes: ff20f163b478ac2c0e18158d6086fd5b1997f983
 
 PODFILE CHECKSUM: e52aaa1c46b54d4094c9ec8534850e79782eb182

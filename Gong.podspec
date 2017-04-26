@@ -21,5 +21,6 @@ Pod::Spec.new do |s|
   s.osx.source_files        = 'Sources/**/*.swift'
   s.osx.frameworks          = 'AudioToolbox', 'CoreMIDI'
 
+  s.dependency                'Curry'
   s.dependency                'Runes'
 end

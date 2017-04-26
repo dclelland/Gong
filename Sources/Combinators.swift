@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Curry
 import Runes
 
 extension Array where Element == MIDINote {
