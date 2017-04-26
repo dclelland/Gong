@@ -45,3 +45,23 @@ public class MIDIEntity: MIDIObject {
     }
     
 }
+
+extension MIDIEntity: MIDIPacketReceiver {
+    
+    public func receive(_ packet: MIDIPacket) {
+        for source in sources {
+            source.receive(packet)
+        }
+    }
+    
+}
+
+extension MIDIEntity: MIDIPacketSender {
+    
+    public func send(_ packet: MIDIPacket, via output: MIDIOutput) {
+        for destination in destinations {
+            destination.send(packet, via: output)
+        }
+    }
+    
+}

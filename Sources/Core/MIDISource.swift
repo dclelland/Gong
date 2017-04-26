@@ -36,3 +36,15 @@ extension MIDISource {
     }
     
 }
+
+extension MIDISource: MIDIPacketReceiver {
+    
+    public func receive(_ packet: MIDIPacket) {
+        do {
+            try received(packet)
+        } catch let error {
+            print(error)
+        }
+    }
+    
+}

@@ -35,3 +35,15 @@ extension MIDIDestination {
     }
     
 }
+
+extension MIDIDestination: MIDIPacketSender {
+    
+    public func send(_ packet: MIDIPacket, via output: MIDIOutput) {
+        do {
+            try output.send(packet, to: self)
+        } catch let error {
+            print(error)
+        }
+    }
+    
+}

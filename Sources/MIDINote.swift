@@ -8,21 +8,21 @@
 
 import Foundation
 
-extension MIDIDevice {
-    
-    public func send(_ note: MIDINote, via output: MIDIOutput? = MIDI.output) {
-        for packet in note.packets {
-            send(packet, via: output)
-        }
-    }
-    
-    public func send(_ notes: [MIDINote], via output: MIDIOutput? = MIDI.output) {
-        for note in notes {
-            send(note, via: output)
-        }
-    }
-    
-}
+//extension MIDIDevice {
+//    
+//    public func send(_ note: MIDINote, via output: MIDIOutput) {
+//        for packet in note.packets {
+//            send(packet, via: output)
+//        }
+//    }
+//    
+//    public func send(_ notes: [MIDINote], via output: MIDIOutput) {
+//        for note in notes {
+//            send(note, via: output)
+//        }
+//    }
+//    
+//}
 
 public struct MIDINote {
     

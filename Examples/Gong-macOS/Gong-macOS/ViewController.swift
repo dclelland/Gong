@@ -114,7 +114,7 @@ extension ViewController {
         
 //        sequence = sequence.transposed(.P5)
         
-        device?.send(sequence)
+//        device?.send(sequence, via: MIDI.output)
         
 //        for key in key.chord(.P1, .P5, .P8) {
 //            let message = MIDIMessage(.noteOn(channel: 0, key: UInt8(key.number), velocity: 100))
