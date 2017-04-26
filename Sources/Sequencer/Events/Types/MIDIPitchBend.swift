@@ -30,8 +30,16 @@ public struct MIDIPitchBend: MIDIChannelEvent, MIDIParameterEvent {
 extension MIDIPitchBend {
     
     public var packets: [MIDIPacket] {
+        if duration == .instant {
+            return [
+                MIDIPacket(.pitchBendChange(channel: channel.value, leastSignificantBits: 0, mostSignificantBits: value.value), delay: time.value)
+            ]
+        }
+        
         return [
-            MIDIPacket(.pitchBendChange(channel: UInt8(channel.value), leastSignificantBits: 0, mostSignificantBits: UInt8(value.value)), delay: time.value)
+            MIDIPacket(.pitchBendChange(channel: channel.value, leastSignificantBits: 0, mostSignificantBits: value.value), delay: time.value),
+            /// Need to add a ramp, and startValue/endValue
+            MIDIPacket(.pitchBendChange(channel: channel.value, leastSignificantBits: 0, mostSignificantBits: value.value), delay: (time + duration).value)
         ]
     }
     

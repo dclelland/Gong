@@ -35,15 +35,15 @@ extension MIDIControl {
     public var packets: [MIDIPacket] {
         if duration == .instant {
             return [
-                MIDIPacket(.controlChange(channel: UInt8(channel.value), controller: UInt8(controller.value), value: UInt8(value.value)), delay: time.value)
-            ]
-        } else {
-            return [
-                MIDIPacket(.controlChange(channel: UInt8(channel.value), controller: UInt8(controller.value), value: UInt8(value.value)), delay: time.value),
-                /// Need to add a ramp, and startValue/endValue
-                MIDIPacket(.controlChange(channel: UInt8(channel.value), controller: UInt8(controller.value), value: UInt8(value.value)), delay: (time + duration).value)
+                MIDIPacket(.controlChange(channel: channel.value, controller: controller.value, value: value.value), delay: time.value)
             ]
         }
+        
+        return [
+            MIDIPacket(.controlChange(channel: channel.value, controller: controller.value, value: value.value), delay: time.value),
+            /// Need to add a ramp, and startValue/endValue
+            MIDIPacket(.controlChange(channel: channel.value, controller: controller.value, value: value.value), delay: (time + duration).value)
+        ]
     }
     
 }

@@ -10,7 +10,7 @@ import Foundation
 
 public protocol MIDIInteger: SignedInteger, Comparable, Equatable {
     
-    typealias Value = Int
+    typealias Value = UInt8
     
     var value: Value { get }
     
