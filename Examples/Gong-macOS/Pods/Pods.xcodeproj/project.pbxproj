@@ -16,7 +16,7 @@
 		23D499FCFF66CAA27FCB09DC934A2526 /* MIDITime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED1CED65F5C1F2916D975E641D53D2 /* MIDITime.swift */; };
 		2DDB05375AEBD6EC555D840266734946 /* Gong-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BEC3D4B0F211FC10A9BF74961EFB384 /* Gong-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2E8C5E18982B96FC729D8D8A2975169E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0F0DADD9515B19DC72FB0EDEA09DB4 /* Cocoa.framework */; };
-		333E5EBA926B5BB76699848076F09782 /* MIDIParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42BDAA2C53871DC849E5E136CD82981 /* MIDIParameter.swift */; };
+		333E5EBA926B5BB76699848076F09782 /* MIDIVelocity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42BDAA2C53871DC849E5E136CD82981 /* MIDIVelocity.swift */; };
 		3E81578E1FD697B059E5D4404F1854CC /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99571DC4A47E80761D32E5E287F0840D /* Runes.framework */; };
 		4C7CF00F985C3C47B4D968856C539071 /* Pods-Gong-macOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A183AE97F77C80409B85125414004617 /* Pods-Gong-macOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5FE1CA40CB589BB7E61BA0341872DED0 /* MIDIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D05F2D6178BC0C7E7775575CB182E5 /* MIDIError.swift */; };
@@ -113,7 +113,7 @@
 		99571DC4A47E80761D32E5E287F0840D /* Runes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Runes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BB171187C1826FCAB67A2D738D9767E /* MIDIObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIObject.swift; sourceTree = "<group>"; };
 		A183AE97F77C80409B85125414004617 /* Pods-Gong-macOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Gong-macOS-umbrella.h"; sourceTree = "<group>"; };
-		A42BDAA2C53871DC849E5E136CD82981 /* MIDIParameter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIParameter.swift; sourceTree = "<group>"; };
+		A42BDAA2C53871DC849E5E136CD82981 /* MIDIVelocity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIVelocity.swift; sourceTree = "<group>"; };
 		A5B43541D54B69665E4E266B56B24495 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD1D3A6218B1E5A60EA52875E2E4A1E0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0FEFC15173CBF9CF61D95C29952BB9B /* MIDIChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIChannel.swift; sourceTree = "<group>"; };
@@ -263,7 +263,7 @@
 				47E69E35F190B8D19CB5CD5988216318 /* MIDIDuration.swift */,
 				C1984F0CA339EA1687421235626FD02B /* MIDIInterval.swift */,
 				20F1DB9C07A33DBFDB6C1474AAB0A3E6 /* MIDIKey.swift */,
-				A42BDAA2C53871DC849E5E136CD82981 /* MIDIParameter.swift */,
+				A42BDAA2C53871DC849E5E136CD82981 /* MIDIVelocity.swift */,
 				1E724BEDC576D39AE255E5EDCB33BE04 /* MIDIScale.swift */,
 				29ED1CED65F5C1F2916D975E641D53D2 /* MIDITime.swift */,
 			);
@@ -502,7 +502,7 @@
 				BA805707392CB0B942E9688AA96D98CC /* MIDIObject.swift in Sources */,
 				65ECC6221EB09C0E00A4D272 /* MIDIDestination.swift in Sources */,
 				C3DBDF3E6AB89DCDBBD87497DAE0F2DF /* MIDIPacket.swift in Sources */,
-				333E5EBA926B5BB76699848076F09782 /* MIDIParameter.swift in Sources */,
+				333E5EBA926B5BB76699848076F09782 /* MIDIVelocity.swift in Sources */,
 				8DCC6592A447ABD8AABF9FF4E9C46E9A /* MIDIPort.swift in Sources */,
 				E8E789FE1DB4354B17FA7064AB05D361 /* MIDIScale.swift in Sources */,
 				65ECC6201EB09C0600A4D272 /* MIDISource.swift in Sources */,

@@ -101,7 +101,15 @@ extension ViewController {
         return MIDIDevice(named: "minilogue")
     }
     
+    var output: MIDIOutput? {
+        return MIDI.output
+    }
+    
     func sendNoteOnEvent(key: MIDIKey) {
+        guard let device = device, let output = output else {
+            return
+        }
+        
         let sequence: [MIDINote] = [
             MIDINote(key: key + .P1, time: .now, duration: .whole),
             MIDINote(key: key + .M2, time: .now + .whole, duration: .whole),
@@ -110,16 +118,9 @@ extension ViewController {
             MIDINote(key: key + .P5, time: .now + .whole * 4, duration: .whole)
         ]
         
+        let test = sequence.transposed(up: .P5)
         
-        
-//        sequence = sequence.transposed(.P5)
-        
-//        device?.send(sequence, via: MIDI.output)
-        
-//        for key in key.chord(.P1, .P5, .P8) {
-//            let message = MIDIMessage(.noteOn(channel: 0, key: UInt8(key.number), velocity: 100))
-//            device?.send(message)
-//        }
+        device.send(test, via: output)
     }
     
     func sendNoteOffEvent(key: MIDIKey) {
