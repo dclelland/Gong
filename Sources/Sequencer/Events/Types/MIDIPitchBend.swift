@@ -18,7 +18,7 @@ public struct MIDIPitchBend: MIDIChannelEvent, MIDIParameterEvent {
     
     public var value: MIDIParameter
     
-    public init(channel: MIDIChannel = .zero, value: MIDIParameter = .center, time: MIDITime = .now, duration: MIDIDuration = .whole) {
+    public init(channel: MIDIChannel = .zero, value: MIDIParameter = .center, time: MIDITime = .now, duration: MIDIDuration = .instant) {
         self.channel = channel
         self.value = value
         self.time = time

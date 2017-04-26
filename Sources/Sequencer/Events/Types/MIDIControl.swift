@@ -20,7 +20,7 @@ public struct MIDIControl: MIDIChannelEvent, MIDIParameterEvent {
     
     public var duration: MIDIDuration
     
-    public init(channel: MIDIChannel = .zero, controller: MIDIParameter, value: MIDIParameter, time: MIDITime = .now, duration: MIDIDuration = .whole) {
+    public init(channel: MIDIChannel = .zero, controller: MIDIParameter, value: MIDIParameter, time: MIDITime = .now, duration: MIDIDuration = .instant) {
         self.channel = channel
         self.controller = controller
         self.value = value
@@ -33,9 +33,17 @@ public struct MIDIControl: MIDIChannelEvent, MIDIParameterEvent {
 extension MIDIControl {
     
     public var packets: [MIDIPacket] {
-        return [
-            MIDIPacket(.controlChange(channel: UInt8(channel.value), controller: UInt8(controller.value), value: UInt8(value.value)), delay: time.value)
-        ]
+        if duration == .instant {
+            return [
+                MIDIPacket(.controlChange(channel: UInt8(channel.value), controller: UInt8(controller.value), value: UInt8(value.value)), delay: time.value)
+            ]
+        } else {
+            return [
+                MIDIPacket(.controlChange(channel: UInt8(channel.value), controller: UInt8(controller.value), value: UInt8(value.value)), delay: time.value),
+                /// Need to add a ramp, and startValue/endValue
+                MIDIPacket(.controlChange(channel: UInt8(channel.value), controller: UInt8(controller.value), value: UInt8(value.value)), delay: (time + duration).value)
+            ]
+        }
     }
     
 }

@@ -20,6 +20,12 @@ public struct MIDIDuration: MIDIDouble {
 
 extension MIDIDuration {
     
+    public static let instant: MIDIDuration = 0.0
+    
+}
+
+extension MIDIDuration {
+    
     public static let octuple: MIDIDuration = 8.0
     public static let quadruple: MIDIDuration = 4.0
     public static let double: MIDIDuration = 2.0
@@ -30,7 +36,7 @@ extension MIDIDuration {
     public static let sixteenth: MIDIDuration = 1.0 / 16.0
     public static let thirtySecond: MIDIDuration = 1.0 / 32.0
     public static let sixtyFourth: MIDIDuration = 1.0 / 64.0
-    
+
 }
 
 extension MIDIDuration {
