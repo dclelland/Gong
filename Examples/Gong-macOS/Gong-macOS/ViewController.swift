@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  hibiscus-macOS
+//  Gong-macOS
 //
 //  Created by Daniel Clelland on 17/04/17.
 //  Copyright © 2017 Daniel Clelland. All rights reserved.
@@ -110,17 +110,16 @@ extension ViewController {
             return
         }
         
-        let sequence: [MIDINote] = [
-            MIDINote(key: key + .P1, time: .now, duration: .whole),
-            MIDINote(key: key + .M2, time: .now + .whole, duration: .whole),
-            MIDINote(key: key + .M3, time: .now + .whole * 2, duration: .whole),
-            MIDINote(key: key + .P4, time: .now + .whole * 3, duration: .whole),
-            MIDINote(key: key + .P5, time: .now + .whole * 4, duration: .whole)
-        ]
+        let sequence = (0..<5).map { index in
+            return MIDINote(
+                key: key + MIDIInterval(index),
+                time: .now + MIDITime(index)
+            )
+        }
         
-        let test = sequence.transposed(up: .P5)
+        let transposed = sequence.transposed(up: .P5).chorded(with: .maj)
         
-        device.send(test, via: output)
+        device.send(transposed, via: output)
     }
     
     func sendNoteOffEvent(key: MIDIKey) {

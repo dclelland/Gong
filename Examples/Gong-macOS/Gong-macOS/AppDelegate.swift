@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  hibiscus-macOS
+//  Gong-macOS
 //
 //  Created by Daniel Clelland on 17/04/17.
 //  Copyright © 2017 Daniel Clelland. All rights reserved.

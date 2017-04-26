@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Runes
 
 extension MIDIPacketDestination {
     
@@ -50,8 +51,8 @@ extension MIDINote {
     
     public var packets: [MIDIPacket] {
         return [
-            MIDIPacket(.noteOn(channel: channel.value, key: key.value, velocity: velocity.value), delay: time.value),
-            MIDIPacket(.noteOff(channel: channel.value, key: key.value, velocity: velocity.value), delay: (time + duration).value)
+            MIDIPacket(.noteOn(channel: UInt8(channel.value), key: UInt8(key.value), velocity: UInt8(velocity.value)), delay: time.value),
+            MIDIPacket(.noteOff(channel: UInt8(channel.value), key: UInt8(key.value), velocity: UInt8(velocity.value)), delay: (time + duration).value)
         ]
     }
     
@@ -64,12 +65,6 @@ extension Array where Element == MIDINote {
             var note = note
             note.channel = transform(note.channel)
             return note
-        }
-    }
-    
-    public func tuned(to channel: MIDIChannel) {
-        return channelMap { _ in
-            return channel
         }
     }
 
@@ -85,6 +80,16 @@ extension Array where Element == MIDINote {
         }
     }
     
+    public func keyApply(_ transform: (MIDIKey) -> [MIDIKey]) -> [MIDINote] {
+        return flatMap { note in
+            return transform(note.key).map { key in
+                var note = note
+                note.key = key
+                return note
+            }
+        }
+    }
+    
     public func transposed(up interval: MIDIInterval) -> [MIDINote] {
         return keyMap { key in
             return key + interval
@@ -94,6 +99,26 @@ extension Array where Element == MIDINote {
     public func transposed(down interval: MIDIInterval) -> [MIDINote] {
         return keyMap { key in
             return key - interval
+        }
+    }
+    
+    public func chorded(with chord: MIDIChord) -> [MIDINote] {
+        return keyApply { key in
+            return chord.map { interval in
+                return key + interval // could combine with transposed(up:)
+            }
+        }
+    }
+    
+}
+
+extension Array where Element == MIDINote {
+    
+    public func velocityMap(_ transform: (MIDIVelocity) -> MIDIVelocity) -> [MIDINote] {
+        return map { note in
+            var note = note
+            note.velocity = transform(note.velocity)
+            return note
         }
     }
     
