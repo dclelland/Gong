@@ -118,9 +118,9 @@ public class MIDIObject {
         case .entity, .externalEntity:
             return MIDIEntity(reference)
         case .source, .externalSource:
-            return MIDIEndpoint<Source>(reference)
+            return MIDISource(reference)
         case .destination, .externalDestination:
-            return MIDIEndpoint<Destination>(reference)
+            return MIDIDestination(reference)
         }
     }
     

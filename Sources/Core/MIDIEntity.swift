@@ -22,25 +22,25 @@ public class MIDIEntity: MIDIObject {
         }
     }
     
-    public var sources: [MIDIEndpoint<Source>] {
+    public var sources: [MIDISource] {
         let count = MIDIEntityGetNumberOfSources(reference)
         return (0..<count).lazy.map { index in
-            return MIDIEndpoint<Source>(MIDIEntityGetSource(reference, index))
+            return MIDISource(MIDIEntityGetSource(reference, index))
         }
     }
     
-    public func source(named name: String) -> MIDIEndpoint<Source>? {
+    public func source(named name: String) -> MIDISource? {
         return sources.first(where: { $0.name == name })
     }
     
-    public var destinations: [MIDIEndpoint<Destination>] {
+    public var destinations: [MIDIDestination] {
         let count = MIDIEntityGetNumberOfDestinations(reference)
         return (0..<count).lazy.map { index in
-            return MIDIEndpoint<Destination>(MIDIEntityGetDestination(reference, index))
+            return MIDIDestination(MIDIEntityGetDestination(reference, index))
         }
     }
     
-    public func destination(named name: String) -> MIDIEndpoint<Destination>? {
+    public func destination(named name: String) -> MIDIDestination? {
         return destinations.first(where: { $0.name == name })
     }
     

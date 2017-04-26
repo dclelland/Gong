@@ -13,7 +13,7 @@ public class MIDIClient: MIDIObject {
     
     public typealias NotificationCallback = (MIDINotification) -> Void
     
-    public typealias PacketCallback = (MIDIPacket, MIDIEndpoint<Source>) -> Void
+    public typealias PacketCallback = (MIDIPacket, MIDISource) -> Void
     
     public convenience init(name: String, callback: @escaping NotificationCallback = { _ in }) throws {
         var clientReference = MIDIClientRef()
@@ -31,7 +31,7 @@ public class MIDIClient: MIDIObject {
         self.init(clientReference)
     }
     
-    public func createInput(name: String, callback: @escaping PacketCallback = { _ in }) throws -> MIDIPort<Input> {
+    public func createInput(name: String, callback: @escaping PacketCallback = { _ in }) throws -> MIDIInput {
         var portReference = MIDIPortRef()
         let context = UnsafeMutablePointer.wrap(callback)
         
@@ -45,27 +45,27 @@ public class MIDIClient: MIDIObject {
             }
             
             for packet in packetList.pointee.packets {
-                callback(packet, MIDIEndpoint<Source>(endpointReference))
+                callback(packet, MIDISource(endpointReference))
             }
         }
         
         try MIDIInputPortCreate(reference, name as CFString, procedure, context, &portReference).check("Creating input port on MIDIClient with name \"\(name)\"")
-        return MIDIPort(portReference)
+        return MIDIInput(portReference)
     }
     
-    public func createOutput(name: String) throws -> MIDIPort<Output> {
+    public func createOutput(name: String) throws -> MIDIOutput {
         var portReference = MIDIPortRef()
         try MIDIOutputPortCreate(reference, name as CFString, &portReference).check("Creating output port on MIDIClient with name \"\(name)\"")
-        return MIDIPort(portReference)
+        return MIDIOutput(portReference)
     }
     
-    public func createSource(name: String) throws -> MIDIEndpoint<Source> {
+    public func createSource(name: String) throws -> MIDISource {
         var endpointReference = MIDIEndpointRef()
         try MIDISourceCreate(reference, name as CFString, &endpointReference).check("Creating source on MIDIClient")
-        return MIDIEndpoint<Source>(endpointReference)
+        return MIDISource(endpointReference)
     }
     
-    public func createDestination(name: String, callback: @escaping PacketCallback = { _ in }) throws -> MIDIEndpoint<Destination> {
+    public func createDestination(name: String, callback: @escaping PacketCallback = { _ in }) throws -> MIDIDestination {
         var endpointReference = MIDIEndpointRef()
         let context = UnsafeMutablePointer.wrap(callback)
         
@@ -79,12 +79,12 @@ public class MIDIClient: MIDIObject {
             }
             
             for packet in packetList.pointee.packets {
-                callback(packet, MIDIEndpoint<Source>(sourceReference))
+                callback(packet, MIDISource(sourceReference))
             }
         }
         
         try MIDIDestinationCreate(reference, name as CFString, procedure, context, &endpointReference).check("Creating destination on MIDIClient")
-        return MIDIEndpoint<Destination>(endpointReference)
+        return MIDIDestination(endpointReference)
     }
     
     public func dispose() throws {

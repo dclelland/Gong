@@ -19,7 +19,7 @@ public protocol MIDINotificationReceiver: class {
 
 public protocol MIDIPacketReceiver: class {
     
-    func receive(_ packet: MIDIPacket, from source: MIDIEndpoint<Source>)
+    func receive(_ packet: MIDIPacket, from source: MIDISource)
     
 }
 
@@ -36,7 +36,7 @@ public struct MIDI {
         }
     }()
     
-    public static var input: MIDIPort<Input>? = {
+    public static var input: MIDIInput? = {
         do {
             return try client?.createInput(name: "Default input") { (packet, source) in
                 receive(packet, from: source)
@@ -47,7 +47,7 @@ public struct MIDI {
         }
     }()
     
-    public static var output: MIDIPort<Output>? = {
+    public static var output: MIDIOutput? = {
         do {
             return try client?.createOutput(name: "Default output")
         } catch let error {
@@ -57,7 +57,7 @@ public struct MIDI {
     }()
     
     public static func connect() {
-        for source in MIDIEndpoint<Source>.all {
+        for source in MIDISource.all {
             do {
                 try input?.connect(source)
             } catch let error {
@@ -67,7 +67,7 @@ public struct MIDI {
     }
     
     public static func disconnect() {
-        for source in MIDIEndpoint<Source>.all {
+        for source in MIDISource.all {
             do {
                 try input?.disconnect(source)
             } catch let error {
@@ -109,9 +109,9 @@ public struct MIDI {
     private static func receive(_ notification: MIDINotification) {
         do {
             switch notification {
-            case .objectAdded(_, let source as MIDIEndpoint<Source>):
+            case .objectAdded(_, let source as MIDISource):
                 try input?.connect(source)
-            case .objectRemoved(_, let source as MIDIEndpoint<Source>):
+            case .objectRemoved(_, let source as MIDISource):
                 try input?.disconnect(source)
             default:
                 break
@@ -125,7 +125,7 @@ public struct MIDI {
         }
     }
     
-    private static func receive(_ packet: MIDIPacket, from source: MIDIEndpoint<Source>) {
+    private static func receive(_ packet: MIDIPacket, from source: MIDISource) {
         for receiver in packetReceivers {
             receiver.receive(packet, from: source)
         }
@@ -141,7 +141,7 @@ extension MIDIDevice {
         }
     }
     
-    public func send(_ packet: MIDIPacket, via output: MIDIPort<Output>? = MIDI.output) {
+    public func send(_ packet: MIDIPacket, via output: MIDIOutput? = MIDI.output) {
         for entity in entities {
             entity.send(packet, via: output)
         }
@@ -157,7 +157,7 @@ extension MIDIEntity {
         }
     }
     
-    public func send(_ packet: MIDIPacket, via output: MIDIPort<Output>? = MIDI.output) {
+    public func send(_ packet: MIDIPacket, via output: MIDIOutput? = MIDI.output) {
         for destination in destinations {
             destination.send(packet, via: output)
         }
@@ -165,7 +165,7 @@ extension MIDIEntity {
     
 }
 
-extension MIDIEndpoint where Type == Source {
+extension MIDISource {
     
     public func receive(_ packet: MIDIPacket) {
         do {
@@ -177,9 +177,9 @@ extension MIDIEndpoint where Type == Source {
 
 }
 
-extension MIDIEndpoint where Type == Destination {
+extension MIDIDestination {
     
-    public func send(_ packet: MIDIPacket, via output: MIDIPort<Output>? = MIDI.output) {
+    public func send(_ packet: MIDIPacket, via output: MIDIOutput? = MIDI.output) {
         guard let output = output else {
             return
         }

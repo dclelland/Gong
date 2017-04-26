@@ -102,14 +102,12 @@ extension ViewController {
     }
     
     func sendNoteOnEvent(key: MIDIKey) {
-        let sequence: [MIDIEvent] = [
+        let sequence: [MIDINote] = [
             MIDINote(key: key + .P1, time: .now, duration: .whole),
             MIDINote(key: key + .M2, time: .now + .whole, duration: .whole),
             MIDINote(key: key + .M3, time: .now + .whole * 2, duration: .whole),
             MIDINote(key: key + .P4, time: .now + .whole * 3, duration: .whole),
-            MIDINote(key: key + .P5, time: .now + .whole * 4, duration: .whole),
-            MIDIControl(controller: 0, value: 0),
-            MIDIPitchBend(value: 64)
+            MIDINote(key: key + .P5, time: .now + .whole * 4, duration: .whole)
         ]
         
         
@@ -139,7 +137,7 @@ extension ViewController: MIDIReceiver {
         print(notification)
     }
     
-    func receive(_ packet: MIDIPacket, from source: MIDIEndpoint<Source>) {
+    func receive(_ packet: MIDIPacket, from source: MIDISource) {
         switch packet.message {
         case .noteOn, .noteOff, .controlChange, .pitchBendChange:
             print(packet, source)
