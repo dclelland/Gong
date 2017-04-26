@@ -9,6 +9,22 @@
 import Foundation
 import CoreMIDI
 
+public protocol MIDIPacketDestination {
+    
+    func send(_ packet: MIDIPacket, via output: MIDIOutput)
+    
+}
+
+extension MIDIPacketDestination {
+    
+    func send(_ packets: [MIDIPacket], via output: MIDIOutput) {
+        for packet in packets {
+            send(packet, via: output)
+        }
+    }
+    
+}
+
 public class MIDIDestination: MIDIEndpoint {
     
     public convenience init?(named name: String) {
@@ -36,7 +52,7 @@ extension MIDIDestination {
     
 }
 
-extension MIDIDestination: MIDIPacketSender {
+extension MIDIDestination: MIDIPacketDestination {
     
     public func send(_ packet: MIDIPacket, via output: MIDIOutput) {
         do {

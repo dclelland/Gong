@@ -12,18 +12,6 @@
 import Foundation
 import CoreMIDI
 
-public protocol MIDIPacketSender {
-    
-    func send(_ packet: MIDIPacket, via output: MIDIOutput)
-    
-}
-
-public protocol MIDIPacketReceiver {
-    
-    func receive(_ packet: MIDIPacket)
-    
-}
-
 public struct MIDIPacket {
     
     public enum Message {

@@ -46,7 +46,7 @@ public class MIDIEntity: MIDIObject {
     
 }
 
-extension MIDIEntity: MIDIPacketSender {
+extension MIDIEntity: MIDIPacketDestination {
     
     public func send(_ packet: MIDIPacket, via output: MIDIOutput) {
         for destination in destinations {
@@ -56,7 +56,7 @@ extension MIDIEntity: MIDIPacketSender {
     
 }
 
-extension MIDIEntity: MIDIPacketReceiver {
+extension MIDIEntity: MIDIPacketSource {
     
     public func receive(_ packet: MIDIPacket) {
         for source in sources {
