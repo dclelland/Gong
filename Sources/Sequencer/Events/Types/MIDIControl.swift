@@ -8,26 +8,29 @@
 
 import Foundation
 
-public struct MIDIControlChange: MIDIChannelEvent, MIDITimeEvent, MIDIValueEvent {
+public struct MIDIControl: MIDIChannelEvent, MIDIParameterEvent {
     
     public var channel: MIDIChannel
     
-    public var controller: MIDIValue
+    public var controller: MIDIParameter
     
-    public var value: MIDIValue
+    public var value: MIDIParameter
     
     public var time: MIDITime
     
-    public init(channel: MIDIChannel = .zero, controller: MIDIValue, value: MIDIValue, time: MIDITime = .now) {
+    public var duration: MIDIDuration
+    
+    public init(channel: MIDIChannel = .zero, controller: MIDIParameter, value: MIDIParameter, time: MIDITime = .now, duration: MIDIDuration = .whole) {
         self.channel = channel
         self.controller = controller
         self.value = value
         self.time = time
+        self.duration = duration
     }
     
 }
 
-extension MIDIControlChange {
+extension MIDIControl {
     
     public var packets: [MIDIPacket] {
         return [

@@ -26,30 +26,10 @@ extension MIDIDevice {
 
 public protocol MIDIEvent {
     
-    var packets: [MIDIPacket] { get }
-    
-}
-
-public protocol MIDIChannelEvent: MIDIEvent {
-    
-    var channel: MIDIChannel { set get }
-    
-}
-
-public protocol MIDITimeEvent: MIDIEvent {
-    
     var time: MIDITime { set get }
-    
-}
-
-public protocol MIDIDurationEvent: MIDITimeEvent {
     
     var duration: MIDIDuration { set get }
     
-}
-
-public protocol MIDIValueEvent: MIDIEvent {
-    
-    var value: MIDIValue { set get }
+    var packets: [MIDIPacket] { get }
     
 }

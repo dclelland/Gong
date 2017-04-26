@@ -1,5 +1,5 @@
 //
-//  MIDIPitchBendChange.swift
+//  MIDIPitchBend.swift
 //  Gong
 //
 //  Created by Daniel Clelland on 25/04/17.
@@ -8,23 +8,26 @@
 
 import Foundation
 
-public struct MIDIPitchBendChange: MIDIChannelEvent, MIDITimeEvent, MIDIValueEvent {
-    
-    public var channel: MIDIChannel
-    
-    public var value: MIDIValue
+public struct MIDIPitchBend: MIDIChannelEvent, MIDIParameterEvent {
     
     public var time: MIDITime
     
-    public init(channel: MIDIChannel = .zero, value: MIDIValue = .center, time: MIDITime = .now) {
+    public var duration: MIDIDuration
+    
+    public var channel: MIDIChannel
+    
+    public var value: MIDIParameter
+    
+    public init(channel: MIDIChannel = .zero, value: MIDIParameter = .center, time: MIDITime = .now, duration: MIDIDuration = .whole) {
         self.channel = channel
         self.value = value
         self.time = time
+        self.duration = duration
     }
     
 }
 
-extension MIDIPitchBendChange {
+extension MIDIPitchBend {
     
     public var packets: [MIDIPacket] {
         return [

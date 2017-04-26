@@ -1,5 +1,5 @@
 //
-//  MIDIValue.swift
+//  MIDIParameter.swift
 //  Gong
 //
 //  Created by Daniel Clelland on 25/04/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct MIDIValue: MIDIInteger {
+public struct MIDIParameter: MIDIInteger {
     
     public let value: Value
     
@@ -18,11 +18,11 @@ public struct MIDIValue: MIDIInteger {
     
 }
 
-extension MIDIValue {
+extension MIDIParameter {
     
-    public static let min: MIDIValue = 0
-    public static let max: MIDIValue = 127
+    public static let min: MIDIParameter = 0
+    public static let max: MIDIParameter = 127
     
-    public static let center: MIDIValue = 64
+    public static let center: MIDIParameter = 64
     
 }

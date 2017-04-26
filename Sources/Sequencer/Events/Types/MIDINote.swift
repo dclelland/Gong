@@ -8,19 +8,19 @@
 
 import Foundation
 
-public struct MIDINote: MIDIChannelEvent, MIDIDurationEvent {
+public struct MIDINote: MIDIChannelEvent, MIDIKeyEvent {
     
     public var channel: MIDIChannel
     
     public var key: MIDIKey
     
-    public var velocity: MIDIValue
+    public var velocity: MIDIParameter
     
     public var time: MIDITime
     
     public var duration: MIDIDuration
     
-    public init(channel: MIDIChannel = .zero, key: MIDIKey, velocity: MIDIValue = .max, time: MIDITime = .now, duration: MIDIDuration = .whole) {
+    public init(channel: MIDIChannel = .zero, key: MIDIKey, velocity: MIDIParameter = .max, time: MIDITime = .now, duration: MIDIDuration = .whole) {
         self.channel = channel
         self.key = key
         self.velocity = velocity
