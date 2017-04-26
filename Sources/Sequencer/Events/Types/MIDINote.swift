@@ -8,7 +8,23 @@
 
 import Foundation
 
-public struct MIDINote: MIDIChannelEvent, MIDIKeyEvent {
+extension MIDIDevice {
+    
+    public func send(_ note: MIDINote, via output: MIDIPort<Output>? = MIDI.output) {
+        for packet in note.packets {
+            send(packet, via: output)
+        }
+    }
+    
+    public func send(_ notes: [MIDINote], via output: MIDIPort<Output>? = MIDI.output) {
+        for note in notes {
+            send(note, via: output)
+        }
+    }
+    
+}
+
+public struct MIDINote {
     
     public var channel: MIDIChannel
     
