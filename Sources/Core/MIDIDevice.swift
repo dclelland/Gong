@@ -66,21 +66,21 @@ extension MIDIDevice {
     
 }
 
-extension MIDIDevice: MIDIPacketReceiver {
-    
-    public func receive(_ packet: MIDIPacket) {
-        for entity in entities {
-            entity.receive(packet)
-        }
-    }
-    
-}
-
 extension MIDIDevice: MIDIPacketSender {
     
     public func send(_ packet: MIDIPacket, via output: MIDIOutput) {
         for entity in entities {
             entity.send(packet, via: output)
+        }
+    }
+    
+}
+
+extension MIDIDevice: MIDIPacketReceiver {
+    
+    public func receive(_ packet: MIDIPacket) {
+        for entity in entities {
+            entity.receive(packet)
         }
     }
     
