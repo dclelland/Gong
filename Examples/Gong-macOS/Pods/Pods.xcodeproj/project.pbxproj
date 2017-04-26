@@ -24,6 +24,7 @@
 		65ECC61E1EB09BFF00A4D272 /* MIDIOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ECC61D1EB09BFF00A4D272 /* MIDIOutput.swift */; };
 		65ECC6201EB09C0600A4D272 /* MIDISource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ECC61F1EB09C0600A4D272 /* MIDISource.swift */; };
 		65ECC6221EB09C0E00A4D272 /* MIDIDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ECC6211EB09C0E00A4D272 /* MIDIDestination.swift */; };
+		65ECC6261EB0B15100A4D272 /* Combinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ECC6251EB0B15100A4D272 /* Combinators.swift */; };
 		66D25638B5BD860FFBE0AE11D29D39A6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0F0DADD9515B19DC72FB0EDEA09DB4 /* Cocoa.framework */; };
 		66D3BFB112EDAC20A5B759EC4E8141AB /* MIDIDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D56512132CDA5B9594B418BEA463284 /* MIDIDouble.swift */; };
 		6773EF89BC9A416A9AECBFE83749A060 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E951E9B5936DC2A0AD0C18DD063EA251 /* CoreMIDI.framework */; };
@@ -97,6 +98,7 @@
 		65ECC61D1EB09BFF00A4D272 /* MIDIOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIOutput.swift; sourceTree = "<group>"; };
 		65ECC61F1EB09C0600A4D272 /* MIDISource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDISource.swift; sourceTree = "<group>"; };
 		65ECC6211EB09C0E00A4D272 /* MIDIDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIDestination.swift; sourceTree = "<group>"; };
+		65ECC6251EB0B15100A4D272 /* Combinators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Combinators.swift; sourceTree = "<group>"; };
 		6833B1475901E50E77A876993FAC7D98 /* Gong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68EF40B5A2336D5CBD74366DB3D0B0B0 /* Gong.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Gong.xcconfig; sourceTree = "<group>"; };
 		6C82E6986F02EC9605618D2983A16C30 /* Pods-Gong-macOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Gong-macOS.modulemap"; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			children = (
 				6CF82E6255971E74C5212A35023360CB /* MIDI.swift */,
 				61969EF00585721FBAE9B34D8595084D /* MIDINote.swift */,
+				65ECC6251EB0B15100A4D272 /* Combinators.swift */,
 				223827182470B1AE0B2BDAF74A703F2D /* Core */,
 				BE69100493FFE24047ACB6565D4DDEE6 /* Units */,
 			);
@@ -498,6 +501,7 @@
 				A49B39F8B6715A7D10AD597060FC8C94 /* MIDIInterval.swift in Sources */,
 				C526B52E6140D2CAD0128FB96C6CF521 /* MIDIKey.swift in Sources */,
 				06B40193F3F53D7091A8AD481746E6FE /* MIDINote.swift in Sources */,
+				65ECC6261EB0B15100A4D272 /* Combinators.swift in Sources */,
 				DD60DB9C28E495E8F07E73EE352BAA3A /* MIDINotification.swift in Sources */,
 				BA805707392CB0B942E9688AA96D98CC /* MIDIObject.swift in Sources */,
 				65ECC6221EB09C0E00A4D272 /* MIDIDestination.swift in Sources */,
