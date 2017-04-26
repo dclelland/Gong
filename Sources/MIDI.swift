@@ -9,15 +9,9 @@
 import Foundation
 import CoreMIDI
 
-public protocol MIDIReceiver: MIDINotificationReceiver, MIDIPacketReceiver { }
-
-public protocol MIDINotificationReceiver: class {
+public protocol MIDIObserver: class {
     
     func receive(_ notification: MIDINotification)
-    
-}
-
-public protocol MIDIPacketReceiver: class {
     
     func receive(_ packet: MIDIPacket, from source: MIDISource)
     
@@ -76,34 +70,14 @@ public struct MIDI {
         }
     }
     
-    public static func addReceiver(_ receiver: MIDIReceiver) {
-        addNotificationReceiver(receiver)
-        addPacketReceiver(receiver)
+    private static var observers = [MIDIObserver]()
+    
+    public static func addObserver(_ observer: MIDIObserver) {
+        observers.append(observer)
     }
     
-    public static func removeReceiver(_ receiver: MIDIReceiver) {
-        removeNotificationReceiver(receiver)
-        removePacketReceiver(receiver)
-    }
-    
-    private static var notificationReceivers = [MIDINotificationReceiver]()
-    
-    public static func addNotificationReceiver(_ receiver: MIDINotificationReceiver) {
-        notificationReceivers.append(receiver)
-    }
-    
-    public static func removeNotificationReceiver(_ receiver: MIDINotificationReceiver) {
-        notificationReceivers = notificationReceivers.filter { $0 !== receiver }
-    }
-    
-    private static var packetReceivers = [MIDIPacketReceiver]()
-    
-    public static func addPacketReceiver(_ receiver: MIDIPacketReceiver) {
-        packetReceivers.append(receiver)
-    }
-    
-    public static func removePacketReceiver(_ receiver: MIDIPacketReceiver) {
-        packetReceivers = packetReceivers.filter { $0 !== receiver }
+    public static func removeObserver(_ observer: MIDIObserver) {
+        observers = observers.filter { $0 !== observer }
     }
     
     private static func receive(_ notification: MIDINotification) {
@@ -120,14 +94,14 @@ public struct MIDI {
             print(error)
         }
         
-        for receiver in notificationReceivers {
-            receiver.receive(notification)
+        for observer in observers {
+            observer.receive(notification)
         }
     }
     
     private static func receive(_ packet: MIDIPacket, from source: MIDISource) {
-        for receiver in packetReceivers {
-            receiver.receive(packet, from: source)
+        for observer in observers {
+            observer.receive(packet, from: source)
         }
     }
 

@@ -31,13 +31,13 @@ class ViewController: NSViewController {
             button.sendAction(on: [.leftMouseDown, .leftMouseUp])
         }
         
-        MIDI.addReceiver(self)
+        MIDI.addObserver(self)
     }
     
     override func viewDidDisappear() {
         super.viewDidDisappear()
         
-        MIDI.removeReceiver(self)
+        MIDI.removeObserver(self)
     }
     
     @IBAction func buttonClick(_ button: NSButton) {
@@ -131,7 +131,7 @@ extension ViewController {
     
 }
 
-extension ViewController: MIDIReceiver {
+extension ViewController: MIDIObserver {
     
     func receive(_ notification: MIDINotification) {
         print(notification)
