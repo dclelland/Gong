@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import CoreAudio
+import AudioToolbox
 
 extension AUGraph {
     

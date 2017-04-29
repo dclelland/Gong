@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 
     ss.subspec 'Core' do |sss|
       sss.source_files = 'Sources/Audio/**/*.swift'
-      sss.frameworks = 'CoreAudio'
+      sss.frameworks = 'AudioToolbox'
     end
   end
 
