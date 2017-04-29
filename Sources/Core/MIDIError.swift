@@ -43,7 +43,7 @@ public struct MIDIError: Error {
         
         case notPermitted
         
-        case unknown
+        case unknown(status: OSStatus)
         
     }
     
@@ -93,7 +93,7 @@ extension MIDIError {
         case kMIDINotPermitted:
             self.init(.notPermitted, comment: comment)
         default:
-            self.init(.unknown, comment: comment)
+            self.init(.unknown(status: status), comment: comment)
         }
     }
     
@@ -109,7 +109,7 @@ extension MIDIError: CustomDebugStringConvertible {
 
 extension OSStatus {
     
-    public func check(_ comment: String) throws {
+    public func midiError(_ comment: String) throws {
         if self != noErr {
             throw MIDIError(status: self, comment: comment)
         }

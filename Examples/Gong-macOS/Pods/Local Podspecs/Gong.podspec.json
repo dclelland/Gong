@@ -1,7 +1,7 @@
 {
   "name": "Gong",
   "version": "0.1.0",
-  "summary": "Gong is a high level audio and MIDI library for iOS and macOS.",
+  "summary": "Gong is a MIDI library for iOS and macOS.",
   "homepage": "https://github.com/dclelland/Gong",
   "license": {
     "type": "MIT"

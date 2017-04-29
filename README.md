@@ -11,10 +11,10 @@ The library is built in two layers:
 
 More specifically: there is a [global `MIDI` singleton](/Sources/MIDI.swift), which:
 
-- Creates a `MIDIClient` and subscribes to `MIDINotification` events (e.g., MIDI device connections and disconnections).
+- Creates a `MIDIClient` and subscribes to `MIDINotice` events (e.g., MIDI device connections and disconnections).
 - Creates a `MIDIInput`, connects it to all available `MIDISource` instances and subscribes to `MIDIPacket` events (e.g., MIDI note or control change messages).
 - Creates a `MIDIOutput`, which you can use to send `MIDIPackets` to devices.
-- Implements an observer pattern so classes implementing the `MIDIObserver` protocol can recieve `MIDINotification` and `MIDIPacket` messages.
+- Implements an observer pattern so classes implementing the `MIDIObserver` protocol can recieve `MIDINotice` and `MIDIPacket` messages.
 - Wraps any CoreMIDI wrapper calls that might `throw` in `try ~ catch` blocks and prints any exceptions that get thrown.
 
 If you prefer to write this kind of thing yourself, the CoreMIDI wrapper can be installed independently of the opinionated code.
@@ -46,18 +46,18 @@ pod 'Gong/Events', '~> 0.1'
 #### Class hierarchy
 
 ```
-MIDIObject <------+--+ MIDIClient
-                  |
-                  +--+ MIDIPort <--------+--+ MIDIInput
-MIDINotification  |                      |
-                  |                      +--+ MIDIOutput
-MIDIPacket        +--+ MIDIDevice
-                  |
-                  +--+ MIDIEntity
-MIDIError         |
-                  +--+ MIDIEndpoint <----+--+ MIDISource
-                                         |
-                                         +--+ MIDIDestination
+MIDIObject <----+--+ MIDIClient
+                |
+                +--+ MIDIPort <------+--+ MIDIInput
+MIDINotice      |                    |
+                |                    +--+ MIDIOutput
+MIDIPacket      +--+ MIDIDevice
+                |
+                +--+ MIDIEntity
+MIDIError       |
+                +--+ MIDIEndpoint <--+--+ MIDISource
+                                     |
+                                     +--+ MIDIDestination
 ```
 
 #### Data flow
@@ -132,7 +132,7 @@ class ViewController: NSViewController {
 
 extension ViewController: MIDIObserver {
     
-    func receive(_ notification: MIDINotification) {
+    func receive(_ notification: MIDINotice) {
         print(notification)
     }
     

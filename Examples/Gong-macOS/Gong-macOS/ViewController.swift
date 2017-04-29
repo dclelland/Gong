@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import CoreMIDI
 import Gong
 
 class ViewController: NSViewController {
@@ -64,8 +65,8 @@ extension ViewController {
 
 extension ViewController: MIDIObserver {
     
-    func receive(_ notification: MIDINotification) {
-        print(notification)
+    func receive(_ notice: MIDINotice) {
+        print(notice)
     }
     
     func receive(_ packet: MIDIPacket, from source: MIDISource) {

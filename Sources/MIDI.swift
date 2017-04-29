@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import CoreMIDI
 
 public protocol MIDIObserver: class {
     
-    func receive(_ notification: MIDINotification)
+    func receive(_ notice: MIDINotice)
     
     func receive(_ packet: MIDIPacket, from source: MIDISource)
     
@@ -20,8 +21,8 @@ public struct MIDI {
     
     public static var client: MIDIClient? = {
         do {
-            return try MIDIClient(name: "Default client") { notification in
-                receive(notification)
+            return try MIDIClient(name: "Default client") { notice in
+                receive(notice)
             }
         } catch let error {
             print(error)
@@ -79,9 +80,9 @@ public struct MIDI {
         observers = observers.filter { $0 !== observer }
     }
     
-    private static func receive(_ notification: MIDINotification) {
+    private static func receive(_ notice: MIDINotice) {
         do {
-            switch notification {
+            switch notice {
             case .objectAdded(_, let source as MIDISource):
                 try input?.connect(source)
             case .objectRemoved(_, let source as MIDISource):
@@ -94,7 +95,7 @@ public struct MIDI {
         }
         
         for observer in observers {
-            observer.receive(notification)
+            observer.receive(notice)
         }
     }
     

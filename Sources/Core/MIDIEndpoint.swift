@@ -14,7 +14,7 @@ public class MIDIEndpoint: MIDIObject {
     public var entity: MIDIEntity? {
         do {
             var entityReference = MIDIEntityRef()
-            try MIDIEndpointGetEntity(reference, &entityReference).check("Getting entity for MIDIEndpoint")
+            try MIDIEndpointGetEntity(reference, &entityReference).midiError("Getting entity for MIDIEndpoint")
             return MIDIEntity(entityReference)
         } catch let error {
             print(error)

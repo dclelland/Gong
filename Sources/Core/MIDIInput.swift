@@ -13,11 +13,11 @@ public class MIDIInput: MIDIPort {
     
     public func connect(_ source: MIDISource) throws {
         let context = UnsafeMutablePointer.wrap(source.reference)
-        try MIDIPortConnectSource(reference, source.reference, context).check("Connecting MIDIInput to source")
+        try MIDIPortConnectSource(reference, source.reference, context).midiError("Connecting MIDIInput to source")
     }
     
     public func disconnect(_ source: MIDISource) throws {
-        try MIDIPortDisconnectSource(reference, source.reference).check("Disconnecting MIDIInput from source")
+        try MIDIPortDisconnectSource(reference, source.reference).midiError("Disconnecting MIDIInput from source")
     }
     
 }

@@ -127,7 +127,7 @@ public class MIDIObject {
     public static func find(with uniqueID: MIDIUniqueID, type: MIDIObjectType) -> MIDIObject? {
         var object = MIDIObjectRef()
         do {
-            try MIDIObjectFindByUniqueID(uniqueID, &object, nil).check("Finding MIDIObject with unique ID \"\(uniqueID)\"")
+            try MIDIObjectFindByUniqueID(uniqueID, &object, nil).midiError("Finding MIDIObject with unique ID \"\(uniqueID)\"")
             return MIDIObject(object)
         } catch let error {
             print(error)
@@ -137,51 +137,51 @@ public class MIDIObject {
     
     public func integer(for property: String) throws -> Int32 {
         var integer: Int32 = 0
-        try MIDIObjectGetIntegerProperty(reference, property as CFString, &integer).check("Getting integer for property \"\(property)\" on MIDIObject")
+        try MIDIObjectGetIntegerProperty(reference, property as CFString, &integer).midiError("Getting integer for property \"\(property)\" on MIDIObject")
         return integer
     }
     
     public func setInteger(_ integer: Int32, for property: String) throws {
-        try MIDIObjectSetIntegerProperty(reference, property as CFString, integer).check("Setting integer for property \"\(property)\" on MIDIObject")
+        try MIDIObjectSetIntegerProperty(reference, property as CFString, integer).midiError("Setting integer for property \"\(property)\" on MIDIObject")
     }
     
     public func string(for property: String) throws -> String {
         var string: Unmanaged<CFString>? = nil
-        try MIDIObjectGetStringProperty(reference, property as CFString, &string).check("Getting string for property \"\(property)\" on MIDIObject")
+        try MIDIObjectGetStringProperty(reference, property as CFString, &string).midiError("Getting string for property \"\(property)\" on MIDIObject")
         return string!.takeUnretainedValue() as String
     }
     
     public func setString(_ string: String, for property: CFString) throws {
-        try MIDIObjectSetStringProperty(reference, property as CFString, string as CFString).check("Setting string for property \"\(property)\" on MIDIObject")
+        try MIDIObjectSetStringProperty(reference, property as CFString, string as CFString).midiError("Setting string for property \"\(property)\" on MIDIObject")
     }
     
     public func data(for property: String) throws -> Data {
         var data: Unmanaged<CFData>? = nil
-        try MIDIObjectGetDataProperty(reference, property as CFString, &data).check("Getting data for property \"\(property)\" on MIDIObject")
+        try MIDIObjectGetDataProperty(reference, property as CFString, &data).midiError("Getting data for property \"\(property)\" on MIDIObject")
         return data!.takeUnretainedValue() as Data
     }
     
     public func setData(_ data: Data, for property: String) throws {
-        try MIDIObjectSetDataProperty(reference, property as CFString, data as CFData).check("Setting data for property \"\(property)\" on MIDIObject")
+        try MIDIObjectSetDataProperty(reference, property as CFString, data as CFData).midiError("Setting data for property \"\(property)\" on MIDIObject")
     }
     
     public func dictionary(for property: String) throws -> NSDictionary {
         var dictionary: Unmanaged<CFDictionary>? = nil
-        try MIDIObjectGetDictionaryProperty(reference, property as CFString, &dictionary).check("Getting dictionary for property \"\(property)\" on MIDIObject")
+        try MIDIObjectGetDictionaryProperty(reference, property as CFString, &dictionary).midiError("Getting dictionary for property \"\(property)\" on MIDIObject")
         return dictionary!.takeUnretainedValue() as NSDictionary
     }
     
     public func setDictionary(_ dictionary: NSDictionary, for property: String) throws {
-        try MIDIObjectSetDictionaryProperty(reference, property as CFString, dictionary as CFDictionary).check("Setting dictionary for property \"\(property)\" on MIDIObject")
+        try MIDIObjectSetDictionaryProperty(reference, property as CFString, dictionary as CFDictionary).midiError("Setting dictionary for property \"\(property)\" on MIDIObject")
     }
     
     public func removeProperty(_ property: String) throws {
-        try MIDIObjectRemoveProperty(reference, property as CFString).check("Removing property \"\(property)\" from MIDIObject")
+        try MIDIObjectRemoveProperty(reference, property as CFString).midiError("Removing property \"\(property)\" from MIDIObject")
     }
     
     public func properties(deep: Bool = false) throws -> NSDictionary {
         var propertyList: Unmanaged<CFPropertyList>? = nil
-        try MIDIObjectGetProperties(reference, &propertyList, deep).check("Getting properties for MIDIObject")
+        try MIDIObjectGetProperties(reference, &propertyList, deep).midiError("Getting properties for MIDIObject")
         return propertyList!.takeUnretainedValue() as! NSDictionary
     }
     
