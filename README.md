@@ -2,9 +2,32 @@
 
 ### Todo
 
+Notes:
+
+- monoCat, polyCat
+    - a 'then' function, a 'next', or 'during' function (simultaneous and not simultaneous)
+        - probably takes 'after' as an argument
+    - then catMono is just reduce([], then)
+- remove type system (need to solve key/interval name clash issue)
+    - Chords and Scales are just key sequences (majorChord, majorScale)
+    - MIDIKey is just an Int or whatever
+    - MIDIInterval
+- Simple file structure:
+    - MIDI
+    - MIDINote
+    - MIDIConstants
+    - MIDIFunctions
+- Fix name overloading
+    - MIDIPacketEvent
+    - MIDINotificationEvent
+- bring back event model
+    - MIDIControl, MIDIPitchBend, MIDIRest
+    - These support ramps with rates, different curve types etc
+    - copy MIDIWord thing from audioKit
+- Publish Gong properly
+
 Now:
 
-- Fix timestamp issue
 - Test out all the functions
 - Do documentation
 - Try writing a sequencer on top
