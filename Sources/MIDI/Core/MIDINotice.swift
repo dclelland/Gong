@@ -29,7 +29,7 @@ public enum MIDINotice {
 
 extension MIDINotice {
     
-    internal init(_ notificationPointer: UnsafePointer<MIDINotification>) {
+    public init(_ notificationPointer: UnsafePointer<MIDINotification>) {
         let notification = notificationPointer.pointee
         switch notification.messageID {
         case .msgSetupChanged:

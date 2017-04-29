@@ -72,7 +72,7 @@ extension ViewController: MIDIObserver {
     func receive(_ packet: MIDIPacket, from source: MIDISource) {
         switch packet.message {
         case .noteOn, .noteOff, .controlChange, .pitchBendChange:
-            print(packet, source)
+            print(packet.message, source)
         default:
             break
         }
