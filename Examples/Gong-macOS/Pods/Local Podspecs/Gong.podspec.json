@@ -1,7 +1,7 @@
 {
   "name": "Gong",
   "version": "0.1.0",
-  "summary": "Gong is a high level audio and MIDI library for iOS and macOS.",
+  "summary": "Gong is a MIDI library for iOS and macOS.",
   "homepage": "https://github.com/dclelland/Gong",
   "license": {
     "type": "MIT"
@@ -13,25 +13,41 @@
     "git": "https://github.com/dclelland/Gong.git",
     "tag": "0.1.0"
   },
-  "source_files": "Sources/*.swift",
   "platforms": {
     "ios": "8.0",
     "osx": "10.10"
   },
   "subspecs": [
     {
-      "name": "Core",
-      "source_files": "Sources/Core/**/*.swift",
-      "frameworks": "CoreMIDI"
+      "name": "Audio",
+      "source_files": "Sources/Audio/*.swift",
+      "subspecs": [
+        {
+          "name": "Core",
+          "source_files": "Sources/Audio/**/*.swift",
+          "frameworks": "CoreAudio"
+        }
+      ]
     },
     {
-      "name": "Events",
-      "source_files": "Sources/Events/**/*.swift",
-      "dependencies": {
-        "Gong/Core": [
+      "name": "MIDI",
+      "source_files": "Sources/MIDI/*.swift",
+      "subspecs": [
+        {
+          "name": "Core",
+          "source_files": "Sources/MIDI/Core/**/*.swift",
+          "frameworks": "CoreMIDI"
+        },
+        {
+          "name": "Events",
+          "source_files": "Sources/MIDI/Events/**/*.swift",
+          "dependencies": {
+            "Gong/MIDI/Core": [
 
-        ]
-      }
+            ]
+          }
+        }
+      ]
     }
   ]
 }

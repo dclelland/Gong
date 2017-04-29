@@ -1,10 +1,16 @@
 PODS:
   - Gong (0.1.0):
-    - Gong/Core (= 0.1.0)
-    - Gong/Events (= 0.1.0)
-  - Gong/Core (0.1.0)
-  - Gong/Events (0.1.0):
-    - Gong/Core
+    - Gong/Audio (= 0.1.0)
+    - Gong/MIDI (= 0.1.0)
+  - Gong/Audio (0.1.0):
+    - Gong/Audio/Core (= 0.1.0)
+  - Gong/Audio/Core (0.1.0)
+  - Gong/MIDI (0.1.0):
+    - Gong/MIDI/Core (= 0.1.0)
+    - Gong/MIDI/Events (= 0.1.0)
+  - Gong/MIDI/Core (0.1.0)
+  - Gong/MIDI/Events (0.1.0):
+    - Gong/MIDI/Core
 
 DEPENDENCIES:
   - Gong (from `../../`)
@@ -14,7 +20,7 @@ EXTERNAL SOURCES:
     :path: ../../
 
 SPEC CHECKSUMS:
-  Gong: 4434c479fa3c144829e6d7bd3d1d9f8a6165eca4
+  Gong: 535a0ab468ba323f23bd256f4beb379e55c5270d
 
 PODFILE CHECKSUM: e52aaa1c46b54d4094c9ec8534850e79782eb182
 
