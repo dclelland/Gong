@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreMIDI
 
 public protocol MIDIObserver: class {
     

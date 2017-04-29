@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		655A182E1EB4514900A6E6B7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655A182C1EB4514900A6E6B7 /* Constants.swift */; };
+		655A182F1EB4514900A6E6B7 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655A182D1EB4514900A6E6B7 /* Functions.swift */; };
 		65BE84D11EA78E0C00B1B69D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BE84D01EA78E0C00B1B69D /* AppDelegate.swift */; };
 		65BE84D31EA78E0C00B1B69D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BE84D21EA78E0C00B1B69D /* ViewController.swift */; };
 		65BE84D51EA78E0C00B1B69D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65BE84D41EA78E0C00B1B69D /* Assets.xcassets */; };
@@ -16,6 +18,8 @@
 
 /* Begin PBXFileReference section */
 		5C63EF68DE31917A408BEEE2 /* Pods-Gong-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gong-macOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Gong-macOS/Pods-Gong-macOS.debug.xcconfig"; sourceTree = "<group>"; };
+		655A182C1EB4514900A6E6B7 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		655A182D1EB4514900A6E6B7 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		65BE84CD1EA78E0C00B1B69D /* Gong-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gong-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65BE84D01EA78E0C00B1B69D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65BE84D21EA78E0C00B1B69D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 			children = (
 				65BE84D01EA78E0C00B1B69D /* AppDelegate.swift */,
 				65BE84D21EA78E0C00B1B69D /* ViewController.swift */,
+				655A182C1EB4514900A6E6B7 /* Constants.swift */,
+				655A182D1EB4514900A6E6B7 /* Functions.swift */,
 				65BE84D41EA78E0C00B1B69D /* Assets.xcassets */,
 				65BE84D61EA78E0C00B1B69D /* Main.storyboard */,
 				65BE84D91EA78E0C00B1B69D /* Info.plist */,
@@ -208,8 +214,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				655A182E1EB4514900A6E6B7 /* Constants.swift in Sources */,
 				65BE84D31EA78E0C00B1B69D /* ViewController.swift in Sources */,
 				65BE84D11EA78E0C00B1B69D /* AppDelegate.swift in Sources */,
+				655A182F1EB4514900A6E6B7 /* Functions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

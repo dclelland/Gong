@@ -110,14 +110,11 @@ extension ViewController {
             return
         }
         
-        let sequence = (0..<5).map { index in
-            return MIDINote(
-                key: key + index,
-                time: Double(index)
-            )
-        }
+        let scale = Gong_macOS.transpose(up: key) <^> majorScale
         
-//        let transposed = sequence.transposed(up: .P5).chorded(with: .maj)
+        let sequence = sequential(scale)
+        
+//        let chords = parallel(majorTriad) <*> sequence
         
         device.send(sequence, via: output)
     }
