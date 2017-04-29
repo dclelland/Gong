@@ -52,7 +52,7 @@ public struct MIDIPacket {
         
         case channelPressure(channel: UInt8, pressure: UInt8)
         
-        case pitchBendChange(channel: UInt8, leastSignificantBits: UInt8, mostSignificantBits: UInt8)
+        case pitchBendChange(channel: UInt8, value: UInt16)
         
         public enum SystemCommonType {
             
@@ -60,7 +60,7 @@ public struct MIDIPacket {
             
             case midiTimeCodeQuarterFrame(type: UInt8, values: UInt8)
             
-            case songPositionPointer(leastSignificantBits: UInt8, mostSignificantBits: UInt8)
+            case songPositionPointer(value: UInt16)
             
             case songSelect(song: UInt8)
             
@@ -88,8 +88,6 @@ public struct MIDIPacket {
         
         case systemRealTime(type: SystemRealTimeType)
         
-        case unknown
-        
     }
     
     public let message: Message
@@ -110,7 +108,7 @@ public struct MIDIPacket {
 
 extension MIDIPacket {
     
-    internal init(_ packet: CoreMIDI.MIDIPacket) {
+    internal init?(_ packet: CoreMIDI.MIDIPacket) {
         switch packet.status {
         case 8:
             self.init(.noteOff(channel: packet.channel, key: packet.data1, velocity: packet.data2), timeStamp: packet.timeStamp)
@@ -141,22 +139,22 @@ extension MIDIPacket {
             case (127, 0):
                 self.init(.channelMode(channel: packet.channel, type: .polyModeOn), timeStamp: packet.timeStamp)
             default:
-                self.init(.unknown, timeStamp: packet.timeStamp)
+                return nil
             }
         case 12:
             self.init(.programChange(channel: packet.channel, number: packet.data1), timeStamp: packet.timeStamp)
         case 13:
             self.init(.channelPressure(channel: packet.channel, pressure: packet.data1), timeStamp: packet.timeStamp)
         case 14:
-            self.init(.pitchBendChange(channel: packet.channel, leastSignificantBits: packet.data1, mostSignificantBits: packet.data2), timeStamp: packet.timeStamp)
+            self.init(.pitchBendChange(channel: packet.channel, value: UInt16(mostSignificantSevenBits: packet.data2, leastSignificantSevenBits: packet.data1)), timeStamp: packet.timeStamp)
         case 15:
             switch packet.channel {
             case 0:
                 self.init(.systemCommon(type: .systemExclusive), timeStamp: packet.timeStamp)
             case 1:
-                self.init(.systemCommon(type: .midiTimeCodeQuarterFrame(type: packet.data1 & 0b01110000 >> 4, values: packet.data1 & 0b00001111)), timeStamp: packet.timeStamp)
+                self.init(.systemCommon(type: .midiTimeCodeQuarterFrame(type: packet.data1.mostSignificantFourBits, values: packet.data1.leastSignificantFourBits)), timeStamp: packet.timeStamp)
             case 2:
-                self.init(.systemCommon(type: .songPositionPointer(leastSignificantBits: packet.data1, mostSignificantBits: packet.data2)), timeStamp: packet.timeStamp)
+                self.init(.systemCommon(type: .songPositionPointer(value: UInt16(mostSignificantSevenBits: packet.data2, leastSignificantSevenBits: packet.data1))), timeStamp: packet.timeStamp)
             case 3:
                 self.init(.systemCommon(type: .songSelect(song: packet.data1)), timeStamp: packet.timeStamp)
             case 5:
@@ -174,10 +172,10 @@ extension MIDIPacket {
             case 15:
                 self.init(.systemRealTime(type: .reset), timeStamp: packet.timeStamp)
             default:
-                self.init(.unknown, timeStamp: packet.timeStamp)
+                return nil
             }
         default:
-            self.init(.unknown, timeStamp: packet.timeStamp)
+            return nil
         }
     }
     
@@ -189,17 +187,18 @@ extension CoreMIDI.MIDIPacket {
         self.init()
         self.timeStamp = timeStamp
         self.length = length
+        self.status = status
         self.data.0 = (status << 4) | (channel & 0b00001111)
     }
     
     internal init(timeStamp: MIDITimeStamp, length: UInt16 = 2, status: UInt8, channel: UInt8, data1: UInt8) {
         self.init(timeStamp: timeStamp, length: length, status: status, channel: channel)
-        self.data.1 = data1 & 0b01111111
+        self.data1 = data1.leastSignificantSevenBits
     }
     
     internal init(timeStamp: MIDITimeStamp, length: UInt16 = 3, status: UInt8, channel: UInt8, data1: UInt8, data2: UInt8) {
         self.init(timeStamp: timeStamp, length: length, status: status, channel: channel, data1: data1)
-        self.data.2 = data2 & 0b01111111
+        self.data2 = data2.leastSignificantSevenBits
     }
     
     internal init(_ packet: MIDIPacket) {
@@ -237,16 +236,16 @@ extension CoreMIDI.MIDIPacket {
             self.init(timeStamp: packet.timeStamp, status: 12, channel: channel, data1: number)
         case .channelPressure(let channel, let pressure):
             self.init(timeStamp: packet.timeStamp, status: 13, channel: channel, data1: pressure)
-        case .pitchBendChange(let channel, let leastSignificantBits, let mostSignificantBits):
-            self.init(timeStamp: packet.timeStamp, status: 14, channel: channel, data1: leastSignificantBits, data2: mostSignificantBits)
+        case .pitchBendChange(let channel, let value):
+            self.init(timeStamp: packet.timeStamp, status: 14, channel: channel, data1: value.leastSignificantSevenBits, data2: value.mostSignificantSevenBits)
         case .systemCommon(let type):
             switch type {
             case .systemExclusive:
                 self.init(timeStamp: packet.timeStamp, status: 15, channel: 0)
             case .midiTimeCodeQuarterFrame(let type, let values):
-                self.init(timeStamp: packet.timeStamp, status: 15, channel: 1, data1: (type << 4) | (values & 0b00001111))
-            case .songPositionPointer(let leastSignificantBits, let mostSignificantBits):
-                self.init(timeStamp: packet.timeStamp, status: 15, channel: 2, data1: leastSignificantBits, data2: mostSignificantBits)
+                self.init(timeStamp: packet.timeStamp, status: 15, channel: 1, data1: UInt8(mostSignificantFourBits: type, leastSignificantFourBits: values))
+            case .songPositionPointer(let value):
+                self.init(timeStamp: packet.timeStamp, status: 15, channel: 2, data1: value.leastSignificantSevenBits, data2: value.mostSignificantSevenBits)
             case .songSelect(let song):
                 self.init(timeStamp: packet.timeStamp, status: 15, channel: 3, data1: song)
             case .tuneRequest:
@@ -267,8 +266,6 @@ extension CoreMIDI.MIDIPacket {
             case .reset:
                 self.init(timeStamp: packet.timeStamp, status: 15, channel: 15)
             }
-        default:
-            self.init(timeStamp: packet.timeStamp, status: 0, channel: 0)
         }
     }
     
@@ -287,7 +284,7 @@ extension CoreMIDI.MIDIPacketList {
                 packets.append(MIDIPacketNext(&packet).pointee)
             }
         }
-        return packets.map(MIDIPacket.init)
+        return packets.flatMap(MIDIPacket.init)
     }
     
 }
@@ -295,19 +292,113 @@ extension CoreMIDI.MIDIPacketList {
 extension CoreMIDI.MIDIPacket {
     
     internal var status: UInt8 {
-        return data.0 >> 4
+        set {
+            data.0.mostSignificantFourBits = newValue
+        }
+        get {
+            return data.0.mostSignificantFourBits
+        }
     }
     
     internal var channel: UInt8 {
-        return data.0 & 0b00001111
+        set {
+            data.0.leastSignificantFourBits = newValue
+        }
+        get {
+            return data.0.leastSignificantFourBits
+        }
     }
     
     internal var data1: UInt8 {
-        return data.1 & 0b01111111
+        set {
+            data.1.leastSignificantSevenBits = newValue
+        }
+        get {
+            return data.1.leastSignificantSevenBits
+        }
     }
     
     internal var data2: UInt8 {
-        return data.2 & 0b01111111
+        set {
+            data.2.leastSignificantSevenBits = newValue
+        }
+        get {
+            return data.2.leastSignificantSevenBits
+        }
     }
 
+}
+
+extension UInt8 {
+    
+    fileprivate init(leastSignificantSevenBits: UInt8) {
+        self.init()
+        self.leastSignificantSevenBits = leastSignificantSevenBits
+    }
+    
+    fileprivate var leastSignificantSevenBits: UInt8 {
+        set {
+            self = (self & 0b1000_0000) | (newValue & 0b111_1111)
+        }
+        get {
+            return self & 0b0111_1111
+        }
+    }
+    
+}
+
+extension UInt8 {
+    
+    fileprivate init(mostSignificantFourBits: UInt8, leastSignificantFourBits: UInt8) {
+        self.init()
+        self.mostSignificantFourBits = mostSignificantFourBits
+        self.leastSignificantFourBits = leastSignificantFourBits
+    }
+    
+    fileprivate var mostSignificantFourBits: UInt8 {
+        set {
+            self = (self & 0b0000_1111) | ((newValue << 4) & 0b1111_0000)
+        }
+        get {
+            return (self & 0b1111_0000) >> 4
+        }
+    }
+    
+    fileprivate var leastSignificantFourBits: UInt8 {
+        set {
+            self = (self & 0b1111_0000) | (newValue & 0b0000_1111)
+        }
+        get {
+            return self & 0b0000_1111
+        }
+    }
+
+}
+
+extension UInt16 {
+    
+    fileprivate init(mostSignificantSevenBits: UInt8, leastSignificantSevenBits: UInt8) {
+        self.init()
+        self.mostSignificantSevenBits = mostSignificantSevenBits
+        self.leastSignificantSevenBits = leastSignificantSevenBits
+    }
+    
+    fileprivate var mostSignificantSevenBits: UInt8 {
+        set {
+            self = (self & 0b0000_0000_0111_1111) | ((UInt16(newValue) << 7) & 0b0011_1111_1000_0000)
+        }
+        get {
+            return UInt8((self & 0b0011_1111_1000_0000) >> 7)
+        }
+    }
+    
+    fileprivate var leastSignificantSevenBits: UInt8 {
+        set {
+            self = (self & 0b0011_1111_1000_0000) | (UInt16(newValue) & 0b0000_0000_0111_1111)
+        }
+        get {
+            return UInt8(self & 0b0000_0000_0111_1111)
+        }
+    }
+    
 }

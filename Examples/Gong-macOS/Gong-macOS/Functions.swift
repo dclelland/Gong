@@ -38,7 +38,7 @@ extension Int: HasKey {
 
 public func sequential(_ keys: [HasKey]) -> [MIDINote] {
     return keys.enumerated().map { (index, keyHaver) in
-        return MIDINote(key: keyHaver.key, time: Double(index))
+        return MIDINote(key: keyHaver.key, delay: Double(index))
     }
 }
 
