@@ -331,12 +331,12 @@ extension CoreMIDI.MIDIPacket {
 
 extension UInt8 {
     
-    fileprivate init(leastSignificantSevenBits: UInt8) {
+    internal init(leastSignificantSevenBits: UInt8) {
         self.init()
         self.leastSignificantSevenBits = leastSignificantSevenBits
     }
     
-    fileprivate var leastSignificantSevenBits: UInt8 {
+    internal var leastSignificantSevenBits: UInt8 {
         set {
             self = (self & 0b1000_0000) | (newValue & 0b111_1111)
         }
@@ -349,13 +349,13 @@ extension UInt8 {
 
 extension UInt8 {
     
-    fileprivate init(mostSignificantFourBits: UInt8, leastSignificantFourBits: UInt8) {
+    internal init(mostSignificantFourBits: UInt8, leastSignificantFourBits: UInt8) {
         self.init()
         self.mostSignificantFourBits = mostSignificantFourBits
         self.leastSignificantFourBits = leastSignificantFourBits
     }
     
-    fileprivate var mostSignificantFourBits: UInt8 {
+    internal var mostSignificantFourBits: UInt8 {
         set {
             self = (self & 0b0000_1111) | ((newValue << 4) & 0b1111_0000)
         }
@@ -364,7 +364,7 @@ extension UInt8 {
         }
     }
     
-    fileprivate var leastSignificantFourBits: UInt8 {
+    internal var leastSignificantFourBits: UInt8 {
         set {
             self = (self & 0b1111_0000) | (newValue & 0b0000_1111)
         }
@@ -377,13 +377,13 @@ extension UInt8 {
 
 extension UInt16 {
     
-    fileprivate init(mostSignificantSevenBits: UInt8, leastSignificantSevenBits: UInt8) {
+    internal init(mostSignificantSevenBits: UInt8, leastSignificantSevenBits: UInt8) {
         self.init()
         self.mostSignificantSevenBits = mostSignificantSevenBits
         self.leastSignificantSevenBits = leastSignificantSevenBits
     }
     
-    fileprivate var mostSignificantSevenBits: UInt8 {
+    internal var mostSignificantSevenBits: UInt8 {
         set {
             self = (self & 0b0000_0000_0111_1111) | ((UInt16(newValue) << 7) & 0b0011_1111_1000_0000)
         }
@@ -392,7 +392,7 @@ extension UInt16 {
         }
     }
     
-    fileprivate var leastSignificantSevenBits: UInt8 {
+    internal var leastSignificantSevenBits: UInt8 {
         set {
             self = (self & 0b0011_1111_1000_0000) | (UInt16(newValue) & 0b0000_0000_0111_1111)
         }
