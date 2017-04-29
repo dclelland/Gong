@@ -15,7 +15,7 @@ More specifically: there is a [global `MIDI` singleton](/Sources/MIDI.swift), wh
 - Creates a `MIDIInput`, connects it to all available `MIDISource` instances and subscribes to `MIDIPacket` events (e.g., MIDI note or control change messages).
 - Creates a `MIDIOutput`, which you can use to send `MIDIPackets` to devices.
 - Implements an observer pattern so classes implementing the `MIDIObserver` protocol can recieve `MIDINotification` and `MIDIPacket` messages.
-- Wraps calls that might `throw` in `try ~ catch` blocks and prints any exceptions that get thrown by the CoreMIDI wrapper.
+- Wraps any CoreMIDI wrapper calls that might `throw` in `try ~ catch` blocks and prints any exceptions that get thrown.
 
 If you prefer to write this kind of thing yourself, the CoreMIDI wrapper can be installed independently of the opinionated code.
 
