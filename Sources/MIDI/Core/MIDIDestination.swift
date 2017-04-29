@@ -31,7 +31,7 @@ public class MIDIDestination: MIDIEndpoint {
 extension MIDIDestination {
     
     public func flushOutput() throws {
-        try MIDIFlushOutput(reference).check("Flushing MIDIDestination output")
+        try MIDIFlushOutput(reference).midiError("Flushing MIDIDestination output")
     }
     
 }

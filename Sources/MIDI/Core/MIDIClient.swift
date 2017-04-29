@@ -27,7 +27,7 @@ public class MIDIClient: MIDIObject {
             callback(MIDINotification(notificationPointer))
         }
         
-        try MIDIClientCreate(name as CFString, procedure, context, &clientReference).check("Creating MIDIClient with name \"\(name)\"")
+        try MIDIClientCreate(name as CFString, procedure, context, &clientReference).midiError("Creating MIDIClient with name \"\(name)\"")
         self.init(clientReference)
     }
     
@@ -49,19 +49,19 @@ public class MIDIClient: MIDIObject {
             }
         }
         
-        try MIDIInputPortCreate(reference, name as CFString, procedure, context, &portReference).check("Creating input port on MIDIClient with name \"\(name)\"")
+        try MIDIInputPortCreate(reference, name as CFString, procedure, context, &portReference).midiError("Creating input port on MIDIClient with name \"\(name)\"")
         return MIDIInput(portReference)
     }
     
     public func createOutput(name: String) throws -> MIDIOutput {
         var portReference = MIDIPortRef()
-        try MIDIOutputPortCreate(reference, name as CFString, &portReference).check("Creating output port on MIDIClient with name \"\(name)\"")
+        try MIDIOutputPortCreate(reference, name as CFString, &portReference).midiError("Creating output port on MIDIClient with name \"\(name)\"")
         return MIDIOutput(portReference)
     }
     
     public func createSource(name: String) throws -> MIDISource {
         var endpointReference = MIDIEndpointRef()
-        try MIDISourceCreate(reference, name as CFString, &endpointReference).check("Creating source on MIDIClient")
+        try MIDISourceCreate(reference, name as CFString, &endpointReference).midiError("Creating source on MIDIClient")
         return MIDISource(endpointReference)
     }
     
@@ -83,12 +83,12 @@ public class MIDIClient: MIDIObject {
             }
         }
         
-        try MIDIDestinationCreate(reference, name as CFString, procedure, context, &endpointReference).check("Creating destination on MIDIClient")
+        try MIDIDestinationCreate(reference, name as CFString, procedure, context, &endpointReference).midiError("Creating destination on MIDIClient")
         return MIDIDestination(endpointReference)
     }
     
     public func dispose() throws {
-        try MIDIClientDispose(reference).check("Disposing of MIDIClient")
+        try MIDIClientDispose(reference).midiError("Disposing of MIDIClient")
     }
 
 }
@@ -96,11 +96,11 @@ public class MIDIClient: MIDIObject {
 extension MIDIClient {
     
     public static func sendSystemExclusiveEvent(request: UnsafeMutablePointer<MIDISysexSendRequest>) throws {
-        try MIDISendSysex(request).check("Sending system exclusive event")
+        try MIDISendSysex(request).midiError("Sending system exclusive event")
     }
     
     public static func restart() throws {
-        try MIDIRestart().check("Restarting MIDI")
+        try MIDIRestart().midiError("Restarting MIDI")
     }
     
 }

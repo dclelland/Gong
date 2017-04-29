@@ -109,7 +109,7 @@ extension MIDIError: CustomDebugStringConvertible {
 
 extension OSStatus {
     
-    public func check(_ comment: String) throws {
+    public func midiError(_ comment: String) throws {
         if self != noErr {
             throw MIDIError(status: self, comment: comment)
         }

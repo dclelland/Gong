@@ -13,7 +13,7 @@ public class MIDIOutput: MIDIPort {
     
     public func send(_ packet: MIDIPacket, to destination: MIDIDestination) throws {
         var packetList = MIDIPacketList(packet)
-        try MIDISend(reference, destination.reference, &packetList).check("Sending packets to destination with MIDIOutput")
+        try MIDISend(reference, destination.reference, &packetList).midiError("Sending packets to destination with MIDIOutput")
     }
     
 }

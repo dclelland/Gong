@@ -32,7 +32,7 @@ extension MIDISource {
     
     public func received(_ packet: MIDIPacket) throws {
         var packetList = MIDIPacketList(packet)
-        try MIDIReceived(reference, &packetList).check("Receiving packets with MIDISource")
+        try MIDIReceived(reference, &packetList).midiError("Receiving packets with MIDISource")
     }
     
 }

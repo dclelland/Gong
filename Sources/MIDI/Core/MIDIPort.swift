@@ -12,7 +12,7 @@ import CoreMIDI
 public class MIDIPort: MIDIObject {
     
     public func dispose() throws {
-        try MIDIPortDispose(reference).check("Disposing of MIDIPort")
+        try MIDIPortDispose(reference).midiError("Disposing of MIDIPort")
     }
     
 }
