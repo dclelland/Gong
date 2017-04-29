@@ -7,7 +7,7 @@
 Pod::Spec.new do |s|
   s.name = "Gong"
   s.version = "0.1.0"
-  s.summary = "Gong is a high level audio and MIDI library for iOS and macOS."
+  s.summary = "Gong is a MIDI library for iOS and macOS."
   s.homepage = "https://github.com/dclelland/Gong"
   s.license = { :type => 'MIT' }
   s.author = { "Daniel Clelland" => "daniel.clelland@gmail.com" }

@@ -4,9 +4,18 @@ Gong is a simple library for sending and recieving MIDI messages to and from vir
 
 Gong aims to provide a fairly transparent Swift interface to Apple's CoreMIDI library.
 
-[The files in the `/Sources/Core` directory](/Sources/Core) are unopinionated, simple wrappers around CoreMIDI's C APIs.
+[The files in the `/Sources/Core` directory](/Sources/Core) are simple, unopinionated wrappers around CoreMIDI's C APIs.
 
-[The files outside of `/Sources/Core`](/Sources) are generally more opinionated, but let you perform common tasks with a minimum of setup. If you prefer to write this kind of thing yourself, the CoreMIDI wrapper can be installed independently of the opinionated code.
+[The files outside of `/Sources/Core`](/Sources) are generally more opinionated, but let you perform common tasks with a minimum of setup.
+
+More specifically: there is a [global `MIDI` singleton](/Sources/MIDI.swift), which:
+
+- Creates a `MIDIClient` and subscribes to `MIDINotification` events (e.g., MIDI device connections and disconnections).
+- Creates a `MIDIInput`, connects it to all available `MIDISource` instances and subscribes to `MIDIPacket` events (e.g., MIDI note or control change messages).
+- Creates a `MIDIOutput`, which you can use to send `MIDIPackets` to devices.
+- Implements an observer pattern so classes implementing the `MIDIObserver` protocol can recieve `MIDINotification` and `MIDIPacket` messages.
+
+If you prefer to write this kind of thing yourself, the CoreMIDI wrapper can be installed independently of the opinionated code.
 
 An [example project](/Examples/Gong-macOS) is provided to help you get started.
 
@@ -28,6 +37,24 @@ Just the CoreMIDI wrapper, plus `MIDINote` events:
 
 ```ruby
 pod 'Gong/Events', '~> 0.1'
+```
+
+### Class hierarchy:
+
+```
+MIDIObject <-----+--+ MIDIClient
+                 |
+                 +--+ MIDIPort <-------+--+ MIDIInput
+MIDINotification |                     |
+                 |                     +--+ MIDIOutput
+MIDIPacket       +--+ MIDIDevice
+                 |
+                 +--+ MIDIEntity
+MIDIError        |
+                 +--+ MIDIEndpoint <---+--+ MIDISource
+                                       |
+                                       +--+ MIDIDestination
+
 ```
 
 ### Common tasks:
