@@ -39,21 +39,40 @@ Just the CoreMIDI wrapper, plus `MIDINote` events:
 pod 'Gong/Events', '~> 0.1'
 ```
 
-### Class hierarchy:
+### Core class hierarchy:
 
 ```
-MIDIObject <-----+--+ MIDIClient
+MIDIObject <-----+--- MIDIClient
                  |
-                 +--+ MIDIPort <-------+--+ MIDIInput
+                 +--- MIDIPort <-------+--- MIDIInput
 MIDINotification |                     |
-                 |                     +--+ MIDIOutput
-MIDIPacket       +--+ MIDIDevice
+                 |                     +--- MIDIOutput
+MIDIPacket       +--- MIDIDevice
                  |
-                 +--+ MIDIEntity
+                 +--- MIDIEntity
 MIDIError        |
-                 +--+ MIDIEndpoint <---+--+ MIDISource
+                 +--- MIDIEndpoint <---+--- MIDISource
                                        |
-                                       +--+ MIDIDestination
+                                       +--- MIDIDestination
+```
+
+### Core class architecture:
+
+```
+MIDIClient                                 MIDIDevice
+    |                                          |
+ creates                                      owns
+    |                                          |
+    |                                          v
+    |                                      MIDIEntity
+    |                                          |
+    |                                         owns
+    |                                          |
+    v          receives packets from           v
+MIDIInput <------------------------------+ MIDISource
+   and           sends packets to             and
+MIDIOutput +---------------------------> MIDIDestination
+
 ```
 
 ### Common tasks:
