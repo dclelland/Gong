@@ -54,19 +54,19 @@ class ViewController: NSViewController {
     func buttonMouseDown(_ button: NSButton) {
         switch button.title {
         case "C":
-            sendNoteOnEvent(key: .c4)
+            sendNoteOnEvent(key: c4)
         case "D":
-            sendNoteOnEvent(key: .d4)
+            sendNoteOnEvent(key: d4)
         case "E":
-            sendNoteOnEvent(key: .e4)
+            sendNoteOnEvent(key: e4)
         case "F":
-            sendNoteOnEvent(key: .f4)
+            sendNoteOnEvent(key: f4)
         case "G":
-            sendNoteOnEvent(key: .g4)
+            sendNoteOnEvent(key: g4)
         case "A":
-            sendNoteOnEvent(key: .a4)
+            sendNoteOnEvent(key: a4)
         case "B":
-            sendNoteOnEvent(key: .b4)
+            sendNoteOnEvent(key: b4)
         default:
             break
         }
@@ -75,19 +75,19 @@ class ViewController: NSViewController {
     func buttonMouseUp(_ button: NSButton) {
         switch button.title {
         case "C":
-            sendNoteOffEvent(key: .c4)
+            sendNoteOffEvent(key: c4)
         case "D":
-            sendNoteOffEvent(key: .d4)
+            sendNoteOffEvent(key: d4)
         case "E":
-            sendNoteOffEvent(key: .e4)
+            sendNoteOffEvent(key: e4)
         case "F":
-            sendNoteOffEvent(key: .f4)
+            sendNoteOffEvent(key: f4)
         case "G":
-            sendNoteOffEvent(key: .g4)
+            sendNoteOffEvent(key: g4)
         case "A":
-            sendNoteOffEvent(key: .a4)
+            sendNoteOffEvent(key: a4)
         case "B":
-            sendNoteOffEvent(key: .b4)
+            sendNoteOffEvent(key: b4)
         default:
             break
         }
@@ -105,24 +105,24 @@ extension ViewController {
         return MIDI.output
     }
     
-    func sendNoteOnEvent(key: MIDIKey) {
+    func sendNoteOnEvent(key: Int) {
         guard let device = device, let output = output else {
             return
         }
         
         let sequence = (0..<5).map { index in
             return MIDINote(
-                key: key + MIDIInterval(index),
-                time: .now + MIDITime(index)
+                key: key + index,
+                time: Double(index)
             )
         }
         
-        let transposed = sequence.transposed(up: .P5).chorded(with: .maj)
+//        let transposed = sequence.transposed(up: .P5).chorded(with: .maj)
         
-        device.send(transposed, via: output)
+        device.send(sequence, via: output)
     }
     
-    func sendNoteOffEvent(key: MIDIKey) {
+    func sendNoteOffEvent(key: Int) {
 //        for key in key.chord(.P1, .P5, .P8) {
 //            let message = MIDIMessage(.noteOff(channel: 0, key: UInt8(key.number), velocity: 100))
 //            device?.send(message)

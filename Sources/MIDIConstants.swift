@@ -236,88 +236,72 @@ public let g10 = 127
 
 // MARK: Intervals
 
-public let P1 = 0
-public let m2 = 1
-public let M2 = 2
-public let m3 = 3
-public let M3 = 4
-public let P4 = 5
-public let P5 = 7
-public let m6 = 8
-public let M6 = 9
-public let m7 = 10
-public let M7 = 11
-public let P8 = 12
-public let m9 = 13
-public let M9 = 14
-public let m10 = 15
-public let M10 = 16
-public let P11 = 17
-public let P12 = 19
-public let m13 = 20
-public let M13 = 21
-public let m14 = 22
-public let M14 = 23
-public let P15 = 24
+public let perfectUnison = 0
+public let minorSecond = 1
+public let majorSecond = 2
+public let minorThird = 3
+public let majorThird = 4
+public let perfectFourth = 5
+public let perfectFifth = 7
+public let minorSixth = 8
+public let majorSixth = 9
+public let minorSeventh = 10
+public let majorSeventh = 11
+public let perfectOctave = 12
 
-public let d2 = 0
-public let A1 = 1
-public let d3 = 2
-public let A2 = 3
-public let d4 = 4
-public let A3 = 5
-public let d5 = 6
-public let A4 = 6
-public let d6 = 7
-public let A5 = 8
-public let d7 = 9
-public let A6 = 10
-public let d8 = 11
-public let A7 = 12
-public let d9 = 12
-public let A8 = 13
-public let d10 = 14
-public let A9 = 15
-public let d11 = 16
-public let A10 = 17
-public let d12 = 18
-public let A11 = 18
-public let d13 = 19
-public let A12 = 20
-public let d14 = 21
-public let A13 = 22
-public let d15 = 23
-public let A14 = 24
-public let A15 = 25
+public let diminishedSecond = 0
+public let augmentedUnison = 1
+public let diminishedThird = 2
+public let augmentedSecond = 3
+public let diminishedFourth = 4
+public let augmentedThird = 5
+public let diminishedFifth = 6
+public let augmentedFourth = 6
+public let diminishedSixth = 7
+public let augmentedFifth = 8
+public let diminishedSeventh = 9
+public let augmentedSixth = 10
+public let diminishedOctave = 11
+public let augmentedSeventh = 12
+public let diminishedNinth = 12
+public let augmentedOctave = 13
+
+public let minorNinth = 13
+public let majorNinth = 14
+public let minorTenth = 15
+public let majorTenth = 16
+public let perfectEleventh = 17
+public let perfectTwelfth = 19
+public let minorThirteenth = 20
+public let majorThirteenth = 21
+public let minorFourteenth = 22
+public let majorFourteenth = 23
+public let doubleOctave = 24
+
+public let diminishedTenth = 14
+public let augmentedNinth = 15
+public let diminishedEleventh = 16
+public let augmentedTenth = 17
+public let diminishedTwelfth = 18
+public let augmentedEleventh = 18
+public let diminishedThirteenth = 19
+public let augmentedTwelfth = 20
+public let diminishedFourteenth = 21
+public let augmentedThirteenth = 22
+public let diminishedFifteenth = 23
+public let augmentedFourteenth = 24
+public let augmentedFifteenth = 25
 
 // MARK: Chords
 
-public let maj = [P1, M3, P5]
-public let min = [P1, m3, P5]
-public let aug = [P1, M3, A5]
-public let dim = [P1, m3, d5]
-
-public let sus2 = [P1, M2, P5]
-public let sus4 = [P1, P4, P5]
-
-public let maj7 = maj + [M7]
-public let min7 = min + [m7]
-public let dom7 = maj + [m7]
-public let dim7 = dim + [d7]
-public let halfDim7 = dim + [m7]
-public let minMaj7 = min + [M7]
-public let augMaj7 = aug + [M7]
-
-public let aug7 = aug + [m7]
-public let dimMaj7 = dim + [M7]
-public let dom7Flat5 = [P1, M3, d5, m7]
-
-public let add6 = maj + [M6]
-public let add6add9 = maj + [M6, M9]
+public let majorTriad = [perfectUnison, majorThird, perfectFifth]
+public let minorTriad = [perfectUnison, minorThird, perfectFifth]
+public let augmentedTriad = [perfectUnison, majorThird, augmentedFifth]
+public let diminishedTriad = [perfectUnison, minorThird, diminishedFifth]
 
 // MARK: Scales
 
-public let major = [P1, M2, M3, P4, P5, M6, M7]
-public let minor = [P1, M2, m3, P4, P5, m6, m7]
+public let majorScale = [perfectUnison, majorSecond, majorThird, perfectFourth, perfectFifth, majorSixth, majorSeventh]
+public let minorScale = [perfectUnison, majorSecond, minorThird, perfectFourth, perfectFifth, minorSixth, minorSeventh]
 
-public let chromatic = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+public let chromaticScale = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
