@@ -8,33 +8,39 @@ Gong aims to provide a fairly transparent Swift interface to Apple's CoreMIDI li
 
 The entire library:
 
-`pod 'Gong', '~> 0.1'`
+```ruby
+pod 'Gong', '~> 0.1'
+```
 
 Just the CoreMIDI wrapper:
 
-`pod 'Gong/Core', '~> 0.1'`
+```ruby
+pod 'Gong/Core', '~> 0.1'
+```
 
 Just the CoreMIDI wrapper, plus MIDINote events:
 
-`pod 'Gong/Events', '~> 0.1'`
+```ruby
+pod 'Gong/Events', '~> 0.1'
+```
 
 ### Common tasks:
 
 Starting the MIDI client:
 
-```
+```swift
 MIDI.connect()
 ```
 
 Stopping the MIDI client:
 
-```
+```swift
 MIDI.disconnect()
 ```
 
 Listing devices:
 
-```
+```swift
 for device in MIDIDevice.all {
     print(device.name)
 }
@@ -42,7 +48,7 @@ for device in MIDIDevice.all {
 
 Sending MIDI events:
 
-```
+```swift
 guard let device = MIDIDevice(named: "minilogue"), let output = MIDI.output else {
     return
 }
@@ -54,7 +60,7 @@ device.send(note, via: output)
 
 Receiving MIDI packets:
 
-```
+```swift
 class ViewController: NSViewController {
 
     override func viewWillAppear() {
