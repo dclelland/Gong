@@ -42,36 +42,34 @@ pod 'Gong/Events', '~> 0.1'
 ### Core class hierarchy:
 
 ```
-MIDIObject <-----+--- MIDIClient
-                 |
-                 +--- MIDIPort <-------+--- MIDIInput
-MIDINotification |                     |
-                 |                     +--- MIDIOutput
-MIDIPacket       +--- MIDIDevice
-                 |
-                 +--- MIDIEntity
-MIDIError        |
-                 +--- MIDIEndpoint <---+--- MIDISource
-                                       |
-                                       +--- MIDIDestination
+MIDIObject <------+--+ MIDIClient
+                  |
+                  +--+ MIDIPort <--------+--+ MIDIInput
+MIDINotification  |                      |
+                  |                      +--+ MIDIOutput
+MIDIPacket        +--+ MIDIDevice
+                  |
+                  +--+ MIDIEntity
+MIDIError         |
+                  +--+ MIDIEndpoint <----+--+ MIDISource
+                                         |
+                                         +--+ MIDIDestination
 ```
 
 ### Core class architecture:
 
 ```
 MIDIClient                                 MIDIDevice
-    |                                          |
  creates                                      owns
-    |                                          |
+    +                                          +
     |                                          v
     |                                      MIDIEntity
-    |                                          |
     |                                         owns
-    |                                          |
+    |                                          +
     v          receives packets from           v
-MIDIInput <------------------------------- MIDISource
+MIDIInput <------------------------------+ MIDISource
    and           sends packets to             and
-MIDIOutput ----------------------------> MIDIDestination
+MIDIOutput +---------------------------> MIDIDestination
 
 ```
 
