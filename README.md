@@ -2,7 +2,13 @@
 
 Gong is a simple library for sending and recieving MIDI messages to and from virtual and physical devices.
 
-Gong aims to provide a fairly transparent Swift interface to Apple's CoreMIDI library. The files in the `/Sources/Core` directory are unopinionated, simple wrappers around CoreMIDI's C APIs. The files outside `/Sources/Core` are generally more opinionated, but let you perform common tasks with a minimum of setup. If you prefer to write this kind of stuff yourself, the CoreMIDI wrapper can be installed independently of the opinionated code.
+Gong aims to provide a fairly transparent Swift interface to Apple's CoreMIDI library.
+
+[The files in the `/Sources/Core` directory](/Sources/Core) are unopinionated, simple wrappers around CoreMIDI's C APIs.
+
+[The files outside of `/Sources/Core`](/Sources) are generally more opinionated, but let you perform common tasks with a minimum of setup. If you prefer to write this kind of thing yourself, the CoreMIDI wrapper can be installed independently of the opinionated code.
+
+An [example project](/Examples/Gong-macOS) is provided to help you get started.
 
 ### Installation:
 
@@ -18,7 +24,7 @@ Just the CoreMIDI wrapper:
 pod 'Gong/Core', '~> 0.1'
 ```
 
-Just the CoreMIDI wrapper, plus MIDINote events:
+Just the CoreMIDI wrapper, plus `MIDINote` events:
 
 ```ruby
 pod 'Gong/Events', '~> 0.1'
