@@ -26,17 +26,17 @@ extension MIDIPacketDestination {
 
 public struct MIDINote {
     
-    public var channel: MIDIChannel
+    public var channel: Int
     
-    public var key: MIDIKey
+    public var key: Int
     
-    public var velocity: MIDIVelocity
+    public var velocity: Int
     
-    public var time: MIDITime
+    public var time: Double
     
-    public var duration: MIDIDuration
+    public var duration: Double
     
-    public init(channel: MIDIChannel = .zero, key: MIDIKey, velocity: MIDIVelocity = .mezzopiano, time: MIDITime = .now, duration: MIDIDuration = .whole) {
+    public init(channel: Int = 0, key: Int, velocity: Int = 64, time: Double = 0.0, duration: Double = 1.0) {
         self.channel = channel
         self.key = key
         self.velocity = velocity
@@ -50,8 +50,8 @@ extension MIDINote {
     
     public var packets: [MIDIPacket] {
         return [
-            MIDIPacket(.noteOn(channel: UInt8(channel.value), key: UInt8(key.value), velocity: UInt8(velocity.value)), delay: time.value),
-            MIDIPacket(.noteOff(channel: UInt8(channel.value), key: UInt8(key.value), velocity: UInt8(velocity.value)), delay: (time + duration).value)
+            MIDIPacket(.noteOn(channel: UInt8(channel), key: UInt8(key), velocity: UInt8(velocity)), delay: time),
+            MIDIPacket(.noteOff(channel: UInt8(channel), key: UInt8(key), velocity: UInt8(velocity)), delay: time + duration)
         ]
     }
     

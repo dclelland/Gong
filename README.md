@@ -11,7 +11,7 @@ Notes:
 - remove type system (need to solve key/interval name clash issue)
     - Chords and Scales are just key sequences (majorChord, majorScale)
     - MIDIKey is just an Int or whatever
-    - MIDIInterval
+    - MIDIInterval goes to be 
 - Simple file structure:
     - MIDI
     - MIDINote
