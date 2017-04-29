@@ -1,5 +1,5 @@
 //
-//  MIDIEvent.swift
+//  MIDINotice.swift
 //  Pods
 //
 //  Created by Daniel Clelland on 19/04/17.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreMIDI
 
-public enum MIDINotification {
+public enum MIDINotice {
     
     case setupChanged
     
@@ -27,9 +27,9 @@ public enum MIDINotification {
 
 }
 
-extension MIDINotification {
+extension MIDINotice {
     
-    internal init(_ notificationPointer: UnsafePointer<CoreMIDI.MIDINotification>) {
+    internal init(_ notificationPointer: UnsafePointer<MIDINotification>) {
         let notification = notificationPointer.pointee
         switch notification.messageID {
         case .msgSetupChanged:
