@@ -18,7 +18,7 @@ public struct MIDIControl {
     
     public var delay: Double
     
-    public init(channel: Int = 0, controller: Int, value: Int = 64, delay: Double = 0.0) {
+    public init(channel: Int = 0, controller: Int, value: Int, delay: Double = 0.0) {
         self.channel = channel
         self.controller = controller
         self.value = value
@@ -31,7 +31,7 @@ extension MIDIControl: MIDIEvent {
     
     public var packets: [MIDIPacket] {
         return [
-            MIDIPacket(.controlChange(channel: UInt8(channel), controller: UInt8(channel), value: UInt8(channel)), delay: delay)
+            MIDIPacket(.controlChange(channel: UInt8(channel), controller: UInt8(controller), value: UInt8(value)), delay: delay)
         ]
     }
     

@@ -110,9 +110,20 @@ extension ViewController {
             return
         }
         
-        let scale = Gong_macOS.transpose(up: key) <^> majorScale
+        let sequence: [MIDIEvent] = [
+            MIDINote(key: c4, duration: 5.0),
+            MIDIControl(controller: 43, value: 64),
+            MIDIControl(controller: 43, value: 127, delay: 1.0),
+            MIDIPitchBend(value: 8192, delay: 2.00),
+            MIDIPitchBend(value: 0, delay: 3.00),
+            MIDIPitchBend(value: 16383, delay: 4.00)
+        ]
         
-        let sequence = sequential(scale)
+        
+        
+//        let scale = Gong_macOS.transpose(up: key) <^> majorScale
+//        
+//        let sequence = sequential(scale)
         
 //        let chords = parallel(majorTriad) <*> sequence
         
