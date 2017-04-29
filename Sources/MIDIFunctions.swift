@@ -1,5 +1,5 @@
 //
-//  Combinators.swift
+//  MIDIFunctions.swift
 //  Gong
 //
 //  Created by Daniel Clelland on 26/04/17.
