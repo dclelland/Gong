@@ -69,9 +69,9 @@ MIDIClient                                 MIDIDevice
     |                                         owns
     |                                          |
     v          receives packets from           v
-MIDIInput <------------------------------+ MIDISource
+MIDIInput <------------------------------- MIDISource
    and           sends packets to             and
-MIDIOutput +---------------------------> MIDIDestination
+MIDIOutput ----------------------------> MIDIDestination
 
 ```
 
