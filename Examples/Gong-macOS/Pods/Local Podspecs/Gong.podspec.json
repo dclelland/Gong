@@ -13,16 +13,25 @@
     "git": "https://github.com/dclelland/Gong.git",
     "tag": "0.1.0"
   },
+  "source_files": "Sources/*.swift",
   "platforms": {
     "ios": "8.0",
     "osx": "10.10"
   },
-  "ios": {
-    "source_files": "Sources/**/*.swift",
-    "frameworks": "CoreMIDI"
-  },
-  "osx": {
-    "source_files": "Sources/**/*.swift",
-    "frameworks": "CoreMIDI"
-  }
+  "subspecs": [
+    {
+      "name": "Core",
+      "source_files": "Sources/Core/**/*.swift",
+      "frameworks": "CoreMIDI"
+    },
+    {
+      "name": "Events",
+      "source_files": "Sources/Events/**/*.swift",
+      "dependencies": {
+        "Gong/Core": [
+
+        ]
+      }
+    }
+  ]
 }
