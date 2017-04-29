@@ -132,14 +132,14 @@ class ViewController: NSViewController {
 
 extension ViewController: MIDIObserver {
     
-    func receive(_ notification: MIDINotice) {
-        print(notification)
+    func receive(_ notice: MIDINotice) {
+        print(notice)
     }
     
     func receive(_ packet: MIDIPacket, from source: MIDISource) {
         switch packet.message {
         case .noteOn, .noteOff, .controlChange, .pitchBendChange:
-            print(packet, source)
+            print(packet.message, source)
         default:
             break
         }
