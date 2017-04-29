@@ -13,7 +13,7 @@ public struct AudioError: Error {
     
     public enum Message {
         
-        case unknown
+        case unknown(status: OSStatus)
         
     }
     
@@ -33,7 +33,7 @@ extension AudioError {
     public init(status: OSStatus, comment: String) {
         switch status {
         default:
-            self.init(.unknown, comment: comment)
+            self.init(.unknown(status: status), comment: comment)
         }
     }
     
