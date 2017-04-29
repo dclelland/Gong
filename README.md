@@ -41,8 +41,8 @@ pod 'Gong/Events', '~> 0.1'
 
 ### Class hierarchy:
 
-<code>
-<a href="/Sources/Core/MIDIObject.swift">MIDIObject</a> <-----+--+ MIDIClient
+```
+MIDIObject <-----+--+ MIDIClient
                  |
                  +--+ MIDIPort <-------+--+ MIDIInput
 MIDINotification |                     |
@@ -54,7 +54,7 @@ MIDIError        |
                  +--+ MIDIEndpoint <---+--+ MIDISource
                                        |
                                        +--+ MIDIDestination
-</code>
+```
 
 ### Common tasks:
 
