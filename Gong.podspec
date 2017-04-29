@@ -15,12 +15,9 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target   = '8.0'
   s.ios.source_files        = 'Sources/**/*.swift'
-  s.ios.frameworks          = 'AudioToolbox', 'CoreMIDI'
+  s.ios.frameworks          = 'CoreMIDI'
 
   s.osx.deployment_target   = '10.10'
   s.osx.source_files        = 'Sources/**/*.swift'
-  s.osx.frameworks          = 'AudioToolbox', 'CoreMIDI'
-
-  s.dependency                'Curry'
-  s.dependency                'Runes'
+  s.osx.frameworks          = 'CoreMIDI'
 end

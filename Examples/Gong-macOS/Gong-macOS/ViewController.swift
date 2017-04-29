@@ -8,28 +8,11 @@
 
 import Cocoa
 import Gong
-import Runes
 
 class ViewController: NSViewController {
-    
-    @IBOutlet var cButton: NSButton!
-    @IBOutlet var dButton: NSButton!
-    @IBOutlet var eButton: NSButton!
-    @IBOutlet var fButton: NSButton!
-    @IBOutlet var gButton: NSButton!
-    @IBOutlet var aButton: NSButton!
-    @IBOutlet var bButton: NSButton!
-    
-    var buttons: [NSButton] {
-        return [cButton, dButton, eButton, fButton, gButton, aButton, bButton]
-    }
 
     override func viewWillAppear() {
         super.viewWillAppear()
-        
-        for button in buttons {
-            button.sendAction(on: [.leftMouseDown, .leftMouseUp])
-        }
         
         MIDI.addObserver(self)
     }
@@ -41,53 +24,21 @@ class ViewController: NSViewController {
     }
     
     @IBAction func buttonClick(_ button: NSButton) {
-        switch button.window?.currentEvent?.type {
-        case .leftMouseDown?:
-            buttonMouseDown(button)
-        case .leftMouseUp?:
-            buttonMouseUp(button)
-        default:
-            break
-        }
-    }
-    
-    func buttonMouseDown(_ button: NSButton) {
         switch button.title {
         case "C":
-            sendNoteOnEvent(key: c4)
+            playNote(60)
         case "D":
-            sendNoteOnEvent(key: d4)
+            playNote(62)
         case "E":
-            sendNoteOnEvent(key: e4)
+            playNote(64)
         case "F":
-            sendNoteOnEvent(key: f4)
+            playNote(65)
         case "G":
-            sendNoteOnEvent(key: g4)
+            playNote(67)
         case "A":
-            sendNoteOnEvent(key: a4)
+            playNote(69)
         case "B":
-            sendNoteOnEvent(key: b4)
-        default:
-            break
-        }
-    }
-    
-    func buttonMouseUp(_ button: NSButton) {
-        switch button.title {
-        case "C":
-            sendNoteOffEvent(key: c4)
-        case "D":
-            sendNoteOffEvent(key: d4)
-        case "E":
-            sendNoteOffEvent(key: e4)
-        case "F":
-            sendNoteOffEvent(key: f4)
-        case "G":
-            sendNoteOffEvent(key: g4)
-        case "A":
-            sendNoteOffEvent(key: a4)
-        case "B":
-            sendNoteOffEvent(key: b4)
+            playNote(71)
         default:
             break
         }
@@ -97,44 +48,16 @@ class ViewController: NSViewController {
 
 extension ViewController {
     
-    var device: MIDIDevice? {
-        return MIDIDevice(named: "minilogue")
-    }
-    
-    var output: MIDIOutput? {
-        return MIDI.output
-    }
-    
-    func sendNoteOnEvent(key: Int) {
-        guard let device = device, let output = output else {
+    func playNote(_ key: Int) {
+        guard let output = MIDI.output else {
             return
         }
         
-        let sequence: [MIDIEvent] = [
-            MIDINote(key: c4, duration: 5.0),
-            MIDIControl(controller: 43, value: 64),
-            MIDIControl(controller: 43, value: 127, delay: 1.0),
-            MIDIPitchBend(value: 8192, delay: 2.00),
-            MIDIPitchBend(value: 0, delay: 3.00),
-            MIDIPitchBend(value: 16383, delay: 4.00)
-        ]
+        let note = MIDINote(key: key)
         
-        
-        
-//        let scale = Gong_macOS.transpose(up: key) <^> majorScale
-//        
-//        let sequence = sequential(scale)
-        
-//        let chords = parallel(majorTriad) <*> sequence
-        
-        device.send(sequence, via: output)
-    }
-    
-    func sendNoteOffEvent(key: Int) {
-//        for key in key.chord(.P1, .P5, .P8) {
-//            let message = MIDIMessage(.noteOff(channel: 0, key: UInt8(key.number), velocity: 100))
-//            device?.send(message)
-//        }
+        for device in MIDIDevice.all {
+            device.send(note, via: output)
+        }
     }
     
 }

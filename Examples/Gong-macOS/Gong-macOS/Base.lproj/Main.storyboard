@@ -655,7 +655,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="hibiscus_macOS" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Gong_macOS" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
@@ -681,7 +681,7 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="hibiscus_macOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Gong_macOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="392" height="61"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -803,15 +803,6 @@
                             <constraint firstAttribute="bottom" secondItem="Q0f-fy-HQI" secondAttribute="bottom" constant="20" id="wys-bZ-K1U"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="aButton" destination="Q0f-fy-HQI" id="M6l-Zd-AXJ"/>
-                        <outlet property="bButton" destination="Yeo-uh-5T4" id="fA3-Gv-TT1"/>
-                        <outlet property="cButton" destination="p32-on-UaU" id="DYg-en-xOh"/>
-                        <outlet property="dButton" destination="QUS-jv-Tvo" id="cLS-RB-ZOB"/>
-                        <outlet property="eButton" destination="huh-i2-gI9" id="USm-Ob-5xa"/>
-                        <outlet property="fButton" destination="wLt-0Z-cvH" id="IWX-mt-0ps"/>
-                        <outlet property="gButton" destination="IhV-D8-dnL" id="fON-5a-1Ja"/>
-                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
