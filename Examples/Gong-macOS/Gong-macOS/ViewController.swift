@@ -25,9 +25,9 @@ class ViewController: NSViewController {
             let url = Bundle.main.url(forResource: "narkopop_1", withExtension: "mp3")!
             let audioFile = try AudioFile(url: url)
             
+            print(audioFile.properties!)
             
-            print(audioFile.properties)
-            
+            try audioFile.close()
         } catch let error {
             print(error)
         }

@@ -23,7 +23,14 @@ public class AudioFile {
         self.init(audioFileReference!)
     }
     
+    public func close() throws {
+        try AudioFileClose(reference).audioError("Closing AudioFile")
+    }
     
+}
+
+extension AudioFile {
+
     public func value<T>(for property: AudioUnitPropertyID) -> T? {
         do {
             let (dataSize, _) = try info(for: property)
