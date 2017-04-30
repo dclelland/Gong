@@ -9,6 +9,7 @@
 import Cocoa
 import CoreMIDI
 import Gong
+import AudioToolbox
 
 class ViewController: NSViewController {
 
@@ -27,6 +28,10 @@ class ViewController: NSViewController {
             
             if let properties = audioFile.properties {
                 print(properties)
+            }
+            
+            if let fileFormat: AudioFileTypeID = audioFile.value(for: AudioFile.Property.fileFormat) {
+                print(fileFormat)
             }
             
             try audioFile.close()

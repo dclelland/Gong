@@ -82,8 +82,72 @@ extension AudioFile {
 
 extension AudioFile {
     
+    public struct Property {
+        
+        public static let fileFormat = kAudioFilePropertyFileFormat
+
+        public static let dataFormat = kAudioFilePropertyDataFormat
+
+        public static let isOptimized = kAudioFilePropertyIsOptimized
+
+        public static let magicCookieData = kAudioFilePropertyMagicCookieData
+
+        public static let audioDataByteCount = kAudioFilePropertyAudioDataByteCount
+
+        public static let audioDataPacketCount = kAudioFilePropertyAudioDataPacketCount
+
+        public static let maximumPacketSize = kAudioFilePropertyMaximumPacketSize
+
+        public static let dataOffset = kAudioFilePropertyDataOffset
+
+        public static let channelLayout = kAudioFilePropertyChannelLayout
+
+        public static let deferSizeUpdates = kAudioFilePropertyDeferSizeUpdates
+
+        public static let dataFormatName = kAudioFilePropertyDataFormatName
+
+        public static let markerList = kAudioFilePropertyMarkerList
+
+        public static let regionList = kAudioFilePropertyRegionList
+
+        public static let packetToFrame = kAudioFilePropertyPacketToFrame
+
+        public static let frameToPacket = kAudioFilePropertyFrameToPacket
+
+        public static let packetToByte = kAudioFilePropertyPacketToByte
+
+        public static let byteToPacket = kAudioFilePropertyByteToPacket
+
+        public static let chunkIDs = kAudioFilePropertyChunkIDs
+
+        public static let infoDictionary = kAudioFilePropertyInfoDictionary
+
+        public static let packetTableInfo = kAudioFilePropertyPacketTableInfo
+
+        public static let formatList = kAudioFilePropertyFormatList
+
+        public static let packetSizeUpperBound = kAudioFilePropertyPacketSizeUpperBound
+
+        public static let reserveDuration = kAudioFilePropertyReserveDuration
+
+        public static let estimatedDuration = kAudioFilePropertyEstimatedDuration
+
+        public static let bitRate = kAudioFilePropertyBitRate
+
+        public static let id3Tag = kAudioFilePropertyID3Tag
+
+        public static let sourceBitDepth = kAudioFilePropertySourceBitDepth
+
+        public static let albumArtwork = kAudioFilePropertyAlbumArtwork
+
+        public static let audioTrackCount = kAudioFilePropertyAudioTrackCount
+
+        public static let useAudioTrack = kAudioFilePropertyUseAudioTrack
+        
+    }
+    
     public var properties: NSDictionary? {
-        let properties: CFDictionary? = value(for: kAudioFilePropertyInfoDictionary)
+        let properties: CFDictionary? = value(for: Property.infoDictionary)
         return properties as NSDictionary?
     }
     
