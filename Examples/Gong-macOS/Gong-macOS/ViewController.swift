@@ -18,6 +18,22 @@ class ViewController: NSViewController {
         MIDI.addObserver(self)
     }
     
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        
+        do {
+            let url = Bundle.main.url(forResource: "narkopop_1", withExtension: "mp3")!
+            let audioFile = try AudioFile(url: url)
+            
+            print(try audioFile.properties())
+            
+        } catch let error {
+            print(error)
+        }
+        
+        
+    }
+    
     override func viewDidDisappear() {
         super.viewDidDisappear()
         
