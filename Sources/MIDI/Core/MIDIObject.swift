@@ -11,6 +11,42 @@ import CoreMIDI
 
 public class MIDIObject {
     
+    public let reference: MIDIObjectRef
+    
+    public init(_ reference: MIDIObjectRef) {
+        self.reference = reference
+    }
+    
+    public static func create(with reference: MIDIObjectRef, type: MIDIObjectType) -> MIDIObject {
+        switch type {
+        case .other:
+            return MIDIObject(reference)
+        case .device, .externalDevice:
+            return MIDIDevice(reference)
+        case .entity, .externalEntity:
+            return MIDIEntity(reference)
+        case .source, .externalSource:
+            return MIDISource(reference)
+        case .destination, .externalDestination:
+            return MIDIDestination(reference)
+        }
+    }
+    
+    public static func find(with uniqueID: MIDIUniqueID, type: MIDIObjectType) -> MIDIObject? {
+        var object = MIDIObjectRef()
+        do {
+            try MIDIObjectFindByUniqueID(uniqueID, &object, nil).midiError("Finding MIDIObject with unique ID \"\(uniqueID)\"")
+            return MIDIObject(object)
+        } catch let error {
+            print(error)
+            return nil
+        }
+    }
+    
+}
+
+extension MIDIObject {
+    
     public struct Property {
         
         public static let name = kMIDIPropertyName as String
@@ -102,39 +138,7 @@ public class MIDIObject {
         public static let displayName = kMIDIPropertyDisplayName as String
         
     }
-    
-    public let reference: MIDIObjectRef
-    
-    public init(_ reference: MIDIObjectRef) {
-        self.reference = reference
-    }
-    
-    public static func create(with reference: MIDIObjectRef, type: MIDIObjectType) -> MIDIObject {
-        switch type {
-        case .other:
-            return MIDIObject(reference)
-        case .device, .externalDevice:
-            return MIDIDevice(reference)
-        case .entity, .externalEntity:
-            return MIDIEntity(reference)
-        case .source, .externalSource:
-            return MIDISource(reference)
-        case .destination, .externalDestination:
-            return MIDIDestination(reference)
-        }
-    }
-    
-    public static func find(with uniqueID: MIDIUniqueID, type: MIDIObjectType) -> MIDIObject? {
-        var object = MIDIObjectRef()
-        do {
-            try MIDIObjectFindByUniqueID(uniqueID, &object, nil).midiError("Finding MIDIObject with unique ID \"\(uniqueID)\"")
-            return MIDIObject(object)
-        } catch let error {
-            print(error)
-            return nil
-        }
-    }
-    
+
     public func integer(for property: String) throws -> Int32 {
         var integer: Int32 = 0
         try MIDIObjectGetIntegerProperty(reference, property as CFString, &integer).midiError("Getting integer for property \"\(property)\" on MIDIObject")
