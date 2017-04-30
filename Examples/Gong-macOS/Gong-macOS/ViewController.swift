@@ -40,7 +40,9 @@ class ViewController: NSViewController {
         }
         
         do {
-            let url = URL(string: "~/Desktop/square.aiff")!
+            let url = Bundle.main.resourceURL!.appendingPathComponent("square.aiff")
+            
+            print(url)
             
             let format = AudioStreamBasicDescription(
                 mSampleRate: 44_100,
