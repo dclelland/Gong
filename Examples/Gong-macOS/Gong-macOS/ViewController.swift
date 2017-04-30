@@ -39,6 +39,26 @@ class ViewController: NSViewController {
             print(error)
         }
         
+        do {
+            let url = URL(string: "~/Desktop/square.aiff")!
+            
+            let format = AudioStreamBasicDescription(
+                mSampleRate: 44_100,
+                mFormatID: kAudioFormatLinearPCM,
+                mFormatFlags: kAudioFormatFlagIsBigEndian | kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked,
+                mBytesPerPacket: 2,
+                mFramesPerPacket: 1,
+                mBytesPerFrame: 2,
+                mChannelsPerFrame: 1,
+                mBitsPerChannel: 16,
+                mReserved: 0
+            )
+            
+            let audioFile = try AudioFile(url, type: kAudioFileAIFFType, format: format, flags: .eraseFile)
+        } catch let error {
+            print(error)
+        }
+        
         
     }
     

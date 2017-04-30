@@ -17,9 +17,16 @@ public class AudioFile {
         self.reference = reference
     }
     
+    public convenience init(_ url: URL, type: AudioFileTypeID, format: AudioStreamBasicDescription, flags: AudioFileFlags) throws {
+        var audioFileReference: AudioFileID? = nil
+        var format = format
+        try AudioFileCreateWithURL(url as CFURL, type, &format, flags, &audioFileReference).audioError("Creating AudioFile with URL \"\(url)\"")
+        self.init(audioFileReference!)
+    }
+    
     public static func open(_ url: URL, permissions: AudioFilePermissions = .readWritePermission, typeHint: AudioFileTypeID = 0) throws -> AudioFile {
         var audioFileReference: AudioFileID? = nil
-        try AudioFileOpenURL(url as CFURL, permissions, typeHint, &audioFileReference).audioError("Initializing AudioFile with URL \"\(url)\"")
+        try AudioFileOpenURL(url as CFURL, permissions, typeHint, &audioFileReference).audioError("Opening AudioFile with URL \"\(url)\"")
         return AudioFile(audioFileReference!)
     }
     

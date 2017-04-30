@@ -13,33 +13,107 @@ public struct AudioError: Error {
     
     public enum Message {
         
+        public enum AudioGraph {
+            
+            case nodeNotFound
+
+            case invalidConnection
+
+            case outputNodeError
+
+            case cannotDoInCurrentContext
+
+            case invalidAudioUnit
+
+        }
         
-//        kAUGraphErr_NodeNotFound 				= -10860,
-//        kAUGraphErr_InvalidConnection 			= -10861,
-//        kAUGraphErr_OutputNodeErr				= -10862,
-//        kAUGraphErr_CannotDoInCurrentContext	= -10863,
-//        kAUGraphErr_InvalidAudioUnit			= -10864
+        case audioGraph(AudioGraph)
         
-        
-        
-//        kAudioFileUnspecifiedError						= 'wht?',		// 0x7768743F, 2003334207
-//        kAudioFileUnsupportedFileTypeError 				= 'typ?',		// 0x7479703F, 1954115647
-//        kAudioFileUnsupportedDataFormatError 			= 'fmt?',		// 0x666D743F, 1718449215
-//        kAudioFileUnsupportedPropertyError 				= 'pty?',		// 0x7074793F, 1886681407
-//        kAudioFileBadPropertySizeError 					= '!siz',		// 0x2173697A,  561211770
-//        kAudioFilePermissionsError	 					= 'prm?',		// 0x70726D3F, 1886547263
-//        kAudioFileNotOptimizedError						= 'optm',		// 0x6F70746D, 1869640813
-//        // file format specific error codes
-//        kAudioFileInvalidChunkError						= 'chk?',		// 0x63686B3F, 1667787583
-//        kAudioFileDoesNotAllow64BitDataSizeError		= 'off?',		// 0x6F66663F, 1868981823
-//        kAudioFileInvalidPacketOffsetError				= 'pck?',		// 0x70636B3F, 1885563711
-//        kAudioFileInvalidFileError						= 'dta?',		// 0x6474613F, 1685348671
-//        kAudioFileOperationNotSupportedError			= 0x6F703F3F, 	// 'op??', integer used because of trigraph
-//        // general file error codes
-//        kAudioFileNotOpenError							= -38,
-//        kAudioFileEndOfFileError						= -39,
-//        kAudioFilePositionError							= -40,
-//        kAudioFileFileNotFoundError						= -43
+        public enum AudioUnit {
+
+            case invalidProperty
+
+            case invalidParameter
+
+            case invalidElement
+
+            case noConnection
+
+            case failedInitialization
+
+            case tooManyFramesToProcess
+
+            case invalidFile
+
+            case unknownFileType
+
+            case fileNotSpecified
+
+            case formatNotSupported
+
+            case uninitialized
+
+            case invalidScope
+
+            case propertyNotWritable
+
+            case cannotDoInCurrentContext
+
+            case invalidPropertyValue
+
+            case propertyNotInUse
+
+            case initialized
+
+            case invalidOfflineRender
+
+            case unauthorized
+
+            case audioComponentInstanceInvalidated
+
+            case renderTimeout
+
+        }
+
+        case audioUnit(AudioUnit)
+
+        public enum AudioFile {
+
+            case unspecified
+
+            case unsupportedFileType
+
+            case unsupportedDataFormat
+
+            case unsupportedProperty
+
+            case badPropertySize
+
+            case permissions
+
+            case notOptimized
+
+            case invalidChunk
+
+            case doesNotAllow64BitDataSize
+
+            case invalidPacketOffset
+
+            case invalidFile
+
+            case operationNotSupported
+
+            case notOpen
+
+            case endOfFile
+
+            case position
+
+            case fileNotFound
+
+        }
+
+        case audioFile(AudioFile)
         
         case unknown(status: OSStatus)
         
@@ -60,6 +134,90 @@ extension AudioError {
     
     public init(status: OSStatus, comment: String) {
         switch status {
+        case kAUGraphErr_NodeNotFound:
+            self.init(.audioGraph(.nodeNotFound), comment: comment)
+        case kAUGraphErr_InvalidConnection:
+            self.init(.audioGraph(.invalidConnection), comment: comment)
+        case kAUGraphErr_OutputNodeErr:
+            self.init(.audioGraph(.outputNodeError), comment: comment)
+        case kAUGraphErr_CannotDoInCurrentContext:
+            self.init(.audioGraph(.cannotDoInCurrentContext), comment: comment)
+        case kAUGraphErr_InvalidAudioUnit:
+            self.init(.audioGraph(.invalidAudioUnit), comment: comment)
+        case kAudioUnitErr_InvalidProperty:
+            self.init(.audioUnit(.invalidProperty), comment: comment)
+        case kAudioUnitErr_InvalidParameter:
+            self.init(.audioUnit(.invalidParameter), comment: comment)
+        case kAudioUnitErr_InvalidElement:
+            self.init(.audioUnit(.invalidElement), comment: comment)
+        case kAudioUnitErr_NoConnection:
+            self.init(.audioUnit(.noConnection), comment: comment)
+        case kAudioUnitErr_FailedInitialization:
+            self.init(.audioUnit(.failedInitialization), comment: comment)
+        case kAudioUnitErr_TooManyFramesToProcess:
+            self.init(.audioUnit(.tooManyFramesToProcess), comment: comment)
+        case kAudioUnitErr_InvalidFile:
+            self.init(.audioUnit(.invalidFile), comment: comment)
+        case kAudioUnitErr_UnknownFileType:
+            self.init(.audioUnit(.unknownFileType), comment: comment)
+        case kAudioUnitErr_FileNotSpecified:
+            self.init(.audioUnit(.fileNotSpecified), comment: comment)
+        case kAudioUnitErr_FormatNotSupported:
+            self.init(.audioUnit(.formatNotSupported), comment: comment)
+        case kAudioUnitErr_Uninitialized:
+            self.init(.audioUnit(.uninitialized), comment: comment)
+        case kAudioUnitErr_InvalidScope:
+            self.init(.audioUnit(.invalidScope), comment: comment)
+        case kAudioUnitErr_PropertyNotWritable:
+            self.init(.audioUnit(.propertyNotWritable), comment: comment)
+        case kAudioUnitErr_CannotDoInCurrentContext:
+            self.init(.audioUnit(.cannotDoInCurrentContext), comment: comment)
+        case kAudioUnitErr_InvalidPropertyValue:
+            self.init(.audioUnit(.invalidPropertyValue), comment: comment)
+        case kAudioUnitErr_PropertyNotInUse:
+            self.init(.audioUnit(.propertyNotInUse), comment: comment)
+        case kAudioUnitErr_Initialized:
+            self.init(.audioUnit(.initialized), comment: comment)
+        case kAudioUnitErr_InvalidOfflineRender:
+            self.init(.audioUnit(.invalidOfflineRender), comment: comment)
+        case kAudioUnitErr_Unauthorized:
+            self.init(.audioUnit(.unauthorized), comment: comment)
+        case kAudioComponentErr_InstanceInvalidated:
+            self.init(.audioUnit(.audioComponentInstanceInvalidated), comment: comment)
+        case kAudioUnitErr_RenderTimeout:
+            self.init(.audioUnit(.renderTimeout), comment: comment)
+        case kAudioFileUnspecifiedError:
+            self.init(.audioFile(.unspecified), comment: comment)
+        case kAudioFileUnsupportedFileTypeError:
+            self.init(.audioFile(.unsupportedFileType), comment: comment)
+        case kAudioFileUnsupportedDataFormatError:
+            self.init(.audioFile(.unsupportedDataFormat), comment: comment)
+        case kAudioFileUnsupportedPropertyError:
+            self.init(.audioFile(.unsupportedProperty), comment: comment)
+        case kAudioFileBadPropertySizeError:
+            self.init(.audioFile(.badPropertySize), comment: comment)
+        case kAudioFilePermissionsError:
+            self.init(.audioFile(.permissions), comment: comment)
+        case kAudioFileNotOptimizedError:
+            self.init(.audioFile(.notOptimized), comment: comment)
+        case kAudioFileInvalidChunkError:
+            self.init(.audioFile(.invalidChunk), comment: comment)
+        case kAudioFileDoesNotAllow64BitDataSizeError:
+            self.init(.audioFile(.doesNotAllow64BitDataSize), comment: comment)
+        case kAudioFileInvalidPacketOffsetError:
+            self.init(.audioFile(.invalidPacketOffset), comment: comment)
+        case kAudioFileInvalidFileError:
+            self.init(.audioFile(.invalidFile), comment: comment)
+        case kAudioFileOperationNotSupportedError:
+            self.init(.audioFile(.operationNotSupported), comment: comment)
+        case kAudioFileNotOpenError:
+            self.init(.audioFile(.notOpen), comment: comment)
+        case kAudioFileEndOfFileError:
+            self.init(.audioFile(.endOfFile), comment: comment)
+        case kAudioFilePositionError:
+            self.init(.audioFile(.position), comment: comment)
+        case kAudioFileFileNotFoundError:
+            self.init(.audioFile(.fileNotFound), comment: comment)
         default:
             self.init(.unknown(status: status), comment: comment)
         }

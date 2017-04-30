@@ -80,7 +80,6 @@ public struct AudioUnitPropertyListener {
     
     fileprivate let procInput: UnsafeMutablePointer<Callback>
     
-    /// Initialise a property listener with a callback block.
     public init(_ callback: @escaping Callback) {
         self.proc = { (inRefCon, inUnit, inID, inScope, inElement) in
             inRefCon.assumingMemoryBound(to: Callback.self).pointee(inUnit, inID)
