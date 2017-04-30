@@ -35,10 +35,6 @@ public class AudioFile {
 
 extension AudioFile {
     
-}
-
-extension AudioFile {
-    
     public struct Property {
         
         public static let fileFormat = kAudioFilePropertyFileFormat
@@ -103,7 +99,7 @@ extension AudioFile {
         
     }
     
-    public func value<T>(for property: AudioUnitPropertyID) -> T? {
+    public func value<T>(for property: AudioFilePropertyID) -> T? {
         do {
             let (dataSize, _) = try info(for: property)
             return try value(for: property, dataSize: dataSize)
@@ -113,6 +109,19 @@ extension AudioFile {
         }
     }
     
+    public func setValue<T>(_ value: T, for property: AudioFilePropertyID) {
+        do {
+            let (dataSize, _) = try! info(for: property)
+            return try setValue(value, for: property, dataSize: dataSize)
+        } catch let error {
+            print(error)
+        }
+    }
+    
+}
+
+extension AudioFile {
+
     public func value<T>(for property: AudioFilePropertyID, dataSize: UInt32) throws -> T {
         var dataSize = dataSize
         var data = UnsafeMutablePointer<T>.allocate(capacity: Int(dataSize))
@@ -123,15 +132,6 @@ extension AudioFile {
         return data.pointee
     }
     
-    public func setValue<T>(_ value: T, for property: AudioUnitPropertyID) {
-        do {
-            let (dataSize, _) = try! info(for: property)
-            return try setValue(value, for: property, dataSize: dataSize)
-        } catch let error {
-            print(error)
-        }
-    }
-    
     public func setValue<T>(_ value: T, for property: AudioFilePropertyID, dataSize: UInt32) throws {
         var data = value
         try AudioFileSetProperty(reference, property, dataSize, &data).audioError("Setting AudioFile property")
@@ -140,9 +140,7 @@ extension AudioFile {
     public func info(for property: AudioFilePropertyID) throws -> (dataSize: UInt32, isWritable: Bool) {
         var dataSize: UInt32 = 0
         var isWritable: UInt32 = 0
-        
         try AudioFileGetPropertyInfo(reference, property, &dataSize, &isWritable).audioError("Getting AudioFile property info")
-        
         return (dataSize: dataSize, isWritable: isWritable != 0)
     }
 
