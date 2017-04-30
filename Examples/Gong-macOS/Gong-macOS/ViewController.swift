@@ -24,7 +24,7 @@ class ViewController: NSViewController {
         
         do {
             let url = Bundle.main.url(forResource: "narkopop_1", withExtension: "mp3")!
-            let audioFile = try AudioFile(url: url)
+            let audioFile = try AudioFile.open(url)
             
             if let properties = audioFile.properties {
                 print(properties)
