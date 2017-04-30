@@ -27,6 +27,10 @@ public class AudioFile {
         try AudioFileClose(reference).audioError("Closing AudioFile")
     }
     
+    public func optimize() throws {
+        try AudioFileOptimize(reference).audioError("Optimizing AudioFile")
+    }
+    
 }
 
 extension AudioFile {
@@ -84,4 +88,3 @@ extension AudioFile {
     }
     
 }
-
