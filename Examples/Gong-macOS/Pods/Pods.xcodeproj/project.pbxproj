@@ -19,6 +19,7 @@
 		5A89E4831E247D2196B10D5925283614 /* MIDIInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D367244F85EDCC5AFBB114DE13754BE /* MIDIInput.swift */; };
 		60FFE91F720E61F2AE31883634EE9D6B /* Pods-Gong-macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5323C7F0A036BE242C6C9AC0199388 /* Pods-Gong-macOS-dummy.m */; };
 		659A9A402942D954601B4A668718D50F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75EB8E4E98DEF5359C4618B83757AF00 /* Cocoa.framework */; };
+		65D490871EB72F6B007AE31D /* AudioStreamBasicDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D490861EB72F6B007AE31D /* AudioStreamBasicDescription.swift */; };
 		7FA3EADD859303EDB2F62A9491B270B2 /* MIDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA5EC04D4791155F000FFA3267D2E3D /* MIDI.swift */; };
 		820714B5916D8F74A394BF6C1D6A4557 /* MIDIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27417F7A8931674F7C39953A04BBC93 /* MIDIDevice.swift */; };
 		833BFD72C88A33A408EA798C210EFAC1 /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A463473279AF9720260A6906EED01F8 /* Audio.swift */; };
@@ -56,7 +57,7 @@
 		21932B1592470926C14FA22D4CE7E738 /* Gong-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Gong-umbrella.h"; sourceTree = "<group>"; };
 		32AE328302847924ABD332D9ECF57498 /* MIDIClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIClient.swift; sourceTree = "<group>"; };
 		3494C348B52F0F9183904D0A9779E484 /* Pods-Gong-macOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Gong-macOS-frameworks.sh"; sourceTree = "<group>"; };
-		370F0C30D69792A0D4F93BEA8E0436CC /* Pods_Gong_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Gong_macOS.framework; path = "Pods-Gong-macOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		370F0C30D69792A0D4F93BEA8E0436CC /* Pods_Gong_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gong_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38206F93E50461D07800FEA9EAC109DF /* Pods-Gong-macOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Gong-macOS-acknowledgements.markdown"; sourceTree = "<group>"; };
 		3E8C5CD8595F0AAFCA6F0301B874C9C0 /* MIDIEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIEvent.swift; sourceTree = "<group>"; };
 		4119DA3B690F8C94B10C3BA406433751 /* AudioUnit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AudioUnit.swift; sourceTree = "<group>"; };
@@ -64,7 +65,8 @@
 		4C5323C7F0A036BE242C6C9AC0199388 /* Pods-Gong-macOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Gong-macOS-dummy.m"; sourceTree = "<group>"; };
 		4D9A687038783C919F0DB7B9D28A1FE4 /* MIDIPort.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIPort.swift; sourceTree = "<group>"; };
 		57F071520A355B5813B3C7B7D995C4C8 /* Pods-Gong-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Gong-macOS.release.xcconfig"; sourceTree = "<group>"; };
-		6C82E6986F02EC9605618D2983A16C30 /* Pods-Gong-macOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Gong-macOS.modulemap"; sourceTree = "<group>"; };
+		65D490861EB72F6B007AE31D /* AudioStreamBasicDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioStreamBasicDescription.swift; sourceTree = "<group>"; };
+		6C82E6986F02EC9605618D2983A16C30 /* Pods-Gong-macOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Gong-macOS.modulemap"; sourceTree = "<group>"; };
 		7569714AE8C58C76E06A12B1BDB51951 /* MIDINote.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDINote.swift; sourceTree = "<group>"; };
 		75EB8E4E98DEF5359C4618B83757AF00 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		776EB7811505580886471DA5C4F53461 /* MIDIDestination.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIDestination.swift; sourceTree = "<group>"; };
@@ -72,15 +74,15 @@
 		7DC145A70070B1B10A162096A23AB627 /* MIDISource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDISource.swift; sourceTree = "<group>"; };
 		7F2A16C21A873041946D7422846F7458 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84F8AAD0A1AE546467E12A1399D31081 /* AudioFile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AudioFile.swift; sourceTree = "<group>"; };
-		8905CE29567DACC6E5B16CFE58224B38 /* Gong.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Gong.modulemap; sourceTree = "<group>"; };
+		8905CE29567DACC6E5B16CFE58224B38 /* Gong.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Gong.modulemap; sourceTree = "<group>"; };
 		8D367244F85EDCC5AFBB114DE13754BE /* MIDIInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIInput.swift; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		95057B4A201A62F7A60C94E71AEB157B /* MIDIError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIError.swift; sourceTree = "<group>"; };
 		9A463473279AF9720260A6906EED01F8 /* Audio.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		A183AE97F77C80409B85125414004617 /* Pods-Gong-macOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Gong-macOS-umbrella.h"; sourceTree = "<group>"; };
 		B6236316C0DB10153130E74ACCB10D51 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/CoreMIDI.framework; sourceTree = DEVELOPER_DIR; };
 		C15F9E6DB0F121EB022C789DA57BF53C /* Pods-Gong-macOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Gong-macOS-resources.sh"; sourceTree = "<group>"; };
-		C16457BAD7491668ACD8B54BCFE8D8FA /* Gong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Gong.framework; path = Gong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C16457BAD7491668ACD8B54BCFE8D8FA /* Gong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8667DF930CF620BF011EB2396AFED04 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA17A9E8FEF0F62BEA58C131F2C329DB /* MIDINotice.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDINotice.swift; sourceTree = "<group>"; };
 		CDA5EC04D4791155F000FFA3267D2E3D /* MIDI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDI.swift; sourceTree = "<group>"; };
@@ -190,7 +192,6 @@
 			children = (
 				D24E1B78DC56978D7743334E2F190D5D /* MIDI */,
 			);
-			name = Sources;
 			path = Sources;
 			sourceTree = "<group>";
 		};
@@ -228,7 +229,6 @@
 			children = (
 				CDA5EC04D4791155F000FFA3267D2E3D /* MIDI.swift */,
 			);
-			name = MIDI;
 			path = MIDI;
 			sourceTree = "<group>";
 		};
@@ -238,7 +238,6 @@
 				3E8C5CD8595F0AAFCA6F0301B874C9C0 /* MIDIEvent.swift */,
 				7569714AE8C58C76E06A12B1BDB51951 /* MIDINote.swift */,
 			);
-			name = Events;
 			path = Events;
 			sourceTree = "<group>";
 		};
@@ -247,7 +246,6 @@
 			children = (
 				B64C942F4A93DFCA8A4A053CAB9C826B /* MIDI */,
 			);
-			name = Sources;
 			path = Sources;
 			sourceTree = "<group>";
 		};
@@ -267,7 +265,6 @@
 			children = (
 				F52C92EE01E60A0DA0F46B4B7D91E66E /* Core */,
 			);
-			name = Audio;
 			path = Audio;
 			sourceTree = "<group>";
 		};
@@ -299,7 +296,6 @@
 			children = (
 				68CEEC619A3189822197D07E335AF900 /* MIDI */,
 			);
-			name = Sources;
 			path = Sources;
 			sourceTree = "<group>";
 		};
@@ -328,7 +324,6 @@
 				4D9A687038783C919F0DB7B9D28A1FE4 /* MIDIPort.swift */,
 				7DC145A70070B1B10A162096A23AB627 /* MIDISource.swift */,
 			);
-			name = Core;
 			path = Core;
 			sourceTree = "<group>";
 		};
@@ -337,7 +332,6 @@
 			children = (
 				772AC3130C1684727EE19CA8E8F4FDFA /* Events */,
 			);
-			name = MIDI;
 			path = MIDI;
 			sourceTree = "<group>";
 		};
@@ -346,7 +340,6 @@
 			children = (
 				F14C78F302D001B44C9D3A81669864D1 /* Audio */,
 			);
-			name = Sources;
 			path = Sources;
 			sourceTree = "<group>";
 		};
@@ -355,7 +348,6 @@
 			children = (
 				A41DB52074CB5D0955DC9A3C3AC4117E /* Core */,
 			);
-			name = MIDI;
 			path = MIDI;
 			sourceTree = "<group>";
 		};
@@ -364,7 +356,6 @@
 			children = (
 				7E15D393F7076839A3A0DF15A21744B5 /* Audio */,
 			);
-			name = Sources;
 			path = Sources;
 			sourceTree = "<group>";
 		};
@@ -373,7 +364,6 @@
 			children = (
 				9A463473279AF9720260A6906EED01F8 /* Audio.swift */,
 			);
-			name = Audio;
 			path = Audio;
 			sourceTree = "<group>";
 		};
@@ -384,8 +374,8 @@
 				84F8AAD0A1AE546467E12A1399D31081 /* AudioFile.swift */,
 				797A176FE007F291F9399F0A5414A859 /* AudioGraph.swift */,
 				4119DA3B690F8C94B10C3BA406433751 /* AudioUnit.swift */,
+				65D490861EB72F6B007AE31D /* AudioStreamBasicDescription.swift */,
 			);
-			name = Core;
 			path = Core;
 			sourceTree = "<group>";
 		};
@@ -490,6 +480,7 @@
 				820714B5916D8F74A394BF6C1D6A4557 /* MIDIDevice.swift in Sources */,
 				156BEC8E711F679BAE697FF550A433D7 /* MIDIEndpoint.swift in Sources */,
 				DEC842BCEF3221175E7564A6ED1A35D7 /* MIDIEntity.swift in Sources */,
+				65D490871EB72F6B007AE31D /* AudioStreamBasicDescription.swift in Sources */,
 				DF3B3E148B4AEA0E2B666B6094EA76B6 /* MIDIError.swift in Sources */,
 				26E0741354F23C2642D5617EE638219D /* MIDIEvent.swift in Sources */,
 				5A89E4831E247D2196B10D5925283614 /* MIDIInput.swift in Sources */,
