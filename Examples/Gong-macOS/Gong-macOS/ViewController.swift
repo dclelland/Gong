@@ -11,6 +11,8 @@ import CoreMIDI
 import Gong
 import AudioToolbox
 
+// https://github.com/AlesTsurko/LearningCoreAudioWithSwift2.0/blob/master/CH02_CAToneFileGenerator/CAToneFileGenerator/main.swift
+
 class ViewController: NSViewController {
 
     override func viewWillAppear() {

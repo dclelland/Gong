@@ -16,21 +16,31 @@ import AudioToolbox
 
 public protocol AudioStreamType {
     
-    static var formatFlags: AudioFormatFlags { get }
-    
-    static var bytesPerPacket: UInt32 { get }
-    
-    static var framesPerPacket: UInt32 { get }
-    
-    static var bytesPerFrame: UInt32 { get }
-    
-    static var channelsPerFrame: UInt32 { get }
-    
     static var bitsPerChannel: UInt32 { get }
+    
+    static func bytesPerFrame(with channelsPerFrame: UInt32) -> UInt32
+    
+    static func framesPerPacket(with channelsPerFrame: UInt32) -> UInt32
+    
+    static func bytesPerPacket(with channelsPerFrame: UInt32) -> UInt32
     
 }
 
-// "This structure is sufficient to describe any constant bit rate format that has channels that are the same size. Extensions are required for variable bit rate data and for constant bit rate data where the channels have unequal sizes."
+public extension AudioStreamType {
+    
+    static func bytesPerFrame(with channelsPerFrame: UInt32) -> UInt32 {
+        return bitsPerChannel / 8 * channelsPerFrame
+    }
+    
+    static func framesPerPacket(with channelsPerFrame: UInt32) -> UInt32 {
+        return 1
+    }
+    
+    static func bytesPerPacket(with channelsPerFrame: UInt32) -> UInt32 {
+        return bytesPerFrame(with: channelsPerFrame) * framesPerPacket(with: channelsPerFrame)
+    }
+    
+}
 
 extension AudioStreamType {
     
@@ -73,14 +83,14 @@ extension AudioStreamType {
     //    @field          mReserved
     //    Pads the structure out to force an even 8 byte alignment.
     
-    public static func audioStreamDescription(sampleRate: Float64, format: AudioFormatID, channels: UInt32 = 1) -> AudioStreamBasicDescription {
+    public static func audioStreamDescription(sampleRate: Float64, format: AudioFormatID, channelsPerFrame: UInt32 = 1) -> AudioStreamBasicDescription {
         return AudioStreamBasicDescription(
             mSampleRate: sampleRate,
             mFormatID: format,
-            mFormatFlags: formatFlags,
-            mBytesPerPacket: bytesPerPacket,
-            mFramesPerPacket: framesPerPacket,
-            mBytesPerFrame: bytesPerFrame,
+            mFormatFlags: kAudioFormatFlagIsBigEndian | kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked,
+            mBytesPerPacket: bytesPerPacket(with: channelsPerFrame),
+            mFramesPerPacket: framesPerPacket(with: channelsPerFrame),
+            mBytesPerFrame: bytesPerFrame(with: channelsPerFrame),
             mChannelsPerFrame: channelsPerFrame,
             mBitsPerChannel: bitsPerChannel,
             mReserved: 0
@@ -90,16 +100,6 @@ extension AudioStreamType {
 }
 
 extension Int16: AudioStreamType {
-    
-    public static var formatFlags: AudioFormatFlags { return kAudioFormatFlagIsBigEndian | kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked }
-    
-    public static var bytesPerPacket: UInt32 { return 2 }
-    
-    public static var framesPerPacket: UInt32 { return 1 }
-    
-    public static var bytesPerFrame: UInt32 { return 2 }
-    
-    public static var channelsPerFrame: UInt32 { return 1 }
     
     public static var bitsPerChannel: UInt32 { return 16 }
 
