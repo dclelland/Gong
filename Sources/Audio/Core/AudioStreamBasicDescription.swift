@@ -30,6 +30,8 @@ public protocol AudioStreamType {
     
 }
 
+// "This structure is sufficient to describe any constant bit rate format that has channels that are the same size. Extensions are required for variable bit rate data and for constant bit rate data where the channels have unequal sizes."
+
 extension AudioStreamType {
     
     
@@ -91,11 +93,11 @@ extension Int16: AudioStreamType {
     
     public static var formatFlags: AudioFormatFlags { return kAudioFormatFlagIsBigEndian | kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked }
     
-    public static var bytesPerPacket: UInt32 { return 1 }
+    public static var bytesPerPacket: UInt32 { return 2 }
     
-    public static var framesPerPacket: UInt32 { return 2 }
+    public static var framesPerPacket: UInt32 { return 1 }
     
-    public static var bytesPerFrame: UInt32 { return 1 }
+    public static var bytesPerFrame: UInt32 { return 2 }
     
     public static var channelsPerFrame: UInt32 { return 1 }
     

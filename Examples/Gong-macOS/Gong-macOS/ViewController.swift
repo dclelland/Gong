@@ -60,15 +60,13 @@ class ViewController: NSViewController {
             
             while sampleCount < maximumSampleCount {
                 for i in 0..<wavelengthInSamples {
-                    var sample: UInt16 = UInt16(i)
-                    
-//                    var sample: UInt16 = {
-//                        if i < wavelengthInSamples / 2 {
-//                            return CFSwapInt16HostToBig(.max)
-//                        } else {
-//                            return CFSwapInt16HostToBig(.min)
-//                        }
-//                    }()
+                    var sample: UInt16 = {
+                        if i < wavelengthInSamples / 2 {
+                            return CFSwapInt16HostToBig(.max)
+                        } else {
+                            return CFSwapInt16HostToBig(.min)
+                        }
+                    }()
                     
                     try AudioFileWriteBytes(audioFile.reference, false, sampleCount * 2, &bytesToWrite, &sample).audioError("Writing bytes")
                     // this will probably not be very efficient...
