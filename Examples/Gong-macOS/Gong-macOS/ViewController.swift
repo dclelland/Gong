@@ -44,8 +44,12 @@ class ViewController: NSViewController {
             
             print(url)
             
+            let sampleRate: Float64 = 44_100
+            let duration: Float64 = 5
+            let frequency: Double = 50.0
+            
             let format = AudioStreamBasicDescription(
-                mSampleRate: 44_100,
+                mSampleRate: sampleRate,
                 mFormatID: kAudioFormatLinearPCM,
                 mFormatFlags: kAudioFormatFlagIsBigEndian | kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked,
                 mBytesPerPacket: 2,
@@ -57,6 +61,30 @@ class ViewController: NSViewController {
             )
             
             let audioFile = try AudioFile(url, type: kAudioFileAIFFType, format: format, flags: .eraseFile)
+            
+            
+            let maximumSampleCount = Int64(sampleRate * duration)
+            var sampleCount: Int64 = 0
+            var bytesToWrite: UInt32 = 2
+            let wavelengthInSamples = Int(Double(sampleRate) / frequency)
+            
+            while sampleCount < maximumSampleCount {
+                for i in 0..<wavelengthInSamples {
+                    var sample: UInt16 = {
+                        if i < wavelengthInSamples / 2 {
+                            return CFSwapInt16HostToBig(.max)
+                        } else {
+                            return CFSwapInt16HostToBig(.min)
+                        }
+                    }()
+                    
+                    try AudioFileWriteBytes(audioFile.reference, false, sampleCount * 2, &bytesToWrite, &sample).audioError("Writing bytes")
+                    // this will probably not be very efficient...
+                    sampleCount += 1
+                }
+            }
+            
+            try audioFile.close()
         } catch let error {
             print(error)
         }

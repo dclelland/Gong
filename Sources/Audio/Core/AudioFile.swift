@@ -9,6 +9,10 @@
 import Foundation
 import AudioToolbox
 
+// should really model an AudioFile as a collection or buffer
+// mutable lazy collection: buffer/samples
+// this is how you interface with AudioFileWriteBytes and AudioFileReadBytes
+
 public class AudioFile {
     
     public let reference: AudioFileID
