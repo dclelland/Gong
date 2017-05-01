@@ -58,21 +58,24 @@ class ViewController: NSViewController {
             var bytesToWrite: UInt32 = 2
             let wavelengthInSamples = Int(Double(sampleRate) / frequency)
             
+            
             while sampleCount < maximumSampleCount {
                 for i in 0..<wavelengthInSamples {
-                    var sample: UInt16 = {
-                        if i < wavelengthInSamples / 2 {
-                            return CFSwapInt16HostToBig(.max)
-                        } else {
-                            return CFSwapInt16HostToBig(.min)
-                        }
-                    }()
+                    // Square wave
+                    //            var sample = n < Int(wavelengthInSamples) / 2 ? (Int16.max).bigEndian : (Int16.min).bigEndian
                     
-                    try AudioFileWriteBytes(audioFile.reference, false, sampleCount * 2, &bytesToWrite, &sample).audioError("Writing bytes")
-                    // this will probably not be very efficient...
+                    // Saw wave
+                    //            var sample = Int16(((Double(n) / wavelengthInSamples) * Double(Int16.max) * 2) - Double(Int16.max)).bigEndian
+                    
+                    // Sine wave
+                    var sample = Int16(Double(Int16.max) * sin(2 * .pi * (Double(i) / Double(wavelengthInSamples)))).bigEndian
+                    
+                    try AudioFileWriteBytes(audioFile.reference, false, Int64(sampleCount*2), &bytesToWrite, &sample).audioError("Writing bytes")
+                    
                     sampleCount += 1
                 }
             }
+            
             
             try audioFile.close()
         } catch let error {
