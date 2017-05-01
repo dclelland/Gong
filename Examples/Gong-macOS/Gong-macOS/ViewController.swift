@@ -48,17 +48,7 @@ class ViewController: NSViewController {
             let duration: Float64 = 5
             let frequency: Double = 50.0
             
-            let format = AudioStreamBasicDescription(
-                mSampleRate: sampleRate,
-                mFormatID: kAudioFormatLinearPCM,
-                mFormatFlags: kAudioFormatFlagIsBigEndian | kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked,
-                mBytesPerPacket: 2,
-                mFramesPerPacket: 1,
-                mBytesPerFrame: 2,
-                mChannelsPerFrame: 1,
-                mBitsPerChannel: 16,
-                mReserved: 0
-            )
+            let format = Int16.audioStreamDescription(sampleRate: sampleRate, format: kAudioFormatLinearPCM)
             
             let audioFile = try AudioFile(url, type: kAudioFileAIFFType, format: format, flags: .eraseFile)
             
