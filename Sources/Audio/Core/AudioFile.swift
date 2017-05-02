@@ -46,6 +46,20 @@ public class AudioFile {
 
 extension AudioFile {
     
+    public func read(to buffer: UnsafeMutableRawPointer, start: Int64, count: UInt32, useCache: Bool = false) throws {
+        var count = count
+        try AudioFileReadBytes(reference, useCache, start, &count, buffer).audioError("Reading buffer from AudioFile")
+    }
+    
+    public func write(from buffer: UnsafeRawPointer, start: Int64, count: UInt32, useCache: Bool = false) throws {
+        var count = count
+        try AudioFileWriteBytes(reference, useCache, start, &count, buffer).audioError("Writing buffer to AudioFile")
+    }
+    
+}
+
+extension AudioFile {
+    
     public struct Property {
         
         public static let fileFormat = kAudioFilePropertyFileFormat
@@ -166,13 +180,9 @@ extension AudioFile {
     
 }
 
-//public func AudioFileCreateWithURL(_ inFileRef: CFURL, _ inFileType: AudioFileTypeID, _ inFormat: UnsafePointer<
-//// open
 //public func AudioFileInitializeWithCallbacks(_ inClientData: UnsafeMutableRawPointer, _ inReadFunc: @escaping
 //public func AudioFileOpenWithCallbacks(_ inClientData: UnsafeMutableRawPointer, _ inReadFunc: @escaping
-//// close, optimise
-//public func AudioFileReadBytes(_ inAudioFile: AudioFileID, _ inUseCache: Bool, _ inStartingByte: Int64, _ ioNumBytes:
-//public func AudioFileWriteBytes(_ inAudioFile: AudioFileID, _ inUseCache: Bool, _ inStartingByte: Int64, _ ioNumBytes:
+//// close, optimise, read, write
 //public func AudioFileReadPacketData(_ inAudioFile: AudioFileID, _ inUseCache: Bool, _ ioNumBytes: UnsafeMutablePointer<UInt32>, _
 //public func AudioFileReadPackets(_ inAudioFile: AudioFileID, _ inUseCache: Bool, _ outNumBytes: UnsafeMutablePointer<UInt32>, _
 //public func AudioFileWritePackets(_ inAudioFile: AudioFileID, _ inUseCache: Bool, _ inNumBytes: UInt32, _ inPacketDescriptions:

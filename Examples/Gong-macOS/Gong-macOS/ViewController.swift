@@ -72,7 +72,7 @@ class ViewController: NSViewController {
                     // Sine wave
                     var sample = Int16(Double(Int16.max) * sin(2 * .pi * (Double(i) / Double(wavelengthInSamples)))).bigEndian
                     
-                    try AudioFileWriteBytes(audioFile.reference, false, Int64(sampleCount*2), &bytesToWrite, &sample).audioError("Writing bytes")
+                    try audioFile.write(from: &sample, start: Int64(sampleCount * 2), count: bytesToWrite)
                     
                     sampleCount += 1
                 }
