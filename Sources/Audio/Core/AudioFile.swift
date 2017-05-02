@@ -124,23 +124,14 @@ extension AudioFile {
         
     }
     
-    public func value<T>(for property: AudioFilePropertyID) -> T? {
-        do {
-            let (dataSize, _) = try info(for: property)
-            return try value(for: property, dataSize: dataSize)
-        } catch let error {
-            print(error)
-            return nil
-        }
+    public func value<T>(for property: AudioFilePropertyID) throws -> T {
+        let (dataSize, _) = try info(for: property)
+        return try value(for: property, dataSize: dataSize)
     }
     
-    public func setValue<T>(_ value: T, for property: AudioFilePropertyID) {
-        do {
-            let (dataSize, _) = try! info(for: property)
-            return try setValue(value, for: property, dataSize: dataSize)
-        } catch let error {
-            print(error)
-        }
+    public func setValue<T>(_ value: T, for property: AudioFilePropertyID) throws {
+        let (dataSize, _) = try info(for: property)
+        return try setValue(value, for: property, dataSize: dataSize)
     }
     
 }
@@ -174,15 +165,15 @@ extension AudioFile {
 extension AudioFile {
     
     public var fileFormat: AudioFileTypeID? {
-        return value(for: Property.fileFormat)
+        return try? value(for: Property.fileFormat)
     }
     
     public var dataFormat: AudioStreamBasicDescription? {
-        return value(for: Property.dataFormat)
+        return try? value(for: Property.dataFormat)
     }
 
     public var properties: NSDictionary? {
-        let properties: CFDictionary? = value(for: Property.infoDictionary)
+        let properties: CFDictionary? = try? value(for: Property.infoDictionary)
         return properties as NSDictionary?
     }
     
