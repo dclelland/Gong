@@ -172,6 +172,14 @@ extension AudioFile {
 }
 
 extension AudioFile {
+    
+    public var fileFormat: AudioFileTypeID? {
+        return value(for: Property.fileFormat)
+    }
+    
+    public var dataFormat: AudioStreamBasicDescription? {
+        return value(for: Property.dataFormat)
+    }
 
     public var properties: NSDictionary? {
         let properties: CFDictionary? = value(for: Property.infoDictionary)

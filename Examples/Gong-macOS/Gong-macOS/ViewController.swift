@@ -28,12 +28,16 @@ class ViewController: NSViewController {
             let url = Bundle.main.url(forResource: "narkopop_1", withExtension: "mp3")!
             let audioFile = try AudioFile.open(url)
             
-            if let properties = audioFile.properties {
-                print(properties)
+            if let fileFormat = audioFile.fileFormat {
+                print("File format:", fileFormat)
             }
             
-            if let fileFormat: AudioFileTypeID = audioFile.value(for: AudioFile.Property.fileFormat) {
-                print(fileFormat)
+            if let dataFormat = audioFile.dataFormat {
+                print("Data format:", dataFormat)
+            }
+            
+            if let properties = audioFile.properties {
+                print("Properties:", properties)
             }
             
             try audioFile.close()
