@@ -155,7 +155,7 @@ extension MIDIObject {
         return string!.takeUnretainedValue() as String
     }
     
-    public func setString(_ string: String, for property: CFString) throws {
+    public func setString(_ string: String, for property: String) throws {
         try MIDIObjectSetStringProperty(reference, property as CFString, string as CFString).midiError("Setting string for property \"\(property)\" on MIDIObject")
     }
     
