@@ -149,43 +149,26 @@ extension AudioFile {
     }
     
     public func value<T>(for property: AudioFilePropertyID) throws -> T {
-        // TODO: Support arrays. Perhaps don't bother keeping the size methods in separate functions...?
-        let (dataSize, _) = try info(for: property)
-        return try value(for: property, dataSize: dataSize)
-    }
-    
-    public func setValue<T>(_ value: T, for property: AudioFilePropertyID) throws {
-        // TODO: Support arrays. Perhaps don't bother keeping the size methods in separate functions...?
-        let (dataSize, _) = try info(for: property)
-        return try setValue(value, for: property, dataSize: dataSize)
-    }
-    
-}
-
-extension AudioFile {
-    
-    public func info(for property: AudioFilePropertyID) throws -> (dataSize: UInt32, isWritable: Bool) {
-        var dataSize: UInt32 = 0
-        var isWritable: UInt32 = 0
-        try AudioFileGetPropertyInfo(reference, property, &dataSize, &isWritable).audioError("Getting AudioFile property info")
-        return (dataSize: dataSize, isWritable: isWritable != 0)
-    }
-
-    public func value<T>(for property: AudioFilePropertyID, dataSize: UInt32) throws -> T {
-        var dataSize = dataSize
-        var data = UnsafeMutablePointer<T>.allocate(capacity: Int(dataSize))
-        defer {
-            data.deallocate(capacity: Int(dataSize))
-        }
-        try AudioFileGetProperty(reference, property, &dataSize, data).audioError("Getting AudioFile property")
+        var (dataSize, _) = try info(for: property)
+        let data: UnsafeMutablePointer<T> = try self.data(for: property, dataSize: &dataSize)
         return data.pointee
     }
     
-    public func setValue<T>(_ value: T, for property: AudioFilePropertyID, dataSize: UInt32) throws {
-        var data = value
-        try AudioFileSetProperty(reference, property, dataSize, &data).audioError("Setting AudioFile property")
+    public func array<T>(for property: AudioFilePropertyID) throws -> [T] {
+        var (dataSize, _) = try info(for: property)
+        let data: UnsafeMutablePointer<T> = try self.data(for: property, dataSize: &dataSize)
+        let count = Int(dataSize) / MemoryLayout<T>.size
+        return (0..<count).map { index in
+            return data[index]
+        }
     }
-
+    
+    public func setValue<T>(_ value: T, for property: AudioFilePropertyID) throws {
+        let (dataSize, _) = try info(for: property)
+        var data = value
+        return try setData(&data, for: property, dataSize: dataSize)
+    }
+    
 }
 
 extension AudioFile {
@@ -197,7 +180,7 @@ extension AudioFile {
     public var dataFormat: AudioStreamBasicDescription? {
         return try? value(for: Property.dataFormat)
     }
-
+    
     public var properties: NSDictionary? {
         let properties: CFDictionary? = try? value(for: Property.infoDictionary)
         return properties as NSDictionary?
@@ -207,7 +190,38 @@ extension AudioFile {
 
 extension AudioFile {
     
-    public struct GlobalInfoProperty {
+    internal func info(for property: AudioFilePropertyID) throws -> (dataSize: UInt32, isWritable: Bool) {
+        var dataSize: UInt32 = 0
+        var isWritable: UInt32 = 0
+        try AudioFileGetPropertyInfo(reference, property, &dataSize, &isWritable).audioError("Getting AudioFile property info")
+        return (dataSize: dataSize, isWritable: isWritable != 0)
+    }
+
+    internal func data<T>(for property: AudioFilePropertyID, dataSize: inout UInt32) throws -> UnsafeMutablePointer<T> {
+        var dataSize = dataSize
+        var data = UnsafeMutablePointer<T>.allocate(capacity: Int(dataSize))
+        defer {
+            data.deallocate(capacity: Int(dataSize))
+        }
+        try AudioFileGetProperty(reference, property, &dataSize, data).audioError("Getting AudioFile property")
+        return data
+    }
+    
+    internal func setData<T>(_ data: UnsafeMutablePointer<T>, for property: AudioFilePropertyID, dataSize: UInt32) throws {
+        try AudioFileSetProperty(reference, property, dataSize, data).audioError("Setting AudioFile property")
+    }
+
+}
+
+//public func AudioFileCountUserData(_ inAudioFile: AudioFileID, _ inUserDataID: UInt32, _ outNumberItems: UnsafeMutablePointer<
+//public func AudioFileGetUserDataSize(_ inAudioFile: AudioFileID, _ inUserDataID: UInt32, _ inIndex: UInt32, _ outUserDataSize:
+//public func AudioFileGetUserData(_ inAudioFile: AudioFileID, _ inUserDataID: UInt32, _ inIndex: UInt32, _ ioUserDataSize:
+//public func AudioFileSetUserData(_ inAudioFile: AudioFileID, _ inUserDataID: UInt32, _ inIndex: UInt32, _ inUserDataSize: UInt32,
+//public func AudioFileRemoveUserData(_ inAudioFile: AudioFileID, _ inUserDataID: UInt32, _ inIndex: UInt32) -> OSStatus
+
+extension AudioFile {
+    
+    public struct GlobalProperty {
         
         public static let readableTypes = kAudioFileGlobalInfo_ReadableTypes
         
@@ -245,20 +259,16 @@ extension AudioFile {
         
     }
     
-}
-
-extension AudioFile {
-    
-    public static func globalInfo<T>(for property: AudioFilePropertyID, specifier: Any? = nil) throws -> T {
-        var dataSize = try globalInfoDataSize(for: property, specifier: specifier)
-        let data: UnsafeMutablePointer<T> = try globalInfoData(for: property, dataSize: &dataSize, specifier: specifier)
+    public static func value<T>(for property: AudioFilePropertyID, specifier: Any? = nil) throws -> T {
+        var dataSize = try self.dataSize(for: property, specifier: specifier)
+        let data: UnsafeMutablePointer<T> = try self.data(for: property, dataSize: &dataSize, specifier: specifier)
         return data.pointee
     }
     
-    public static func globalInfoArray<T>(for property: AudioFilePropertyID, specifier: Any? = nil) throws -> [T] {
-        var dataSize = try globalInfoDataSize(for: property, specifier: specifier)
-        let data: UnsafeMutablePointer<T> = try globalInfoData(for: property, dataSize: &dataSize, specifier: specifier)
-        let count = Int(dataSize) / MemoryLayout.size(ofValue: specifier)
+    public static func array<T>(for property: AudioFilePropertyID, specifier: Any? = nil) throws -> [T] {
+        var dataSize = try self.dataSize(for: property, specifier: specifier)
+        let data: UnsafeMutablePointer<T> = try self.data(for: property, dataSize: &dataSize, specifier: specifier)
+        let count = Int(dataSize) / MemoryLayout<T>.size
         return (0..<count).map { index in
             return data[index]
         }
@@ -266,15 +276,9 @@ extension AudioFile {
     
 }
 
-//public func AudioFileCountUserData(_ inAudioFile: AudioFileID, _ inUserDataID: UInt32, _ outNumberItems: UnsafeMutablePointer<
-//public func AudioFileGetUserDataSize(_ inAudioFile: AudioFileID, _ inUserDataID: UInt32, _ inIndex: UInt32, _ outUserDataSize:
-//public func AudioFileGetUserData(_ inAudioFile: AudioFileID, _ inUserDataID: UInt32, _ inIndex: UInt32, _ ioUserDataSize:
-//public func AudioFileSetUserData(_ inAudioFile: AudioFileID, _ inUserDataID: UInt32, _ inIndex: UInt32, _ inUserDataSize: UInt32,
-//public func AudioFileRemoveUserData(_ inAudioFile: AudioFileID, _ inUserDataID: UInt32, _ inIndex: UInt32) -> OSStatus
-
 extension AudioFile {
     
-    internal static func globalInfoDataSize(for property: AudioFilePropertyID, specifier: Any? = nil) throws -> UInt32 {
+    internal static func dataSize(for property: AudioFilePropertyID, specifier: Any? = nil) throws -> UInt32 {
         var dataSize: UInt32 = 0
         var specifier = specifier
         let specifierSize = UInt32(MemoryLayout.size(ofValue: specifier))
@@ -284,7 +288,7 @@ extension AudioFile {
         return dataSize
     }
     
-    internal static func globalInfoData<T>(for property: AudioFilePropertyID, dataSize: inout UInt32, specifier: Any? = nil) throws -> UnsafeMutablePointer<T> {
+    internal static func data<T>(for property: AudioFilePropertyID, dataSize: inout UInt32, specifier: Any? = nil) throws -> UnsafeMutablePointer<T> {
         var specifier = specifier
         let specifierSize = UInt32(MemoryLayout.size(ofValue: specifier))
         

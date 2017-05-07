@@ -24,32 +24,31 @@ class ViewController: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         
-//        do {
-//            let url = Bundle.main.url(forResource: "narkopop_1", withExtension: "mp3")!
-//            let audioFile = try AudioFile.open(url)
-//            
-//            if let fileFormat = audioFile.fileFormat {
-//                print("File format:", fileFormat)
-//            }
-//            
-//            if let dataFormat = audioFile.dataFormat {
-//                print("Data format:", dataFormat)
-//            }
-//            
-//            if let properties = audioFile.properties {
-//                print("Properties:", properties)
-//            }
-//            
-//            if let magicCookie: UnsafeRawPointer = try? audioFile.value(for: AudioFile.Property.magicCookieData) {
-//                
-//                print("Magic cookie:", magicCookie)
-//            }
-//            
-//            try audioFile.close()
-//        } catch let error {
-//            print(error)
-//        }
-//        
+        do {
+            let url = Bundle.main.url(forResource: "narkopop_1", withExtension: "mp3")!
+            let audioFile = try AudioFile.open(url)
+            
+            if let fileFormat = audioFile.fileFormat {
+                print("File format:", fileFormat)
+            }
+            
+            if let dataFormat = audioFile.dataFormat {
+                print("Data format:", dataFormat)
+            }
+            
+            if let properties = audioFile.properties {
+                print("Properties:", properties)
+            }
+            
+            if let tableInfo: [AudioFilePacketTableInfo] = try? audioFile.array(for: AudioFile.Property.packetTableInfo) {
+                print("Packet table info:", tableInfo)
+            }
+            
+            try audioFile.close()
+        } catch let error {
+            print(error)
+        }
+//
 //        do {
 //            let url = Bundle.main.resourceURL!.appendingPathComponent("square.aiff")
 //            
@@ -99,7 +98,7 @@ class ViewController: NSViewController {
                 mFormatID: kAudioFormatLinearPCM
             )
             
-            let formats: [AudioStreamBasicDescription] = try AudioFile.globalInfoArray(for: AudioFile.GlobalInfoProperty.availableStreamDescriptionsForFormat, specifier: specifier)
+            let formats: [AudioStreamBasicDescription] = try AudioFile.array(for: AudioFile.GlobalProperty.availableStreamDescriptionsForFormat, specifier: specifier)
             
             print("FORMATS:", formats)
             
