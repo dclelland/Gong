@@ -9,6 +9,8 @@
 import Foundation
 import AudioToolbox
 
+import Accelerate
+
 // should really model an AudioFile as a collection or buffer
 // mutable lazy collection: buffer/samples
 // this is how you interface with AudioFileWriteBytes and AudioFileReadBytes
@@ -28,11 +30,15 @@ public class AudioFile {
         self.init(audioFileReference!)
     }
     
+    //public func AudioFileInitializeWithCallbacks(_ inClientData: UnsafeMutableRawPointer, _ inReadFunc: @escaping
+    
     public static func open(_ url: URL, permissions: AudioFilePermissions = .readWritePermission, typeHint: AudioFileTypeID = 0) throws -> AudioFile {
         var audioFileReference: AudioFileID? = nil
         try AudioFileOpenURL(url as CFURL, permissions, typeHint, &audioFileReference).audioError("Opening AudioFile with URL \"\(url)\"")
         return AudioFile(audioFileReference!)
     }
+    
+    //public func AudioFileOpenWithCallbacks(_ inClientData: UnsafeMutableRawPointer, _ inReadFunc: @escaping
     
     public func close() throws {
         try AudioFileClose(reference).audioError("Closing AudioFile")
@@ -46,17 +52,35 @@ public class AudioFile {
 
 extension AudioFile {
     
-    public func read(to buffer: UnsafeMutableRawPointer, start: Int64, count: UInt32, useCache: Bool = false) throws {
+    public func readBytes(into buffer: UnsafeMutableRawPointer, start: Int64, count: UInt32, useCache: Bool = false) throws {
         var count = count
-        try AudioFileReadBytes(reference, useCache, start, &count, buffer).audioError("Reading buffer from AudioFile")
+        try AudioFileReadBytes(reference, useCache, start, &count, buffer).audioError("Reading bytes from AudioFile")
     }
     
-    public func write(from buffer: UnsafeRawPointer, start: Int64, count: UInt32, useCache: Bool = false) throws {
+    public func writeBytes(from buffer: UnsafeRawPointer, start: Int64, count: UInt32, useCache: Bool = false) throws {
         var count = count
-        try AudioFileWriteBytes(reference, useCache, start, &count, buffer).audioError("Writing buffer to AudioFile")
+        try AudioFileWriteBytes(reference, useCache, start, &count, buffer).audioError("Writing bytes to AudioFile")
     }
     
 }
+
+//extension AudioFile {
+//    
+//    public func readPackets(into buffer: UnsafeMutableRawPointer, bytes: UInt32, packetDescriptions: [AudioStreamPacketDescription]? = nil, start: Int64, count: UInt32, useCache: Bool = false) throws {
+//        var bytes = bytes
+//        var packetDescriptions = packetDescriptions
+//        var count = count
+//        try AudioFileReadPacketData(reference, useCache, &bytes, packetDescriptions, start, &count, buffer).audioError("Reading packets from AudioFile")
+//    }
+//    
+//    public func writePackets(from buffer: UnsafeRawPointer, bytes: UInt32, packetDescriptions: [AudioStreamPacketDescription]? = nil, start: Int64, count: UInt32, useCache: Bool = false) {
+//        var bytes = bytes
+//        var packetDescriptions = packetDescriptions
+//        var count = count
+//        try AudioFileWritePackets(reference, useCache, bytes, &packetDescriptions, start, &count, buffer).audioError("Writing packets to AudioFile")
+//    }
+//    
+//}
 
 extension AudioFile {
     
@@ -125,11 +149,13 @@ extension AudioFile {
     }
     
     public func value<T>(for property: AudioFilePropertyID) throws -> T {
+        // TODO: Support arrays. Perhaps don't bother keeping the size methods in separate functions...?
         let (dataSize, _) = try info(for: property)
         return try value(for: property, dataSize: dataSize)
     }
     
     public func setValue<T>(_ value: T, for property: AudioFilePropertyID) throws {
+        // TODO: Support arrays. Perhaps don't bother keeping the size methods in separate functions...?
         let (dataSize, _) = try info(for: property)
         return try setValue(value, for: property, dataSize: dataSize)
     }
@@ -179,18 +205,97 @@ extension AudioFile {
     
 }
 
-//public func AudioFileInitializeWithCallbacks(_ inClientData: UnsafeMutableRawPointer, _ inReadFunc: @escaping
-//public func AudioFileOpenWithCallbacks(_ inClientData: UnsafeMutableRawPointer, _ inReadFunc: @escaping
-//// close, optimise, read, write
-/// The 'packets' ones are for VBR data
-//public func AudioFileReadPacketData(_ inAudioFile: AudioFileID, _ inUseCache: Bool, _ ioNumBytes: UnsafeMutablePointer<UInt32>, _
-//public func AudioFileReadPackets(_ inAudioFile: AudioFileID, _ inUseCache: Bool, _ outNumBytes: UnsafeMutablePointer<UInt32>, _
-//public func AudioFileWritePackets(_ inAudioFile: AudioFileID, _ inUseCache: Bool, _ inNumBytes: UInt32, _ inPacketDescriptions:
+extension AudioFile {
+    
+    public struct GlobalInfoProperty {
+        
+        public static let readableTypes = kAudioFileGlobalInfo_ReadableTypes
+        
+        public static let writableTypes = kAudioFileGlobalInfo_WritableTypes
+        
+        public static let fileTypeName = kAudioFileGlobalInfo_FileTypeName
+        
+        public static let availableStreamDescriptionsForFormat = kAudioFileGlobalInfo_AvailableStreamDescriptionsForFormat
+        
+        public static let availableFormatIDs = kAudioFileGlobalInfo_AvailableFormatIDs
+        
+        public static let allExtensions = kAudioFileGlobalInfo_AllExtensions
+        
+        public static let allHFSTypeCodes = kAudioFileGlobalInfo_AllHFSTypeCodes
+        
+        public static let allUTIs = kAudioFileGlobalInfo_AllUTIs
+        
+        public static let allMIMETypes = kAudioFileGlobalInfo_AllMIMETypes
+        
+        public static let extensionsForType = kAudioFileGlobalInfo_ExtensionsForType
+        
+        public static let hfsTypeCodesForType = kAudioFileGlobalInfo_HFSTypeCodesForType
+        
+        public static let utisForType = kAudioFileGlobalInfo_UTIsForType
+        
+        public static let mimeTypesForType = kAudioFileGlobalInfo_MIMETypesForType
+        
+        public static let typesForMIMEType = kAudioFileGlobalInfo_TypesForMIMEType
+        
+        public static let typesForUTI = kAudioFileGlobalInfo_TypesForUTI
+        
+        public static let typesForHFSTypeCode = kAudioFileGlobalInfo_TypesForHFSTypeCode
+        
+        public static let typesForExtension = kAudioFileGlobalInfo_TypesForExtension
+        
+    }
+    
+}
+
+extension AudioFile {
+    
+    public static func globalInfo<T>(for property: AudioFilePropertyID, specifier: Any? = nil) throws -> T {
+        var dataSize = try globalInfoDataSize(for: property, specifier: specifier)
+        let data: UnsafeMutablePointer<T> = try globalInfoData(for: property, dataSize: &dataSize, specifier: specifier)
+        return data.pointee
+    }
+    
+    public static func globalInfoArray<T>(for property: AudioFilePropertyID, specifier: Any? = nil) throws -> [T] {
+        var dataSize = try globalInfoDataSize(for: property, specifier: specifier)
+        let data: UnsafeMutablePointer<T> = try globalInfoData(for: property, dataSize: &dataSize, specifier: specifier)
+        let count = Int(dataSize) / MemoryLayout.size(ofValue: specifier)
+        return (0..<count).map { index in
+            return data[index]
+        }
+    }
+    
+}
+
 //public func AudioFileCountUserData(_ inAudioFile: AudioFileID, _ inUserDataID: UInt32, _ outNumberItems: UnsafeMutablePointer<
 //public func AudioFileGetUserDataSize(_ inAudioFile: AudioFileID, _ inUserDataID: UInt32, _ inIndex: UInt32, _ outUserDataSize:
 //public func AudioFileGetUserData(_ inAudioFile: AudioFileID, _ inUserDataID: UInt32, _ inIndex: UInt32, _ ioUserDataSize:
 //public func AudioFileSetUserData(_ inAudioFile: AudioFileID, _ inUserDataID: UInt32, _ inIndex: UInt32, _ inUserDataSize: UInt32,
 //public func AudioFileRemoveUserData(_ inAudioFile: AudioFileID, _ inUserDataID: UInt32, _ inIndex: UInt32) -> OSStatus
-//// Property info stuff
-//public func AudioFileGetGlobalInfoSize(_ inPropertyID: AudioFilePropertyID, _ inSpecifierSize: UInt32, _ inSpecifier:
-//public func AudioFileGetGlobalInfo(_ inPropertyID: AudioFilePropertyID, _ inSpecifierSize: UInt32, _ inSpecifier:
+
+extension AudioFile {
+    
+    internal static func globalInfoDataSize(for property: AudioFilePropertyID, specifier: Any? = nil) throws -> UInt32 {
+        var dataSize: UInt32 = 0
+        var specifier = specifier
+        let specifierSize = UInt32(MemoryLayout.size(ofValue: specifier))
+        
+        try AudioFileGetGlobalInfoSize(property, specifierSize, &specifier, &dataSize).audioError("Getting AudioFile global info size for property: \(property)")
+        
+        return dataSize
+    }
+    
+    internal static func globalInfoData<T>(for property: AudioFilePropertyID, dataSize: inout UInt32, specifier: Any? = nil) throws -> UnsafeMutablePointer<T> {
+        var specifier = specifier
+        let specifierSize = UInt32(MemoryLayout.size(ofValue: specifier))
+        
+        var data = UnsafeMutablePointer<T>.allocate(capacity: Int(dataSize))
+        defer {
+            data.deallocate(capacity: Int(dataSize))
+        }
+        
+        try AudioFileGetGlobalInfo(property, specifierSize, &specifier, &dataSize, data).audioError("Getting AudioFile global info size for property: \(property)")
+        
+        return data
+    }
+    
+}

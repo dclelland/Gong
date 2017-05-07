@@ -37,6 +37,7 @@ extension AudioUnit {
 extension AudioUnit {
     
     public func value<T>(for property: AudioUnitPropertyID, dataSize: UInt32) throws -> T {
+        // TODO: Support arrays
         var dataSize = dataSize
         var data = UnsafeMutablePointer<T>.allocate(capacity: Int(dataSize))
         defer {

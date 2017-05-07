@@ -24,66 +24,122 @@ class ViewController: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         
-        do {
-            let url = Bundle.main.url(forResource: "narkopop_1", withExtension: "mp3")!
-            let audioFile = try AudioFile.open(url)
-            
-            if let fileFormat = audioFile.fileFormat {
-                print("File format:", fileFormat)
-            }
-            
-            if let dataFormat = audioFile.dataFormat {
-                print("Data format:", dataFormat)
-            }
-            
-            if let properties = audioFile.properties {
-                print("Properties:", properties)
-            }
-            
-            try audioFile.close()
-        } catch let error {
-            print(error)
-        }
+//        do {
+//            let url = Bundle.main.url(forResource: "narkopop_1", withExtension: "mp3")!
+//            let audioFile = try AudioFile.open(url)
+//            
+//            if let fileFormat = audioFile.fileFormat {
+//                print("File format:", fileFormat)
+//            }
+//            
+//            if let dataFormat = audioFile.dataFormat {
+//                print("Data format:", dataFormat)
+//            }
+//            
+//            if let properties = audioFile.properties {
+//                print("Properties:", properties)
+//            }
+//            
+//            if let magicCookie: UnsafeRawPointer = try? audioFile.value(for: AudioFile.Property.magicCookieData) {
+//                
+//                print("Magic cookie:", magicCookie)
+//            }
+//            
+//            try audioFile.close()
+//        } catch let error {
+//            print(error)
+//        }
+//        
+//        do {
+//            let url = Bundle.main.resourceURL!.appendingPathComponent("square.aiff")
+//            
+//            print(url)
+//            
+//            let sampleRate: Float64 = 44_100
+//            let duration: Float64 = 5
+//            let frequency: Double = 50.0
+//            
+//            let format = Int16.audioStreamDescription(sampleRate: sampleRate, format: kAudioFormatLinearPCM)
+//            
+//            let audioFile = try AudioFile(url, type: kAudioFileAIFFType, format: format, flags: .eraseFile)
+//            
+//            
+//            let maximumSampleCount = Int64(sampleRate * duration)
+//            var sampleCount: Int64 = 0
+//            let bytesToWrite: UInt32 = 2
+//            let wavelengthInSamples = Int(Double(sampleRate) / frequency)
+//            
+//            
+//            while sampleCount < maximumSampleCount {
+//                for i in 0..<wavelengthInSamples {
+//                    // Square wave
+//                    var sample = i < wavelengthInSamples / 2 ? (Int16.max).bigEndian : (Int16.min).bigEndian
+//                    
+//                    // Saw wave
+////                    var sample = Int16(((Double(i) / Double(wavelengthInSamples)) * Double(Int16.max) * 2) - Double(Int16.max)).bigEndian
+//                    
+//                    // Sine wave
+////                    var sample = Int16(Double(Int16.max) * sin(2 * .pi * (Double(i) / Double(wavelengthInSamples)))).bigEndian
+//                    
+//                    try audioFile.writeBytes(from: &sample, start: Int64(sampleCount * 2), count: bytesToWrite)
+//                    
+//                    sampleCount += 1
+//                }
+//            }
+//            
+//            
+//            try audioFile.close()
+//        } catch let error {
+//            print(error)
+//        }
         
         do {
-            let url = Bundle.main.resourceURL!.appendingPathComponent("square.aiff")
+            let specifier = AudioFileTypeAndFormatID(
+                mFileType: kAudioFileAIFFType,
+                mFormatID: kAudioFormatLinearPCM
+            )
             
-            print(url)
+            let formats: [AudioStreamBasicDescription] = try AudioFile.globalInfoArray(for: AudioFile.GlobalInfoProperty.availableStreamDescriptionsForFormat, specifier: specifier)
             
-            let sampleRate: Float64 = 44_100
-            let duration: Float64 = 5
-            let frequency: Double = 50.0
-            
-            let format = Int16.audioStreamDescription(sampleRate: sampleRate, format: kAudioFormatLinearPCM)
-            
-            let audioFile = try AudioFile(url, type: kAudioFileAIFFType, format: format, flags: .eraseFile)
+            print("FORMATS:", formats)
             
             
-            let maximumSampleCount = Int64(sampleRate * duration)
-            var sampleCount: Int64 = 0
-            let bytesToWrite: UInt32 = 2
-            let wavelengthInSamples = Int(Double(sampleRate) / frequency)
+//            let absds = try AudioFile.globalInfo(for: kAudioFileGlobalInfo_AvailableStreamDescriptionsForFormat, dataSize: infoSize, specifier: specifier).audioError("test")
+            
+//            
+//            var asbds = UnsafeMutablePointer<AudioStreamBasicDescription>.alloc(Int(infoSize))
+//            
+//            audioErr = AudioFileGetGlobalInfo(kAudioFileGlobalInfo_AvailableStreamDescriptionsForFormat, UInt32(sizeof(fileTypeAndFormat.dynamicType)), &fileTypeAndFormat, &infoSize, asbds)
+//            
+//            assert(audioErr == noErr)
+//            
+//            let asbdsCount = Int(infoSize) / sizeof(AudioStreamBasicDescription)
+//            
+//            var formats = [String]()
+//            
+//            for i in 0..<asbdsCount {
+//                var format4cc = asbds[i].mFormatID.bigEndian
+//                
+//                withUnsafePointer(&format4cc) {ptr in
+//                    formats.append(String(format: "%d: mFormatID: %4.4s, mFormatFlags: %d, mBitsPerChannel: %d", arguments: [i, ptr, asbds[i].mFormatFlags, asbds[i].mBitsPerChannel]))
+//                }
+//                
+//                
+//            }
+//            
+//            formats
+//            free(asbds)
             
             
-            while sampleCount < maximumSampleCount {
-                for i in 0..<wavelengthInSamples {
-                    // Square wave
-                    var sample = i < wavelengthInSamples / 2 ? (Int16.max).bigEndian : (Int16.min).bigEndian
-                    
-                    // Saw wave
-//                    var sample = Int16(((Double(i) / Double(wavelengthInSamples)) * Double(Int16.max) * 2) - Double(Int16.max)).bigEndian
-                    
-                    // Sine wave
-//                    var sample = Int16(Double(Int16.max) * sin(2 * .pi * (Double(i) / Double(wavelengthInSamples)))).bigEndian
-                    
-                    try audioFile.write(from: &sample, start: Int64(sampleCount * 2), count: bytesToWrite)
-                    
-                    sampleCount += 1
-                }
-            }
             
             
-            try audioFile.close()
+            
+            
+            
+            
+            
+//            print(result)
+            
         } catch let error {
             print(error)
         }
