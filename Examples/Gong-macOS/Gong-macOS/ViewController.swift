@@ -10,6 +10,7 @@ import Cocoa
 import CoreMIDI
 import Gong
 import AudioToolbox
+import AVFoundation
 
 // https://github.com/AlesTsurko/LearningCoreAudioWithSwift2.0/blob/master/CH02_CAToneFileGenerator/CAToneFileGenerator/main.swift
 
@@ -102,42 +103,6 @@ class ViewController: NSViewController {
             
             print("FORMATS:", formats)
             
-            
-//            let absds = try AudioFile.globalInfo(for: kAudioFileGlobalInfo_AvailableStreamDescriptionsForFormat, dataSize: infoSize, specifier: specifier).audioError("test")
-            
-//            
-//            var asbds = UnsafeMutablePointer<AudioStreamBasicDescription>.alloc(Int(infoSize))
-//            
-//            audioErr = AudioFileGetGlobalInfo(kAudioFileGlobalInfo_AvailableStreamDescriptionsForFormat, UInt32(sizeof(fileTypeAndFormat.dynamicType)), &fileTypeAndFormat, &infoSize, asbds)
-//            
-//            assert(audioErr == noErr)
-//            
-//            let asbdsCount = Int(infoSize) / sizeof(AudioStreamBasicDescription)
-//            
-//            var formats = [String]()
-//            
-//            for i in 0..<asbdsCount {
-//                var format4cc = asbds[i].mFormatID.bigEndian
-//                
-//                withUnsafePointer(&format4cc) {ptr in
-//                    formats.append(String(format: "%d: mFormatID: %4.4s, mFormatFlags: %d, mBitsPerChannel: %d", arguments: [i, ptr, asbds[i].mFormatFlags, asbds[i].mBitsPerChannel]))
-//                }
-//                
-//                
-//            }
-//            
-//            formats
-//            free(asbds)
-            
-            
-            
-            
-            
-            
-            
-            
-            
-//            print(result)
             
         } catch let error {
             print(error)
