@@ -16,5 +16,8 @@ public class AudioQueue {
     public init(_ reference: AudioQueueRef) {
         self.reference = reference
     }
+    
+    func test() {
+    }
 
 }

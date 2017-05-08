@@ -85,67 +85,36 @@ extension AudioFile {
 extension AudioFile {
     
     public struct Property {
-        
         public static let fileFormat = kAudioFilePropertyFileFormat
-
         public static let dataFormat = kAudioFilePropertyDataFormat
-
         public static let isOptimized = kAudioFilePropertyIsOptimized
-
         public static let magicCookieData = kAudioFilePropertyMagicCookieData
-
         public static let audioDataByteCount = kAudioFilePropertyAudioDataByteCount
-
         public static let audioDataPacketCount = kAudioFilePropertyAudioDataPacketCount
-
         public static let maximumPacketSize = kAudioFilePropertyMaximumPacketSize
-
         public static let dataOffset = kAudioFilePropertyDataOffset
-
         public static let channelLayout = kAudioFilePropertyChannelLayout
-
         public static let deferSizeUpdates = kAudioFilePropertyDeferSizeUpdates
-
         public static let dataFormatName = kAudioFilePropertyDataFormatName
-
         public static let markerList = kAudioFilePropertyMarkerList
-
         public static let regionList = kAudioFilePropertyRegionList
-
         public static let packetToFrame = kAudioFilePropertyPacketToFrame
-
         public static let frameToPacket = kAudioFilePropertyFrameToPacket
-
         public static let packetToByte = kAudioFilePropertyPacketToByte
-
         public static let byteToPacket = kAudioFilePropertyByteToPacket
-
         public static let chunkIDs = kAudioFilePropertyChunkIDs
-
         public static let infoDictionary = kAudioFilePropertyInfoDictionary
-
         public static let packetTableInfo = kAudioFilePropertyPacketTableInfo
-
         public static let formatList = kAudioFilePropertyFormatList
-
         public static let packetSizeUpperBound = kAudioFilePropertyPacketSizeUpperBound
-
         public static let reserveDuration = kAudioFilePropertyReserveDuration
-
         public static let estimatedDuration = kAudioFilePropertyEstimatedDuration
-
         public static let bitRate = kAudioFilePropertyBitRate
-
         public static let id3Tag = kAudioFilePropertyID3Tag
-
         public static let sourceBitDepth = kAudioFilePropertySourceBitDepth
-
         public static let albumArtwork = kAudioFilePropertyAlbumArtwork
-
         public static let audioTrackCount = kAudioFilePropertyAudioTrackCount
-
-        public static let useAudioTrack = kAudioFilePropertyUseAudioTrack
-        
+        public static let useAudioTrack = kAudioFilePropertyUseAudioTrack        
     }
     
     public func value<T>(for property: AudioFilePropertyID) throws -> T {
@@ -222,41 +191,23 @@ extension AudioFile {
 extension AudioFile {
     
     public struct GlobalProperty {
-        
-        public static let readableTypes = kAudioFileGlobalInfo_ReadableTypes
-        
-        public static let writableTypes = kAudioFileGlobalInfo_WritableTypes
-        
-        public static let fileTypeName = kAudioFileGlobalInfo_FileTypeName
-        
+        public static let readableTypes = kAudioFileGlobalInfo_ReadableTypes        
+        public static let writableTypes = kAudioFileGlobalInfo_WritableTypes        
+        public static let fileTypeName = kAudioFileGlobalInfo_FileTypeName        
         public static let availableStreamDescriptionsForFormat = kAudioFileGlobalInfo_AvailableStreamDescriptionsForFormat
-        
-        public static let availableFormatIDs = kAudioFileGlobalInfo_AvailableFormatIDs
-        
-        public static let allExtensions = kAudioFileGlobalInfo_AllExtensions
-        
-        public static let allHFSTypeCodes = kAudioFileGlobalInfo_AllHFSTypeCodes
-        
-        public static let allUTIs = kAudioFileGlobalInfo_AllUTIs
-        
-        public static let allMIMETypes = kAudioFileGlobalInfo_AllMIMETypes
-        
-        public static let extensionsForType = kAudioFileGlobalInfo_ExtensionsForType
-        
-        public static let hfsTypeCodesForType = kAudioFileGlobalInfo_HFSTypeCodesForType
-        
-        public static let utisForType = kAudioFileGlobalInfo_UTIsForType
-        
-        public static let mimeTypesForType = kAudioFileGlobalInfo_MIMETypesForType
-        
-        public static let typesForMIMEType = kAudioFileGlobalInfo_TypesForMIMEType
-        
-        public static let typesForUTI = kAudioFileGlobalInfo_TypesForUTI
-        
-        public static let typesForHFSTypeCode = kAudioFileGlobalInfo_TypesForHFSTypeCode
-        
-        public static let typesForExtension = kAudioFileGlobalInfo_TypesForExtension
-        
+        public static let availableFormatIDs = kAudioFileGlobalInfo_AvailableFormatIDs        
+        public static let allExtensions = kAudioFileGlobalInfo_AllExtensions        
+        public static let allHFSTypeCodes = kAudioFileGlobalInfo_AllHFSTypeCodes        
+        public static let allUTIs = kAudioFileGlobalInfo_AllUTIs        
+        public static let allMIMETypes = kAudioFileGlobalInfo_AllMIMETypes        
+        public static let extensionsForType = kAudioFileGlobalInfo_ExtensionsForType        
+        public static let hfsTypeCodesForType = kAudioFileGlobalInfo_HFSTypeCodesForType        
+        public static let utisForType = kAudioFileGlobalInfo_UTIsForType        
+        public static let mimeTypesForType = kAudioFileGlobalInfo_MIMETypesForType        
+        public static let typesForMIMEType = kAudioFileGlobalInfo_TypesForMIMEType        
+        public static let typesForUTI = kAudioFileGlobalInfo_TypesForUTI        
+        public static let typesForHFSTypeCode = kAudioFileGlobalInfo_TypesForHFSTypeCode        
+        public static let typesForExtension = kAudioFileGlobalInfo_TypesForExtension        
     }
     
     public static func value<T>(for property: AudioFilePropertyID, specifier: Any? = nil) throws -> T {

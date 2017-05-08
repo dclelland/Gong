@@ -10,21 +10,13 @@ import Foundation
 import CoreMIDI
 
 public enum MIDINotice {
-    
-    case setupChanged
-    
-    case objectAdded(parent: MIDIObject, child: MIDIObject)
-    
-    case objectRemoved(parent: MIDIObject, child: MIDIObject)
-    
-    case propertyChanged(object: MIDIObject, property: String)
-    
-    case throughConnectionsChanged
-    
-    case serialPortOwnerChanged
-    
+    case setupChanged    
+    case objectAdded(parent: MIDIObject, child: MIDIObject)    
+    case objectRemoved(parent: MIDIObject, child: MIDIObject)    
+    case propertyChanged(object: MIDIObject, property: String)    
+    case throughConnectionsChanged    
+    case serialPortOwnerChanged    
     case ioError(device: MIDIDevice, error: MIDIError)
-
 }
 
 extension MIDINotice {

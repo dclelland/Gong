@@ -101,9 +101,7 @@ class ViewController: NSViewController {
             
             let formats: [AudioStreamBasicDescription] = try AudioFile.array(for: AudioFile.GlobalProperty.availableStreamDescriptionsForFormat, specifier: specifier)
             
-            print("FORMATS:", formats)
-            
-            
+            print("Formats:", formats)
         } catch let error {
             print(error)
         }

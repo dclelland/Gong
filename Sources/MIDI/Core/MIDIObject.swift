@@ -48,95 +48,50 @@ public class MIDIObject {
 extension MIDIObject {
     
     public struct Property {
-        
         public static let name = kMIDIPropertyName as String
-        
         public static let manufacturer = kMIDIPropertyManufacturer as String
-        
         public static let model = kMIDIPropertyModel as String
-        
         public static let uniqueID = kMIDIPropertyUniqueID as String
-        
         public static let deviceID = kMIDIPropertyDeviceID as String
-        
         public static let receiveChannels = kMIDIPropertyReceiveChannels as String
-        
         public static let transmitChannels = kMIDIPropertyTransmitChannels as String
-        
         public static let maximumSystemExclusiveSpeed = kMIDIPropertyMaxSysExSpeed as String
-        
         public static let advanceScheduleTimeInMicroseconds = kMIDIPropertyAdvanceScheduleTimeMuSec as String
-        
         public static let isEmbeddedEntity = kMIDIPropertyIsEmbeddedEntity as String
-        
         public static let isBroadcast = kMIDIPropertyIsBroadcast as String
-        
         public static let singleRealtimeEntity = kMIDIPropertySingleRealtimeEntity as String
-        
         public static let connectionUniqueID = kMIDIPropertyConnectionUniqueID as String
-        
         public static let offline = kMIDIPropertyOffline as String
-        
         public static let `private` = kMIDIPropertyPrivate as String
-        
         public static let driverOwner = kMIDIPropertyDriverOwner as String
-        
         public static let nameConfiguration = kMIDIPropertyNameConfiguration as String
-        
         public static let image = kMIDIPropertyImage as String
-        
         public static let driverVersion = kMIDIPropertyDriverVersion as String
-        
         public static let supportsGeneralMIDI = kMIDIPropertySupportsGeneralMIDI as String
-        
         public static let supportsMMC = kMIDIPropertySupportsMMC as String
-        
         public static let canRoute = kMIDIPropertyCanRoute as String
-        
         public static let receivesClock = kMIDIPropertyReceivesClock as String
-        
         public static let receivesMTC = kMIDIPropertyReceivesMTC as String
-        
         public static let receivesNotes = kMIDIPropertyReceivesNotes as String
-        
         public static let receivesProgramChanges = kMIDIPropertyReceivesProgramChanges as String
-        
         public static let receivesBankSelectMostSignificantByte = kMIDIPropertyReceivesBankSelectMSB as String
-        
         public static let receivesBankSelectLeastSignificantByte = kMIDIPropertyReceivesBankSelectLSB as String
-        
         public static let transmitsClock = kMIDIPropertyTransmitsClock as String
-        
         public static let transmitsMTC = kMIDIPropertyTransmitsMTC as String
-        
         public static let transmitsNotes = kMIDIPropertyTransmitsNotes as String
-        
         public static let transmitsProgramChanges = kMIDIPropertyTransmitsProgramChanges as String
-        
         public static let transmitsBankSelectMostSignificantByte = kMIDIPropertyTransmitsBankSelectMSB as String
-        
         public static let transmitsBankSelectLeastSignificantByte = kMIDIPropertyTransmitsBankSelectLSB as String
-        
         public static let panDisruptsStereo = kMIDIPropertyPanDisruptsStereo as String
-        
         public static let isSampler = kMIDIPropertyIsSampler as String
-        
         public static let isDrumMachine = kMIDIPropertyIsDrumMachine as String
-        
         public static let isMixer = kMIDIPropertyIsMixer as String
-        
         public static let isEffectUnit = kMIDIPropertyIsEffectUnit as String
-        
         public static let maximumReceiveChannels = kMIDIPropertyMaxReceiveChannels as String
-        
         public static let maximumTransmitChannels = kMIDIPropertyMaxTransmitChannels as String
-        
         public static let driverDeviceEditorApp = kMIDIPropertyDriverDeviceEditorApp as String
-        
         public static let supportsShowControl = kMIDIPropertySupportsShowControl as String
-        
         public static let displayName = kMIDIPropertyDisplayName as String
-        
     }
 
     public func integer(for property: String) throws -> Int32 {

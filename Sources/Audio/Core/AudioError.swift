@@ -14,106 +14,91 @@ public struct AudioError: Error {
     public enum Message {
         
         public enum AudioGraph {
-            
             case nodeNotFound
-
             case invalidConnection
-
             case outputNodeError
-
             case cannotDoInCurrentContext
-
             case invalidAudioUnit
-
         }
         
         case audioGraph(AudioGraph)
         
         public enum AudioUnit {
-
             case invalidProperty
-
             case invalidParameter
-
             case invalidElement
-
             case noConnection
-
             case failedInitialization
-
             case tooManyFramesToProcess
-
             case invalidFile
-
             case unknownFileType
-
             case fileNotSpecified
-
             case formatNotSupported
-
             case uninitialized
-
             case invalidScope
-
             case propertyNotWritable
-
             case cannotDoInCurrentContext
-
             case invalidPropertyValue
-
             case propertyNotInUse
-
             case initialized
-
             case invalidOfflineRender
-
             case unauthorized
-
             case audioComponentInstanceInvalidated
-
             case renderTimeout
-
         }
 
         case audioUnit(AudioUnit)
 
         public enum AudioFile {
-
             case unspecified
-
             case unsupportedFileType
-
             case unsupportedDataFormat
-
             case unsupportedProperty
-
             case badPropertySize
-
             case permissions
-
             case notOptimized
-
             case invalidChunk
-
             case doesNotAllow64BitDataSize
-
             case invalidPacketOffset
-
             case invalidFile
-
             case operationNotSupported
-
             case notOpen
-
             case endOfFile
-
             case position
-
             case fileNotFound
-
         }
 
         case audioFile(AudioFile)
+        
+        public enum AudioQueue {
+            case invalidBuffer            
+            case bufferEmpty            
+            case disposalPending            
+            case invalidProperty            
+            case invalidPropertySize            
+            case invalidParameter            
+            case cannotStart            
+            case invalidDevice            
+            case bufferInQueue            
+            case invalidRunState            
+            case invalidQueueType            
+            case permissions            
+            case invalidPropertyValue            
+            case primeTimedOut            
+            case codecNotFound            
+            case invalidCodecAccess            
+            case queueInvalidated            
+            case tooManyTaps            
+            case invalidTapContext            
+            case recordUnderrun            
+            case invalidTapType            
+            case bufferEnqueuedTwice            
+            case cannotStartYet            
+            case enqueueDuringReset            
+            case invalidOfflineMode            
+        }
+        
+        case audioQueue(AudioQueue)
         
         case unknown(status: OSStatus)
         
@@ -218,6 +203,56 @@ extension AudioError {
             self.init(.audioFile(.position), comment: comment)
         case kAudioFileFileNotFoundError:
             self.init(.audioFile(.fileNotFound), comment: comment)
+        case kAudioQueueErr_InvalidBuffer:
+            self.init(.audioQueue(.invalidBuffer), comment: comment)
+        case kAudioQueueErr_BufferEmpty:
+            self.init(.audioQueue(.bufferEmpty), comment: comment)
+        case kAudioQueueErr_DisposalPending:
+            self.init(.audioQueue(.disposalPending), comment: comment)
+        case kAudioQueueErr_InvalidProperty:
+            self.init(.audioQueue(.invalidProperty), comment: comment)
+        case kAudioQueueErr_InvalidPropertySize:
+            self.init(.audioQueue(.invalidPropertySize), comment: comment)
+        case kAudioQueueErr_InvalidParameter:
+            self.init(.audioQueue(.invalidParameter), comment: comment)
+        case kAudioQueueErr_CannotStart:
+            self.init(.audioQueue(.cannotStart), comment: comment)
+        case kAudioQueueErr_InvalidDevice:
+            self.init(.audioQueue(.invalidDevice), comment: comment)
+        case kAudioQueueErr_BufferInQueue:
+            self.init(.audioQueue(.bufferInQueue), comment: comment)
+        case kAudioQueueErr_InvalidRunState:
+            self.init(.audioQueue(.invalidRunState), comment: comment)
+        case kAudioQueueErr_InvalidQueueType:
+            self.init(.audioQueue(.invalidQueueType), comment: comment)
+        case kAudioQueueErr_Permissions:
+            self.init(.audioQueue(.permissions), comment: comment)
+        case kAudioQueueErr_InvalidPropertyValue:
+            self.init(.audioQueue(.invalidPropertyValue), comment: comment)
+        case kAudioQueueErr_PrimeTimedOut:
+            self.init(.audioQueue(.primeTimedOut), comment: comment)
+        case kAudioQueueErr_CodecNotFound:
+            self.init(.audioQueue(.codecNotFound), comment: comment)
+        case kAudioQueueErr_InvalidCodecAccess:
+            self.init(.audioQueue(.invalidCodecAccess), comment: comment)
+        case kAudioQueueErr_QueueInvalidated:
+            self.init(.audioQueue(.queueInvalidated), comment: comment)
+        case kAudioQueueErr_TooManyTaps:
+            self.init(.audioQueue(.tooManyTaps), comment: comment)
+        case kAudioQueueErr_InvalidTapContext:
+            self.init(.audioQueue(.invalidTapContext), comment: comment)
+        case kAudioQueueErr_RecordUnderrun:
+            self.init(.audioQueue(.recordUnderrun), comment: comment)
+        case kAudioQueueErr_InvalidTapType:
+            self.init(.audioQueue(.invalidTapType), comment: comment)
+        case kAudioQueueErr_BufferEnqueuedTwice:
+            self.init(.audioQueue(.bufferEnqueuedTwice), comment: comment)
+        case kAudioQueueErr_CannotStartYet:
+            self.init(.audioQueue(.cannotStartYet), comment: comment)
+        case kAudioQueueErr_EnqueueDuringReset:
+            self.init(.audioQueue(.enqueueDuringReset), comment: comment)
+        case kAudioQueueErr_InvalidOfflineMode:
+            self.init(.audioQueue(.invalidOfflineMode), comment: comment)
         default:
             self.init(.unknown(status: status), comment: comment)
         }
