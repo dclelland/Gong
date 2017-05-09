@@ -106,6 +106,52 @@ class ViewController: NSViewController {
             print(error)
         }
         
+        do {
+            struct MyRecorder {
+                let file: AudioFile
+                var packet: Int64 = 0
+                var running: Bool = false
+                
+                init(file: AudioFile) {
+                    self.file = file
+                }
+            }
+            
+            var deviceID: AudioDeviceID = 0
+            
+            var propertyAddress = AudioObjectPropertyAddress(
+                mSelector: kAudioHardwarePropertyDefaultInputDevice,
+                mScope: kAudioObjectPropertyScopeGlobal,
+                mElement: 0
+            )
+            
+            var propertySize = UInt32(MemoryLayout<AudioDeviceID>.size)
+            
+            try AudioObjectGetPropertyData(UInt32(kAudioObjectSystemObject), &propertyAddress, 0, nil, &propertySize, &deviceID).audioError("Getting default input device")
+            
+            print("DEVICE A", deviceID)
+            
+//            try AudioHardwareServiceGetPropertyData(UInt32(kAudioObjectSystemObject), &propertyAddress, 0, nil, &propertySize, &deviceID).audioError("Getting default input device sample rate: B")
+            
+            var propertyAddress2 = AudioObjectPropertyAddress(
+                mSelector: kAudioDevicePropertyNominalSampleRate,
+                mScope: kAudioObjectPropertyScopeGlobal,
+                mElement: 0
+            )
+            
+            var sampleRate: Double = 0
+            
+            var propertySize2 = UInt32(MemoryLayout<Double>.size)
+            
+            try AudioObjectGetPropertyData(deviceID, &propertyAddress2, 0, nil, &propertySize2, &sampleRate).audioError("Getting sample rate")
+            
+            print("SAMPLE RATE", sampleRate)
+            
+            
+        } catch let error {
+            print(error)
+        }
+        
         
     }
     
