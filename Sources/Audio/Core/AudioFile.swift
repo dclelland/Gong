@@ -9,8 +9,6 @@
 import Foundation
 import AudioToolbox
 
-import Accelerate
-
 // should really model an AudioFile as a collection or buffer
 // mutable lazy collection: buffer/samples
 // this is how you interface with AudioFileWriteBytes and AudioFileReadBytes
@@ -120,12 +118,18 @@ extension AudioFile {
     public func value<T>(for property: AudioFilePropertyID) throws -> T {
         var (dataSize, _) = try info(for: property)
         let data: UnsafeMutablePointer<T> = try self.data(for: property, dataSize: &dataSize)
+        defer {
+            data.deallocate(capacity: Int(dataSize))
+        }
         return data.pointee
     }
     
     public func array<T>(for property: AudioFilePropertyID) throws -> [T] {
         var (dataSize, _) = try info(for: property)
         let data: UnsafeMutablePointer<T> = try self.data(for: property, dataSize: &dataSize)
+        defer {
+            data.deallocate(capacity: Int(dataSize))
+        }
         let count = Int(dataSize) / MemoryLayout<T>.size
         return (0..<count).map { index in
             return data[index]
@@ -168,10 +172,7 @@ extension AudioFile {
 
     internal func data<T>(for property: AudioFilePropertyID, dataSize: inout UInt32) throws -> UnsafeMutablePointer<T> {
         var dataSize = dataSize
-        var data = UnsafeMutablePointer<T>.allocate(capacity: Int(dataSize))
-        defer {
-            data.deallocate(capacity: Int(dataSize))
-        }
+        let data = UnsafeMutablePointer<T>.allocate(capacity: Int(dataSize))
         try AudioFileGetProperty(reference, property, &dataSize, data).audioError("Getting AudioFile property")
         return data
     }
@@ -213,12 +214,18 @@ extension AudioFile {
     public static func value<T>(for property: AudioFilePropertyID, specifier: Any? = nil) throws -> T {
         var dataSize = try self.dataSize(for: property, specifier: specifier)
         let data: UnsafeMutablePointer<T> = try self.data(for: property, dataSize: &dataSize, specifier: specifier)
+        defer {
+            data.deallocate(capacity: Int(dataSize))
+        }
         return data.pointee
     }
     
     public static func array<T>(for property: AudioFilePropertyID, specifier: Any? = nil) throws -> [T] {
         var dataSize = try self.dataSize(for: property, specifier: specifier)
         let data: UnsafeMutablePointer<T> = try self.data(for: property, dataSize: &dataSize, specifier: specifier)
+        defer {
+            data.deallocate(capacity: Int(dataSize))
+        }
         let count = Int(dataSize) / MemoryLayout<T>.size
         return (0..<count).map { index in
             return data[index]
@@ -242,11 +249,7 @@ extension AudioFile {
     internal static func data<T>(for property: AudioFilePropertyID, dataSize: inout UInt32, specifier: Any? = nil) throws -> UnsafeMutablePointer<T> {
         var specifier = specifier
         let specifierSize = UInt32(MemoryLayout.size(ofValue: specifier))
-        
-        var data = UnsafeMutablePointer<T>.allocate(capacity: Int(dataSize))
-        defer {
-            data.deallocate(capacity: Int(dataSize))
-        }
+        let data = UnsafeMutablePointer<T>.allocate(capacity: Int(dataSize))
         
         try AudioFileGetGlobalInfo(property, specifierSize, &specifier, &dataSize, data).audioError("Getting AudioFile global info size for property: \(property)")
         
