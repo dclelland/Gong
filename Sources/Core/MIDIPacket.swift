@@ -14,25 +14,36 @@ import CoreMIDI
 
 extension MIDIPacket {
     
-    public init(timeStamp: MIDITimeStamp, length: UInt16 = 0) {
+    public init(delay: TimeInterval = 0.0) {
         self.init()
-        self.timeStamp = timeStamp
-        self.length = length
+        self.timeStamp = mach_absolute_time() + MIDITimeStamp(delay * 1_000_000_000)
     }
     
-    public init(timeStamp: MIDITimeStamp, length: UInt16 = 1, status: UInt8, channel: UInt8) {
-        self.init(timeStamp: timeStamp, length: length)
+}
+
+extension MIDIPacket {
+    
+    public init(status: UInt8, channel: UInt8, delay: TimeInterval = 0.0) {
+        self.init(delay: delay)
+        self.length = 1
         self.status = status
         self.channel = channel.leastSignificantFourBits
     }
 
-    public init(timeStamp: MIDITimeStamp, length: UInt16 = 2, status: UInt8, channel: UInt8, data1: UInt8) {
-        self.init(timeStamp: timeStamp, length: length, status: status, channel: channel)
+    public init(status: UInt8, channel: UInt8, data1: UInt8, delay: TimeInterval = 0.0) {
+        self.init(delay: delay)
+        self.length = 2
+        self.status = status
+        self.channel = channel.leastSignificantFourBits
         self.data1 = data1.leastSignificantSevenBits
     }
 
-    public init(timeStamp: MIDITimeStamp, length: UInt16 = 3, status: UInt8, channel: UInt8, data1: UInt8, data2: UInt8) {
-        self.init(timeStamp: timeStamp, length: length, status: status, channel: channel, data1: data1)
+    public init(status: UInt8, channel: UInt8, data1: UInt8, data2: UInt8, delay: TimeInterval = 0.0) {
+        self.init(delay: delay)
+        self.length = 3
+        self.status = status
+        self.channel = channel.leastSignificantFourBits
+        self.data1 = data1.leastSignificantSevenBits
         self.data2 = data2.leastSignificantSevenBits
     }
     
@@ -73,6 +84,34 @@ extension MIDIPacket {
         }
         get {
             return data.2.leastSignificantSevenBits
+        }
+    }
+    
+}
+
+extension MIDIPacket {
+    
+    public init(bytes: [UInt8], delay: TimeInterval = 0.0) {
+        self.init(delay: delay)
+        self.length = UInt16(bytes.count)
+        self.bytes = bytes
+    }
+    
+}
+
+extension MIDIPacket {
+    
+    public var bytes: [UInt8] {
+        get {
+            let bytes = Mirror(reflecting: data).children.flatMap { child in
+                return child.value as? UInt8
+            }
+            
+            return bytes.unpad(with: 0)
+        }
+        set {
+            let bytes = newValue.pad(with: 0, to: 256)
+            data = (bytes[0], bytes[1], bytes[2], bytes[3], bytes[4], bytes[5], bytes[6], bytes[7], bytes[8], bytes[9], bytes[10], bytes[11], bytes[12], bytes[13], bytes[14], bytes[15], bytes[16], bytes[17], bytes[18], bytes[19], bytes[20], bytes[21], bytes[22], bytes[23], bytes[24], bytes[25], bytes[26], bytes[27], bytes[28], bytes[29], bytes[30], bytes[31], bytes[32], bytes[33], bytes[34], bytes[35], bytes[36], bytes[37], bytes[38], bytes[39], bytes[40], bytes[41], bytes[42], bytes[43], bytes[44], bytes[45], bytes[46], bytes[47], bytes[48], bytes[49], bytes[50], bytes[51], bytes[52], bytes[53], bytes[54], bytes[55], bytes[56], bytes[57], bytes[58], bytes[59], bytes[60], bytes[61], bytes[62], bytes[63], bytes[64], bytes[65], bytes[66], bytes[67], bytes[68], bytes[69], bytes[70], bytes[71], bytes[72], bytes[73], bytes[74], bytes[75], bytes[76], bytes[77], bytes[78], bytes[79], bytes[80], bytes[81], bytes[82], bytes[83], bytes[84], bytes[85], bytes[86], bytes[87], bytes[88], bytes[89], bytes[90], bytes[91], bytes[92], bytes[93], bytes[94], bytes[95], bytes[96], bytes[97], bytes[98], bytes[99], bytes[100], bytes[101], bytes[102], bytes[103], bytes[104], bytes[105], bytes[106], bytes[107], bytes[108], bytes[109], bytes[110], bytes[111], bytes[112], bytes[113], bytes[114], bytes[115], bytes[116], bytes[117], bytes[118], bytes[119], bytes[120], bytes[121], bytes[122], bytes[123], bytes[124], bytes[125], bytes[126], bytes[127], bytes[128], bytes[129], bytes[130], bytes[131], bytes[132], bytes[133], bytes[134], bytes[135], bytes[136], bytes[137], bytes[138], bytes[139], bytes[140], bytes[141], bytes[142], bytes[143], bytes[144], bytes[145], bytes[146], bytes[147], bytes[148], bytes[149], bytes[150], bytes[151], bytes[152], bytes[153], bytes[154], bytes[155], bytes[156], bytes[157], bytes[158], bytes[159], bytes[160], bytes[161], bytes[162], bytes[163], bytes[164], bytes[165], bytes[166], bytes[167], bytes[168], bytes[169], bytes[170], bytes[171], bytes[172], bytes[173], bytes[174], bytes[175], bytes[176], bytes[177], bytes[178], bytes[179], bytes[180], bytes[181], bytes[182], bytes[183], bytes[184], bytes[185], bytes[186], bytes[187], bytes[188], bytes[189], bytes[190], bytes[191], bytes[192], bytes[193], bytes[194], bytes[195], bytes[196], bytes[197], bytes[198], bytes[199], bytes[200], bytes[201], bytes[202], bytes[203], bytes[204], bytes[205], bytes[206], bytes[207], bytes[208], bytes[209], bytes[210], bytes[211], bytes[212], bytes[213], bytes[214], bytes[215], bytes[216], bytes[217], bytes[218], bytes[219], bytes[220], bytes[221], bytes[222], bytes[223], bytes[224], bytes[225], bytes[226], bytes[227], bytes[228], bytes[229], bytes[230], bytes[231], bytes[232], bytes[233], bytes[234], bytes[235], bytes[236], bytes[237], bytes[238], bytes[239], bytes[240], bytes[241], bytes[242], bytes[243], bytes[244], bytes[245], bytes[246], bytes[247], bytes[248], bytes[249], bytes[250], bytes[251], bytes[252], bytes[253], bytes[254], bytes[255])
         }
     }
     
@@ -122,7 +161,7 @@ extension MIDIPacket {
 
         public enum SystemCommonType {
 
-            case systemExclusive
+            case systemExclusive(bytes: [UInt8])
 
             case midiTimeCodeQuarterFrame(type: UInt8, values: UInt8)
 
@@ -158,79 +197,74 @@ extension MIDIPacket {
         
     }
     
-    public init(_ message: Message, timeStamp: MIDITimeStamp) {
+    public init(_ message: Message, delay: TimeInterval = 0.0) {
         switch message {
         case .noteOff(let channel, let key, let velocity):
-            self.init(timeStamp: timeStamp, status: 8, channel: channel, data1: key, data2: velocity)
+            self.init(status: 8, channel: channel, data1: key, data2: velocity, delay: delay)
         case .noteOn(let channel, let key, let velocity):
-            self.init(timeStamp: timeStamp, status: 9, channel: channel, data1: key, data2: velocity)
+            self.init(status: 9, channel: channel, data1: key, data2: velocity, delay: delay)
         case .polyphonicKeyPressure(let channel, let key, let pressure):
-            self.init(timeStamp: timeStamp, status: 10, channel: channel, data1: key, data2: pressure)
+            self.init(status: 10, channel: channel, data1: key, data2: pressure, delay: delay)
         case .controlChange(let channel, let controller, let value):
-            self.init(timeStamp: timeStamp, status: 11, channel: channel, data1: controller, data2: value)
+            self.init(status: 11, channel: channel, data1: controller, data2: value, delay: delay)
         case .channelMode(let channel, let type):
             switch type {
             case .allSoundOff:
-                self.init(timeStamp: timeStamp, status: 11, channel: channel, data1: 120, data2: 0)
+                self.init(status: 11, channel: channel, data1: 120, data2: 0, delay: delay)
             case .resetAllControllers:
-                self.init(timeStamp: timeStamp, status: 11, channel: channel, data1: 121, data2: 0)
+                self.init(status: 11, channel: channel, data1: 121, data2: 0, delay: delay)
             case .localControlOff:
-                self.init(timeStamp: timeStamp, status: 11, channel: channel, data1: 122, data2: 0)
+                self.init(status: 11, channel: channel, data1: 122, data2: 0, delay: delay)
             case .localControlOn:
-                self.init(timeStamp: timeStamp, status: 11, channel: channel, data1: 122, data2: 127)
+                self.init(status: 11, channel: channel, data1: 122, data2: 127, delay: delay)
             case .allNotesOff:
-                self.init(timeStamp: timeStamp, status: 11, channel: channel, data1: 123, data2: 0)
+                self.init(status: 11, channel: channel, data1: 123, data2: 0, delay: delay)
             case .omniModeOff:
-                self.init(timeStamp: timeStamp, status: 11, channel: channel, data1: 124, data2: 0)
+                self.init(status: 11, channel: channel, data1: 124, data2: 0, delay: delay)
             case .omniModeOn:
-                self.init(timeStamp: timeStamp, status: 11, channel: channel, data1: 125, data2: 0)
+                self.init(status: 11, channel: channel, data1: 125, data2: 0, delay: delay)
             case .monoModeOn(let channels):
-                self.init(timeStamp: timeStamp, status: 11, channel: channel, data1: 126, data2: channels)
+                self.init(status: 11, channel: channel, data1: 126, data2: channels, delay: delay)
             case .polyModeOn:
-                self.init(timeStamp: timeStamp, status: 11, channel: channel, data1: 127, data2: 0)
+                self.init(status: 11, channel: channel, data1: 127, data2: 0, delay: delay)
             }
         case .programChange(let channel, let number):
-            self.init(timeStamp: timeStamp, status: 12, channel: channel, data1: number)
+            self.init(status: 12, channel: channel, data1: number, delay: delay)
         case .channelPressure(let channel, let pressure):
-            self.init(timeStamp: timeStamp, status: 13, channel: channel, data1: pressure)
+            self.init(status: 13, channel: channel, data1: pressure, delay: delay)
         case .pitchBendChange(let channel, let value):
-            self.init(timeStamp: timeStamp, status: 14, channel: channel, data1: value.leastSignificantSevenBits, data2: value.mostSignificantSevenBits)
+            self.init(status: 14, channel: channel, data1: value.leastSignificantSevenBits, data2: value.mostSignificantSevenBits, delay: delay)
         case .systemCommon(let type):
             switch type {
-            case .systemExclusive:
-                self.init(timeStamp: timeStamp, status: 15, channel: 0)
+            case .systemExclusive(let bytes):
+                self.init(bytes: bytes, delay: delay)
             case .midiTimeCodeQuarterFrame(let type, let values):
-                self.init(timeStamp: timeStamp, status: 15, channel: 1, data1: UInt8(mostSignificantFourBits: type, leastSignificantFourBits: values))
+                self.init(status: 15, channel: 1, data1: UInt8(mostSignificantFourBits: type, leastSignificantFourBits: values), delay: delay)
             case .songPositionPointer(let value):
-                self.init(timeStamp: timeStamp, status: 15, channel: 2, data1: value.leastSignificantSevenBits, data2: value.mostSignificantSevenBits)
+                self.init(status: 15, channel: 2, data1: value.leastSignificantSevenBits, data2: value.mostSignificantSevenBits, delay: delay)
             case .songSelect(let song):
-                self.init(timeStamp: timeStamp, status: 15, channel: 3, data1: song)
+                self.init(status: 15, channel: 3, data1: song, delay: delay)
             case .tuneRequest:
-                self.init(timeStamp: timeStamp, status: 15, channel: 5)
+                self.init(status: 15, channel: 5, delay: delay)
             }
         case .systemRealTime(let type):
             switch type {
             case .timingClock:
-                self.init(timeStamp: timeStamp, status: 15, channel: 8)
+                self.init(status: 15, channel: 8, delay: delay)
             case .start:
-                self.init(timeStamp: timeStamp, status: 15, channel: 10)
+                self.init(status: 15, channel: 10, delay: delay)
             case .continue:
-                self.init(timeStamp: timeStamp, status: 15, channel: 11)
+                self.init(status: 15, channel: 11, delay: delay)
             case .stop:
-                self.init(timeStamp: timeStamp, status: 15, channel: 12)
+                self.init(status: 15, channel: 12, delay: delay)
             case .activeSensing:
-                self.init(timeStamp: timeStamp, status: 15, channel: 14)
+                self.init(status: 15, channel: 14, delay: delay)
             case .reset:
-                self.init(timeStamp: timeStamp, status: 15, channel: 15)
+                self.init(status: 15, channel: 15, delay: delay)
             }
         case .unknown:
-            self.init(timeStamp: timeStamp)
+            self.init(delay: delay)
         }
-    }
-
-    public init(_ message: Message, delay: TimeInterval = 0.0) {
-        let timeStamp = mach_absolute_time() + MIDITimeStamp(delay * 1_000_000_000)
-        self.init(message, timeStamp: timeStamp)
     }
     
 }
@@ -279,7 +313,7 @@ extension MIDIPacket {
         case 15:
             switch channel {
             case 0:
-                return .systemCommon(type: .systemExclusive)
+                return .systemCommon(type: .systemExclusive(bytes: bytes))
             case 1:
                 return .systemCommon(type: .midiTimeCodeQuarterFrame(type: data1.mostSignificantFourBits, values: data1.leastSignificantFourBits))
             case 2:
@@ -398,6 +432,18 @@ extension UInt16 {
         get {
             return UInt8(self & 0b0000_0000_0111_1111)
         }
+    }
+    
+}
+
+extension Array where Element: Equatable {
+    
+    internal func pad(with element: Element, to count: Int) -> [Element] {
+        return self + [Element](repeating: element, count: count - self.count)
+    }
+    
+    internal func unpad(with element: Element) -> [Element] {
+        return reversed().drop(while: {$0 == element}).reversed()
     }
     
 }
