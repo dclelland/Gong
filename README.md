@@ -26,19 +26,19 @@ An [example project](/Examples/Gong-macOS) is provided to help you get started.
 The entire library:
 
 ```ruby
-pod 'Gong/MIDI', '~> 0.1'
+pod 'Gong/MIDI', '~> 0.2'
 ```
 
 Just the CoreMIDI wrapper:
 
 ```ruby
-pod 'Gong/MIDI/Core', '~> 0.1'
+pod 'Gong/MIDI/Core', '~> 0.2'
 ```
 
 Just the CoreMIDI wrapper, plus `MIDINote` events:
 
 ```ruby
-pod 'Gong/MIDI/Events', '~> 0.1'
+pod 'Gong/MIDI/Events', '~> 0.2'
 ```
 
 ### Core library architecture
