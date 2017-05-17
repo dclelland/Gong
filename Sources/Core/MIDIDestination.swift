@@ -40,6 +40,7 @@ extension MIDIDestination {
     
     public typealias SystemExclusiveEventCompletion = (Void) -> Void
     
+    // Disclaimer: I'm fairly certain this doesn't work
     public func send(systemExclusiveEvent bytes: [UInt8], completion: @escaping SystemExclusiveEventCompletion) throws {
         let completionReference = UnsafeMutablePointer.wrap(completion)
         let completionProcedure: MIDICompletionProc = { requestPointer in
