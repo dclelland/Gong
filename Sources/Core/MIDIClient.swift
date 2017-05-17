@@ -31,6 +31,14 @@ public class MIDIClient: MIDIObject {
         self.init(clientReference)
     }
     
+    public func dispose() throws {
+        try MIDIClientDispose(reference).midiError("Disposing of MIDIClient")
+    }
+    
+}
+
+extension MIDIClient {
+
     public func createInput(name: String, callback: @escaping PacketCallback = { _ in }) throws -> MIDIInput {
         var portReference = MIDIPortRef()
         let context = UnsafeMutablePointer.wrap(callback)
@@ -86,19 +94,10 @@ public class MIDIClient: MIDIObject {
         try MIDIDestinationCreate(reference, name as CFString, procedure, context, &endpointReference).midiError("Creating destination on MIDIClient")
         return MIDIDestination(endpointReference)
     }
-    
-    public func dispose() throws {
-        try MIDIClientDispose(reference).midiError("Disposing of MIDIClient")
-    }
 
 }
 
 extension MIDIClient {
-    
-    public static func sendSystemExclusiveEvent(_ request: MIDISysexSendRequest) throws {
-        var request = request
-        try MIDISendSysex(&request).midiError("Sending system exclusive event")
-    }
     
     public static func restart() throws {
         try MIDIRestart().midiError("Restarting MIDI")

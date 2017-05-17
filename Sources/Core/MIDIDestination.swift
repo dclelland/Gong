@@ -35,3 +35,34 @@ extension MIDIDestination {
     }
     
 }
+
+extension MIDIDestination {
+    
+    public typealias SystemExclusiveEventCompletion = (Void) -> Void
+    
+    public func send(systemExclusiveEvent bytes: [UInt8], completion: @escaping SystemExclusiveEventCompletion) throws {
+        let completionReference = UnsafeMutablePointer.wrap(completion)
+        let completionProcedure: MIDICompletionProc = { requestPointer in
+            guard let completion: SystemExclusiveEventCompletion = requestPointer.pointee.completionRefCon?.unwrap() else {
+                return
+            }
+            
+            completion()
+        }
+        
+        var request = Data(bytes: bytes).withUnsafeBytes { pointer in
+            return MIDISysexSendRequest(
+                destination: reference,
+                data: pointer,
+                bytesToSend: UInt32(bytes.count),
+                complete: false,
+                reserved: (0, 0, 0),
+                completionProc: completionProcedure,
+                completionRefCon: completionReference
+            )
+        }
+        
+        try MIDISendSysex(&request).midiError("Sending system exclusive event")
+    }
+    
+}
