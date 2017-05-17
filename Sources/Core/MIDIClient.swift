@@ -95,8 +95,9 @@ public class MIDIClient: MIDIObject {
 
 extension MIDIClient {
     
-    public static func sendSystemExclusiveEvent(request: UnsafeMutablePointer<MIDISysexSendRequest>) throws {
-        try MIDISendSysex(request).midiError("Sending system exclusive event")
+    public static func sendSystemExclusiveEvent(_ request: MIDISysexSendRequest) throws {
+        var request = request
+        try MIDISendSysex(&request).midiError("Sending system exclusive event")
     }
     
     public static func restart() throws {
