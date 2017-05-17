@@ -17,11 +17,21 @@ public protocol MIDIEvent {
 
 public protocol MIDIEventSender {
     
-    func send(_ event: MIDIEvent, via output: MIDIOutput)
+    func send(_ packet: MIDIPacket, via output: MIDIOutput)
     
 }
 
 extension MIDIEventSender {
+    
+    public func send(_ packets: [MIDIPacket], via output: MIDIOutput) {
+        for packet in packets {
+            send(packet, via: output)
+        }
+    }
+    
+    public func send(_ event: MIDIEvent, via output: MIDIOutput) {
+        send(event.packets, via: output)
+    }
     
     public func send(_ events: [MIDIEvent], via output: MIDIOutput) {
         for event in events {
@@ -33,11 +43,21 @@ extension MIDIEventSender {
 
 public protocol MIDIEventReceiver {
     
-    func receive(_ event: MIDIEvent)
+    func receive(_ packet: MIDIPacket)
     
 }
 
 extension MIDIEventReceiver {
+    
+    public func receive(_ packets: [MIDIPacket]) {
+        for packet in packets {
+            receive(packet)
+        }
+    }
+    
+    public func receive(_ event: MIDIEvent) {
+        receive(event.packets)
+    }
     
     public func receive(_ events: [MIDIEvent]) {
         for event in events {
@@ -49,9 +69,9 @@ extension MIDIEventReceiver {
 
 extension MIDIDevice: MIDIEventSender {
     
-    public func send(_ event: MIDIEvent, via output: MIDIOutput) {
+    public func send(_ packet: MIDIPacket, via output: MIDIOutput) {
         for entity in entities {
-            entity.send(event, via: output)
+            entity.send(packet, via: output)
         }
     }
     
@@ -59,9 +79,9 @@ extension MIDIDevice: MIDIEventSender {
 
 extension MIDIDevice: MIDIEventReceiver {
     
-    public func receive(_ event: MIDIEvent) {
+    public func receive(_ packet: MIDIPacket) {
         for entity in entities {
-            entity.receive(event)
+            entity.receive(packet)
         }
     }
     
@@ -69,9 +89,9 @@ extension MIDIDevice: MIDIEventReceiver {
 
 extension MIDIEntity: MIDIEventSender {
     
-    public func send(_ event: MIDIEvent, via output: MIDIOutput) {
+    public func send(_ packet: MIDIPacket, via output: MIDIOutput) {
         for destination in destinations {
-            destination.send(event, via: output)
+            destination.send(packet, via: output)
         }
     }
     
@@ -79,9 +99,9 @@ extension MIDIEntity: MIDIEventSender {
 
 extension MIDIEntity: MIDIEventReceiver {
     
-    public func receive(_ event: MIDIEvent) {
+    public func receive(_ packet: MIDIPacket) {
         for source in sources {
-            source.receive(event)
+            source.receive(packet)
         }
     }
     
@@ -89,13 +109,11 @@ extension MIDIEntity: MIDIEventReceiver {
 
 extension MIDIDestination: MIDIEventSender {
     
-    public func send(_ event: MIDIEvent, via output: MIDIOutput) {
-        for packet in event.packets {
-            do {
-                try output.send(packet, to: self)
-            } catch let error {
-                print(error)
-            }
+    public func send(_ packet: MIDIPacket, via output: MIDIOutput) {
+        do {
+            try output.send(packet, to: self)
+        } catch let error {
+            print(error)
         }
     }
     
@@ -103,13 +121,11 @@ extension MIDIDestination: MIDIEventSender {
 
 extension MIDISource: MIDIEventReceiver {
     
-    public func receive(_ event: MIDIEvent) {
-        for packet in event.packets {
-            do {
-                try received(packet)
-            } catch let error {
-                print(error)
-            }
+    public func receive(_ packet: MIDIPacket) {
+        do {
+            try received(packet)
+        } catch let error {
+            print(error)
         }
     }
     
