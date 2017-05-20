@@ -11,9 +11,9 @@ import CoreMIDI
 
 public class MIDIClient: MIDIObject {
     
-    public typealias NoticeCallback = (MIDINotice) -> Void
+    public typealias NoticeCallback = (_ notice: MIDINotice) -> Void
     
-    public typealias PacketCallback = (MIDIPacket, MIDISource) -> Void
+    public typealias PacketCallback = (_ packet: MIDIPacket, _ source: MIDISource) -> Void
     
     public convenience init(name: String, callback: @escaping NoticeCallback = { _ in }) throws {
         var clientReference = MIDIClientRef()

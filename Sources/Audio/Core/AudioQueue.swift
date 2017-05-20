@@ -25,9 +25,9 @@ public class AudioQueue {
 
 extension AudioQueue {
     
-    public typealias OutputCallback = (AudioQueue, Buffer) -> Void
+    public typealias OutputCallback = (_ queue: AudioQueue, _ buffer: Buffer) -> Void
     
-    public typealias InputCallback = (AudioQueue, Buffer, AudioTimeStamp, [AudioStreamPacketDescription]?) -> Void
+    public typealias InputCallback = (_ queue: AudioQueue, _ buffer: Buffer, _ timeStamp: AudioTimeStamp, _ packetDescriptions: [AudioStreamPacketDescription]?) -> Void
     
     public static func createOutput(format: AudioStreamBasicDescription, runLoop: CFRunLoop? = nil, runLoopMode: String? = nil, callback: @escaping OutputCallback = { (_, _) in }) throws -> AudioQueue {
         var queueReference: AudioQueueRef? = nil
@@ -285,17 +285,34 @@ extension AudioQueue {
 
 extension AudioQueue {
 
-    public typealias PropertyListener = () -> Void
-    
-    public func add(listener: PropertyListener, to property: AudioQueuePropertyID) throws {
-//        AudioQueueAddPropertyListener(reference, property, <#T##inProc: AudioQueuePropertyListenerProc##AudioQueuePropertyListenerProc##(UnsafeMutableRawPointer?, AudioQueueRef, AudioQueuePropertyID) -> Void#>, <#T##inUserData: UnsafeMutableRawPointer?##UnsafeMutableRawPointer?#>)
+    public class PropertyListener {
         
+        public typealias Callback = (_ audioUnit: AudioQueue, _ property: AudioUnitPropertyID) -> Void
         
-        //public func AudioQueueAddPropertyListener(_ inAQ: AudioQueueRef, _ inID: AudioQueuePropertyID, _ inProc: @escaping
+        fileprivate let procedure: AudioQueuePropertyListenerProc
+        
+        fileprivate let userData: UnsafeMutablePointer<Callback>
+        
+        public init(_ callback: @escaping Callback) {
+            self.procedure = { (userData, queueReference, property) in
+                guard let callback: Callback = userData?.unwrap() else {
+                    return
+                }
+                
+                callback(AudioQueue(queueReference), property)
+            }
+            
+            self.userData = UnsafeMutablePointer.wrap(callback)
+        }
+        
     }
     
-    public func removePropertyListener() throws {
-        //public func AudioQueueRemovePropertyListener(_ inAQ: AudioQueueRef, _ inID: AudioQueuePropertyID, _ inProc: @escaping
+    public func add(listener: PropertyListener, to property: AudioQueuePropertyID) throws {
+        try AudioQueueAddPropertyListener(reference, property, listener.procedure, listener.userData).audioError("Adding AudioQueue property listener")
+    }
+    
+    public func remove(listener: PropertyListener, from property: AudioQueuePropertyID) throws {
+        try AudioQueueRemovePropertyListener(reference, property, listener.procedure, listener.userData).audioError("Removing AudioQueue property listener")
     }
     
 }
@@ -415,7 +432,7 @@ extension AudioQueue {
         
     }
     
-    public typealias ProcessingTapCallback = (ProcessingTap, UInt32, AudioTimeStamp, AudioQueueProcessingTapFlags, UInt32, AudioBufferList) -> Void
+    public typealias ProcessingTapCallback = (_ processingTap: ProcessingTap, _ numberOfFrames: UInt32, _ timeStamp: AudioTimeStamp, _ flags: AudioQueueProcessingTapFlags, _ dataNumberOfFrames: UInt32, _ bufferList: AudioBufferList) -> Void
     
     // TODO: Make tapFlags typesafe, also figure out what ought to be done with the inout arguments in the callback
     
