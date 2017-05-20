@@ -232,7 +232,7 @@ extension AudioQueue {
     }
     
     
-    public func value<T>(for property: AudioFilePropertyID) throws -> T {
+    public func value<T>(for property: AudioQueuePropertyID) throws -> T {
         var size = try self.size(for: property)
         let data: UnsafeMutablePointer<T> = try self.data(for: property, size: &size)
         defer {
@@ -241,7 +241,7 @@ extension AudioQueue {
         return data.pointee
     }
     
-    public func array<T>(for property: AudioFilePropertyID) throws -> [T] {
+    public func array<T>(for property: AudioQueuePropertyID) throws -> [T] {
         var size = try self.size(for: property)
         let data: UnsafeMutablePointer<T> = try self.data(for: property, size: &size)
         defer {
@@ -253,7 +253,7 @@ extension AudioQueue {
         }
     }
     
-    public func set<T>(value: T, for property: AudioFilePropertyID) throws {
+    public func set<T>(value: T, for property: AudioQueuePropertyID) throws {
         let size = try self.size(for: property)
         var data = value
         return try set(data: &data, for: property, size: size)

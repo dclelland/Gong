@@ -107,24 +107,14 @@ class ViewController: NSViewController {
         }
         
         do {
-            struct MyRecorder {
-                let file: AudioFile
-                var packet: Int64 = 0
-                var running: Bool = false
-                
-                init(file: AudioFile) {
-                    self.file = file
-                }
-            }
-            
             let deviceID: AudioDeviceID = try AudioObject.system.value(for: AudioObjectPropertyAddress(
                 mSelector: kAudioHardwarePropertyDefaultInputDevice,
                 mScope: kAudioObjectPropertyScopeGlobal,
                 mElement: 0
             ))
-            
+
             print("DEVICE A", deviceID)
-            
+
             let sampleRate: Double = try AudioObject(deviceID).value(for: AudioObjectPropertyAddress(
                 mSelector: kAudioDevicePropertyNominalSampleRate,
                 mScope: kAudioObjectPropertyScopeGlobal,
@@ -132,6 +122,97 @@ class ViewController: NSViewController {
             ))
             
             print("SAMPLE RATE", sampleRate)
+            
+            var recorderFormat = AudioStreamBasicDescription(
+                mSampleRate: sampleRate,
+                mFormatID: kAudioFormatMPEG4AAC,
+                mFormatFlags: 0,
+                mBytesPerPacket: 0,
+                mFramesPerPacket: 0,
+                mBytesPerFrame: 0,
+                mChannelsPerFrame: 0,
+                mBitsPerChannel: 0,
+                mReserved: 0
+            )
+            
+            var recorderFormatSize = UInt32(MemoryLayout.size(ofValue: recorderFormat))
+            
+            try AudioFormatGetProperty(kAudioFormatProperty_FormatInfo, 0, nil, &recorderFormatSize, &recorderFormat).audioError("getting recorder format")
+            
+            print("recorder format", recorderFormat)
+            
+            
+            let url = Bundle.main.resourceURL!.appendingPathComponent("packets.caf")
+            let audioFile = try AudioFile(url, type: kAudioFileCAFType, format: recorderFormat, flags: .eraseFile)
+            
+            
+            struct Recorder {
+                let file: AudioFile
+                var packet: Int64 = 0
+                var running: Bool = false
+
+                init(file: AudioFile) {
+                    self.file = file
+                }
+            }
+            
+            let recorder = Recorder(file: audioFile)
+            
+            let queue = try AudioQueue.createInput(format: recorderFormat) { (queue, buffer, timeStamp, packetDescriptions) in
+                print("recorder", recorder)
+            }
+            
+            let outputStreamDescription: AudioStreamBasicDescription = try queue.value(for: kAudioConverterCurrentOutputStreamDescription)
+            print("output stream description", outputStreamDescription)
+            
+            try queue.set(value: 1, for: AudioQueue.Property.enableLevelMetering)
+            kAudioConverterCompressionMagicCookie
+            let cookie: UnsafeMutablePointer<UInt8> = try queue.value(for: AudioQueue.Property.magicCookie)
+            
+            try audioFile.set(value: cookie, for: AudioFile.Property.magicCookieData)
+            
+//            
+//            // Other set up as needed
+//            let bufferByteSize = ComputeRecordBufferSize(recordFormat, queue: queue, seconds: 0.5)
+//            
+//            for _ in 0..<kNumberRecordBuffers {
+//                var buffer = AudioQueueBufferRef()
+//                error = AudioQueueAllocateBuffer(queue, UInt32(bufferByteSize), &buffer)
+//                
+//                CheckError(error, operation: "AudioQueueAllocateBuffer failed")
+//                
+//                error = AudioQueueEnqueueBuffer(queue, buffer, 0, nil)
+//                
+//                CheckError(error, operation: "AudioQueueEnqueueBuffer failed")
+//            }
+//            
+//            // Start queue
+//            recorder.running = true
+//            
+//            error = AudioQueueStart(queue, nil)
+//            
+//            CheckError(error, operation: "AudioQueueStart failed")
+//            
+//            print("Recording, press <return> to stop:\n")
+//            getchar()
+//            
+//            // Stop queue
+//            print("* recording done *\n")
+//            
+//            recorder.running = false
+//            
+//            error = AudioQueueStop(queue, true)
+//            
+//            CheckError(error, operation: "AudioQueueStop failed")
+//            
+//            CopyEncoderCookieToFile(queue, theFile: recorder.recordFile)
+//            
+//            AudioQueueDispose(queue, true)
+//            AudioFileClose(recorder.recordFile)
+            
+            
+            
+            
             
             
         } catch let error {
