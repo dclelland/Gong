@@ -24,64 +24,64 @@ public class AudioObject {
 extension AudioObject {
     
     public func value<T>(for address: AudioObjectPropertyAddress, qualifier: Any? = nil) throws -> T {
-        var dataSize = try self.dataSize(for: address, qualifier: qualifier)
-        let data: UnsafeMutablePointer<T> = try self.data(for: address, dataSize: &dataSize, qualifier: qualifier)
+        var size = try self.size(for: address, qualifier: qualifier)
+        let data: UnsafeMutablePointer<T> = try self.data(for: address, size: &size, qualifier: qualifier)
         defer {
-            data.deallocate(capacity: Int(dataSize))
+            data.deallocate(capacity: Int(size))
         }
         return data.pointee
     }
     
     public func array<T>(for address: AudioObjectPropertyAddress, qualifier: Any? = nil) throws -> [T] {
-        var dataSize = try self.dataSize(for: address, qualifier: qualifier)
-        let data: UnsafeMutablePointer<T> = try self.data(for: address, dataSize: &dataSize, qualifier: qualifier)
+        var size = try self.size(for: address, qualifier: qualifier)
+        let data: UnsafeMutablePointer<T> = try self.data(for: address, size: &size, qualifier: qualifier)
         defer {
-            data.deallocate(capacity: Int(dataSize))
+            data.deallocate(capacity: Int(size))
         }
-        let count = Int(dataSize) / MemoryLayout<T>.size
+        let count = Int(size) / MemoryLayout<T>.size
         return (0..<count).map { index in
             return data[index]
         }
     }
     
-    public func setValue<T>(_ value: T, for address: AudioObjectPropertyAddress, qualifier: Any? = nil) throws {
-        let dataSize = try self.dataSize(for: address, qualifier: qualifier)
+    public func set<T>(value: T, for address: AudioObjectPropertyAddress, qualifier: Any? = nil) throws {
+        let size = try self.size(for: address, qualifier: qualifier)
         var data = value
-        return try setData(&data, for: address, dataSize: dataSize, qualifier: qualifier)
+        return try set(data: &data, for: address, size: size, qualifier: qualifier)
     }
     
 }
 
 extension AudioObject {
     
-    internal func dataSize(for address: AudioObjectPropertyAddress, qualifier: Any? = nil) throws -> UInt32 {
-        var dataSize: UInt32 = 0
+    internal func size(for address: AudioObjectPropertyAddress, qualifier: Any? = nil) throws -> UInt32 {
+        var size: UInt32 = 0
         var address = address
         var qualifier = qualifier
         let qualifierSize = UInt32(MemoryLayout.size(ofValue: qualifier))
         
-        try AudioObjectGetPropertyDataSize(reference, &address, qualifierSize, &qualifier, &dataSize).audioError("Getting AudioObject property data size")
+        try AudioObjectGetPropertyDataSize(reference, &address, qualifierSize, &qualifier, &size).audioError("Getting AudioObject property data size")
         
-        return dataSize
+        return size
     }
     
-    internal func data<T>(for address: AudioObjectPropertyAddress, dataSize: inout UInt32, qualifier: Any? = nil) throws -> UnsafeMutablePointer<T> {
+    internal func data<T>(for address: AudioObjectPropertyAddress, size: inout UInt32, qualifier: Any? = nil) throws -> UnsafeMutablePointer<T> {
         var address = address
         var qualifier = qualifier
         let qualifierSize = UInt32(MemoryLayout.size(ofValue: qualifier))
-        let data = UnsafeMutablePointer<T>.allocate(capacity: Int(dataSize))
+        let data = UnsafeMutablePointer<T>.allocate(capacity: Int(size))
         
-        try AudioObjectGetPropertyData(reference, &address, qualifierSize, &qualifier, &dataSize, data).audioError("Getting AudioObject property data")
+        try AudioObjectGetPropertyData(reference, &address, qualifierSize, &qualifier, &size, data).audioError("Getting AudioObject property data")
         
         return data
     }
     
-    internal func setData<T>(_ data: UnsafeMutablePointer<T>, for address: AudioObjectPropertyAddress, dataSize: UInt32, qualifier: Any? = nil) throws {
+    internal func set<T>(data: UnsafeMutablePointer<T>, for address: AudioObjectPropertyAddress, size: UInt32, qualifier: Any? = nil) throws {
         var address = address
         var qualifier = qualifier
         let qualifierSize = UInt32(MemoryLayout.size(ofValue: qualifier))
         
-        try AudioObjectSetPropertyData(reference, &address, qualifierSize, &qualifier, dataSize, data).audioError("Setting AudioObject property data")
+        try AudioObjectSetPropertyData(reference, &address, qualifierSize, &qualifier, size, data).audioError("Setting AudioObject property data")
     }
     
 }

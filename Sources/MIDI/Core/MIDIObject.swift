@@ -100,7 +100,7 @@ extension MIDIObject {
         return integer
     }
     
-    public func setInteger(_ integer: Int32, for property: String) throws {
+    public func set(integer: Int32, for property: String) throws {
         try MIDIObjectSetIntegerProperty(reference, property as CFString, integer).midiError("Setting integer for property \"\(property)\" on MIDIObject")
     }
     
@@ -110,7 +110,7 @@ extension MIDIObject {
         return string!.takeUnretainedValue() as String
     }
     
-    public func setString(_ string: String, for property: String) throws {
+    public func set(string: String, for property: String) throws {
         try MIDIObjectSetStringProperty(reference, property as CFString, string as CFString).midiError("Setting string for property \"\(property)\" on MIDIObject")
     }
     
@@ -120,7 +120,7 @@ extension MIDIObject {
         return data!.takeUnretainedValue() as Data
     }
     
-    public func setData(_ data: Data, for property: String) throws {
+    public func set(data: Data, for property: String) throws {
         try MIDIObjectSetDataProperty(reference, property as CFString, data as CFData).midiError("Setting data for property \"\(property)\" on MIDIObject")
     }
     
@@ -130,11 +130,11 @@ extension MIDIObject {
         return dictionary!.takeUnretainedValue() as NSDictionary
     }
     
-    public func setDictionary(_ dictionary: NSDictionary, for property: String) throws {
+    public func set(dictionary: NSDictionary, for property: String) throws {
         try MIDIObjectSetDictionaryProperty(reference, property as CFString, dictionary as CFDictionary).midiError("Setting dictionary for property \"\(property)\" on MIDIObject")
     }
     
-    public func removeProperty(_ property: String) throws {
+    public func remove(property: String) throws {
         try MIDIObjectRemoveProperty(reference, property as CFString).midiError("Removing property \"\(property)\" from MIDIObject")
     }
     

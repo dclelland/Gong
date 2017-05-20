@@ -116,30 +116,30 @@ extension AudioFile {
     }
     
     public func value<T>(for property: AudioFilePropertyID) throws -> T {
-        var (dataSize, _) = try info(for: property)
-        let data: UnsafeMutablePointer<T> = try self.data(for: property, dataSize: &dataSize)
+        var (size, _) = try info(for: property)
+        let data: UnsafeMutablePointer<T> = try self.data(for: property, size: &size)
         defer {
-            data.deallocate(capacity: Int(dataSize))
+            data.deallocate(capacity: Int(size))
         }
         return data.pointee
     }
     
     public func array<T>(for property: AudioFilePropertyID) throws -> [T] {
-        var (dataSize, _) = try info(for: property)
-        let data: UnsafeMutablePointer<T> = try self.data(for: property, dataSize: &dataSize)
+        var (size, _) = try info(for: property)
+        let data: UnsafeMutablePointer<T> = try self.data(for: property, size: &size)
         defer {
-            data.deallocate(capacity: Int(dataSize))
+            data.deallocate(capacity: Int(size))
         }
-        let count = Int(dataSize) / MemoryLayout<T>.size
+        let count = Int(size) / MemoryLayout<T>.size
         return (0..<count).map { index in
             return data[index]
         }
     }
     
-    public func setValue<T>(_ value: T, for property: AudioFilePropertyID) throws {
-        let (dataSize, _) = try info(for: property)
+    public func set<T>(value: T, for property: AudioFilePropertyID) throws {
+        let (size, _) = try info(for: property)
         var data = value
-        return try setData(&data, for: property, dataSize: dataSize)
+        return try set(data: &data, for: property, size: size)
     }
     
 }
@@ -163,22 +163,22 @@ extension AudioFile {
 
 extension AudioFile {
     
-    internal func info(for property: AudioFilePropertyID) throws -> (dataSize: UInt32, isWritable: Bool) {
-        var dataSize: UInt32 = 0
+    internal func info(for property: AudioFilePropertyID) throws -> (size: UInt32, isWritable: Bool) {
+        var size: UInt32 = 0
         var isWritable: UInt32 = 0
-        try AudioFileGetPropertyInfo(reference, property, &dataSize, &isWritable).audioError("Getting AudioFile property info")
-        return (dataSize: dataSize, isWritable: isWritable != 0)
+        try AudioFileGetPropertyInfo(reference, property, &size, &isWritable).audioError("Getting AudioFile property info")
+        return (size: size, isWritable: isWritable != 0)
     }
 
-    internal func data<T>(for property: AudioFilePropertyID, dataSize: inout UInt32) throws -> UnsafeMutablePointer<T> {
-        var dataSize = dataSize
-        let data = UnsafeMutablePointer<T>.allocate(capacity: Int(dataSize))
-        try AudioFileGetProperty(reference, property, &dataSize, data).audioError("Getting AudioFile property")
+    internal func data<T>(for property: AudioFilePropertyID, size: inout UInt32) throws -> UnsafeMutablePointer<T> {
+        var size = size
+        let data = UnsafeMutablePointer<T>.allocate(capacity: Int(size))
+        try AudioFileGetProperty(reference, property, &size, data).audioError("Getting AudioFile property")
         return data
     }
     
-    internal func setData<T>(_ data: UnsafeMutablePointer<T>, for property: AudioFilePropertyID, dataSize: UInt32) throws {
-        try AudioFileSetProperty(reference, property, dataSize, data).audioError("Setting AudioFile property")
+    internal func set<T>(data: UnsafeMutablePointer<T>, for property: AudioFilePropertyID, size: UInt32) throws {
+        try AudioFileSetProperty(reference, property, size, data).audioError("Setting AudioFile property")
     }
 
 }
@@ -212,21 +212,21 @@ extension AudioFile {
     }
     
     public static func value<T>(for property: AudioFilePropertyID, specifier: Any? = nil) throws -> T {
-        var dataSize = try self.dataSize(for: property, specifier: specifier)
-        let data: UnsafeMutablePointer<T> = try self.data(for: property, dataSize: &dataSize, specifier: specifier)
+        var size = try self.size(for: property, specifier: specifier)
+        let data: UnsafeMutablePointer<T> = try self.data(for: property, size: &size, specifier: specifier)
         defer {
-            data.deallocate(capacity: Int(dataSize))
+            data.deallocate(capacity: Int(size))
         }
         return data.pointee
     }
     
     public static func array<T>(for property: AudioFilePropertyID, specifier: Any? = nil) throws -> [T] {
-        var dataSize = try self.dataSize(for: property, specifier: specifier)
-        let data: UnsafeMutablePointer<T> = try self.data(for: property, dataSize: &dataSize, specifier: specifier)
+        var size = try self.size(for: property, specifier: specifier)
+        let data: UnsafeMutablePointer<T> = try self.data(for: property, size: &size, specifier: specifier)
         defer {
-            data.deallocate(capacity: Int(dataSize))
+            data.deallocate(capacity: Int(size))
         }
-        let count = Int(dataSize) / MemoryLayout<T>.size
+        let count = Int(size) / MemoryLayout<T>.size
         return (0..<count).map { index in
             return data[index]
         }
@@ -236,22 +236,22 @@ extension AudioFile {
 
 extension AudioFile {
     
-    internal static func dataSize(for property: AudioFilePropertyID, specifier: Any? = nil) throws -> UInt32 {
-        var dataSize: UInt32 = 0
+    internal static func size(for property: AudioFilePropertyID, specifier: Any? = nil) throws -> UInt32 {
+        var size: UInt32 = 0
         var specifier = specifier
         let specifierSize = UInt32(MemoryLayout.size(ofValue: specifier))
         
-        try AudioFileGetGlobalInfoSize(property, specifierSize, &specifier, &dataSize).audioError("Getting AudioFile global info size for property: \(property)")
+        try AudioFileGetGlobalInfoSize(property, specifierSize, &specifier, &size).audioError("Getting AudioFile global info size for property: \(property)")
         
-        return dataSize
+        return size
     }
     
-    internal static func data<T>(for property: AudioFilePropertyID, dataSize: inout UInt32, specifier: Any? = nil) throws -> UnsafeMutablePointer<T> {
+    internal static func data<T>(for property: AudioFilePropertyID, size: inout UInt32, specifier: Any? = nil) throws -> UnsafeMutablePointer<T> {
         var specifier = specifier
         let specifierSize = UInt32(MemoryLayout.size(ofValue: specifier))
-        let data = UnsafeMutablePointer<T>.allocate(capacity: Int(dataSize))
+        let data = UnsafeMutablePointer<T>.allocate(capacity: Int(size))
         
-        try AudioFileGetGlobalInfo(property, specifierSize, &specifier, &dataSize, data).audioError("Getting AudioFile global info size for property: \(property)")
+        try AudioFileGetGlobalInfo(property, specifierSize, &specifier, &size, data).audioError("Getting AudioFile global info size for property: \(property)")
         
         return data
     }

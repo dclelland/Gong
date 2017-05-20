@@ -26,8 +26,8 @@ public class MIDIEndpoint: MIDIObject {
         return entity?.device
     }
     
-    public func dispose() {
-        MIDIEndpointDispose(reference)
+    public func dispose() throws {
+        try MIDIEndpointDispose(reference).midiError("Disposing of MIDIEndpoint")
     }
 
 }

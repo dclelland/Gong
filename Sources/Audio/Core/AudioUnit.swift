@@ -15,18 +15,18 @@ extension AudioUnit {
     
     public func value<T>(for property: AudioUnitPropertyID) -> T? {
         do {
-            let (dataSize, _) = try info(for: property)
-            return try value(for: property, dataSize: dataSize)
+            let (size, _) = try info(for: property)
+            return try value(for: property, size: size)
         } catch let error {
             print(error)
             return nil
         }
     }
     
-    public func setValue<T>(_ value: T, for property: AudioUnitPropertyID) {
+    public func set<T>(value: T, for property: AudioUnitPropertyID) {
         do {
-            let (dataSize, _) = try info(for: property)
-            return try setValue(value, for: property, dataSize: dataSize, data: value)
+            let (size, _) = try info(for: property)
+            return try setValue(value, for: property, size: size, data: value)
         } catch let error {
             print(error)
         }
@@ -36,27 +36,27 @@ extension AudioUnit {
 
 extension AudioUnit {
     
-    public func value<T>(for property: AudioUnitPropertyID, dataSize: UInt32) throws -> T {
+    public func value<T>(for property: AudioUnitPropertyID, size: UInt32) throws -> T {
         // TODO: Support arrays
-        var dataSize = dataSize
-        var data = UnsafeMutablePointer<T>.allocate(capacity: Int(dataSize))
+        var size = size
+        var data = UnsafeMutablePointer<T>.allocate(capacity: Int(size))
         defer {
-            data.deallocate(capacity: Int(dataSize))
+            data.deallocate(capacity: Int(size))
         }
-        try AudioUnitGetProperty(self, property, kAudioUnitScope_Global, 0, data, &dataSize).check()
+        try AudioUnitGetProperty(self, property, kAudioUnitScope_Global, 0, data, &size).check()
         return data.pointee
     }
     
-    public func setValue<T>(_ value: T, for property: AudioUnitPropertyID, dataSize: UInt32, data: T) throws {
+    public func set<T>(value: T, for property: AudioUnitPropertyID, size: UInt32, data: T) throws {
         var data = value
-        try AudioFileSetProperty(self, property, dataSize, &data).check()
+        try AudioFileSetProperty(self, property, size, &data).check()
     }
     
-    public func info(for property: AudioUnitPropertyID) throws -> (dataSize: UInt32, isWritable: Bool) {
-        var dataSize: UInt32 = 0
+    public func info(for property: AudioUnitPropertyID) throws -> (size: UInt32, isWritable: Bool) {
+        var size: UInt32 = 0
         var isWritable: DarwinBoolean = false
-        try AudioUnitGetPropertyInfo(self, property, kAudioUnitScope_Global, 0, &dataSize, &isWritable).check()
-        return (dataSize: dataSize, writable: isWritable.boolValue)
+        try AudioUnitGetPropertyInfo(self, property, kAudioUnitScope_Global, 0, &size, &isWritable).check()
+        return (size: size, writable: isWritable.boolValue)
     }
     
 }
