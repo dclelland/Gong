@@ -271,7 +271,6 @@ extension AudioQueue {
     }
 
     internal func data<T>(for property: AudioQueuePropertyID, size: inout UInt32) throws -> UnsafeMutablePointer<T> {
-        var size = size
         let data = UnsafeMutablePointer<T>.allocate(capacity: Int(size))
         try AudioQueueGetProperty(reference, property, data, &size).audioError("Getting AudioQueue property")
         return data

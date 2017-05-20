@@ -171,7 +171,6 @@ extension AudioFile {
     }
 
     internal func data<T>(for property: AudioFilePropertyID, size: inout UInt32) throws -> UnsafeMutablePointer<T> {
-        var size = size
         let data = UnsafeMutablePointer<T>.allocate(capacity: Int(size))
         try AudioFileGetProperty(reference, property, &size, data).audioError("Getting AudioFile property")
         return data
@@ -183,11 +182,41 @@ extension AudioFile {
 
 }
 
-//public func AudioFileCountUserData(_ inAudioFile: AudioFileID, _ inUserDataID: UInt32, _ outNumberItems: UnsafeMutablePointer<
-//public func AudioFileGetUserDataSize(_ inAudioFile: AudioFileID, _ inUserDataID: UInt32, _ inIndex: UInt32, _ outUserDataSize:
-//public func AudioFileGetUserData(_ inAudioFile: AudioFileID, _ inUserDataID: UInt32, _ inIndex: UInt32, _ ioUserDataSize:
-//public func AudioFileSetUserData(_ inAudioFile: AudioFileID, _ inUserDataID: UInt32, _ inIndex: UInt32, _ inUserDataSize: UInt32,
-//public func AudioFileRemoveUserData(_ inAudioFile: AudioFileID, _ inUserDataID: UInt32, _ inIndex: UInt32) -> OSStatus
+extension AudioFile {
+    
+    // TODO: Build a public 'userData' interface, perhaps using lazy collections
+    
+}
+
+extension AudioFile {
+    
+    internal func count(for userDataID: UInt32) throws -> UInt32 {
+        var count: UInt32 = 0
+        try AudioFileCountUserData(reference, userDataID, &count).audioError("Getting AudioFile user data count")
+        return count
+    }
+    
+    internal func size(for userDataID: UInt32, index: UInt32) throws -> UInt32 {
+        var size: UInt32 = 0
+        try AudioFileGetUserDataSize(reference, userDataID, index, &size).audioError("Getting AudioFile user data size")
+        return size
+    }
+    
+    internal func userData<T>(for userDataID: UInt32, index: UInt32, size: inout UInt32) throws -> UnsafeMutablePointer<T> {
+        let data = UnsafeMutablePointer<T>.allocate(capacity: Int(size))
+        try AudioFileGetUserData(reference, userDataID, index, &size, data).audioError("Getting AudioFile user data")
+        return data
+    }
+    
+    internal func set<T>(userData: UnsafeMutablePointer<T>, for userDataID: UInt32, index: UInt32, size: UInt32) throws {
+        try AudioFileSetUserData(reference, userDataID, index, size, userData).audioError("Setting AudioFile user data")
+    }
+    
+    internal func remove(_ userDataID: UInt32, index: UInt32) throws {
+        try AudioFileRemoveUserData(reference, userDataID, index).audioError("Removing AudioFile user data")
+    }
+    
+}
 
 extension AudioFile {
     
