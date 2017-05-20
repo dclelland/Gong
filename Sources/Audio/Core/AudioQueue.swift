@@ -27,7 +27,9 @@ extension AudioQueue {
     
     public typealias OutputCallback = (AudioQueue, Buffer) -> Void
     
-    public static func createOutput(format: AudioStreamBasicDescription, runLoop: CFRunLoop? = nil, runLoopMode: String? = nil, callback: OutputCallback = { (_, _) in }) throws -> AudioQueue {
+    public typealias InputCallback = (AudioQueue, Buffer, AudioTimeStamp, [AudioStreamPacketDescription]?) -> Void
+    
+    public static func createOutput(format: AudioStreamBasicDescription, runLoop: CFRunLoop? = nil, runLoopMode: String? = nil, callback: @escaping OutputCallback = { (_, _) in }) throws -> AudioQueue {
         var queueReference: AudioQueueRef? = nil
         var format = format
         
@@ -44,9 +46,7 @@ extension AudioQueue {
         return AudioQueue(queueReference!)
     }
     
-    public typealias InputCallback = (AudioQueue, Buffer, AudioTimeStamp, [AudioStreamPacketDescription]?) -> Void
-    
-    public static func createInput(format: AudioStreamBasicDescription, runLoop: CFRunLoop? = nil, runLoopMode: String? = nil, callback: InputCallback = { (_, _, _, _) in }) throws -> AudioQueue {
+    public static func createInput(format: AudioStreamBasicDescription, runLoop: CFRunLoop? = nil, runLoopMode: String? = nil, callback: @escaping InputCallback = { (_, _, _, _) in }) throws -> AudioQueue {
         var queueReference: AudioQueueRef? = nil
         var format = format
         
@@ -56,23 +56,33 @@ extension AudioQueue {
                 return
             }
             
-            // TODO: Get packet descriptions
-            
-            callback(AudioQueue(queueReference), Buffer(bufferReference), timeStamp.pointee, nil)
+            if let packetDescriptions = packetDescriptions {
+                let count = Int(numberOfPacketDescriptions)
+                let data = UnsafeMutablePointer<AudioStreamPacketDescription>.allocate(capacity: count)
+                defer {
+                    data.deallocate(capacity: count)
+                }
+                
+                let array = (0..<count).map { index in
+                    return packetDescriptions[index]
+                }
+                
+                callback(AudioQueue(queueReference), Buffer(bufferReference), timeStamp.pointee, array)
+            } else {
+                callback(AudioQueue(queueReference), Buffer(bufferReference), timeStamp.pointee, nil)
+            }
         }
         
         try AudioQueueNewInput(&format, procedure, userData, runLoop, runLoopMode as CFString?, 0, &queueReference).audioError("Creating new input AudioQueue")
         return AudioQueue(queueReference!)
     }
     
-    public typealias OutputCallbackBlock = (AudioQueue, Buffer) -> Void
-    
-    public static func createOutput(format: AudioStreamBasicDescription, dispatchQueue: DispatchQueue, callbackBlock: @escaping OutputCallbackBlock = { (_, _) in }) throws -> AudioQueue {
+    public static func createOutput(format: AudioStreamBasicDescription, dispatchQueue: DispatchQueue, callback: @escaping OutputCallback = { (_, _) in }) throws -> AudioQueue {
         var queueReference: AudioQueueRef? = nil
         var format = format
         
         let block: AudioQueueOutputCallbackBlock = { (queueReference, bufferReference) in
-            callbackBlock(AudioQueue(queueReference), Buffer(bufferReference))
+            callback(AudioQueue(queueReference), Buffer(bufferReference))
         }
         
         try AudioQueueNewOutputWithDispatchQueue(&queueReference, &format, 0, dispatchQueue, block).audioError("Creating new output AudioQueue with dispatch queue")
@@ -80,16 +90,26 @@ extension AudioQueue {
         return AudioQueue(queueReference!)
     }
     
-    public typealias InputCallbackBlock = (AudioQueue, Buffer, AudioTimeStamp, [AudioStreamPacketDescription]?) -> Void
-    
-    public static func createInput(format: AudioStreamBasicDescription, dispatchQueue: DispatchQueue, callbackBlock: @escaping InputCallbackBlock = { (_, _, _, _) in }) throws -> AudioQueue {
+    public static func createInput(format: AudioStreamBasicDescription, dispatchQueue: DispatchQueue, callback: @escaping InputCallback = { (_, _, _, _) in }) throws -> AudioQueue {
         var queueReference: AudioQueueRef? = nil
         var format = format
         
         let block: AudioQueueInputCallbackBlock = { (queueReference, bufferReference, timeStamp, numberOfPacketDescriptions, packetDescriptions) in
-            // TODO: Get packet descriptions
-            
-            callbackBlock(AudioQueue(queueReference), Buffer(bufferReference), timeStamp.pointee, nil)
+            if let packetDescriptions = packetDescriptions {
+                let count = Int(numberOfPacketDescriptions)
+                let data = UnsafeMutablePointer<AudioStreamPacketDescription>.allocate(capacity: count)
+                defer {
+                    data.deallocate(capacity: count)
+                }
+                
+                let array = (0..<count).map { index in
+                    return packetDescriptions[index]
+                }
+                
+                callback(AudioQueue(queueReference), Buffer(bufferReference), timeStamp.pointee, array)
+            } else {
+                callback(AudioQueue(queueReference), Buffer(bufferReference), timeStamp.pointee, nil)
+            }
         }
         
         try AudioQueueNewInputWithDispatchQueue(&queueReference, &format, 0, dispatchQueue, block).audioError("Creating new input AudioQueue with dispatch queue")
@@ -121,11 +141,11 @@ extension AudioQueue {
         return Buffer(bufferReference!)
     }
     
-    public func freeBuffer(_ buffer: Buffer) throws {
+    public func free(buffer: Buffer) throws {
         try AudioQueueFreeBuffer(reference, buffer.reference).audioError("Freeing AudioQueue buffer")
     }
     
-    public func enqueueBuffer(_ buffer: Buffer, packetDescriptions: [AudioStreamPacketDescription]? = nil) throws {
+    public func enqueue(buffer: Buffer, packetDescriptions: [AudioStreamPacketDescription]? = nil) throws {
         if var packetDescriptions = packetDescriptions {
             let numberOfPacketDescriptions = UInt32(packetDescriptions.count)
             try AudioQueueEnqueueBuffer(reference, buffer.reference, numberOfPacketDescriptions, &packetDescriptions).audioError("Enqueuing AudioQueue buffer")
