@@ -116,7 +116,7 @@ extension AudioFile {
     }
     
     public func value<T>(for property: AudioFilePropertyID) throws -> T {
-        var (size, _) = try info(for: property)
+        var size = try info(for: property).size
         let data: UnsafeMutablePointer<T> = try self.data(for: property, size: &size)
         defer {
             data.deallocate(capacity: Int(size))
@@ -125,11 +125,12 @@ extension AudioFile {
     }
     
     public func array<T>(for property: AudioFilePropertyID) throws -> [T] {
-        var (size, _) = try info(for: property)
+        var size = try info(for: property).size
         let data: UnsafeMutablePointer<T> = try self.data(for: property, size: &size)
         defer {
             data.deallocate(capacity: Int(size))
         }
+        
         let count = Int(size) / MemoryLayout<T>.size
         return (0..<count).map { index in
             return data[index]
@@ -137,7 +138,7 @@ extension AudioFile {
     }
     
     public func set<T>(value: T, for property: AudioFilePropertyID) throws {
-        let (size, _) = try info(for: property)
+        let size = try info(for: property).size
         var data = value
         return try set(data: &data, for: property, size: size)
     }

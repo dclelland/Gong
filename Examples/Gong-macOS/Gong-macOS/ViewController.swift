@@ -166,7 +166,7 @@ class ViewController: NSViewController {
             print("output stream description", outputStreamDescription)
             
             try queue.set(value: 1, for: AudioQueue.Property.enableLevelMetering)
-            kAudioConverterCompressionMagicCookie
+//            kAudioConverterCompressionMagicCookie
             let cookie: UnsafeMutablePointer<UInt8> = try queue.value(for: AudioQueue.Property.magicCookie)
             
             try audioFile.set(value: cookie, for: AudioFile.Property.magicCookieData)

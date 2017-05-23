@@ -53,10 +53,10 @@ extension AudioGraph {
     }
     
     public func info(for node: Node) throws -> (audioUnit: AudioUnit, description: AudioComponentDescription) {
-        var audioUnit: AudioUnit? = nil
+        var audioUnitReference: AudioToolbox.AudioUnit? = nil
         var description = AudioComponentDescription()
-        try AUGraphNodeInfo(reference, node.reference, &description, &audioUnit).audioError("Getting AudioGraph node info")
-        return (audioUnit: audioUnit!, description: description)
+        try AUGraphNodeInfo(reference, node.reference, &description, &audioUnitReference).audioError("Getting AudioGraph node info")
+        return (audioUnit: AudioUnit(audioUnitReference!), description: description)
     }
     
     public func numberOfNodes() throws -> UInt32 {

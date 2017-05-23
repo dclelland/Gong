@@ -286,7 +286,7 @@ extension AudioQueue {
 
     public class PropertyListener {
         
-        public typealias Callback = (_ audioUnit: AudioQueue, _ property: AudioUnitPropertyID) -> Void
+        public typealias Callback = (_ audioUnit: AudioQueue, _ property: AudioQueuePropertyID) -> Void
         
         fileprivate let procedure: AudioQueuePropertyListenerProc
         
