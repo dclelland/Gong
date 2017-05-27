@@ -52,19 +52,49 @@ public class AudioFormat {
         public let id3TagToDictionary = kAudioFormatProperty_ID3TagToDictionary
     }
     
-//    public static func value<T>(for property: AudioFormatPropertyID) -> T {
-//        
-//    }
-//    
-//    public static func array<T>(for property: AudioFormatPropertyID) -> [T] {
-//        
-//    }
+    public static func value<T>(for property: AudioFormatPropertyID, specifier: Any? = nil) throws -> T {
+        var size = try self.size(for: property, specifier: specifier)
+        let data: UnsafeMutablePointer<T> = try self.data(for: property, size: &size, specifier: specifier)
+        defer {
+            data.deallocate(capacity: Int(size))
+        }
+        return data.pointee
+    }
+    
+    public static func array<T>(for property: AudioFormatPropertyID, specifier: Any? = nil) throws -> [T] {
+        var size = try self.size(for: property, specifier: specifier)
+        let data: UnsafeMutablePointer<T> = try self.data(for: property, size: &size, specifier: specifier)
+        defer {
+            data.deallocate(capacity: Int(size))
+        }
+        let count = Int(size) / MemoryLayout<T>.size
+        return (0..<count).map { index in
+            return data[index]
+        }
+    }
     
 }
 
 extension AudioFormat {
     
-    //public func AudioFormatGetPropertyInfo(_ inPropertyID: AudioFormatPropertyID, _ inSpecifierSize: UInt32, _ inSpecifier: UnsafeRawPointer?, _ outPropertyDataSize: UnsafeMutablePointer<UInt32>) -> OSStatus
-    //public func AudioFormatGetProperty(_ inPropertyID: AudioFormatPropertyID, _ inSpecifierSize: UInt32, _ inSpecifier: UnsafeRawPointer?, _ ioPropertyDataSize: UnsafeMutablePointer<UInt32>?, _ outPropertyData: UnsafeMutableRawPointer?) -> OSStatus
+    internal static func size(for property: AudioFormatPropertyID, specifier: Any? = nil) throws -> UInt32 {
+        var size: UInt32 = 0
+        var specifier = specifier
+        let specifierSize = UInt32(MemoryLayout.size(ofValue: specifier))
+        
+        try AudioFormatGetPropertyInfo(property, specifierSize, &specifier, &size).audioError("Getting AudioFormat info for property")
+        
+        return size
+    }
+    
+    internal static func data<T>(for property: AudioFormatPropertyID, size: inout UInt32, specifier: Any? = nil) throws -> UnsafeMutablePointer<T> {
+        var specifier = specifier
+        let specifierSize = UInt32(MemoryLayout.size(ofValue: specifier))
+        let data = UnsafeMutablePointer<T>.allocate(capacity: Int(size))
+        
+        try AudioFormatGetProperty(property, specifierSize, &specifier, &size, data).audioError("Getting AudioFormat property")
+        
+        return data
+    }
 
 }

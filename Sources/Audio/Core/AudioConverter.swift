@@ -36,7 +36,7 @@ public class AudioConverter {
 //    }
     
     public func dispose() throws {
-        try AudioConverterDispose(reference)
+        try AudioConverterDispose(reference).audioError("Disposing of AudioConverter")
     }
     
 }
@@ -79,9 +79,54 @@ extension AudioConverter {
         static let propertyFormatList = kAudioConverterPropertyFormatList
     }
     
-    //public func AudioConverterGetPropertyInfo(_ inAudioConverter: AudioConverterRef, _ inPropertyID: AudioConverterPropertyID, _ outSize: UnsafeMutablePointer<UInt32>?, _ outWritable: UnsafeMutablePointer<DarwinBoolean>?) -> OSStatus
-    //public func AudioConverterGetProperty(_ inAudioConverter: AudioConverterRef, _ inPropertyID: AudioConverterPropertyID, _ ioPropertyDataSize: UnsafeMutablePointer<UInt32>, _ outPropertyData: UnsafeMutableRawPointer) -> OSStatus
-    //public func AudioConverterSetProperty(_ inAudioConverter: AudioConverterRef, _ inPropertyID: AudioConverterPropertyID, _ inPropertyDataSize: UInt32, _ inPropertyData: UnsafeRawPointer) -> OSStatus
+    public func value<T>(for property: AudioConverterPropertyID) throws -> T {
+        var size = try info(for: property).size
+        let data: UnsafeMutablePointer<T> = try self.data(for: property, size: &size)
+        defer {
+            data.deallocate(capacity: Int(size))
+        }
+        return data.pointee
+    }
+    
+    public func array<T>(for property: AudioConverterPropertyID) throws -> [T] {
+        var size = try info(for: property).size
+        let data: UnsafeMutablePointer<T> = try self.data(for: property, size: &size)
+        defer {
+            data.deallocate(capacity: Int(size))
+        }
+        
+        let count = Int(size) / MemoryLayout<T>.size
+        return (0..<count).map { index in
+            return data[index]
+        }
+    }
+    
+    public func set<T>(value: T, for property: AudioConverterPropertyID) throws {
+        let size = try info(for: property).size
+        var data = value
+        return try set(data: &data, for: property, size: size)
+    }
+    
+}
+
+extension AudioConverter {
+    
+    internal func info(for property: AudioConverterPropertyID) throws -> (size: UInt32, isWritable: Bool) {
+        var size: UInt32 = 0
+        var isWritable: DarwinBoolean = false
+        try AudioFileStreamGetPropertyInfo(reference, property, &size, &isWritable).audioError("Getting AudioConverter property info")
+        return (size: size, isWritable: isWritable.boolValue)
+    }
+    
+    internal func data<T>(for property: AudioConverterPropertyID, size: inout UInt32) throws -> UnsafeMutablePointer<T> {
+        let data = UnsafeMutablePointer<T>.allocate(capacity: Int(size))
+        try AudioFileStreamGetProperty(reference, property, &size, data).audioError("Getting AudioConverter property")
+        return data
+    }
+    
+    internal func set<T>(data: UnsafeMutablePointer<T>, for property: AudioConverterPropertyID, size: UInt32) throws {
+        try AudioFileStreamSetProperty(reference, property, size, data).audioError("Setting AudioConverter property")
+    }
     
 }
 
