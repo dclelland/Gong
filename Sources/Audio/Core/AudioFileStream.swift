@@ -45,25 +45,25 @@ extension AudioFileStream {
 extension AudioFileStream {
     
     public struct Property {
-        public let readyToProducePackets = kAudioFileStreamProperty_ReadyToProducePackets
-        public let fileFormat = kAudioFileStreamProperty_FileFormat
-        public let dataFormat = kAudioFileStreamProperty_DataFormat
-        public let formatList = kAudioFileStreamProperty_FormatList
-        public let magicCookieData = kAudioFileStreamProperty_MagicCookieData
-        public let audioDataByteCount = kAudioFileStreamProperty_AudioDataByteCount
-        public let audioDataPacketCount = kAudioFileStreamProperty_AudioDataPacketCount
-        public let maximumPacketSize = kAudioFileStreamProperty_MaximumPacketSize
-        public let dataOffset = kAudioFileStreamProperty_DataOffset
-        public let channelLayout = kAudioFileStreamProperty_ChannelLayout
-        public let packetToFrame = kAudioFileStreamProperty_PacketToFrame
-        public let frameToPacket = kAudioFileStreamProperty_FrameToPacket
-        public let packetToByte = kAudioFileStreamProperty_PacketToByte
-        public let byteToPacket = kAudioFileStreamProperty_ByteToPacket
-        public let packetTableInfo = kAudioFileStreamProperty_PacketTableInfo
-        public let packetSizeUpperBound = kAudioFileStreamProperty_PacketSizeUpperBound
-        public let averageBytesPerPacket = kAudioFileStreamProperty_AverageBytesPerPacket
-        public let bitRate = kAudioFileStreamProperty_BitRate
-        public let infoDictionary = kAudioFileStreamProperty_InfoDictionary
+        public static let readyToProducePackets = kAudioFileStreamProperty_ReadyToProducePackets
+        public static let fileFormat = kAudioFileStreamProperty_FileFormat
+        public static let dataFormat = kAudioFileStreamProperty_DataFormat
+        public static let formatList = kAudioFileStreamProperty_FormatList
+        public static let magicCookieData = kAudioFileStreamProperty_MagicCookieData
+        public static let audioDataByteCount = kAudioFileStreamProperty_AudioDataByteCount
+        public static let audioDataPacketCount = kAudioFileStreamProperty_AudioDataPacketCount
+        public static let maximumPacketSize = kAudioFileStreamProperty_MaximumPacketSize
+        public static let dataOffset = kAudioFileStreamProperty_DataOffset
+        public static let channelLayout = kAudioFileStreamProperty_ChannelLayout
+        public static let packetToFrame = kAudioFileStreamProperty_PacketToFrame
+        public static let frameToPacket = kAudioFileStreamProperty_FrameToPacket
+        public static let packetToByte = kAudioFileStreamProperty_PacketToByte
+        public static let byteToPacket = kAudioFileStreamProperty_ByteToPacket
+        public static let packetTableInfo = kAudioFileStreamProperty_PacketTableInfo
+        public static let packetSizeUpperBound = kAudioFileStreamProperty_PacketSizeUpperBound
+        public static let averageBytesPerPacket = kAudioFileStreamProperty_AverageBytesPerPacket
+        public static let bitRate = kAudioFileStreamProperty_BitRate
+        public static let infoDictionary = kAudioFileStreamProperty_InfoDictionary
     }
     
     public func value<T>(for property: AudioFileStreamPropertyID) throws -> T {

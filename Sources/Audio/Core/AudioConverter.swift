@@ -44,39 +44,39 @@ public class AudioConverter {
 extension AudioConverter {
     
     public struct Property {
-        static let propertyMinimumInputBufferSize = kAudioConverterPropertyMinimumInputBufferSize
-        static let propertyMinimumOutputBufferSize = kAudioConverterPropertyMinimumOutputBufferSize
-        static let propertyMaximumInputBufferSize = kAudioConverterPropertyMaximumInputBufferSize
-        static let propertyMaximumInputPacketSize = kAudioConverterPropertyMaximumInputPacketSize
-        static let propertyMaximumOutputPacketSize = kAudioConverterPropertyMaximumOutputPacketSize
-        static let propertyCalculateInputBufferSize = kAudioConverterPropertyCalculateInputBufferSize
-        static let propertyCalculateOutputBufferSize = kAudioConverterPropertyCalculateOutputBufferSize
-        static let propertyInputCodecParameters = kAudioConverterPropertyInputCodecParameters
-        static let propertyOutputCodecParameters = kAudioConverterPropertyOutputCodecParameters
-        static let sampleRateConverterAlgorithm = kAudioConverterSampleRateConverterAlgorithm
-        static let sampleRateConverterComplexity = kAudioConverterSampleRateConverterComplexity
-        static let sampleRateConverterQuality = kAudioConverterSampleRateConverterQuality
-        static let sampleRateConverterInitialPhase = kAudioConverterSampleRateConverterInitialPhase
-        static let codecQuality = kAudioConverterCodecQuality
-        static let primeMethod = kAudioConverterPrimeMethod
-        static let primeInfo = kAudioConverterPrimeInfo
-        static let channelMap = kAudioConverterChannelMap
-        static let decompressionMagicCookie = kAudioConverterDecompressionMagicCookie
-        static let compressionMagicCookie = kAudioConverterCompressionMagicCookie
-        static let encodeBitRate = kAudioConverterEncodeBitRate
-        static let encodeAdjustableSampleRate = kAudioConverterEncodeAdjustableSampleRate
-        static let inputChannelLayout = kAudioConverterInputChannelLayout
-        static let outputChannelLayout = kAudioConverterOutputChannelLayout
-        static let applicableEncodeBitRates = kAudioConverterApplicableEncodeBitRates
-        static let availableEncodeBitRates = kAudioConverterAvailableEncodeBitRates
-        static let applicableEncodeSampleRates = kAudioConverterApplicableEncodeSampleRates
-        static let availableEncodeSampleRates = kAudioConverterAvailableEncodeSampleRates
-        static let availableEncodeChannelLayoutTags = kAudioConverterAvailableEncodeChannelLayoutTags
-        static let currentOutputStreamDescription = kAudioConverterCurrentOutputStreamDescription
-        static let currentInputStreamDescription = kAudioConverterCurrentInputStreamDescription
-        static let propertySettings = kAudioConverterPropertySettings
-        static let propertyBitDepthHint = kAudioConverterPropertyBitDepthHint
-        static let propertyFormatList = kAudioConverterPropertyFormatList
+        public static let propertyMinimumInputBufferSize = kAudioConverterPropertyMinimumInputBufferSize
+        public static let propertyMinimumOutputBufferSize = kAudioConverterPropertyMinimumOutputBufferSize
+        public static let propertyMaximumInputBufferSize = kAudioConverterPropertyMaximumInputBufferSize
+        public static let propertyMaximumInputPacketSize = kAudioConverterPropertyMaximumInputPacketSize
+        public static let propertyMaximumOutputPacketSize = kAudioConverterPropertyMaximumOutputPacketSize
+        public static let propertyCalculateInputBufferSize = kAudioConverterPropertyCalculateInputBufferSize
+        public static let propertyCalculateOutputBufferSize = kAudioConverterPropertyCalculateOutputBufferSize
+        public static let propertyInputCodecParameters = kAudioConverterPropertyInputCodecParameters
+        public static let propertyOutputCodecParameters = kAudioConverterPropertyOutputCodecParameters
+        public static let sampleRateConverterAlgorithm = kAudioConverterSampleRateConverterAlgorithm
+        public static let sampleRateConverterComplexity = kAudioConverterSampleRateConverterComplexity
+        public static let sampleRateConverterQuality = kAudioConverterSampleRateConverterQuality
+        public static let sampleRateConverterInitialPhase = kAudioConverterSampleRateConverterInitialPhase
+        public static let codecQuality = kAudioConverterCodecQuality
+        public static let primeMethod = kAudioConverterPrimeMethod
+        public static let primeInfo = kAudioConverterPrimeInfo
+        public static let channelMap = kAudioConverterChannelMap
+        public static let decompressionMagicCookie = kAudioConverterDecompressionMagicCookie
+        public static let compressionMagicCookie = kAudioConverterCompressionMagicCookie
+        public static let encodeBitRate = kAudioConverterEncodeBitRate
+        public static let encodeAdjustableSampleRate = kAudioConverterEncodeAdjustableSampleRate
+        public static let inputChannelLayout = kAudioConverterInputChannelLayout
+        public static let outputChannelLayout = kAudioConverterOutputChannelLayout
+        public static let applicableEncodeBitRates = kAudioConverterApplicableEncodeBitRates
+        public static let availableEncodeBitRates = kAudioConverterAvailableEncodeBitRates
+        public static let applicableEncodeSampleRates = kAudioConverterApplicableEncodeSampleRates
+        public static let availableEncodeSampleRates = kAudioConverterAvailableEncodeSampleRates
+        public static let availableEncodeChannelLayoutTags = kAudioConverterAvailableEncodeChannelLayoutTags
+        public static let currentOutputStreamDescription = kAudioConverterCurrentOutputStreamDescription
+        public static let currentInputStreamDescription = kAudioConverterCurrentInputStreamDescription
+        public static let propertySettings = kAudioConverterPropertySettings
+        public static let propertyBitDepthHint = kAudioConverterPropertyBitDepthHint
+        public static let propertyFormatList = kAudioConverterPropertyFormatList
     }
     
     public func value<T>(for property: AudioConverterPropertyID) throws -> T {

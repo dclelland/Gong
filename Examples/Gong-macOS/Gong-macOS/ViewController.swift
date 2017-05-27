@@ -139,6 +139,8 @@ class ViewController: NSViewController {
             
             try AudioFormatGetProperty(kAudioFormatProperty_FormatInfo, 0, nil, &recorderFormatSize, &recorderFormat).audioError("getting recorder format")
             
+//            recorderFormat = try AudioFormat.value(for: AudioFormat.Property.formatInfo)
+            
             print("recorder format", recorderFormat)
             
             
