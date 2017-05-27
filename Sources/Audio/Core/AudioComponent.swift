@@ -19,14 +19,34 @@ public class AudioComponent {
     
 }
 
+extension AudioComponent {
+    
+    func description() throws -> AudioComponentDescription {
+        var description = AudioComponentDescription()
+        try AudioComponentGetDescription(reference, &description).audioError("Getting AudioComponent description")
+        return description
+    }
+    
+    func version() throws -> UInt32 {
+        var version: UInt32 = 0
+        try AudioComponentGetVersion(reference, &version).audioError("Getting AudioComponent version")
+        return version
+    }
+    
+    func icon() -> NSImage? {
+        if #available(OSX 10.11, *) {
+            return AudioComponentGetIcon(reference)
+        } else {
+            return nil
+        }
+    }
+    
+}
 
 //AudioComponentFindNext(_ inComponent: AudioComponent?, _ inDesc: UnsafePointer<AudioComponentDescription>) -> AudioComponent?
 //AudioComponentCount(_ inDesc: UnsafePointer<AudioComponentDescription>) -> UInt32
 //AudioComponentCopyName(_ inComponent: AudioComponent, _ outName: UnsafeMutablePointer<Unmanaged<CFString>?>) -> OSStatus
 
-//AudioComponentGetDescription(_ inComponent: AudioComponent, _ outDesc: UnsafeMutablePointer<AudioComponentDescription>) -> OSStatus
-//AudioComponentGetVersion(_ inComponent: AudioComponent, _ outVersion: UnsafeMutablePointer<UInt32>) -> OSStatus
-//AudioComponentGetIcon(_ comp: AudioComponent) -> NSImage?
 
 //AudioComponentInstanceNew(_ inComponent: AudioComponent, _ outInstance: UnsafeMutablePointer<AudioComponentInstance?>) -> OSStatus
 //AudioComponentInstantiate(_ inComponent: AudioComponent, _ inOptions: AudioComponentInstantiationOptions, _ inCompletionHandler: @escaping (AudioComponentInstance?, OSStatus) -> Swift.Void)
