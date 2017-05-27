@@ -19,6 +19,21 @@ public struct AudioError: Error {
         
         case audioComponent(AudioComponent)
         
+        public enum AudioConverter {
+            case formatNotSupported
+            case operationNotSupported
+            case propertyNotSupported
+            case invalidInputSize
+            case invalidOutputSize
+            case unspecifiedError
+            case badPropertySizeError
+            case requiresPacketDescriptionsError
+            case inputSampleRateOutOfRange
+            case outputSampleRateOutOfRange
+        }
+
+        case audioConverter(AudioConverter)
+        
         public enum AudioDevice {
             case unsupportedFormat
             case permissions
@@ -47,6 +62,23 @@ public struct AudioError: Error {
         
         case audioFile(AudioFile)
         
+        public enum AudioFileStream {
+            case unsupportedFileType
+            case unsupportedDataFormat
+            case unsupportedProperty
+            case badPropertySize
+            case notOptimized
+            case invalidPacketOffset
+            case invalidFile
+            case valueUnknown
+            case dataUnavailable
+            case illegalOperation
+            case unspecifiedError
+            case discontinuityCantRecover
+        }
+        
+        case audioFileStream(AudioFileStream)
+        
         public enum AudioGraph {
             case nodeNotFound
             case invalidConnection
@@ -56,6 +88,17 @@ public struct AudioError: Error {
         }
         
         case audioGraph(AudioGraph)
+        
+        public enum AudioFormat {
+            case unspecified
+            case unsupportedProperty
+            case badPropertySize
+            case badSpecifierSize
+            case unsupportedDataFormat
+            case unknownFormat
+        }
+        
+        case audioFormat(AudioFormat)
         
         public enum AudioHardware {
             case notRunning
@@ -147,6 +190,26 @@ extension AudioError {
         switch status {
         case kAudioComponentErr_InstanceInvalidated:
             self.init(.audioComponent(.instanceInvalidated), comment: comment)
+        case kAudioConverterErr_FormatNotSupported:
+            self.init(.audioConverter(.formatNotSupported), comment: comment)
+        case kAudioConverterErr_OperationNotSupported:
+            self.init(.audioConverter(.operationNotSupported), comment: comment)
+        case kAudioConverterErr_PropertyNotSupported:
+            self.init(.audioConverter(.propertyNotSupported), comment: comment)
+        case kAudioConverterErr_InvalidInputSize:
+            self.init(.audioConverter(.invalidInputSize), comment: comment)
+        case kAudioConverterErr_InvalidOutputSize:
+            self.init(.audioConverter(.invalidOutputSize), comment: comment)
+        case kAudioConverterErr_UnspecifiedError:
+            self.init(.audioConverter(.unspecifiedError), comment: comment)
+        case kAudioConverterErr_BadPropertySizeError:
+            self.init(.audioConverter(.badPropertySizeError), comment: comment)
+        case kAudioConverterErr_RequiresPacketDescriptionsError:
+            self.init(.audioConverter(.requiresPacketDescriptionsError), comment: comment)
+        case kAudioConverterErr_InputSampleRateOutOfRange:
+            self.init(.audioConverter(.inputSampleRateOutOfRange), comment: comment)
+        case kAudioConverterErr_OutputSampleRateOutOfRange:
+            self.init(.audioConverter(.outputSampleRateOutOfRange), comment: comment)
         case kAudioDeviceUnsupportedFormatError:
             self.init(.audioDevice(.unsupportedFormat), comment: comment)
         case kAudioDevicePermissionsError:
@@ -183,6 +246,42 @@ extension AudioError {
             self.init(.audioFile(.position), comment: comment)
         case kAudioFileFileNotFoundError:
             self.init(.audioFile(.fileNotFound), comment: comment)
+        case kAudioFileStreamError_UnsupportedFileType:
+            self.init(.audioFileStream(.unsupportedFileType), comment: comment)
+        case kAudioFileStreamError_UnsupportedDataFormat:
+            self.init(.audioFileStream(.unsupportedDataFormat), comment: comment)
+        case kAudioFileStreamError_UnsupportedProperty:
+            self.init(.audioFileStream(.unsupportedProperty), comment: comment)
+        case kAudioFileStreamError_BadPropertySize:
+            self.init(.audioFileStream(.badPropertySize), comment: comment)
+        case kAudioFileStreamError_NotOptimized:
+            self.init(.audioFileStream(.notOptimized), comment: comment)
+        case kAudioFileStreamError_InvalidPacketOffset:
+            self.init(.audioFileStream(.invalidPacketOffset), comment: comment)
+        case kAudioFileStreamError_InvalidFile:
+            self.init(.audioFileStream(.invalidFile), comment: comment)
+        case kAudioFileStreamError_ValueUnknown:
+            self.init(.audioFileStream(.valueUnknown), comment: comment)
+        case kAudioFileStreamError_DataUnavailable:
+            self.init(.audioFileStream(.dataUnavailable), comment: comment)
+        case kAudioFileStreamError_IllegalOperation:
+            self.init(.audioFileStream(.illegalOperation), comment: comment)
+        case kAudioFileStreamError_UnspecifiedError:
+            self.init(.audioFileStream(.unspecifiedError), comment: comment)
+        case kAudioFileStreamError_DiscontinuityCantRecover:
+            self.init(.audioFileStream(.discontinuityCantRecover), comment: comment)
+        case kAudioFormatUnspecifiedError:
+            self.init(.audioFormat(.unspecified), comment: comment)
+        case kAudioFormatUnsupportedPropertyError:
+            self.init(.audioFormat(.unsupportedProperty), comment: comment)
+        case kAudioFormatBadPropertySizeError:
+            self.init(.audioFormat(.badPropertySize), comment: comment)
+        case kAudioFormatBadSpecifierSizeError:
+            self.init(.audioFormat(.badSpecifierSize), comment: comment)
+        case kAudioFormatUnsupportedDataFormatError:
+            self.init(.audioFormat(.unsupportedDataFormat), comment: comment)
+        case kAudioFormatUnknownFormatError:
+            self.init(.audioFormat(.unknownFormat), comment: comment)
         case kAUGraphErr_NodeNotFound:
             self.init(.audioGraph(.nodeNotFound), comment: comment)
         case kAUGraphErr_InvalidConnection:

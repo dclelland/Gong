@@ -169,7 +169,7 @@ class ViewController: NSViewController {
 //            kAudioConverterCompressionMagicCookie
             let cookie: UnsafeMutablePointer<UInt8> = try queue.value(for: AudioQueue.Property.magicCookie)
             
-            try audioFile.set(value: cookie, for: AudioFile.Property.magicCookieData)
+            try audioFile.set(value: cookie, for: AudioFile.Property.magicCookieData) // this is erroring atm
             
 //            
 //            // Other set up as needed
