@@ -33,10 +33,10 @@ public class MIDIObject {
     }
     
     public static func find(with uniqueID: MIDIUniqueID, type: MIDIObjectType) -> MIDIObject? {
-        var object = MIDIObjectRef()
+        var reference = MIDIObjectRef()
         do {
-            try MIDIObjectFindByUniqueID(uniqueID, &object, nil).midiError("Finding MIDIObject with unique ID \"\(uniqueID)\"")
-            return MIDIObject(object)
+            try MIDIObjectFindByUniqueID(uniqueID, &reference, nil).midiError("Finding MIDIObject with unique ID \"\(uniqueID)\"")
+            return MIDIObject(reference)
         } catch let error {
             print(error)
             return nil

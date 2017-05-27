@@ -19,12 +19,12 @@ public class MIDIClient: MIDIObject {
         var clientReference = MIDIClientRef()
         let context = UnsafeMutablePointer.wrap(callback)
         
-        let procedure: MIDINotifyProc = { (notificationPointer, context) in
+        let procedure: MIDINotifyProc = { (notificationReference, context) in
             guard let callback: NoticeCallback = context?.unwrap() else {
                 return
             }
             
-            callback(MIDINotice(notificationPointer))
+            callback(MIDINotice(notificationReference))
         }
         
         try MIDIClientCreate(name as CFString, procedure, context, &clientReference).midiError("Creating MIDIClient with name \"\(name)\"")

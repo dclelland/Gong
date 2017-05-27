@@ -21,27 +21,27 @@ public enum MIDINotice {
 
 extension MIDINotice {
     
-    public init(_ notificationPointer: UnsafePointer<MIDINotification>) {
-        let notification = notificationPointer.pointee
+    public init(_ reference: UnsafePointer<MIDINotification>) {
+        let notification = reference.pointee
         switch notification.messageID {
         case .msgSetupChanged:
             self = .setupChanged
         case .msgObjectAdded:
-            self = notificationPointer.withMemoryRebound(to: MIDIObjectAddRemoveNotification.self, capacity: Int(notification.messageSize)) { pointer in
+            self = reference.withMemoryRebound(to: MIDIObjectAddRemoveNotification.self, capacity: Int(notification.messageSize)) { pointer in
                 let notification = pointer.pointee
                 let parent = MIDIObject.create(with: notification.parent, type: notification.parentType)
                 let child = MIDIObject.create(with: notification.child, type: notification.childType)
                 return .objectAdded(parent: parent, child: child)
             }
         case .msgObjectRemoved:
-            self = notificationPointer.withMemoryRebound(to: MIDIObjectAddRemoveNotification.self, capacity: Int(notification.messageSize)) { pointer in
+            self = reference.withMemoryRebound(to: MIDIObjectAddRemoveNotification.self, capacity: Int(notification.messageSize)) { pointer in
                 let notification = pointer.pointee
                 let parent = MIDIObject.create(with: notification.parent, type: notification.parentType)
                 let child = MIDIObject.create(with: notification.child, type: notification.childType)
                 return .objectRemoved(parent: parent, child: child)
             }
         case .msgPropertyChanged:
-            self = notificationPointer.withMemoryRebound(to: MIDIObjectPropertyChangeNotification.self, capacity: Int(notification.messageSize)) { pointer in
+            self = reference.withMemoryRebound(to: MIDIObjectPropertyChangeNotification.self, capacity: Int(notification.messageSize)) { pointer in
                 let notification = pointer.pointee
                 let object = MIDIObject.create(with: notification.object, type: notification.objectType)
                 let property = notification.propertyName.takeRetainedValue()
@@ -52,7 +52,7 @@ extension MIDINotice {
         case .msgSerialPortOwnerChanged:
             self = .serialPortOwnerChanged
         case .msgIOError:
-            self = notificationPointer.withMemoryRebound(to: MIDIIOErrorNotification.self, capacity: Int(notification.messageSize)) { pointer in
+            self = reference.withMemoryRebound(to: MIDIIOErrorNotification.self, capacity: Int(notification.messageSize)) { pointer in
                 let notification = pointer.pointee
                 let device = MIDIDevice(notification.driverDevice)
                 let error = MIDIError(status: notification.errorCode, comment: "Notification error")
