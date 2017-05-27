@@ -1,5 +1,5 @@
 //
-//  AudioStreamBasicDescription.swift
+//  Helpers.swift
 //  Gong
 //
 //  Created by Daniel Clelland on 1/05/17.
