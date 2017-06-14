@@ -11,20 +11,20 @@ import CoreMIDI
 
 public class MIDIClient: MIDIObject {
     
-    public typealias NoticeCallback = (MIDINotice) -> Void
+    public typealias NoticeCallback = (_ notice: MIDINotice) -> Void
     
-    public typealias PacketCallback = (MIDIPacket, MIDISource) -> Void
+    public typealias PacketCallback = (_ packet: MIDIPacket, _ source: MIDISource) -> Void
     
     public convenience init(name: String, callback: @escaping NoticeCallback = { _ in }) throws {
         var clientReference = MIDIClientRef()
         let context = UnsafeMutablePointer.wrap(callback)
         
-        let procedure: MIDINotifyProc = { (notificationPointer, context) in
+        let procedure: MIDINotifyProc = { (notificationReference, context) in
             guard let callback: NoticeCallback = context?.unwrap() else {
                 return
             }
             
-            callback(MIDINotice(notificationPointer))
+            callback(MIDINotice(notificationReference))
         }
         
         try MIDIClientCreate(name as CFString, procedure, context, &clientReference).midiError("Creating MIDIClient with name \"\(name)\"")

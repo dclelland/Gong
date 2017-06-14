@@ -12,39 +12,22 @@ import CoreMIDI
 public struct MIDIError: Error {
     
     public enum Message {
-        
-        case invalidClient
-        
-        case invalidPort
-        
-        case wrongEndpointType
-        
-        case noConnection
-        
-        case unknownEndpoint
-        
-        case unknownProperty
-        
-        case wrongPropertyType
-        
-        case noCurrentSetup
-        
-        case messageSendError
-        
-        case serverStartError
-        
-        case setupFormatError
-        
-        case wrongThread
-        
-        case objectNotFound
-        
-        case idNotUnique
-        
-        case notPermitted
-        
-        case unknown(status: OSStatus)
-        
+        case invalidClient        
+        case invalidPort        
+        case wrongEndpointType        
+        case noConnection        
+        case unknownEndpoint        
+        case unknownProperty        
+        case wrongPropertyType        
+        case noCurrentSetup        
+        case messageSendError        
+        case serverStartError        
+        case setupFormatError        
+        case wrongThread        
+        case objectNotFound        
+        case idNotUnique        
+        case notPermitted        
+        case unknown(status: OSStatus)        
     }
     
     public let message: Message

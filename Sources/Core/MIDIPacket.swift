@@ -122,77 +122,47 @@ extension MIDIPacket {
     public enum Message {
 
         case noteOff(channel: UInt8, key: UInt8, velocity: UInt8)
-
         case noteOn(channel: UInt8, key: UInt8, velocity: UInt8)
-
         case polyphonicKeyPressure(channel: UInt8, key: UInt8, pressure: UInt8)
-
         case controlChange(channel: UInt8, controller: UInt8, value: UInt8)
 
         public enum ChannelModeType {
-
             case allSoundOff
-
             case resetAllControllers
-
             case localControlOff
-
             case localControlOn
-
             case allNotesOff
-
             case omniModeOff
-
             case omniModeOn
-
             case monoModeOn(channels: UInt8)
-
             case polyModeOn
-
         }
 
         case channelMode(channel: UInt8, type: ChannelModeType)
-
         case programChange(channel: UInt8, number: UInt8)
-
         case channelPressure(channel: UInt8, pressure: UInt8)
-
         case pitchBendChange(channel: UInt8, value: UInt16)
 
         public enum SystemCommonType {
-
             case systemExclusive(bytes: [UInt8])
-
             case midiTimeCodeQuarterFrame(type: UInt8, values: UInt8)
-
             case songPositionPointer(value: UInt16)
-
             case songSelect(song: UInt8)
-
             case tuneRequest
-
         }
 
         case systemCommon(type: SystemCommonType)
 
         public enum SystemRealTimeType {
-
             case timingClock
-
             case start
-
-            case `continue`
-            
-            case stop
-            
-            case activeSensing
-            
-            case reset
-            
+            case `continue`            
+            case stop            
+            case activeSensing            
+            case reset            
         }
         
         case systemRealTime(type: SystemRealTimeType)
-        
         case unknown
         
     }
