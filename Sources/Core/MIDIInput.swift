@@ -12,8 +12,8 @@ import CoreMIDI
 public class MIDIInput: MIDIPort {
     
     public func connect(_ source: MIDISource) throws {
-        var context = source.reference
-        try MIDIPortConnectSource(reference, source.reference, &context).midiError("Connecting MIDIInput to source")
+        let context = UnsafeMutableRawPointer(pointee: source.reference)
+        try MIDIPortConnectSource(reference, source.reference, context).midiError("Connecting MIDIInput to source")
     }
     
     public func disconnect(_ source: MIDISource) throws {
