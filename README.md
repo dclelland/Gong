@@ -21,6 +21,15 @@ If you prefer to write this kind of thing yourself, the CoreMIDI wrapper can be 
 
 An [example project](/Examples/Gong-macOS) is provided to help you get started.
 
+### Todo list
+
+- Tidy up pointer helpers
+- Test for memory leaks
+- Get SysEx stuff working
+- MIDINotification/MIDINotice name issue
+- Write documentation
+- Swift 4 support
+
 ### Installation
 
 The entire library:
