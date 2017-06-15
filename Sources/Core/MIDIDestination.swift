@@ -40,7 +40,9 @@ extension MIDIDestination {
     
     public typealias SystemExclusiveEventCompletion = (Void) -> Void
     
-    // Disclaimer: I'm fairly certain this doesn't work
+    // Disclaimer: I'm fairly certain this doesn't work, though I haven't really tested it yet.
+    // This function is what I would expect you would use if sending very SysEx messages with more than 256 bytes;
+    // otherwise, consider just using `MIDIMessage(bytes:)` instead.
     public func send(systemExclusiveEvent bytes: [UInt8], completion: @escaping SystemExclusiveEventCompletion = {}) throws {
         let completionReference = UnsafeMutablePointer<SystemExclusiveEventCompletion>.allocate(capacity: 1)
         completionReference.initialize(to: completion)
