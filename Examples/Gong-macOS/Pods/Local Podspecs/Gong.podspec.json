@@ -21,10 +21,7 @@
   "subspecs": [
     {
       "name": "Core",
-      "source_files": [
-        "Sources/Core/**/*.swift",
-        "Sources/Extensions/**/*.swift"
-      ],
+      "source_files": "Sources/Core/**/*.swift",
       "frameworks": "CoreMIDI"
     },
     {

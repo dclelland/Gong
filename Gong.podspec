@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.source_files = 'Sources/*.swift'
 
   s.subspec 'Core' do |ss|
-    ss.source_files = 'Sources/Core/**/*.swift', 'Sources/Extensions/**/*.swift'
+    ss.source_files = 'Sources/Core/**/*.swift'
     ss.frameworks = 'CoreMIDI'
   end
 
