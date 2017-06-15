@@ -17,10 +17,10 @@ public class MIDIClient: MIDIObject {
     
     public convenience init(name: String, callback: @escaping NoticeCallback = { _ in }) throws {
         var clientReference = MIDIClientRef()
-        let context = UnsafeMutablePointer.wrap(callback)
+        let context = UnsafeMutableRawPointer(pointee: callback)
         
         let procedure: MIDINotifyProc = { (notificationReference, context) in
-            guard let callback: NoticeCallback = context?.unwrap() else {
+            guard let callback: NoticeCallback = context?.pointee() else {
                 return
             }
             
@@ -41,14 +41,14 @@ extension MIDIClient {
 
     public func createInput(name: String, callback: @escaping PacketCallback = { _ in }) throws -> MIDIInput {
         var portReference = MIDIPortRef()
-        let context = UnsafeMutablePointer.wrap(callback)
+        let context = UnsafeMutableRawPointer(pointee: callback)
         
         let procedure: MIDIReadProc = { (packetList, context, connectionContext) in
-            guard let callback: PacketCallback = context?.unwrap() else {
+            guard let callback: PacketCallback = context?.pointee() else {
                 return
             }
             
-            guard let endpointReference: MIDIEndpointRef = connectionContext?.unwrap() else {
+            guard let endpointReference: MIDIEndpointRef = connectionContext?.pointee() else {
                 return
             }
             
@@ -75,14 +75,14 @@ extension MIDIClient {
     
     public func createDestination(name: String, callback: @escaping PacketCallback = { _ in }) throws -> MIDIDestination {
         var endpointReference = MIDIEndpointRef()
-        let context = UnsafeMutablePointer.wrap(callback)
+        let context = UnsafeMutableRawPointer(pointee: callback)
         
         let procedure: MIDIReadProc = { (packetList, context, connectionContext) in
-            guard let callback: PacketCallback = context?.unwrap() else {
+            guard let callback: PacketCallback = context?.pointee() else {
                 return
             }
             
-            guard let sourceReference: MIDIObjectRef = connectionContext?.unwrap() else {
+            guard let sourceReference: MIDIObjectRef = connectionContext?.pointee() else {
                 return
             }
             
@@ -105,19 +105,17 @@ extension MIDIClient {
     
 }
 
-extension UnsafeMutablePointer {
-    
-    internal static func wrap(_ value: Pointee) -> UnsafeMutablePointer<Pointee> {
-        let pointer = UnsafeMutablePointer<Pointee>.allocate(capacity: MemoryLayout<Pointee>.stride)
-        pointer.initialize(to: value)
-        return pointer
-    }
-    
-}
-
 extension UnsafeMutableRawPointer {
     
-    internal func unwrap<T>() -> T {
+    internal init<T>(pointee: T) {
+        let capacity = MemoryLayout<T>.stride
+        let alignment = MemoryLayout<T>.alignment
+        
+        self = UnsafeMutableRawPointer.allocate(bytes: capacity, alignedTo: alignment)
+        self.initializeMemory(as: T.self, to: pointee)
+    }
+    
+    internal func pointee<T>() -> T {
         return assumingMemoryBound(to: T.self).pointee
     }
     
