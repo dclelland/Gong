@@ -17,7 +17,7 @@ public class MIDIClient: MIDIObject {
     
     public convenience init(name: String, callback: @escaping NoticeCallback = { _ in }) throws {
         var clientReference = MIDIClientRef()
-        let context = UnsafeMutableRawPointer(pointee: callback)
+        let context = UnsafeMutablePointer.allocate(initializingTo: callback)
         
         let procedure: MIDINotifyProc = { (notificationReference, context) in
             guard let callback = context?.assumingMemoryBound(to: NoticeCallback.self).pointee else {
@@ -41,7 +41,7 @@ extension MIDIClient {
 
     public func createInput(name: String, callback: @escaping PacketCallback = { _ in }) throws -> MIDIInput {
         var portReference = MIDIPortRef()
-        let context = UnsafeMutableRawPointer(pointee: callback)
+        let context = UnsafeMutablePointer.allocate(initializingTo: callback)
         
         let procedure: MIDIReadProc = { (packetList, context, connectionContext) in
             guard let callback = context?.assumingMemoryBound(to: PacketCallback.self).pointee else {
@@ -75,7 +75,7 @@ extension MIDIClient {
     
     public func createDestination(name: String, callback: @escaping PacketCallback = { _ in }) throws -> MIDIDestination {
         var endpointReference = MIDIEndpointRef()
-        let context = UnsafeMutableRawPointer(pointee: callback)
+        let context = UnsafeMutablePointer.allocate(initializingTo: callback)
         
         let procedure: MIDIReadProc = { (packetList, context, connectionContext) in
             guard let callback = context?.assumingMemoryBound(to: PacketCallback.self).pointee else {

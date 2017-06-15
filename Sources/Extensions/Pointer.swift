@@ -8,14 +8,13 @@
 
 import Foundation
 
-extension UnsafeMutableRawPointer {
+extension UnsafeMutablePointer {
     
-    internal init<T>(pointee: T) {
-        let capacity = MemoryLayout<T>.stride
-        let alignment = MemoryLayout<T>.alignment
-        
-        self = UnsafeMutableRawPointer.allocate(bytes: capacity, alignedTo: alignment)
-        self.initializeMemory(as: T.self, to: pointee)
+    internal static func allocate(initializingTo pointee: Pointee) -> UnsafeMutablePointer {
+        let capacity = MemoryLayout.stride(ofValue: pointee)
+        let pointer = UnsafeMutablePointer.allocate(capacity: capacity)
+        pointer.initialize(to: pointee)
+        return pointer
     }
     
 }
