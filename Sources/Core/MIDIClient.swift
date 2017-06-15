@@ -20,7 +20,7 @@ public class MIDIClient: MIDIObject {
         let context = UnsafeMutableRawPointer(pointee: callback)
         
         let procedure: MIDINotifyProc = { (notificationReference, context) in
-            guard let callback: NoticeCallback = context?.pointee() else {
+            guard let callback = context?.assumingMemoryBound(to: NoticeCallback.self).pointee else {
                 return
             }
             
@@ -44,11 +44,11 @@ extension MIDIClient {
         let context = UnsafeMutableRawPointer(pointee: callback)
         
         let procedure: MIDIReadProc = { (packetList, context, connectionContext) in
-            guard let callback: PacketCallback = context?.pointee() else {
+            guard let callback = context?.assumingMemoryBound(to: PacketCallback.self).pointee else {
                 return
             }
             
-            guard let endpointReference: MIDIEndpointRef = connectionContext?.pointee() else {
+            guard let endpointReference = connectionContext?.assumingMemoryBound(to: MIDIEndpointRef.self).pointee else {
                 return
             }
             
@@ -78,11 +78,11 @@ extension MIDIClient {
         let context = UnsafeMutableRawPointer(pointee: callback)
         
         let procedure: MIDIReadProc = { (packetList, context, connectionContext) in
-            guard let callback: PacketCallback = context?.pointee() else {
+            guard let callback = context?.assumingMemoryBound(to: PacketCallback.self).pointee else {
                 return
             }
             
-            guard let sourceReference: MIDIObjectRef = connectionContext?.pointee() else {
+            guard let sourceReference = connectionContext?.assumingMemoryBound(to: MIDIObjectRef.self).pointee else {
                 return
             }
             

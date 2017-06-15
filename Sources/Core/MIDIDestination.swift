@@ -44,7 +44,7 @@ extension MIDIDestination {
     public func send(systemExclusiveEvent bytes: [UInt8], completion: @escaping SystemExclusiveEventCompletion = {}) throws {
         let completionReference = UnsafeMutableRawPointer(pointee: completion)
         let completionProcedure: MIDICompletionProc = { requestPointer in
-            guard let completion: SystemExclusiveEventCompletion = requestPointer.pointee.completionRefCon?.pointee() else {
+            guard let completion = requestPointer.pointee.completionRefCon?.assumingMemoryBound(to: SystemExclusiveEventCompletion.self).pointee else {
                 return
             }
             

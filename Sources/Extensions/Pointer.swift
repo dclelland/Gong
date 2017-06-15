@@ -18,8 +18,4 @@ extension UnsafeMutableRawPointer {
         self.initializeMemory(as: T.self, to: pointee)
     }
     
-    internal func pointee<T>() -> T {
-        return assumingMemoryBound(to: T.self).pointee
-    }
-    
 }
