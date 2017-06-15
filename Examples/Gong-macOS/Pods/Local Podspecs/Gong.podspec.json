@@ -1,6 +1,6 @@
 {
   "name": "Gong",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "summary": "Gong is a MIDI library for iOS and macOS.",
   "homepage": "https://github.com/dclelland/Gong",
   "license": {
@@ -11,7 +11,7 @@
   },
   "source": {
     "git": "https://github.com/dclelland/Gong.git",
-    "tag": "0.1.0"
+    "tag": "0.2.1"
   },
   "source_files": "Sources/*.swift",
   "platforms": {
@@ -21,7 +21,10 @@
   "subspecs": [
     {
       "name": "Core",
-      "source_files": "Sources/Core/**/*.swift",
+      "source_files": [
+        "Sources/Core/**/*.swift",
+        "Sources/Extensions/**/*.swift"
+      ],
       "frameworks": "CoreMIDI"
     },
     {
