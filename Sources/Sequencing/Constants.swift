@@ -8,6 +8,23 @@
 
 import Foundation
 
+public let whole = 1.0
+public let half = 0.5
+public let quarter = 0.25
+public let eighth = 0.125
+public let sixteenth = 0.0625
+public let thirtySecond = 0.03125
+public let sixtyFourth = 0.015625
+
+public let ppp = 16
+public let pp = 33
+public let p = 49
+public let mp = 64
+public let mf = 80
+public let f = 96
+public let ff = 112
+public let fff = 127
+
 public let c0 = 0
 public let cSharp0 = 1
 public let dFlat0 = 1
