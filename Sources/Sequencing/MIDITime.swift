@@ -1,5 +1,5 @@
 //
-//  Time.swift
+//  MIDITime.swift
 //  Gong
 //
 //  Created by Daniel Clelland on 25/06/17.
@@ -7,6 +7,55 @@
 //
 
 import Foundation
+
+
+/*
+ Do this first, but once Swift 4 protocols are available, extend to MIDIControl, MIDIPitchBend, MIDIRest
+ */
+
+
+// Int, [Int], [[Int]], MIDINote, [MIDINote], [[MIDINote]]
+
+extension Array where Element == Int {
+    
+    public func sequential() -> [MIDINote] {
+        return enumerated().map { (offset, key) in
+            return MIDINote(key: key, delay: Double(offset))
+        }
+    }
+    
+    public func parallel() -> [MIDINote] {
+        return map { key in
+            return MIDINote(key: key)
+        }
+    }
+    
+}
+
+extension Array where Element == [MIDINote] {
+    
+    public func sequential() -> [MIDINote] {
+        return []
+    }
+    
+    public func parallel() -> [MIDINote] {
+        return flatMap { $0 }
+    }
+    
+}
+
+
+/*
+ Inventory:
+ 
+ - setTime
+ - setDuration
+ 
+ - sequential
+ - parallel
+ 
+ - tempo
+ */
 
 // Music.Time.Internal.Transform
 
@@ -44,25 +93,6 @@ import Foundation
 // Music.Time.Juxtapose
 
 /*
- - lead
- - follow
- 
- - after |>
- - before <|
- - during
- 
- - sustain
- - palindrome
- 
- - reverse [separate class]
- - repeat
- 
- - scat (sequential) |> (melody)
- - pcat (parallel) <> (chord)
- 
- - times
- 
- 
  
  -- * Align without composition
  lead,

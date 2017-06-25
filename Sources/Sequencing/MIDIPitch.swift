@@ -1,5 +1,5 @@
 //
-//  Pitch.swift
+//  MIDIPitch.swift
 //  Gong
 //
 //  Created by Daniel Clelland on 25/06/17.
@@ -8,70 +8,25 @@
 
 import Foundation
 
-// Music.Score.Pitch (IsPitch)
+
+
+
+extension Array where Element == MIDINote {
+    
+}
 
 /*
- - up
- - down
- - above
- - below
+ Inventory:
  
- - octavesUp
- - octavesDown
- 
- - invertPitches
- - highest
- - lowest
- - meanPitch
- 
- 
- up,
- down,
- above,
- below,
- octavesUp,
- octavesDown,
- _15va,
- _8va,
- _8vb,
- _15vb,
- upDiatonic,
- downDiatonic,
- upChromatic,
- downChromatic,
- 
- -- ** Inversion
- invertPitches,
- invertDiatonic,
- invertChromatic,
- 
- -- ** Ambitus
- highestPitch,
- lowestPitch,
- averagePitch,
- ambitusOctaves,
- ambitusLowestOctave,
- interpolateAmbitus,
- interpolateAmbitus',
+ - setPitch (takes numeric arg)
+ - setPitch (takes function)
+ - transpose(up:)
+ - transpose(down:)
+ - transposeOctave(up:)
+ - transposeOctave(down:)
  
  */
 
-// Music.Pitch.Common.Pitch (IsInterval)
-
-/*
- - natural
- - flat
- - sharp
- - doubleFlat
- - doubleSharp
- */
-
-// Music.Pitch.Augmentable
-
-/*
- - augment
- - diminish
- */
 
 // MARK: - Key constants
 
