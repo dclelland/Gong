@@ -9,56 +9,28 @@
 import Foundation
 
 
-
 /*
- Do this first, but once Swift 4 protocols are available, extend to MIDIControl, MIDIPitchBend, MIDIRest
- We also need an 'apply' system - and an 'apply(probability: function:)' thing
- And a repeated apply system...?
+ 
+ Focus:
+ 
+ // Music.Time.Juxtapose
+ 
+ - apply
+ - apply(times:)
+ 
  See https://github.com/thoughtbot/Runes
- */
-
-
-// Int, [Int], [[Int]], MIDINote, [MIDINote], [[MIDINote]]
-
-
-
-
-// Music.Time.Juxtapose
-
-/*
  
- -- * Align without composition
- lead,
- follow,
+ - lead
+ - follow
+ - after
+ - before
+ - during
  
- -- * Standard composition
- after,
- before,
- during,
- (|>),
- (<|),
- 
- -- ** More exotic
- sustain,
- palindrome,
- 
- 
- -- * Repetition
- times,
- 
- - perhaps need one for maximum polyphony...?
- 
- 
- 
- 
- 
+ - repeat(times:)
  - reverse
  - palindrome
- - 
  
  */
-
-
 
 // MARK: Basic composition
 
@@ -78,6 +50,19 @@ extension Array where Element == Int {
     
 }
 
+extension Array where Element == MIDINote {
+    
+    public func parallel() -> [MIDINote] {
+        return self
+    }
+    
+    public func sequential() -> [MIDINote] {
+        return [] // loop over, appending and delaying
+    }
+    
+    
+}
+
 extension Array where Element == [MIDINote] {
     
     public func parallel() -> [MIDINote] {
@@ -85,7 +70,7 @@ extension Array where Element == [MIDINote] {
     }
     
     public func sequential() -> [MIDINote] {
-        return []
+        return [] // loop over, appending and delaying
     }
     
 }
