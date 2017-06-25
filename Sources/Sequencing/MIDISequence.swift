@@ -42,19 +42,25 @@ import Foundation
  sustain,
  palindrome,
  
- -- * Catenation
- scat,
- pcat,
  
  -- * Repetition
  times,
  
  - perhaps need one for maximum polyphony...?
+ 
+ 
+ 
+ 
+ 
+ - reverse
+ - palindrome
+ - 
+ 
  */
 
 
 
-// MARK: Parallel and sequential
+// MARK: Basic composition
 
 extension Array where Element == Int {
     

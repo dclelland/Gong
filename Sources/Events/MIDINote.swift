@@ -35,9 +35,17 @@ extension MIDINote: MIDIEvent {
     
     public var packets: [MIDIPacket] {
         return [
-            MIDIPacket(.noteOn(channel: UInt8(channel), key: UInt8(pitch), velocity: UInt8(velocity)), delay: start),
-            MIDIPacket(.noteOff(channel: UInt8(channel), key: UInt8(pitch), velocity: UInt8(velocity)), delay: start + duration)
+            MIDIPacket(.noteOn(channel: UInt8(channel), key: UInt8(pitch), velocity: UInt8(velocity)), delay: onset),
+            MIDIPacket(.noteOff(channel: UInt8(channel), key: UInt8(pitch), velocity: UInt8(velocity)), delay: offset)
         ]
+    }
+    
+    private var onset: Double {
+        return min(start, start + duration)
+    }
+    
+    private var offset: Double {
+        return max(start, start + duration)
     }
     
 }
