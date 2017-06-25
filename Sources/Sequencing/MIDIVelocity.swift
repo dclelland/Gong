@@ -32,13 +32,13 @@ extension Array where Element == MIDINote {
 
 extension Array where Element == MIDINote {
     
-    public func make(louder amount: Int) -> [MIDINote] {
+    public func volume(louder amount: Int) -> [MIDINote] {
         return mapVelocity { velocity in
             return velocity + amount
         }
     }
     
-    public func make(softer amount: Int) -> [MIDINote] {
+    public func volume(softer amount: Int) -> [MIDINote] {
         return mapVelocity { velocity in
             return velocity - amount
         }

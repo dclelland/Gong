@@ -32,6 +32,7 @@ import Foundation
  
  */
 
+
 // MARK: Basic composition
 
 extension Array where Element == Int {
@@ -57,7 +58,12 @@ extension Array where Element == MIDINote {
     }
     
     public func sequential() -> [MIDINote] {
-        return [] // loop over, appending and delaying
+        return reduce([]) { (result, note) in
+            var (result, note) = (result, note)
+            note.start += result.offset
+            result.append(note)
+            return result
+        }
     }
     
     
@@ -70,7 +76,25 @@ extension Array where Element == [MIDINote] {
     }
     
     public func sequential() -> [MIDINote] {
-        return [] // loop over, appending and delaying
+        return reduce([]) { (result, sequence) in
+            return result + sequence.shift(later: result.offset)
+        }
+    }
+    
+}
+
+extension Array where Element == MIDINote {
+    
+    internal var onset: Double {
+        return min(by: { (left, right) in
+            return left.onset < right.onset
+        })?.onset ?? 0.0
+    }
+    
+    internal var offset: Double {
+        return max(by: { (left, right) in
+            return left.offset < right.offset
+        })?.offset ?? 0.0
     }
     
 }

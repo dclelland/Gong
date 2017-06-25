@@ -31,18 +31,6 @@ public struct MIDINote {
 
 }
 
-extension MIDINote {
-    
-    public var onset: Double {
-        return min(start, start + duration)
-    }
-    
-    public var offset: Double {
-        return max(start, start + duration)
-    }
-    
-}
-
 extension MIDINote: MIDIEvent {
     
     public var packets: [MIDIPacket] {
@@ -50,6 +38,18 @@ extension MIDINote: MIDIEvent {
             MIDIPacket(.noteOn(channel: UInt8(channel), key: UInt8(pitch), velocity: UInt8(velocity)), delay: onset),
             MIDIPacket(.noteOff(channel: UInt8(channel), key: UInt8(pitch), velocity: UInt8(velocity)), delay: offset)
         ]
+    }
+    
+}
+
+extension MIDINote {
+    
+    internal var onset: Double {
+        return min(start, start + duration)
+    }
+    
+    internal var offset: Double {
+        return max(start, start + duration)
     }
     
 }
