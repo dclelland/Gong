@@ -1,29 +1,79 @@
 //
-//  Constants.swift
+//  Pitch.swift
 //  Gong
 //
-//  Created by Daniel Clelland on 24/06/17.
+//  Created by Daniel Clelland on 25/06/17.
 //  Copyright © 2017 Daniel Clelland. All rights reserved.
 //
 
 import Foundation
 
-public let whole = 1.0
-public let half = 0.5
-public let quarter = 0.25
-public let eighth = 0.125
-public let sixteenth = 0.0625
-public let thirtySecond = 0.03125
-public let sixtyFourth = 0.015625
+// Music.Score.Pitch (IsPitch)
 
-public let ppp = 16
-public let pp = 33
-public let p = 49
-public let mp = 64
-public let mf = 80
-public let f = 96
-public let ff = 112
-public let fff = 127
+/*
+ - up
+ - down
+ - above
+ - below
+ 
+ - octavesUp
+ - octavesDown
+ 
+ - invertPitches
+ - highest
+ - lowest
+ - meanPitch
+ 
+ 
+ up,
+ down,
+ above,
+ below,
+ octavesUp,
+ octavesDown,
+ _15va,
+ _8va,
+ _8vb,
+ _15vb,
+ upDiatonic,
+ downDiatonic,
+ upChromatic,
+ downChromatic,
+ 
+ -- ** Inversion
+ invertPitches,
+ invertDiatonic,
+ invertChromatic,
+ 
+ -- ** Ambitus
+ highestPitch,
+ lowestPitch,
+ averagePitch,
+ ambitusOctaves,
+ ambitusLowestOctave,
+ interpolateAmbitus,
+ interpolateAmbitus',
+ 
+ */
+
+// Music.Pitch.Common.Pitch (IsInterval)
+
+/*
+ - natural
+ - flat
+ - sharp
+ - doubleFlat
+ - doubleSharp
+ */
+
+// Music.Pitch.Augmentable
+
+/*
+ - augment
+ - diminish
+ */
+
+// MARK: - Key constants
 
 public let c0 = 0
 public let cSharp0 = 1
@@ -45,6 +95,7 @@ public let aSharp0 = 10
 public let bFlat0 = 10
 public let b0 = 11
 public let bSharp0 = 12
+
 public let cFlat1 = 11
 public let c1 = 12
 public let cSharp1 = 13
@@ -66,6 +117,7 @@ public let aSharp1 = 22
 public let bFlat1 = 22
 public let b1 = 23
 public let bSharp1 = 24
+
 public let cFlat2 = 23
 public let c2 = 24
 public let cSharp2 = 25
@@ -87,6 +139,7 @@ public let aSharp2 = 34
 public let bFlat2 = 34
 public let b2 = 35
 public let bSharp2 = 36
+
 public let cFlat3 = 35
 public let c3 = 36
 public let cSharp3 = 37
@@ -108,6 +161,7 @@ public let aSharp3 = 46
 public let bFlat3 = 46
 public let b3 = 47
 public let bSharp3 = 48
+
 public let cFlat4 = 47
 public let c4 = 48
 public let cSharp4 = 49
@@ -129,6 +183,7 @@ public let aSharp4 = 58
 public let bFlat4 = 58
 public let b4 = 59
 public let bSharp4 = 60
+
 public let cFlat5 = 59
 public let c5 = 60
 public let cSharp5 = 61
@@ -150,6 +205,7 @@ public let aSharp5 = 70
 public let bFlat5 = 70
 public let b5 = 71
 public let bSharp5 = 72
+
 public let cFlat6 = 71
 public let c6 = 72
 public let cSharp6 = 73
@@ -171,6 +227,7 @@ public let aSharp6 = 82
 public let bFlat6 = 82
 public let b6 = 83
 public let bSharp6 = 84
+
 public let cFlat7 = 83
 public let c7 = 84
 public let cSharp7 = 85
@@ -192,6 +249,7 @@ public let aSharp7 = 94
 public let bFlat7 = 94
 public let b7 = 95
 public let bSharp7 = 96
+
 public let cFlat8 = 95
 public let c8 = 96
 public let cSharp8 = 97
@@ -213,6 +271,7 @@ public let aSharp8 = 106
 public let bFlat8 = 106
 public let b8 = 107
 public let bSharp8 = 108
+
 public let cFlat9 = 107
 public let c9 = 108
 public let cSharp9 = 109
@@ -234,6 +293,7 @@ public let aSharp9 = 118
 public let bFlat9 = 118
 public let b9 = 119
 public let bSharp9 = 121
+
 public let cFlat10 = 119
 public let c10 = 120
 public let cSharp10 = 121
@@ -296,6 +356,8 @@ public let muteCuica = 78
 public let openCuica = 79
 public let muteTriangle = 80
 public let openTriangle = 81
+
+// MARK: - Interval constants
 
 public let perfectUnison = 0
 public let minorSecond = 1
