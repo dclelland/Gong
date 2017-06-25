@@ -8,27 +8,45 @@
 
 import Foundation
 
-
-
+// MARK: Pitch setters
 
 extension Array where Element == MIDINote {
     
+    public func setPitch(_ pitch: Int) -> [MIDINote] {
+        return mapPitch { _ in
+            return pitch
+        }
+    }
+    
+    public func mapPitch(_ transform: (Int) -> Int) -> [MIDINote] {
+        return map { note in
+            var note = note
+            note.pitch = transform(note.pitch)
+            return note
+        }
+    }
+    
 }
 
-/*
- Inventory:
- 
- - setPitch (takes numeric arg)
- - setPitch (takes function)
- - transpose(up:)
- - transpose(down:)
- - transposeOctave(up:)
- - transposeOctave(down:)
- 
- */
+// MARK: - Pitch transformations
 
+extension Array where Element == MIDINote {
+    
+    public func transpose(up interval: Int) -> [MIDINote] {
+        return mapPitch { pitch in
+            return pitch + interval
+        }
+    }
+    
+    public func transpose(down interval: Int) -> [MIDINote] {
+        return mapPitch { pitch in
+            return pitch - interval
+        }
+    }
+    
+}
 
-// MARK: - Key constants
+// MARK: - Pitch constants
 
 public let c0 = 0
 public let cSharp0 = 1

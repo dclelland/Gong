@@ -8,15 +8,26 @@
 
 import Foundation
 
-/*
- Inventory:
- 
- - setChannel (takes numeric arg)
- - setChannel (takes function)
- - setChannels (takes numeric arg)
- - setChannels (takes function)
- 
- */
+// MARK: Channel setters
+
+extension Array where Element == MIDINote {
+    
+    public func setChannel(_ channel: Int) -> [MIDINote] {
+        return mapChannel { _ in
+            return channel
+        }
+    }
+    
+    public func mapChannel(_ transform: (Int) -> Int) -> [MIDINote] {
+        return map { note in
+            var note = note
+            note.channel = transform(note.channel)
+            return note
+        }
+    }
+    
+}
+
+// MARK: - Channel constants
 
 public let defaultChannel = 0
-public let allChannels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]

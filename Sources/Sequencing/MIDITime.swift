@@ -8,205 +8,100 @@
 
 import Foundation
 
+// MARK: - Time setters
 
-/*
- Do this first, but once Swift 4 protocols are available, extend to MIDIControl, MIDIPitchBend, MIDIRest
- */
-
-
-// Int, [Int], [[Int]], MIDINote, [MIDINote], [[MIDINote]]
-
-extension Array where Element == Int {
+extension Array where Element == MIDINote {
     
-    public func sequential() -> [MIDINote] {
-        return enumerated().map { (offset, key) in
-            return MIDINote(key: key, delay: Double(offset))
+    public func setStart(_ start: Double) -> [MIDINote] {
+        return mapStart { _ in
+            return start
         }
     }
     
-    public func parallel() -> [MIDINote] {
-        return map { key in
-            return MIDINote(key: key)
+    public func mapStart(_ transform: (Double) -> Double) -> [MIDINote] {
+        return map { note in
+            var note = note
+            note.start = transform(note.start)
+            return note
+        }
+    }
+    
+    public func setDuration(_ duration: Double) -> [MIDINote] {
+        return mapDuration { _ in
+            return duration
+        }
+    }
+    
+    public func mapDuration(_ transform: (Double) -> Double) -> [MIDINote] {
+        return map { note in
+            var note = note
+            note.duration = transform(note.duration)
+            return note
+        }
+    }
+    
+    public func setSpan(_ span: (Double, Double)) -> [MIDINote] {
+        return mapSpan { _ in
+            return span
+        }
+    }
+    
+    public func mapSpan(_ transform: (Double, Double) -> (Double, Double)) -> [MIDINote] {
+        return map { note in
+            var note = note
+            (note.start, note.duration) = transform(note.start, note.duration)
+            return note
         }
     }
     
 }
 
-extension Array where Element == [MIDINote] {
+// MARK: - Time transformations
+
+extension Array where Element == MIDINote {
     
-    public func sequential() -> [MIDINote] {
-        return []
+    public func shift(earlier time: Double) -> [MIDINote] {
+        return mapStart { start in
+            return start + time
+        }
     }
     
-    public func parallel() -> [MIDINote] {
-        return flatMap { $0 }
+    public func shift(later time: Double) -> [MIDINote] {
+        return mapStart { start in
+            return start - time
+        }
+    }
+    
+    public func stretch(slower ratio: Double) -> [MIDINote] {
+        return mapSpan { (start, duration) in
+            return (start * ratio, duration * ratio)
+        }
+    }
+    
+    public func stretch(faster ratio: Double) -> [MIDINote] {
+        return mapSpan { (start, duration) in
+            return (start / ratio, duration / ratio)
+        }
     }
     
 }
 
+// MARK: - Time tempo
 
-/*
- Inventory:
- 
- - setTime
- - setDuration
- 
- - sequential
- - parallel
- 
- - tempo
- */
+extension Array where Element == MIDINote {
+    
+    public func tempo(_ bpm: Double) -> [MIDINote] {
+        return stretch(faster: bpm / 60.0)
+    }
+    
+}
 
-// Music.Time.Internal.Transform
+// MARK: - Time constants
 
-/*
- -- * Specific transformations
- -- ** Transformations
- delaying,
- undelaying,
- stretching,
- compressing,
- 
- -- ** Transforming values
- delay,
- undelay,
- stretch,
- compress,
- (|*),
- (*|),
- (|/),
- 
- 
- infixl 7 |*
- infixr 7 *|
- infixr 7 |/
- 
- -- | Infix version of 'stretch'.
- x |* d = stretch d x
- -- | Infix version of 'stretch'.
- d *| x = stretch d x
- -- | Infix version of 'compress'.
- x |/ d = compress d x
- 
- */
-
-// Music.Time.Juxtapose
-
-/*
- 
- -- * Align without composition
- lead,
- follow,
- 
- -- * Standard composition
- after,
- before,
- during,
- (|>),
- (<|),
- 
- -- ** More exotic
- sustain,
- palindrome,
- 
- -- * Catenation
- scat,
- pcat,
- 
- -- * Repetition
- times,
- */
-
-
-
-/*
- toAbsoluteTime,
- toRelativeTime,
- toRelativeTimeN,
- toRelativeTimeN', -- TODO Fairbairn threshold
- 
- -- * Time spans
- Span,
- 
- -- ** Constructing spans
- (<->),
- (>->),
- (<-<),
- 
- delta,
- range,
- codelta,
- onsetAndOffset,
- onsetAndDuration,
- durationAndOffset,
- 
- stretchComponent,
- delayComponent,
- fixedDurationSpan,
- fixedOnsetSpan,
- 
- -- ** Transformations
- normalizeSpan,
- reverseSpan,
- reflectSpan,
- 
- -- ** Properties
- isEmptySpan,
- isForwardSpan,
- isBackwardSpan,
- 
- -- delayComponent,
- -- stretchComponent,
- 
- -- ** Points in spans
- inside,
- strictlyInside,
- closestPointInside,
- 
- -- ** Partial orders
- encloses,
- properlyEncloses,
- overlaps,
- 
- -- *** etc.
- isBefore,
- afterOnset,
- strictlyAfterOnset,
- beforeOnset,
- strictlyBeforeOnset,
- afterOffset,
- strictlyAfterOffset,
- beforeOffset,
- strictlyBeforeOffset,
- 
- startsWhenStarts,
- startsWhenStops,
- stopsWhenStops,
- stopsWhenStarts,
- 
- startsBefore,
- startsLater,
- stopsAtTheSameTime,
- stopsBefore,
- stopsLater,
- 
- -- union
- -- intersection (alt name 'overlap')
- -- difference (would actually become a split)
- 
- -- ** Read/Show
- showRange,
- showDelta,
- showCodelta,
- */
-
-
-// MARK: - Duration constants
-
-public let whole = 1.0
-public let half = 0.5
-public let quarter = 0.25
-public let eighth = 0.125
-public let sixteenth = 0.0625
-public let thirtySecond = 0.03125
-public let sixtyFourth = 0.015625
+public let wholeNote = 1.0
+public let halfNote = 0.5
+public let quarterNote = 0.25
+public let eighthNote = 0.125
+public let sixteenthNote = 0.0625
+public let thirtySecondNote = 0.03125
+public let sixtyFourthNote = 0.015625

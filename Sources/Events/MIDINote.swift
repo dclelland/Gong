@@ -13,19 +13,19 @@ public struct MIDINote {
     
     public var channel: Int
     
-    public var key: Int
+    public var pitch: Int
     
     public var velocity: Int
     
-    public var delay: Double
+    public var start: Double
     
     public var duration: Double
     
-    public init(channel: Int = 0, key: Int, velocity: Int = 64, delay: Double = 0.0, duration: Double = 1.0) {
+    public init(channel: Int = 0, pitch: Int, velocity: Int = 64, start: Double = 0.0, duration: Double = 1.0) {
         self.channel = channel
-        self.key = key
+        self.pitch = pitch
         self.velocity = velocity
-        self.delay = delay
+        self.start = start
         self.duration = duration
     }
 
@@ -35,8 +35,8 @@ extension MIDINote: MIDIEvent {
     
     public var packets: [MIDIPacket] {
         return [
-            MIDIPacket(.noteOn(channel: UInt8(channel), key: UInt8(key), velocity: UInt8(velocity)), delay: delay),
-            MIDIPacket(.noteOff(channel: UInt8(channel), key: UInt8(key), velocity: UInt8(velocity)), delay: delay + duration)
+            MIDIPacket(.noteOn(channel: UInt8(channel), key: UInt8(pitch), velocity: UInt8(velocity)), delay: start),
+            MIDIPacket(.noteOff(channel: UInt8(channel), key: UInt8(pitch), velocity: UInt8(velocity)), delay: start + duration)
         ]
     }
     
