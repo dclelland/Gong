@@ -38,7 +38,7 @@ extension MIDIDestination {
 
 extension MIDIDestination {
     
-    public typealias SystemExclusiveEventCompletion = (Void) -> Void
+    public typealias SystemExclusiveEventCompletion = () -> Void
     
     // Disclaimer: I'm fairly certain this doesn't work, though I haven't really tested it yet.
     // This function is what I would expect you would use if sending very SysEx messages with more than 256 bytes;
