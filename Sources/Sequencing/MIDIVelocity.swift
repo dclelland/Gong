@@ -48,11 +48,11 @@ extension Array where Element == MIDINote {
 
 // MARK: - Velocity constants
 
-public let ppp = 16
-public let pp = 33
-public let p = 49
-public let mp = 64
-public let mf = 80
-public let f = 96
-public let ff = 112
-public let fff = 127
+public let pianississimo = 16
+public let pianissimo = 33
+public let piano = 49
+public let mezzopiano = 64
+public let mezzoforte = 80
+public let forte = 96
+public let fortissimo = 112
+public let fortississimo = 127
