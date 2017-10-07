@@ -6,12 +6,12 @@
 #
 Pod::Spec.new do |s|
   s.name = "Gong"
-  s.version = "1.0.0"
+  s.version = "1.1.0"
   s.summary = "Gong is a MIDI library for iOS and macOS."
   s.homepage = "https://github.com/dclelland/Gong"
   s.license = { :type => 'MIT' }
   s.author = { "Daniel Clelland" => "daniel.clelland@gmail.com" }
-  s.source = { :git => "https://github.com/dclelland/Gong.git", :tag => "1.0.0" }
+  s.source = { :git => "https://github.com/dclelland/Gong.git", :tag => "1.1.0" }
   s.source_files = 'Sources/*.swift'
 
   s.subspec 'Core' do |ss|
@@ -22,6 +22,10 @@ Pod::Spec.new do |s|
   s.subspec 'Events' do |ss|
     ss.source_files = 'Sources/Events/**/*.swift'
     ss.dependency 'Gong/Core'
+  end
+
+  s.subspec 'Constants' do |ss|
+    ss.source_files = 'Sources/Constants/**/*.swift'
   end
 
   s.ios.deployment_target = '8.0'

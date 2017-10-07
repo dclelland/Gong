@@ -27,19 +27,19 @@ class ViewController: NSViewController {
     @IBAction func buttonClick(_ button: NSButton) {
         switch button.title {
         case "C":
-            playNote(60)
+            playNote(c5)
         case "D":
-            playNote(62)
+            playNote(d5)
         case "E":
-            playNote(64)
+            playNote(e5)
         case "F":
-            playNote(65)
+            playNote(f5)
         case "G":
-            playNote(67)
+            playNote(g5)
         case "A":
-            playNote(69)
+            playNote(a5)
         case "B":
-            playNote(71)
+            playNote(b5)
         default:
             break
         }
@@ -49,12 +49,12 @@ class ViewController: NSViewController {
 
 extension ViewController {
     
-    func playNote(_ key: Int) {
+    func playNote(_ pitch: Int) {
         guard let output = MIDI.output else {
             return
         }
         
-        let note = MIDINote(key: key)
+        let note = MIDINote(pitch: pitch)
         
         for device in MIDIDevice.all {
             device.send(note, via: output)

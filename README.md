@@ -111,7 +111,7 @@ guard let device = MIDIDevice(named: "minilogue"), let output = MIDI.output else
     return
 }
 
-let note = MIDINote(key: 60)
+let note = MIDINote(pitch: c5)
 
 device.send(note, via: output)
 ```
