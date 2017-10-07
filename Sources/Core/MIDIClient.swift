@@ -41,7 +41,7 @@ public class MIDIClient: MIDIObject {
 
 extension MIDIClient {
 
-    public func createInput(name: String, callback: @escaping PacketCallback = { _ in }) throws -> MIDIInput {
+    public func createInput(name: String, callback: @escaping PacketCallback = { _, _  in }) throws -> MIDIInput {
         var portReference = MIDIPortRef()
         
         let context = UnsafeMutablePointer<PacketCallback>.allocate(capacity: 1)
@@ -77,7 +77,7 @@ extension MIDIClient {
         return MIDISource(endpointReference)
     }
     
-    public func createDestination(name: String, callback: @escaping PacketCallback = { _ in }) throws -> MIDIDestination {
+    public func createDestination(name: String, callback: @escaping PacketCallback = { _,_  in }) throws -> MIDIDestination {
         var endpointReference = MIDIEndpointRef()
         
         let context = UnsafeMutablePointer<PacketCallback>.allocate(capacity: 1)

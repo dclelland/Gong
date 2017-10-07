@@ -23,7 +23,6 @@ An [example project](/Examples/Gong-macOS) is provided to help you get started.
 
 ### Todo list
 
-- Swift 4 support
 - Test for memory leaks
 - MIDINotification/MIDINotice name issue
 
