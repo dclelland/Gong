@@ -1,9 +1,9 @@
 PODS:
-  - Gong (0.2.1):
-    - Gong/Core (= 0.2.1)
-    - Gong/Events (= 0.2.1)
-  - Gong/Core (0.2.1)
-  - Gong/Events (0.2.1):
+  - Gong (0.2.2):
+    - Gong/Core (= 0.2.2)
+    - Gong/Events (= 0.2.2)
+  - Gong/Core (0.2.2)
+  - Gong/Events (0.2.2):
     - Gong/Core
 
 DEPENDENCIES:
@@ -14,8 +14,8 @@ EXTERNAL SOURCES:
     :path: ../../
 
 SPEC CHECKSUMS:
-  Gong: 7bdd3a06b4a0096842a33fd64a1baeaf3681cd17
+  Gong: 46651a991a6cf8dd519507ba83c320f51a5f8526
 
 PODFILE CHECKSUM: e52aaa1c46b54d4094c9ec8534850e79782eb182
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.3.1
