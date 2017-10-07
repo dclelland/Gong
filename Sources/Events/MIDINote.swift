@@ -44,11 +44,11 @@ extension MIDINote: MIDIEvent {
 
 extension MIDINote {
     
-    internal var onset: Double {
+    public var onset: Double {
         return min(start, start + duration)
     }
     
-    internal var offset: Double {
+    public var offset: Double {
         return max(start, start + duration)
     }
     
