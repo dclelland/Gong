@@ -6,10 +6,10 @@ Gong aims to provide a fairly transparent Swift interface to Apple's CoreMIDI li
 
 The library is built in two layers:
 
-- [The files in the `/Sources/Core` directory](/Sources/Core) are straightforward, unopinionated wrappers around CoreMIDI's C APIs.
-- [The files outside of the `/Sources/Core` directory](/Sources) are slightly more opinionated, but let you perform common tasks with a minimum of setup.
+- The files in the [`/Sources/Core`](/Sources/Core) directory are straightforward, unopinionated wrappers around CoreMIDI's C APIs.
+- The files outside of the [`/Sources/Core`](/Sources) directory are slightly more opinionated, but let you perform common tasks with a minimum of setup.
 
-More specifically: there is a [global `MIDI` singleton](/Sources/MIDI.swift), which:
+More specifically: there is a global [`MIDI`](/Sources/MIDI.swift) singleton, which:
 
 - Creates a `MIDIClient` and subscribes to `MIDINotice` events (e.g., MIDI device connections and disconnections).
 - Creates a `MIDIInput`, connects it to all available `MIDISource` instances and subscribes to `MIDIPacket` events (e.g., MIDI note or control change messages).
@@ -45,6 +45,11 @@ Just the CoreMIDI wrapper, plus `MIDINote` events:
 ```ruby
 pod 'Gong/Events', '~> 0.2'
 ```
+#### Virtual MIDI buses
+
+One of Gong's core use cases is sending MIDI messages into DAW software such as Ableton Live.
+
+This necessitates setting up a virtual MIDI bus. The Ableton folks have a [tutorial](https://help.ableton.com/hc/en-us/articles/209774225-Using-virtual-MIDI-buses-in-Live) on how to do this.
 
 ### Core library architecture
 
