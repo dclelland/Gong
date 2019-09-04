@@ -55,7 +55,7 @@ extension MIDIDestination {
             completion()
         }
         
-        var request = Data(bytes: bytes).withUnsafeBytes { pointer in
+        var request = Data(bytes).withUnsafeBytes { pointer in
             return MIDISysexSendRequest(
                 destination: reference,
                 data: pointer,

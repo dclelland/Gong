@@ -29,6 +29,8 @@ public class MIDIObject {
             return MIDISource(reference)
         case .destination, .externalDestination:
             return MIDIDestination(reference)
+        @unknown default:
+            return MIDIObject(reference)
         }
     }
     
