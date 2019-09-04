@@ -15,5 +15,9 @@ public class MIDIOutput: MIDIPort {
         var packetList = MIDIPacketList(packet)
         try MIDISend(reference, destination.reference, &packetList).midiError("Sending packets to destination with MIDIOutput")
     }
-    
+
+    public func send(_ packetList: MIDIPacketList, to destination: MIDIDestination) throws {
+        var packetList = packetList // stupid, it's not mutated by MIDISend, but it's required by the compiler...
+        try MIDISend(reference, destination.reference, &packetList).midiError("Sending packet list to destination with MIDIOutput")
+    }
 }

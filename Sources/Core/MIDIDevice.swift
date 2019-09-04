@@ -10,6 +10,10 @@ import Foundation
 import CoreMIDI
 
 public class MIDIDevice: MIDIObject {
+    public var offline: Bool {
+        let result = try? integer(for: Property.offline) == 1
+        return result ?? false
+    }
     
     public convenience init?(named name: String) {
         guard let device = MIDIDevice.all.first(where: { $0.name == name }) else {
@@ -24,6 +28,12 @@ public class MIDIDevice: MIDIObject {
         return (0..<count).lazy.map { index in
             return MIDIDevice(MIDIGetDevice(index))
         }
+    }
+
+    public var displayName: String {
+        var strOffline = ""
+        if offline { strOffline = " (offline)" }
+        return "\(name ?? "Unknown device")\(strOffline)"
     }
     
     public var entities: [MIDIEntity] {

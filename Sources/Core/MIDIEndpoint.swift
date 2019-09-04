@@ -25,9 +25,12 @@ public class MIDIEndpoint: MIDIObject {
     public var device: MIDIDevice? {
         return entity?.device
     }
+
+    public var displayName: String {
+        return "\(device?.displayName ?? "No device"): \(name ?? "Unknown Port")"
+    }
     
     public func dispose() throws {
         try MIDIEndpointDispose(reference).midiError("Disposing of MIDIEndpoint")
     }
-
 }
