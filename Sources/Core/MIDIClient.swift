@@ -52,12 +52,12 @@ extension MIDIClient {
                 return
             }
             
-            guard let endpointReference = connectionContext?.assumingMemoryBound(to: MIDIEndpointRef.self).pointee else {
+            guard let source = connectionContext?.assumingMemoryBound(to: MIDISource.self).pointee else {
                 return
             }
             
             for packet in packetList.pointee.packets {
-                callback(packet, MIDISource(endpointReference))
+                callback(packet, source)
             }
         }
         
@@ -88,12 +88,12 @@ extension MIDIClient {
                 return
             }
             
-            guard let sourceReference = connectionContext?.assumingMemoryBound(to: MIDIObjectRef.self).pointee else {
+            guard let source = connectionContext?.assumingMemoryBound(to: MIDISource.self).pointee else {
                 return
             }
             
             for packet in packetList.pointee.packets {
-                callback(packet, MIDISource(sourceReference))
+                callback(packet, source)
             }
         }
         
