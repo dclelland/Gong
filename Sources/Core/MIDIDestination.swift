@@ -55,17 +55,15 @@ extension MIDIDestination {
             completion()
         }
 
-        var request = Data(bytes).withUnsafeBytes {  (_ pointer:UnsafeRawBufferPointer) -> MIDISysexSendRequest in
-            return MIDISysexSendRequest(
-                destination: reference,
-                data: pointer.baseAddress!.assumingMemoryBound(to: UInt8.self),
-                bytesToSend: UInt32(bytes.count),
-                complete: false,
-                reserved: (0, 0, 0),
-                completionProc: completionProcedure,
-                completionRefCon: completionReference
-            )
-        }
+        var request = MIDISysexSendRequest(
+            destination: reference,
+            data: bytes,
+            bytesToSend: UInt32(bytes.count),
+            complete: false,
+            reserved: (0, 0, 0),
+            completionProc: completionProcedure,
+            completionRefCon: completionReference
+        )
         
         try MIDISendSysex(&request).midiError("Sending system exclusive event")
     }
