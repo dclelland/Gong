@@ -58,6 +58,8 @@ extension MIDINotice {
                 let error = MIDIError(status: notification.errorCode, comment: "Notification error")
                 return .ioError(device: device, error: error)
             }
+        @unknown default:
+            fatalError("Unrecognized notification message ID")
         }
     }
 
