@@ -6,13 +6,14 @@
 #
 Pod::Spec.new do |s|
   s.name = "Gong"
-  s.version = "1.1.1"
+  s.version = "1.2.0"
   s.summary = "Gong is a MIDI library for iOS and macOS."
   s.homepage = "https://github.com/dclelland/Gong"
   s.license = { :type => 'MIT' }
   s.author = { "Daniel Clelland" => "daniel.clelland@gmail.com" }
-  s.source = { :git => "https://github.com/dclelland/Gong.git", :tag => "1.1.1" }
+  s.source = { :git => "https://github.com/dclelland/Gong.git", :tag => "1.2.0" }
   s.source_files = 'Sources/*.swift'
+  s.swift_versions = ['5.1', '5.2']
 
   s.subspec 'Core' do |ss|
     ss.source_files = 'Sources/Core/**/*.swift'
