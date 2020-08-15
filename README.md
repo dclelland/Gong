@@ -21,29 +21,24 @@ If you prefer to write this kind of thing yourself, the CoreMIDI wrapper can be 
 
 An [example project](/Examples/Gong-macOS) is provided to help you get started.
 
-### Todo list
-
-- Test for memory leaks
-- MIDINotification/MIDINotice name issue
-
 ### Installation
 
 The entire library:
 
 ```ruby
-pod 'Gong', '~> 0.2'
+pod 'Gong', '~> 1.2'
 ```
 
 Just the CoreMIDI wrapper:
 
 ```ruby
-pod 'Gong/Core', '~> 0.2'
+pod 'Gong/Core', '~> 1.2'
 ```
 
 Just the CoreMIDI wrapper, plus `MIDINote` events:
 
 ```ruby
-pod 'Gong/Events', '~> 0.2'
+pod 'Gong/Events', '~> 1.2'
 ```
 #### Virtual MIDI buses
 

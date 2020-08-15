@@ -103,7 +103,7 @@ extension MIDIPacket {
     
     public var bytes: [UInt8] {
         get {
-            let bytes = Mirror(reflecting: data).children.flatMap { child in
+            let bytes = Mirror(reflecting: data).children.compactMap { child in
                 return child.value as? UInt8
             }
             

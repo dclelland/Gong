@@ -11,19 +11,19 @@
 		65BE84D31EA78E0C00B1B69D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BE84D21EA78E0C00B1B69D /* ViewController.swift */; };
 		65BE84D51EA78E0C00B1B69D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65BE84D41EA78E0C00B1B69D /* Assets.xcassets */; };
 		65BE84D81EA78E0C00B1B69D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65BE84D61EA78E0C00B1B69D /* Main.storyboard */; };
-		FFB4BA72B75A0A57D0D1631E /* Pods_Gong_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BCE5C534E2DA9E69AAAE608 /* Pods_Gong_macOS.framework */; };
+		7983A6A893B7DF58715A4F1E /* Pods_Gong_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE92B541E37AE9EED0B34BBE /* Pods_Gong_macOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5C63EF68DE31917A408BEEE2 /* Pods-Gong-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gong-macOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Gong-macOS/Pods-Gong-macOS.debug.xcconfig"; sourceTree = "<group>"; };
 		65BE84CD1EA78E0C00B1B69D /* Gong-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gong-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65BE84D01EA78E0C00B1B69D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65BE84D21EA78E0C00B1B69D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		65BE84D41EA78E0C00B1B69D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65BE84D71EA78E0C00B1B69D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		65BE84D91EA78E0C00B1B69D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6F5EF2144B01E9A00F1E6704 /* Pods-Gong-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gong-macOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Gong-macOS/Pods-Gong-macOS.release.xcconfig"; sourceTree = "<group>"; };
-		8BCE5C534E2DA9E69AAAE608 /* Pods_Gong_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gong_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE92B541E37AE9EED0B34BBE /* Pods_Gong_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gong_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4DAFE54A477D15A7CAC2CED /* Pods-Gong-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gong-macOS.release.xcconfig"; path = "Target Support Files/Pods-Gong-macOS/Pods-Gong-macOS.release.xcconfig"; sourceTree = "<group>"; };
+		DCB2BE1650BE568256C4E5DC /* Pods-Gong-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gong-macOS.debug.xcconfig"; path = "Target Support Files/Pods-Gong-macOS/Pods-Gong-macOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,28 +31,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFB4BA72B75A0A57D0D1631E /* Pods_Gong_macOS.framework in Frameworks */,
+				7983A6A893B7DF58715A4F1E /* Pods_Gong_macOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		12664650C4AC0D56DCED830F /* Frameworks */ = {
+		3CEB9773BCC6F9E3BF1C1AE0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8BCE5C534E2DA9E69AAAE608 /* Pods_Gong_macOS.framework */,
+				DCB2BE1650BE568256C4E5DC /* Pods-Gong-macOS.debug.xcconfig */,
+				C4DAFE54A477D15A7CAC2CED /* Pods-Gong-macOS.release.xcconfig */,
 			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		52C7A79B72584FEE6508789A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				5C63EF68DE31917A408BEEE2 /* Pods-Gong-macOS.debug.xcconfig */,
-				6F5EF2144B01E9A00F1E6704 /* Pods-Gong-macOS.release.xcconfig */,
-			);
-			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		65BE84C41EA78E0C00B1B69D = {
@@ -60,8 +52,8 @@
 			children = (
 				65BE84CF1EA78E0C00B1B69D /* Gong-macOS */,
 				65BE84CE1EA78E0C00B1B69D /* Products */,
-				52C7A79B72584FEE6508789A /* Pods */,
-				12664650C4AC0D56DCED830F /* Frameworks */,
+				3CEB9773BCC6F9E3BF1C1AE0 /* Pods */,
+				D9AB181FA689C5A257478E0F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,6 +77,14 @@
 			path = "Gong-macOS";
 			sourceTree = "<group>";
 		};
+		D9AB181FA689C5A257478E0F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AE92B541E37AE9EED0B34BBE /* Pods_Gong_macOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -92,12 +92,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 65BE84DC1EA78E0C00B1B69D /* Build configuration list for PBXNativeTarget "Gong-macOS" */;
 			buildPhases = (
-				F3769B3EFC25816BC5C9A360 /* [CP] Check Pods Manifest.lock */,
+				01245E20759B78B731B2A1A0 /* [CP] Check Pods Manifest.lock */,
 				65BE84C91EA78E0C00B1B69D /* Sources */,
 				65BE84CA1EA78E0C00B1B69D /* Frameworks */,
 				65BE84CB1EA78E0C00B1B69D /* Resources */,
-				FCA98D9829F73590D2E2D815 /* [CP] Embed Pods Frameworks */,
-				19590416A913B72913D0937C /* [CP] Copy Pods Resources */,
+				0B2AA80F1670478DBEFA08EB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -115,13 +114,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = "Daniel Clelland";
 				TargetAttributes = {
 					65BE84CC1EA78E0C00B1B69D = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = SP382Y6YUY;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1150;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -131,6 +130,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -157,31 +157,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		19590416A913B72913D0937C /* [CP] Copy Pods Resources */ = {
+		01245E20759B78B731B2A1A0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Gong-macOS/Pods-Gong-macOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F3769B3EFC25816BC5C9A360 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Gong-macOS-checkManifestLockResult.txt",
 			);
@@ -190,13 +179,13 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FCA98D9829F73590D2E2D815 /* [CP] Embed Pods Frameworks */ = {
+		0B2AA80F1670478DBEFA08EB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Gong-macOS/Pods-Gong-macOS-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Gong-macOS/Pods-Gong-macOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Gong/Gong.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -205,7 +194,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Gong-macOS/Pods-Gong-macOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Gong-macOS/Pods-Gong-macOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -238,6 +227,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -248,6 +238,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -255,6 +246,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -294,6 +286,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -304,6 +297,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -311,6 +305,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -340,33 +335,35 @@
 		};
 		65BE84DD1EA78E0C00B1B69D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5C63EF68DE31917A408BEEE2 /* Pods-Gong-macOS.debug.xcconfig */;
+			baseConfigurationReference = DCB2BE1650BE568256C4E5DC /* Pods-Gong-macOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = SP382Y6YUY;
 				INFOPLIST_FILE = "Gong-macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.protonome.Gong-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		65BE84DE1EA78E0C00B1B69D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6F5EF2144B01E9A00F1E6704 /* Pods-Gong-macOS.release.xcconfig */;
+			baseConfigurationReference = C4DAFE54A477D15A7CAC2CED /* Pods-Gong-macOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = SP382Y6YUY;
 				INFOPLIST_FILE = "Gong-macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.protonome.Gong-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

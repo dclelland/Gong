@@ -44,7 +44,7 @@ extension MIDINotice {
             self = reference.withMemoryRebound(to: MIDIObjectPropertyChangeNotification.self, capacity: Int(notification.messageSize)) { pointer in
                 let notification = pointer.pointee
                 let object = MIDIObject.create(with: notification.object, type: notification.objectType)
-                let property = notification.propertyName.takeRetainedValue()
+                let property = notification.propertyName.takeUnretainedValue()
                 return .propertyChanged(object: object, property: property as String)
             }
         case .msgThruConnectionsChanged:
@@ -58,6 +58,8 @@ extension MIDINotice {
                 let error = MIDIError(status: notification.errorCode, comment: "Notification error")
                 return .ioError(device: device, error: error)
             }
+        @unknown default:
+            fatalError("Unrecognized notification message ID")
         }
     }
 
