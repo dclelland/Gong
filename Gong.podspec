@@ -12,21 +12,21 @@ Pod::Spec.new do |s|
   s.license = { :type => 'MIT' }
   s.author = { "Daniel Clelland" => "daniel.clelland@gmail.com" }
   s.source = { :git => "https://github.com/dclelland/Gong.git", :tag => "1.2.0" }
-  s.source_files = 'Sources/*.swift'
+  s.source_files = 'Sources/Song/*.swift'
   s.swift_versions = ['5.1', '5.2']
 
   s.subspec 'Core' do |ss|
-    ss.source_files = 'Sources/Core/**/*.swift'
+    ss.source_files = 'Sources/Gong/Core/**/*.swift'
     ss.frameworks = 'CoreMIDI'
   end
 
   s.subspec 'Events' do |ss|
-    ss.source_files = 'Sources/Events/**/*.swift'
+    ss.source_files = 'Sources/Gong/Events/**/*.swift'
     ss.dependency 'Gong/Core'
   end
 
   s.subspec 'Constants' do |ss|
-    ss.source_files = 'Sources/Constants/**/*.swift'
+    ss.source_files = 'Sources/Gong/Constants/**/*.swift'
   end
 
   s.ios.deployment_target = '8.0'
