@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.license = { :type => 'MIT' }
   s.author = { "Daniel Clelland" => "daniel.clelland@gmail.com" }
   s.source = { :git => "https://github.com/dclelland/Gong.git", :tag => "1.2.0" }
-  s.source_files = 'Sources/Song/*.swift'
+  s.source_files = 'Sources/Gong/*.swift'
   s.swift_versions = ['5.1', '5.2']
 
   s.subspec 'Core' do |ss|
