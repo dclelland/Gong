@@ -6,8 +6,8 @@ Gong aims to provide a fairly transparent Swift interface to Apple's CoreMIDI li
 
 The library is built in two layers:
 
-- The files in the [`/Sources/Core`](/Sources/Core) directory are straightforward, unopinionated wrappers around CoreMIDI's C APIs.
-- The files outside of the [`/Sources/Core`](/Sources) directory are slightly more opinionated, but let you perform common tasks with a minimum of setup.
+- The files in the [`/Sources/Gong/Core`](/Sources/Gong/Core) directory are straightforward, unopinionated wrappers around CoreMIDI's C APIs.
+- The files outside of the [`/Sources/Gong/Core`](/Sources/Gong) directory are slightly more opinionated, but let you perform common tasks with a minimum of setup.
 
 More specifically: there is a global [`MIDI`](/Sources/MIDI.swift) singleton, which:
 
