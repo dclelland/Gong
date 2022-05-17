@@ -3,100 +3,71 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		65BE84D11EA78E0C00B1B69D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BE84D01EA78E0C00B1B69D /* AppDelegate.swift */; };
-		65BE84D31EA78E0C00B1B69D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BE84D21EA78E0C00B1B69D /* ViewController.swift */; };
-		65BE84D51EA78E0C00B1B69D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65BE84D41EA78E0C00B1B69D /* Assets.xcassets */; };
-		65BE84D81EA78E0C00B1B69D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65BE84D61EA78E0C00B1B69D /* Main.storyboard */; };
-		7983A6A893B7DF58715A4F1E /* Pods_Gong_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE92B541E37AE9EED0B34BBE /* Pods_Gong_macOS.framework */; };
+		65F7790C2833355500DEC96D /* GongApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F7790B2833355500DEC96D /* GongApp.swift */; };
+		65F7790E2833355500DEC96D /* GongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F7790D2833355500DEC96D /* GongView.swift */; };
+		65F779102833355600DEC96D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65F7790F2833355600DEC96D /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		65BE84CD1EA78E0C00B1B69D /* Gong-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gong-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		65BE84D01EA78E0C00B1B69D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		65BE84D21EA78E0C00B1B69D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		65BE84D41EA78E0C00B1B69D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		65BE84D71EA78E0C00B1B69D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		65BE84D91EA78E0C00B1B69D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AE92B541E37AE9EED0B34BBE /* Pods_Gong_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gong_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4DAFE54A477D15A7CAC2CED /* Pods-Gong-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gong-macOS.release.xcconfig"; path = "Target Support Files/Pods-Gong-macOS/Pods-Gong-macOS.release.xcconfig"; sourceTree = "<group>"; };
-		DCB2BE1650BE568256C4E5DC /* Pods-Gong-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gong-macOS.debug.xcconfig"; path = "Target Support Files/Pods-Gong-macOS/Pods-Gong-macOS.debug.xcconfig"; sourceTree = "<group>"; };
+		65F779082833355500DEC96D /* Gong-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gong-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		65F7790B2833355500DEC96D /* GongApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GongApp.swift; sourceTree = "<group>"; };
+		65F7790D2833355500DEC96D /* GongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GongView.swift; sourceTree = "<group>"; };
+		65F7790F2833355600DEC96D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		65F779142833355600DEC96D /* Gong_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Gong_macOS.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		65BE84CA1EA78E0C00B1B69D /* Frameworks */ = {
+		65F779052833355500DEC96D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7983A6A893B7DF58715A4F1E /* Pods_Gong_macOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3CEB9773BCC6F9E3BF1C1AE0 /* Pods */ = {
+		65F778FF2833355500DEC96D = {
 			isa = PBXGroup;
 			children = (
-				DCB2BE1650BE568256C4E5DC /* Pods-Gong-macOS.debug.xcconfig */,
-				C4DAFE54A477D15A7CAC2CED /* Pods-Gong-macOS.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		65BE84C41EA78E0C00B1B69D = {
-			isa = PBXGroup;
-			children = (
-				65BE84CF1EA78E0C00B1B69D /* Gong-macOS */,
-				65BE84CE1EA78E0C00B1B69D /* Products */,
-				3CEB9773BCC6F9E3BF1C1AE0 /* Pods */,
-				D9AB181FA689C5A257478E0F /* Frameworks */,
+				65F7790A2833355500DEC96D /* Gong-macOS */,
+				65F779092833355500DEC96D /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		65BE84CE1EA78E0C00B1B69D /* Products */ = {
+		65F779092833355500DEC96D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				65BE84CD1EA78E0C00B1B69D /* Gong-macOS.app */,
+				65F779082833355500DEC96D /* Gong-macOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		65BE84CF1EA78E0C00B1B69D /* Gong-macOS */ = {
+		65F7790A2833355500DEC96D /* Gong-macOS */ = {
 			isa = PBXGroup;
 			children = (
-				65BE84D01EA78E0C00B1B69D /* AppDelegate.swift */,
-				65BE84D21EA78E0C00B1B69D /* ViewController.swift */,
-				65BE84D41EA78E0C00B1B69D /* Assets.xcassets */,
-				65BE84D61EA78E0C00B1B69D /* Main.storyboard */,
-				65BE84D91EA78E0C00B1B69D /* Info.plist */,
+				65F7790B2833355500DEC96D /* GongApp.swift */,
+				65F7790D2833355500DEC96D /* GongView.swift */,
+				65F7790F2833355600DEC96D /* Assets.xcassets */,
+				65F779142833355600DEC96D /* Gong_macOS.entitlements */,
 			);
 			path = "Gong-macOS";
-			sourceTree = "<group>";
-		};
-		D9AB181FA689C5A257478E0F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				AE92B541E37AE9EED0B34BBE /* Pods_Gong_macOS.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		65BE84CC1EA78E0C00B1B69D /* Gong-macOS */ = {
+		65F779072833355500DEC96D /* Gong-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 65BE84DC1EA78E0C00B1B69D /* Build configuration list for PBXNativeTarget "Gong-macOS" */;
+			buildConfigurationList = 65F779172833355600DEC96D /* Build configuration list for PBXNativeTarget "Gong-macOS" */;
 			buildPhases = (
-				01245E20759B78B731B2A1A0 /* [CP] Check Pods Manifest.lock */,
-				65BE84C91EA78E0C00B1B69D /* Sources */,
-				65BE84CA1EA78E0C00B1B69D /* Frameworks */,
-				65BE84CB1EA78E0C00B1B69D /* Resources */,
-				0B2AA80F1670478DBEFA08EB /* [CP] Embed Pods Frameworks */,
+				65F779042833355500DEC96D /* Sources */,
+				65F779052833355500DEC96D /* Frameworks */,
+				65F779062833355500DEC96D /* Resources */,
 			);
 			buildRules = (
 			);
@@ -104,136 +75,76 @@
 			);
 			name = "Gong-macOS";
 			productName = "Gong-macOS";
-			productReference = 65BE84CD1EA78E0C00B1B69D /* Gong-macOS.app */;
+			productReference = 65F779082833355500DEC96D /* Gong-macOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		65BE84C51EA78E0C00B1B69D /* Project object */ = {
+		65F779002833355500DEC96D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 1150;
-				ORGANIZATIONNAME = "Daniel Clelland";
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
 				TargetAttributes = {
-					65BE84CC1EA78E0C00B1B69D = {
-						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = SP382Y6YUY;
-						LastSwiftMigration = 1150;
-						ProvisioningStyle = Automatic;
+					65F779072833355500DEC96D = {
+						CreatedOnToolsVersion = 13.3.1;
 					};
 				};
 			};
-			buildConfigurationList = 65BE84C81EA78E0C00B1B69D /* Build configuration list for PBXProject "Gong-macOS" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			buildConfigurationList = 65F779032833355500DEC96D /* Build configuration list for PBXProject "Gong-macOS" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
-			mainGroup = 65BE84C41EA78E0C00B1B69D;
-			productRefGroup = 65BE84CE1EA78E0C00B1B69D /* Products */;
+			mainGroup = 65F778FF2833355500DEC96D;
+			productRefGroup = 65F779092833355500DEC96D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				65BE84CC1EA78E0C00B1B69D /* Gong-macOS */,
+				65F779072833355500DEC96D /* Gong-macOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		65BE84CB1EA78E0C00B1B69D /* Resources */ = {
+		65F779062833355500DEC96D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65BE84D51EA78E0C00B1B69D /* Assets.xcassets in Resources */,
-				65BE84D81EA78E0C00B1B69D /* Main.storyboard in Resources */,
+				65F779102833355600DEC96D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		01245E20759B78B731B2A1A0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Gong-macOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		0B2AA80F1670478DBEFA08EB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Gong-macOS/Pods-Gong-macOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Gong/Gong.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gong.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Gong-macOS/Pods-Gong-macOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		65BE84C91EA78E0C00B1B69D /* Sources */ = {
+		65F779042833355500DEC96D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65BE84D31EA78E0C00B1B69D /* ViewController.swift in Sources */,
-				65BE84D11EA78E0C00B1B69D /* AppDelegate.swift in Sources */,
+				65F7790E2833355500DEC96D /* GongView.swift in Sources */,
+				65F7790C2833355500DEC96D /* GongApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		65BE84D61EA78E0C00B1B69D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				65BE84D71EA78E0C00B1B69D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		65BE84DA1EA78E0C00B1B69D /* Debug */ = {
+		65F779152833355600DEC96D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -249,17 +160,18 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -273,8 +185,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -282,17 +195,16 @@
 			};
 			name = Debug;
 		};
-		65BE84DB1EA78E0C00B1B69D /* Release */ = {
+		65F779162833355600DEC96D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -308,17 +220,18 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -326,43 +239,63 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
-		65BE84DD1EA78E0C00B1B69D /* Debug */ = {
+		65F779182833355600DEC96D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DCB2BE1650BE568256C4E5DC /* Pods-Gong-macOS.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "-";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Gong-macOS/Gong_macOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SP382Y6YUY;
-				INFOPLIST_FILE = "Gong-macOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.protonome.Gong-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		65BE84DE1EA78E0C00B1B69D /* Release */ = {
+		65F779192833355600DEC96D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C4DAFE54A477D15A7CAC2CED /* Pods-Gong-macOS.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "-";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Gong-macOS/Gong_macOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SP382Y6YUY;
-				INFOPLIST_FILE = "Gong-macOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.protonome.Gong-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -370,25 +303,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		65BE84C81EA78E0C00B1B69D /* Build configuration list for PBXProject "Gong-macOS" */ = {
+		65F779032833355500DEC96D /* Build configuration list for PBXProject "Gong-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				65BE84DA1EA78E0C00B1B69D /* Debug */,
-				65BE84DB1EA78E0C00B1B69D /* Release */,
+				65F779152833355600DEC96D /* Debug */,
+				65F779162833355600DEC96D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		65BE84DC1EA78E0C00B1B69D /* Build configuration list for PBXNativeTarget "Gong-macOS" */ = {
+		65F779172833355600DEC96D /* Build configuration list for PBXNativeTarget "Gong-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				65BE84DD1EA78E0C00B1B69D /* Debug */,
-				65BE84DE1EA78E0C00B1B69D /* Release */,
+				65F779182833355600DEC96D /* Debug */,
+				65F779192833355600DEC96D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 65BE84C51EA78E0C00B1B69D /* Project object */;
+	rootObject = 65F779002833355500DEC96D /* Project object */;
 }
