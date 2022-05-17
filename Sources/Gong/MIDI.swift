@@ -17,7 +17,21 @@ public protocol MIDIObserver {
     
 }
 
-public struct MIDI {
+public enum MIDI {
+    
+    public static let didReceiveNoticeNotification = Notification.Name("MIDIObserverReceiveNotice")
+    
+    public static let didReceivePacketNotification = Notification.Name("MIDIObserverReceivePacket")
+    
+    public static let noticeNotificationKey = "MIDINotice"
+    
+    public static let packetNotificationKey = "MIDIPacket"
+    
+    public static let sourceNotificationKey = "MIDISource"
+    
+}
+    
+extension MIDI {
     
     public static var client: MIDIClient? = {
         do {
@@ -50,6 +64,10 @@ public struct MIDI {
         }
     }()
     
+}
+
+extension MIDI {
+    
     public static func connect() {
         for source in MIDISource.all {
             do {
@@ -70,20 +88,24 @@ public struct MIDI {
         }
     }
     
+}
+
+extension MIDI {
+    
     public static func addObserver<Observer>(_ observer: Observer) where Observer: MIDIObserver {
-        NotificationCenter.default.addObserver(forName: .MIDIObserverReceiveNotice, object: nil, queue: nil) { notification in
-            guard let notice = notification.userInfo?[Notification.MIDINoticeKey] as? MIDINotice else {
+        NotificationCenter.default.addObserver(forName: didReceiveNoticeNotification, object: nil, queue: nil) { notification in
+            guard let notice = notification.userInfo?[noticeNotificationKey] as? MIDINotice else {
                 return
             }
             
             observer.receive(notice)
         }
-        NotificationCenter.default.addObserver(forName: .MIDIObserverReceivePacket, object: nil, queue: nil) { notification in
-            guard let packet = notification.userInfo?[Notification.MIDIPacketKey] as? MIDIPacket else {
+        NotificationCenter.default.addObserver(forName: didReceivePacketNotification, object: nil, queue: nil) { notification in
+            guard let packet = notification.userInfo?[packetNotificationKey] as? MIDIPacket else {
                 return
             }
             
-            guard let source = notification.userInfo?[Notification.MIDISourceKey] as? MIDISource else {
+            guard let source = notification.userInfo?[sourceNotificationKey] as? MIDISource else {
                 return
             }
             
@@ -92,9 +114,13 @@ public struct MIDI {
     }
     
     public static func removeObserver<Observer>(_ observer: Observer) where Observer: MIDIObserver {
-        NotificationCenter.default.removeObserver(observer, name: .MIDIObserverReceiveNotice, object: nil)
-        NotificationCenter.default.removeObserver(observer, name: .MIDIObserverReceivePacket, object: nil)
+        NotificationCenter.default.removeObserver(observer, name: didReceiveNoticeNotification, object: nil)
+        NotificationCenter.default.removeObserver(observer, name: didReceivePacketNotification, object: nil)
     }
+    
+}
+
+extension MIDI {
     
     private static func receive(_ notice: MIDINotice) {
         do {
@@ -110,29 +136,11 @@ public struct MIDI {
             print(error)
         }
         
-        NotificationCenter.default.post(name: .MIDIObserverReceiveNotice, object: nil, userInfo: [Notification.MIDINoticeKey: notice])
+        NotificationCenter.default.post(name: didReceiveNoticeNotification, object: nil, userInfo: [noticeNotificationKey: notice])
     }
     
     private static func receive(_ packet: MIDIPacket, from source: MIDISource) {
-        NotificationCenter.default.post(name: .MIDIObserverReceivePacket, object: nil, userInfo: [Notification.MIDIPacketKey: packet, Notification.MIDISourceKey: source])
+        NotificationCenter.default.post(name: didReceivePacketNotification, object: nil, userInfo: [packetNotificationKey: packet, sourceNotificationKey: source])
     }
 
-}
-
-extension Notification {
-    
-    internal static let MIDINoticeKey = "MIDINotice"
-    
-    internal static let MIDIPacketKey = "MIDIPacket"
-    
-    internal static let MIDISourceKey = "MIDISource"
-    
-}
-
-extension Notification.Name {
-    
-    internal static let MIDIObserverReceiveNotice = Notification.Name("MIDIObserverReceiveNotice")
-    
-    internal static let MIDIObserverReceivePacket = Notification.Name("MIDIObserverReceivePacket")
-    
 }
