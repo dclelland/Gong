@@ -18,6 +18,8 @@ public protocol MIDIObserver {
 }
 
 public enum MIDI {
+
+    public typealias NotificationTokens = (didReceiveNoticeToken: NSObjectProtocol, didReceivePacketToken: NSObjectProtocol)
     
     public static let didReceiveNoticeNotification = Notification.Name("MIDIObserverReceiveNotice")
     
@@ -92,15 +94,15 @@ extension MIDI {
 
 extension MIDI {
     
-    public static func addObserver<Observer>(_ observer: Observer) where Observer: MIDIObserver {
-        NotificationCenter.default.addObserver(forName: didReceiveNoticeNotification, object: nil, queue: nil) { notification in
+    @discardableResult public static func addObserver<Observer>(_ observer: Observer) -> NotificationTokens where Observer: MIDIObserver {
+        let didReceiveNoticeToken = NotificationCenter.default.addObserver(forName: didReceiveNoticeNotification, object: nil, queue: nil) { notification in
             guard let notice = notification.userInfo?[noticeNotificationKey] as? MIDINotice else {
                 return
             }
             
             observer.receive(notice)
         }
-        NotificationCenter.default.addObserver(forName: didReceivePacketNotification, object: nil, queue: nil) { notification in
+        let didReceivePacketToken = NotificationCenter.default.addObserver(forName: didReceivePacketNotification, object: nil, queue: nil) { notification in
             guard let packet = notification.userInfo?[packetNotificationKey] as? MIDIPacket else {
                 return
             }
@@ -111,11 +113,12 @@ extension MIDI {
             
             observer.receive(packet, from: source)
         }
+        return (didReceiveNoticeToken, didReceivePacketToken)
     }
     
-    public static func removeObserver<Observer>(_ observer: Observer) where Observer: MIDIObserver {
-        NotificationCenter.default.removeObserver(observer, name: didReceiveNoticeNotification, object: nil)
-        NotificationCenter.default.removeObserver(observer, name: didReceivePacketNotification, object: nil)
+    public static func removeObserver(_ notificationTokens: NotificationTokens) {
+        NotificationCenter.default.removeObserver(notificationTokens.didReceiveNoticeToken, name: didReceiveNoticeNotification, object: nil)
+        NotificationCenter.default.removeObserver(notificationTokens.didReceivePacketToken, name: didReceivePacketNotification, object: nil)
     }
     
 }

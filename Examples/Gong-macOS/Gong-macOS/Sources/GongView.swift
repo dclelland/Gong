@@ -10,6 +10,8 @@ import Gong
 
 struct GongView: View {
     
+    @State private var notificationTokens = [MIDI.NotificationTokens]()
+    
     var body: some View {
         HStack(spacing: 8.0) {
             Button(action: { playNote(c5) }, label: { Text("C").frame(width: 24.0) })
@@ -21,12 +23,8 @@ struct GongView: View {
             Button(action: { playNote(b5) }, label: { Text("B").frame(width: 24.0) })
         }
         .padding()
-        .onAppear {
-            MIDI.addObserver(self)
-        }
-        .onDisappear {
-            MIDI.removeObserver(self)
-        }
+        .onAppear(perform: subscribe)
+        .onDisappear(perform: unsubscribe)
     }
     
 }
@@ -42,6 +40,20 @@ extension GongView {
 
         for device in MIDIDevice.all {
             device.send(note, via: output)
+        }
+    }
+    
+}
+
+extension GongView {
+    
+    func subscribe() {
+        notificationTokens.append(MIDI.addObserver(self))
+    }
+    
+    func unsubscribe() {
+        for notificationTokens in notificationTokens {
+            MIDI.removeObserver(notificationTokens)
         }
     }
     
