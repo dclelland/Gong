@@ -41,6 +41,23 @@ extension GongView {
     
 }
 
+//extension ViewController: MIDIObserver {
+//
+//    func receive(_ notice: MIDINotice) {
+//        print(notice)
+//    }
+//
+//    func receive(_ packet: MIDIPacket, from source: MIDISource) {
+//        switch packet.message {
+//        case .noteOn, .noteOff, .controlChange, .pitchBendChange:
+//            print(packet.message, source)
+//        default:
+//            break
+//        }
+//    }
+//
+//}
+
 struct GongView_Previews: PreviewProvider {
     
     static var previews: some View {
