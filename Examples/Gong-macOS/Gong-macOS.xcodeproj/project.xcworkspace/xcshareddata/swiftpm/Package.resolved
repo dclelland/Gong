@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "gong",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dclelland/Gong",
+      "state" : {
+        "revision" : "89c9b94c5ae8f41eb36370fb03baa86b4d4b7a32",
+        "version" : "1.2.1"
+      }
+    }
+  ],
+  "version" : 2
+}

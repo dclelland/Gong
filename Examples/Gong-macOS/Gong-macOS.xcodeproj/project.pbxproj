@@ -10,11 +10,11 @@
 		65F7791F2833361F00DEC96D /* GongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F7791D2833361F00DEC96D /* GongView.swift */; };
 		65F779202833361F00DEC96D /* GongApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F7791E2833361F00DEC96D /* GongApp.swift */; };
 		65F779252833364F00DEC96D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65F779222833364F00DEC96D /* Assets.xcassets */; };
+		65F77929283337AF00DEC96D /* Gong in Frameworks */ = {isa = PBXBuildFile; productRef = 65F77928283337AF00DEC96D /* Gong */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		65F779082833355500DEC96D /* Gong-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gong-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		65F7791B283335DB00DEC96D /* Gong */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Gong; path = ../..; sourceTree = "<group>"; };
 		65F7791D2833361F00DEC96D /* GongView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GongView.swift; sourceTree = "<group>"; };
 		65F7791E2833361F00DEC96D /* GongApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GongApp.swift; sourceTree = "<group>"; };
 		65F779222833364F00DEC96D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -26,6 +26,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65F77929283337AF00DEC96D /* Gong in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,7 +55,6 @@
 		65F7791A283335DB00DEC96D /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				65F7791B283335DB00DEC96D /* Gong */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -62,8 +62,8 @@
 		65F7791C2833361F00DEC96D /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				65F7791D2833361F00DEC96D /* GongView.swift */,
 				65F7791E2833361F00DEC96D /* GongApp.swift */,
+				65F7791D2833361F00DEC96D /* GongView.swift */,
 			);
 			name = Sources;
 			path = "Gong-macOS/Sources";
@@ -103,6 +103,9 @@
 			dependencies = (
 			);
 			name = "Gong-macOS";
+			packageProductDependencies = (
+				65F77928283337AF00DEC96D /* Gong */,
+			);
 			productName = "Gong-macOS";
 			productReference = 65F779082833355500DEC96D /* Gong-macOS.app */;
 			productType = "com.apple.product-type.application";
@@ -131,6 +134,9 @@
 				Base,
 			);
 			mainGroup = 65F778FF2833355500DEC96D;
+			packageReferences = (
+				65F77927283337AF00DEC96D /* XCRemoteSwiftPackageReference "Gong" */,
+			);
 			productRefGroup = 65F779092833355500DEC96D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -351,6 +357,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		65F77927283337AF00DEC96D /* XCRemoteSwiftPackageReference "Gong" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dclelland/Gong";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		65F77928283337AF00DEC96D /* Gong */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 65F77927283337AF00DEC96D /* XCRemoteSwiftPackageReference "Gong" */;
+			productName = Gong;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 65F779002833355500DEC96D /* Project object */;
 }
