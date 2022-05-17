@@ -19,6 +19,7 @@
 		65F7791E2833361F00DEC96D /* GongApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GongApp.swift; sourceTree = "<group>"; };
 		65F779222833364F00DEC96D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65F779242833364F00DEC96D /* Gong_macOS.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Gong_macOS.entitlements; sourceTree = "<group>"; };
+		65F7792A28333C7000DEC96D /* Gong */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Gong; path = ../..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +56,7 @@
 		65F7791A283335DB00DEC96D /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				65F7792A28333C7000DEC96D /* Gong */,
 			);
 			name = Packages;
 			sourceTree = "<group>";

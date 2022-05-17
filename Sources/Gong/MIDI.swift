@@ -9,7 +9,7 @@
 import Foundation
 import CoreMIDI
 
-public protocol MIDIObserver: class {
+public protocol MIDIObserver: AnyObject {
     
     func receive(_ notice: MIDINotice)
     
