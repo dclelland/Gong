@@ -13,12 +13,9 @@ import Gong
     var body: some Scene {
         WindowGroup {
             GongView()
+                .onAppear(perform: MIDI.connect)
+                .onDisappear(perform: MIDI.connect)
         }
-    }
-    
-    init() {
-        MIDI.connect()
-//        MIDI.disconnect()
     }
     
 }

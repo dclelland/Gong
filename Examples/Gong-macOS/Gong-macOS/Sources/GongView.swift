@@ -21,23 +21,17 @@ struct GongView: View {
             Button(action: { playNote(b5) }, label: { Text("B").frame(width: 24.0) })
         }
         .padding()
+        .onAppear {
+            MIDI.addObserver(self)
+        }
+        .onDisappear {
+            MIDI.removeObserver(self)
+        }
     }
     
 }
 
 extension GongView {
-    
-//    override func viewWillAppear() {
-//        super.viewWillAppear()
-//
-//        MIDI.addObserver(self)
-//    }
-//
-//    override func viewDidDisappear() {
-//        super.viewDidDisappear()
-//
-//        MIDI.removeObserver(self)
-//    }
     
     func playNote(_ pitch: Int) {
         guard let output = MIDI.output else {
@@ -53,22 +47,22 @@ extension GongView {
     
 }
 
-//extension ViewController: MIDIObserver {
-//
-//    func receive(_ notice: MIDINotice) {
-//        print(notice)
-//    }
-//
-//    func receive(_ packet: MIDIPacket, from source: MIDISource) {
-//        switch packet.message {
-//        case .noteOn, .noteOff, .controlChange, .pitchBendChange:
-//            print(packet.message, source)
-//        default:
-//            break
-//        }
-//    }
-//
-//}
+extension GongView: MIDIObserver {
+    
+    func receive(_ notice: MIDINotice) {
+        print(notice)
+    }
+
+    func receive(_ packet: MIDIPacket, from source: MIDISource) {
+        switch packet.message {
+        case .noteOn, .noteOff, .controlChange, .pitchBendChange:
+            print(packet.message, source)
+        default:
+            break
+        }
+    }
+    
+}
 
 struct GongView_Previews: PreviewProvider {
     

@@ -12,6 +12,8 @@
 import Foundation
 import CoreMIDI
 
+public typealias MIDIPacket = CoreMIDI.MIDIPacket
+
 extension MIDIPacket {
     
     public init(delay: TimeInterval = 0.0) {
