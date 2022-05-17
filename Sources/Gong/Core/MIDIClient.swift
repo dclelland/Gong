@@ -13,7 +13,7 @@ public class MIDIClient: MIDIObject {
     
     public typealias NoticeCallback = (_ notice: MIDINotice) -> Void
     
-    public typealias PacketCallback = (_ packet: MIDIEventPacket, _ source: MIDISource) -> Void
+    public typealias PacketCallback = (_ packet: MIDIPacket, _ source: MIDISource) -> Void
     
     public convenience init(name: String, callback: @escaping NoticeCallback = { _ in }) throws {
         var clientReference = MIDIClientRef()
@@ -50,7 +50,9 @@ extension MIDIClient {
             }
             
             for packet in eventList.unsafeSequence() {
-                callback(packet.pointee, MIDISource(endpointReference))
+                for word in packet.sequence() {
+                    callback(MIDIPacket(word: word, delay: Double(packet.pointee.timeStamp) / 1_000_000_000), MIDISource(endpointReference))
+                }
             }
         }
         
@@ -79,7 +81,9 @@ extension MIDIClient {
             }
             
             for packet in eventList.unsafeSequence() {
-                callback(packet.pointee, MIDISource(sourceReference))
+                for word in packet.sequence() {
+                    callback(MIDIPacket(word: word, delay: Double(packet.pointee.timeStamp) / 1_000_000_000), MIDISource(sourceReference))
+                }
             }
         }
         

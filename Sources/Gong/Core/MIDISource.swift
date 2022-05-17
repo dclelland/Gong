@@ -30,7 +30,14 @@ public class MIDISource: MIDIEndpoint {
 
 extension MIDISource {
     
-    public func received(_ packet: MIDIEventPacket, protocolID: MIDIProtocolID = ._1_0) throws {
+    public func received(_ packet: MIDIPacket, protocolID: MIDIProtocolID = ._1_0) throws {
+        let builder = MIDIEventPacket.Builder(maximumNumberMIDIWords: 64)
+        builder.timeStamp
+        builder.withUnsafeMutableMIDIEventPacketPointer { <#inout UnsafeMutableMIDIEventPacketPointer#> in
+            <#code#>
+        }
+        builder.
+        
         var eventList = MIDIEventList(protocol: protocolID, numPackets: 1, packet: packet)
         try MIDIReceivedEventList(reference, &eventList).midiError("Receiving packets with MIDISource")
     }

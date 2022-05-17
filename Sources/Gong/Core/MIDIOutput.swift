@@ -11,7 +11,7 @@ import CoreMIDI
 
 public class MIDIOutput: MIDIPort {
     
-    public func send(_ packet: MIDIEventPacket, to destination: MIDIDestination, protocolID: MIDIProtocolID = ._1_0) throws {
+    public func send(_ packet: MIDIPacket, to destination: MIDIDestination, protocolID: MIDIProtocolID = ._1_0) throws {
         var eventList = MIDIEventList(protocol: protocolID, numPackets: 1, packet: packet)
         try MIDISendEventList(reference, destination.reference, &eventList).midiError("Sending packets to destination with MIDIOutput")
     }
