@@ -49,8 +49,8 @@ extension MIDIClient {
                 return
             }
             
-            for packet in eventList.pointee.packets {
-                callback(packet, MIDISource(endpointReference))
+            for packet in eventList.unsafeSequence() {
+                callback(packet.pointee, MIDISource(endpointReference))
             }
         }
         
@@ -78,8 +78,8 @@ extension MIDIClient {
                 return
             }
             
-            for packet in eventList.pointee.packets {
-                callback(packet, MIDISource(sourceReference))
+            for packet in eventList.unsafeSequence() {
+                callback(packet.pointee, MIDISource(sourceReference))
             }
         }
         
