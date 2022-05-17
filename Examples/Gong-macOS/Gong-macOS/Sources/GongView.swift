@@ -10,7 +10,7 @@ import Gong
 
 struct GongView: View {
     
-    @State private var notificationTokens = [MIDI.NotificationTokens]()
+    @State private var observerTokens = [MIDIObserverTokens]()
     
     var body: some View {
         HStack(spacing: 8.0) {
@@ -48,12 +48,12 @@ extension GongView {
 extension GongView {
     
     func subscribe() {
-        notificationTokens.append(MIDI.addObserver(self))
+        observerTokens.append(MIDI.addObserver(self))
     }
     
     func unsubscribe() {
-        for notificationTokens in notificationTokens {
-            MIDI.removeObserver(notificationTokens)
+        for observerTokens in observerTokens {
+            MIDI.removeObserver(observerTokens)
         }
     }
     

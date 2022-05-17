@@ -26,19 +26,19 @@ An [example project](/Examples/Gong-macOS) is provided to help you get started.
 The entire library:
 
 ```ruby
-pod 'Gong', '~> 1.2'
+pod 'Gong', '~> 1.3'
 ```
 
 Just the CoreMIDI wrapper:
 
 ```ruby
-pod 'Gong/Core', '~> 1.2'
+pod 'Gong/Core', '~> 1.3'
 ```
 
 Just the CoreMIDI wrapper, plus `MIDINote` events:
 
 ```ruby
-pod 'Gong/Events', '~> 1.2'
+pod 'Gong/Events', '~> 1.3'
 ```
 #### Virtual MIDI buses
 
@@ -121,16 +121,20 @@ Receiving MIDI packets:
 ```swift
 class ViewController: NSViewController {
 
+    private var observerTokens = [MIDIObserverTokens]()
+
     override func viewWillAppear() {
         super.viewWillAppear()
         
-        MIDI.addObserver(self)
+        observerTokens.append(MIDI.addObserver(self))
     }
     
     override func viewDidDisappear() {
         super.viewDidDisappear()
         
-        MIDI.removeObserver(self)
+        for observerTokens in observerTokens {
+            MIDI.removeObserver(observerTokens)
+        }
     }
 
 }

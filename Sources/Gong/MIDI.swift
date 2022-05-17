@@ -17,9 +17,15 @@ public protocol MIDIObserver {
     
 }
 
-public enum MIDI {
+public struct MIDIObserverTokens {
+    
+    public var didReceiveNoticeNotificationToken: NSObjectProtocol
+    
+    public var didReceivePacketNotificationToken: NSObjectProtocol
+    
+}
 
-    public typealias NotificationTokens = (didReceiveNoticeToken: NSObjectProtocol, didReceivePacketToken: NSObjectProtocol)
+public enum MIDI {
     
     public static let didReceiveNoticeNotification = Notification.Name("MIDIObserverReceiveNotice")
     
@@ -94,31 +100,32 @@ extension MIDI {
 
 extension MIDI {
     
-    @discardableResult public static func addObserver<Observer>(_ observer: Observer) -> NotificationTokens where Observer: MIDIObserver {
-        let didReceiveNoticeToken = NotificationCenter.default.addObserver(forName: didReceiveNoticeNotification, object: nil, queue: nil) { notification in
-            guard let notice = notification.userInfo?[noticeNotificationKey] as? MIDINotice else {
-                return
+    @discardableResult public static func addObserver<Observer>(_ observer: Observer) -> MIDIObserverTokens where Observer: MIDIObserver {
+        return MIDIObserverTokens(
+            didReceiveNoticeNotificationToken: NotificationCenter.default.addObserver(forName: didReceiveNoticeNotification, object: nil, queue: nil) { notification in
+                guard let notice = notification.userInfo?[noticeNotificationKey] as? MIDINotice else {
+                    return
+                }
+                
+                observer.receive(notice)
+            },
+            didReceivePacketNotificationToken: NotificationCenter.default.addObserver(forName: didReceivePacketNotification, object: nil, queue: nil) { notification in
+                guard let packet = notification.userInfo?[packetNotificationKey] as? MIDIPacket else {
+                    return
+                }
+                
+                guard let source = notification.userInfo?[sourceNotificationKey] as? MIDISource else {
+                    return
+                }
+                
+                observer.receive(packet, from: source)
             }
-            
-            observer.receive(notice)
-        }
-        let didReceivePacketToken = NotificationCenter.default.addObserver(forName: didReceivePacketNotification, object: nil, queue: nil) { notification in
-            guard let packet = notification.userInfo?[packetNotificationKey] as? MIDIPacket else {
-                return
-            }
-            
-            guard let source = notification.userInfo?[sourceNotificationKey] as? MIDISource else {
-                return
-            }
-            
-            observer.receive(packet, from: source)
-        }
-        return (didReceiveNoticeToken, didReceivePacketToken)
+        )
     }
     
-    public static func removeObserver(_ notificationTokens: NotificationTokens) {
-        NotificationCenter.default.removeObserver(notificationTokens.didReceiveNoticeToken, name: didReceiveNoticeNotification, object: nil)
-        NotificationCenter.default.removeObserver(notificationTokens.didReceivePacketToken, name: didReceivePacketNotification, object: nil)
+    public static func removeObserver(_ tokens: MIDIObserverTokens) {
+        NotificationCenter.default.removeObserver(tokens.didReceiveNoticeNotificationToken, name: didReceiveNoticeNotification, object: nil)
+        NotificationCenter.default.removeObserver(tokens.didReceivePacketNotificationToken, name: didReceivePacketNotification, object: nil)
     }
     
 }
