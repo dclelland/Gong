@@ -13,7 +13,7 @@ public class MIDIClient: MIDIObject {
     
     public typealias NoticeCallback = (_ notice: MIDINotice) -> Void
     
-    public typealias PacketCallback = (_ packet: MIDIPacket, _ source: MIDISource) -> Void
+    public typealias PacketCallback = (_ packet: MIDIEventPacket, _ source: MIDISource) -> Void
     
     public convenience init(name: String, callback: @escaping NoticeCallback = { _ in }) throws {
         var clientReference = MIDIClientRef()
@@ -41,27 +41,20 @@ public class MIDIClient: MIDIObject {
 
 extension MIDIClient {
 
-    public func createInput(name: String, callback: @escaping PacketCallback = { _, _  in }) throws -> MIDIInput {
+    public func createInput(name: String, protocolID: MIDIProtocolID = ._1_0, callback: @escaping PacketCallback = { _, _  in }) throws -> MIDIInput {
         var portReference = MIDIPortRef()
         
-        let context = UnsafeMutablePointer<PacketCallback>.allocate(capacity: 1)
-        context.initialize(to: callback)
-        
-        let procedure: MIDIReadProc = { (packetList, context, connectionContext) in
-            guard let callback = context?.assumingMemoryBound(to: PacketCallback.self).pointee else {
-                return
-            }
-            
+        let block: MIDIReceiveBlock = { eventList, connectionContext in
             guard let endpointReference = connectionContext?.assumingMemoryBound(to: MIDIEndpointRef.self).pointee else {
                 return
             }
             
-            for packet in packetList.pointee.packets {
+            for packet in eventList.pointee.packets {
                 callback(packet, MIDISource(endpointReference))
             }
         }
         
-        try MIDIInputPortCreate(reference, name as CFString, procedure, context, &portReference).midiError("Creating input port on MIDIClient with name \"\(name)\"")
+        try MIDIInputPortCreateWithProtocol(reference, name as CFString, protocolID, &portReference, block).midiError("Creating input port on MIDIClient with name \"\(name)\"")
         return MIDIInput(portReference)
     }
     
@@ -71,33 +64,26 @@ extension MIDIClient {
         return MIDIOutput(portReference)
     }
     
-    public func createSource(name: String) throws -> MIDISource {
+    public func createSource(name: String, protocolID: MIDIProtocolID = ._1_0) throws -> MIDISource {
         var endpointReference = MIDIEndpointRef()
-        try MIDISourceCreate(reference, name as CFString, &endpointReference).midiError("Creating source on MIDIClient")
+        try MIDISourceCreateWithProtocol(reference, name as CFString, protocolID, &endpointReference).midiError("Creating source on MIDIClient")
         return MIDISource(endpointReference)
     }
     
-    public func createDestination(name: String, callback: @escaping PacketCallback = { _,_  in }) throws -> MIDIDestination {
+    public func createDestination(name: String, protocolID: MIDIProtocolID = ._1_0, callback: @escaping PacketCallback = { _,_  in }) throws -> MIDIDestination {
         var endpointReference = MIDIEndpointRef()
         
-        let context = UnsafeMutablePointer<PacketCallback>.allocate(capacity: 1)
-        context.initialize(to: callback)
-        
-        let procedure: MIDIReadProc = { (packetList, context, connectionContext) in
-            guard let callback = context?.assumingMemoryBound(to: PacketCallback.self).pointee else {
-                return
-            }
-            
+        let block: MIDIReceiveBlock = { eventList, connectionContext in
             guard let sourceReference = connectionContext?.assumingMemoryBound(to: MIDIObjectRef.self).pointee else {
                 return
             }
             
-            for packet in packetList.pointee.packets {
+            for packet in eventList.pointee.packets {
                 callback(packet, MIDISource(sourceReference))
             }
         }
         
-        try MIDIDestinationCreate(reference, name as CFString, procedure, context, &endpointReference).midiError("Creating destination on MIDIClient")
+        try MIDIDestinationCreateWithProtocol(reference, name as CFString, protocolID, &endpointReference, block).midiError("Creating destination on MIDIClient")
         return MIDIDestination(endpointReference)
     }
 
