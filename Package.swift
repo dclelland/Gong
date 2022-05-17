@@ -6,7 +6,7 @@ let package = Package(
     name: "Gong",
     platforms: [
         .iOS(.v9),
-        .macOS(.v10_15),
+        .macOS(.v10_10),
         .tvOS(.v9)
     ],
     products: [
