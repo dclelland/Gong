@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Gong
 
 @main struct GongApp: App {
     
@@ -15,16 +16,9 @@ import SwiftUI
         }
     }
     
-}
-
-//@NSApplicationMain class AppDelegate: NSObject, NSApplicationDelegate {
-//
-//    func applicationDidFinishLaunching(_ aNotification: Notification) {
-//        MIDI.connect()
-//    }
-//
-//    func applicationWillTerminate(_ aNotification: Notification) {
+    init() {
+        MIDI.connect()
 //        MIDI.disconnect()
-//    }
-//
-//}
+    }
+    
+}

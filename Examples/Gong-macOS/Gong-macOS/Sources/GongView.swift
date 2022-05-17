@@ -27,16 +27,28 @@ struct GongView: View {
 
 extension GongView {
     
+//    override func viewWillAppear() {
+//        super.viewWillAppear()
+//
+//        MIDI.addObserver(self)
+//    }
+//
+//    override func viewDidDisappear() {
+//        super.viewDidDisappear()
+//
+//        MIDI.removeObserver(self)
+//    }
+    
     func playNote(_ pitch: Int) {
-//        guard let output = MIDI.output else {
-//            return
-//        }
-//
-//        let note = MIDINote(pitch: pitch)
-//
-//        for device in MIDIDevice.all {
-//            device.send(note, via: output)
-//        }
+        guard let output = MIDI.output else {
+            return
+        }
+
+        let note = MIDINote(pitch: pitch)
+
+        for device in MIDIDevice.all {
+            device.send(note, via: output)
+        }
     }
     
 }
