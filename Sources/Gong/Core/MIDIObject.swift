@@ -66,7 +66,7 @@ extension MIDIObject {
         public static let offline = kMIDIPropertyOffline as String
         public static let `private` = kMIDIPropertyPrivate as String
         public static let driverOwner = kMIDIPropertyDriverOwner as String
-        public static let nameConfiguration = kMIDIPropertyNameConfiguration as String
+        public static let configurationDictionary = kMIDIPropertyNameConfigurationDictionary as String
         public static let image = kMIDIPropertyImage as String
         public static let driverVersion = kMIDIPropertyDriverVersion as String
         public static let supportsGeneralMIDI = kMIDIPropertySupportsGeneralMIDI as String
