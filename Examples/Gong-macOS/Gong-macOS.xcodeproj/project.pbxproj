@@ -7,18 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		65F7790C2833355500DEC96D /* GongApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F7790B2833355500DEC96D /* GongApp.swift */; };
-		65F7790E2833355500DEC96D /* GongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F7790D2833355500DEC96D /* GongView.swift */; };
-		65F779102833355600DEC96D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65F7790F2833355600DEC96D /* Assets.xcassets */; };
+		65F7791F2833361F00DEC96D /* GongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F7791D2833361F00DEC96D /* GongView.swift */; };
+		65F779202833361F00DEC96D /* GongApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F7791E2833361F00DEC96D /* GongApp.swift */; };
+		65F779252833364F00DEC96D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65F779222833364F00DEC96D /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		65F779082833355500DEC96D /* Gong-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gong-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		65F7790B2833355500DEC96D /* GongApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GongApp.swift; sourceTree = "<group>"; };
-		65F7790D2833355500DEC96D /* GongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GongView.swift; sourceTree = "<group>"; };
-		65F7790F2833355600DEC96D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		65F779142833355600DEC96D /* Gong_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Gong_macOS.entitlements; sourceTree = "<group>"; };
 		65F7791B283335DB00DEC96D /* Gong */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Gong; path = ../..; sourceTree = "<group>"; };
+		65F7791D2833361F00DEC96D /* GongView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GongView.swift; sourceTree = "<group>"; };
+		65F7791E2833361F00DEC96D /* GongApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GongApp.swift; sourceTree = "<group>"; };
+		65F779222833364F00DEC96D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		65F779242833364F00DEC96D /* Gong_macOS.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Gong_macOS.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,7 +35,9 @@
 		65F778FF2833355500DEC96D = {
 			isa = PBXGroup;
 			children = (
-				65F7790A2833355500DEC96D /* Gong-macOS */,
+				65F7791C2833361F00DEC96D /* Sources */,
+				65F779212833364F00DEC96D /* Resources */,
+				65F779232833364F00DEC96D /* Supporting Files */,
 				65F7791A283335DB00DEC96D /* Packages */,
 				65F779092833355500DEC96D /* Products */,
 			);
@@ -49,23 +51,40 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		65F7790A2833355500DEC96D /* Gong-macOS */ = {
-			isa = PBXGroup;
-			children = (
-				65F7790B2833355500DEC96D /* GongApp.swift */,
-				65F7790D2833355500DEC96D /* GongView.swift */,
-				65F7790F2833355600DEC96D /* Assets.xcassets */,
-				65F779142833355600DEC96D /* Gong_macOS.entitlements */,
-			);
-			path = "Gong-macOS";
-			sourceTree = "<group>";
-		};
 		65F7791A283335DB00DEC96D /* Packages */ = {
 			isa = PBXGroup;
 			children = (
 				65F7791B283335DB00DEC96D /* Gong */,
 			);
 			name = Packages;
+			sourceTree = "<group>";
+		};
+		65F7791C2833361F00DEC96D /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				65F7791D2833361F00DEC96D /* GongView.swift */,
+				65F7791E2833361F00DEC96D /* GongApp.swift */,
+			);
+			name = Sources;
+			path = "Gong-macOS/Sources";
+			sourceTree = "<group>";
+		};
+		65F779212833364F00DEC96D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				65F779222833364F00DEC96D /* Assets.xcassets */,
+			);
+			name = Resources;
+			path = "Gong-macOS/Resources";
+			sourceTree = "<group>";
+		};
+		65F779232833364F00DEC96D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				65F779242833364F00DEC96D /* Gong_macOS.entitlements */,
+			);
+			name = "Supporting Files";
+			path = "Gong-macOS/Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +145,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65F779102833355600DEC96D /* Assets.xcassets in Resources */,
+				65F779252833364F00DEC96D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +156,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65F7790E2833355500DEC96D /* GongView.swift in Sources */,
-				65F7790C2833355500DEC96D /* GongApp.swift in Sources */,
+				65F779202833361F00DEC96D /* GongApp.swift in Sources */,
+				65F7791F2833361F00DEC96D /* GongView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,7 +282,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Gong-macOS/Gong_macOS.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Gong-macOS/Supporting Files/Gong_macOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -289,7 +308,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Gong-macOS/Gong_macOS.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Gong-macOS/Supporting Files/Gong_macOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
