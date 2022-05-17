@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version: 5.6
 
 import PackageDescription
 
@@ -10,9 +10,7 @@ let package = Package(
         .tvOS(.v9)
     ],
     products: [
-        .library(
-            name: "Gong",
-            targets: ["Gong"])
+        .library(name: "Gong", targets: ["Gong"])
     ],
     targets: [
         .target(name: "Gong", dependencies: [])
