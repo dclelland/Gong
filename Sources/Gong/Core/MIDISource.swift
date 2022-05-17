@@ -31,7 +31,7 @@ public class MIDISource: MIDIEndpoint {
 extension MIDISource {
     
     public func received(_ packet: MIDIEventPacket, protocolID: MIDIProtocolID = ._1_0) throws {
-        var eventList = MIDIEventList(packet, protocolID: protocolID)
+        var eventList = MIDIEventList(protocol: protocolID, numPackets: 1, packet: packet)
         try MIDIReceivedEventList(reference, &eventList).midiError("Receiving packets with MIDISource")
     }
     

@@ -99,6 +99,17 @@ extension MIDIPacket {
         self.bytes = bytes
     }
     
+    public init(word: UInt32, delay: TimeInterval = 0.0) {
+        self.init(delay: delay)
+        self.length = 4
+        self.bytes = [
+            UInt8((word & 0xFF000000) >> 24),
+            UInt8((word & 0x00FF0000) >> 16),
+            UInt8((word & 0x0000FF00) >> 8),
+            UInt8((word & 0x000000FF) >> 0)
+        ]
+    }
+    
 }
 
 extension MIDIPacket {
@@ -314,24 +325,6 @@ extension MIDIPacket {
         }
     }
 
-}
-
-extension MIDIPacketList {
-    
-    public init(_ packet: MIDIPacket) {
-        self.init(numPackets: 1, packet: packet)
-    }
-    
-    public var packets: [MIDIPacket] {
-        var packets = [packet]
-        for _ in (0..<numPackets) {
-            if var packet = packets.last {
-                packets.append(MIDIPacketNext(&packet).pointee)
-            }
-        }
-        return packets
-    }
-    
 }
 
 extension UInt8 {
