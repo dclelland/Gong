@@ -9,7 +9,7 @@
 import Foundation
 import CoreMIDI
 
-public protocol MIDIObserver: AnyObject {
+public protocol MIDIObserver {
     
     func receive(_ notice: MIDINotice)
     
@@ -70,14 +70,30 @@ public struct MIDI {
         }
     }
     
-    private static var observers = [MIDIObserver]()
-    
-    public static func addObserver(_ observer: MIDIObserver) {
-        observers.append(observer)
+    public static func addObserver<Observer>(_ observer: Observer) where Observer: MIDIObserver {
+        NotificationCenter.default.addObserver(forName: .MIDIObserverReceiveNotice, object: nil, queue: nil) { notification in
+            guard let notice = notification.userInfo?[Notification.MIDINoticeKey] as? MIDINotice else {
+                return
+            }
+            
+            observer.receive(notice)
+        }
+        NotificationCenter.default.addObserver(forName: .MIDIObserverReceivePacket, object: nil, queue: nil) { notification in
+            guard let packet = notification.userInfo?[Notification.MIDIPacketKey] as? MIDIPacket else {
+                return
+            }
+            
+            guard let source = notification.userInfo?[Notification.MIDISourceKey] as? MIDISource else {
+                return
+            }
+            
+            observer.receive(packet, from: source)
+        }
     }
     
-    public static func removeObserver(_ observer: MIDIObserver) {
-        observers = observers.filter { $0 !== observer }
+    public static func removeObserver<Observer>(_ observer: Observer) where Observer: MIDIObserver {
+        NotificationCenter.default.removeObserver(observer, name: .MIDIObserverReceiveNotice, object: nil)
+        NotificationCenter.default.removeObserver(observer, name: .MIDIObserverReceivePacket, object: nil)
     }
     
     private static func receive(_ notice: MIDINotice) {
@@ -94,15 +110,29 @@ public struct MIDI {
             print(error)
         }
         
-        for observer in observers {
-            observer.receive(notice)
-        }
+        NotificationCenter.default.post(name: .MIDIObserverReceiveNotice, object: nil, userInfo: [Notification.MIDINoticeKey: notice])
     }
     
     private static func receive(_ packet: MIDIPacket, from source: MIDISource) {
-        for observer in observers {
-            observer.receive(packet, from: source)
-        }
+        NotificationCenter.default.post(name: .MIDIObserverReceivePacket, object: nil, userInfo: [Notification.MIDIPacketKey: packet, Notification.MIDISourceKey: source])
     }
 
+}
+
+extension Notification {
+    
+    internal static let MIDINoticeKey = "MIDINotice"
+    
+    internal static let MIDIPacketKey = "MIDIPacket"
+    
+    internal static let MIDISourceKey = "MIDISource"
+    
+}
+
+extension Notification.Name {
+    
+    internal static let MIDIObserverReceiveNotice = Notification.Name("MIDIObserverReceiveNotice")
+    
+    internal static let MIDIObserverReceivePacket = Notification.Name("MIDIObserverReceivePacket")
+    
 }
